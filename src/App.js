@@ -1,8 +1,8 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
 import Main from "./component/common/Main";
+import LoginForm from "./component/form/LoginForm";
 import Layout from "./layouts/Layout";
-import Login from "./pages/Login";
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
 		<div className = "body">
 			<BrowserRouter>
 				<Routes>
-					<Route path = "/" element = {<Login/>}/>
+					<Route path = "/" element = {<LoginForm/>}/>
 					<Route path = "main" element = {<Layout/>}>
 						<Route index element = {<Main/>}/>
 					</Route>
