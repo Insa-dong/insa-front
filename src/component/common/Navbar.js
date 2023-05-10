@@ -44,7 +44,7 @@ function Navbar() {
 								></img><span>과정</span>
 							</div>
 						</NavLink>
-						<NavLink to = "/">
+						<NavLink to = "/emp">
 							<div className = "sideTr">
 								<img className = "member-Img" src = "/images/구성원.png"></img><span>구성원</span>
 							</div>
