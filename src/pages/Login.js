@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 
-function LoginForm() {
+function Login() {
 
 	const navigate = useNavigate();
 
@@ -46,4 +46,4 @@ function LoginForm() {
 	);
 }
 
-export default LoginForm;
+export default Login;
