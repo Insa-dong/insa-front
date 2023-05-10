@@ -1,0 +1,15 @@
+.HeaderDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+    min-width: 800px;
+}
+
+.InputStyle {
+    width: 200px;
+    height: 25px;
+    border-radius: 10px;
+    text-indent: 1em;
+}

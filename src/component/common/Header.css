@@ -1,5 +1,21 @@
-.topHeader{
-    border-bottom: 1px  lightgray solid;
+.topHeader {
+    border-bottom: 1px lightgray solid;
     width: 86vw;
-    height: 7vh
+    height: 10vh;
+    margin-bottom: 6vh;
+}
+
+.headerName {
+    font-size: 1.75rem;
+    margin: 4vh 0 4vh 6vh;
+    position: absolute;
+    font-weight: 700;
+}
+
+.headerName2 {
+    font-size: 1.75rem;
+    margin: 4vh 0 0 14vh;
+    position: absolute;
+    font-weight: 700;
+    opacity: 0.5;
 }

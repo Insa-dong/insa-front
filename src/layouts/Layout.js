@@ -1,15 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 import Navbar from "../component/common/Navbar";
-import Header from '../component/common/Header';
 
 function Layout() {
+
 	return (
 		<>
-			<div style={{ display: 'flex' }}>
-				<Navbar />
+			<div style = {{display: 'flex'}}>
+				<Navbar/>
 				<div>
-					<Header />
-					<Outlet />
+					<Outlet/>
 				</div>
 			</div>
 		</>
