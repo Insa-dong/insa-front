@@ -1,16 +1,7 @@
-import {NavLink, useNavigate} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
-
-	const navigate = useNavigate();
-
-	const onClickTrainingHandler = () => {
-		navigate("/training");
-	}
-	const onClickClassHandler = () => {
-		navigate("/class");
-	}
 
 	return (
 		<>
@@ -35,23 +26,21 @@ function Navbar() {
 								<img className = "attendance-Img" src = "/images/근태.png"></img><span>근태</span>
 							</div>
 						</NavLink>
-						<NavLink to = "/">
+						<NavLink to = "/training">
 							<div className = "sideTr">
 								<img
 									className = "lecture-Img"
 									alt = "lecture-Img"
 									src = "/images/강의.png"
-									onClick = {onClickTrainingHandler}
 								></img><span>강의</span>
 							</div>
 						</NavLink>
-						<NavLink to = "/">
+						<NavLink to = '/class'>
 							<div className = "sideTr">
 								<img
 									className = "curriculum-Img"
 									alt = "curriculum-Img"
 									src = "/images/과정.png"
-									onClick = {onClickClassHandler}
 								></img><span>과정</span>
 							</div>
 						</NavLink>
