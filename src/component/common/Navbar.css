@@ -1,0 +1,117 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+}
+body{line-height: 100%;}
+ul, ol, li{list-style: none;}
+a{text-decoration: none; color: inherit;}
+.clear_fix::after, .clear_fix::before{
+    content: ""; display: block; clear: both;
+}
+
+#sideBar{
+    width: 14vw;
+    height: 100vh;
+    background-color: #f9fafa;
+}
+
+#sideTop{
+    margin-left: 20px;
+}
+
+.sideBox{
+    padding: 24px ;
+    display: flex;
+    justify-content: left;
+    box-sizing: border-box;
+    margin-top: 30px;
+    
+}
+
+#prof {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: #FFA9B0;
+    color: white;
+    text-align: center;
+    padding-top: 13px;
+    font-weight: bold;
+    margin: auto 8px;
+    box-sizing: border-box;
+  }
+  
+
+.sideTxt{
+    padding-top: 0.1vw;
+}
+
+
+.sideTr{
+    border-radius: 0.5rem;
+    display: flex;
+      align-items: center;
+      font-weight: bold;
+      color: #687482;
+      padding: 20px;
+      
+
+}
+
+.sideTr:hover {
+    background-color: #efefef;
+    cursor: pointer;
+}
+
+
+
+.topName{
+    display: block; 
+    padding-top: 3px;
+}
+
+.topAuth{
+    font-weight: normal; 
+    color: gray; 
+    font-size: 10pt
+}
+
+
+.sideTr > img{
+    width: 24px;
+    margin-left: 15px;
+}
+
+.sideTr > span{
+    width: 100px;
+    margin-left: 20px;
+}
+
+#sideBottom{
+    margin-top: 200px;
+    margin-left: 20px;
+}
+
+#sideBottom > .sideTr > .logout{
+    width: 180px;
+    border: 2px solid #8CBAFF;
+    padding: 10px 25px;
+    margin-right: 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #8CBAFF;
+    background: white;
+    text-decoration-line: none;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+
+
+
