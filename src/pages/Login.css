@@ -1,0 +1,99 @@
+.inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+  }
+
+  input:focus {
+	outline : none;
+} 
+
+.main-Img{
+
+    width: 65%;
+    padding-bottom: 3vh;
+
+}
+
+.id-Img{
+    width: 1vw;
+    height: 1.8vh;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.password-Img{
+    width: 1.2vw;
+    height: 1.8vh;
+    margin-top: 15px;
+    margin-right: 10px;
+    
+}
+
+#borderID {
+		border-radius: 0.5rem;
+		border: 1px solid  #8CBAFF;
+		width: 19.5rem;
+		height: 3rem;
+		font-weight: bold;
+		font-size: 13pt;
+		padding-left: 15px;
+		margin-top: 10px;
+		text-align: left;
+		display: flex;
+        margin: 0 auto;
+}	
+
+#borderPW {
+    border-radius: 0.5rem;
+    border: 1px solid  #8CBAFF;
+    width: 19.5rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    padding-left: 15px;
+    text-align: left;
+    display: flex;
+    margin: 2vh auto;
+
+}
+
+#loginButton {
+    border-radius: 0.5rem;
+    border: 1px solid  #8CBAFF;
+    width: 19.5rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    text-align: center;
+    background-color: white;
+
+}
+
+input::placeholder {
+  color: #b3b3b3;
+  font-size: 13pt;
+}
+
+.inputBox{
+    border: none;
+    
+}
+
+.searchButton{
+    border: none;
+    background-color: white;
+
+}
+
+#idsearch{
+    padding-right: 0.5vw;
+}
+
+#pwsearch{
+    padding-left: 0.5vw;
+}
