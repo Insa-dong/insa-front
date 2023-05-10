@@ -73,7 +73,7 @@ function Navbar() {
 					</div>
 
 					<div id = "sideBottom">
-						<div className = "sideTr">
+						<div className = "logoutBox">
 							<span className = "logout">로그아웃</span>
 						</div>
 					</div>
