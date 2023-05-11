@@ -1,0 +1,72 @@
+
+.wrapp {
+    width: 74vw;
+    height: 78vh;
+    margin: 0 auto;
+    /*border: 1px solid red;*/
+}
+
+.menu-bar {
+    margin-bottom: 3.5vw;
+ }
+
+.menu {
+    display: inline-block;
+    margin-left: 2vw;
+    font-size: 1.2rem;
+}
+
+/* 출퇴근 버튼 */
+
+.abs-btns {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.start-btn {
+    width: 11vw;
+    height: 2.4vw;
+    background-color: #8CBAFF;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+}
+
+
+.end-btn {
+    margin-left: 5vw;
+    width: 11vw;
+    height: 2.4vw;
+    background-color: white;
+    border: 3px solid #8CBAFF;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    color : #8CBAFF;
+    cursor: pointer;
+}
+
+/* 날짜 검색창 */
+
+
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 2vw;
+}
+
+.searchDate {
+    margin-right: 1vw;
+    border: 2px solid #C5DCFF !important;
+    border-radius: 5px;
+    width: 11vw;
+    height: 2.4vw;
+    padding-right: 1vw;
+    text-align: center;
+    color: #424242;
+}
+
+
