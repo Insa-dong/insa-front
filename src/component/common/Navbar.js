@@ -21,7 +21,7 @@ function Navbar() {
 								<img className = "notice-Img" src = "/images/공지사항.png"></img><span>공지사항</span>
 							</div>
 						</NavLink>
-						<NavLink to = "/">
+						<NavLink to = "/abs">
 							<div className = "sideTr">
 								<img className = "attendance-Img" src = "/images/근태.png"></img><span>근태</span>
 							</div>

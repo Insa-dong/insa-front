@@ -6,6 +6,7 @@ import Class from "./pages/class/Class";
 import Login from "./pages/Login";
 import Training from "./pages/training/Training";
 import Emp from "./pages/emp/Emp";
+import Abs from './pages/abs/Abs';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 						<Route path="training" element={<Training />} />
 						<Route path="class" element={<Class />} />
 						<Route path="emp" element={<Emp />} />
+						<Route path="abs" element={<Abs />}/>
 					</Route>
 				</Routes>
 			</BrowserRouter>
