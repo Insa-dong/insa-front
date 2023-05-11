@@ -1,21 +1,38 @@
 import {useState} from "react";
+import listCSS from '../lists/TrainingList.module.css'
 import CSS from './TrainingItem.module.css'
 
 function TrainingItem({item}) {
 
 	const [code, setCode] = useState();
+	const [hover, setHover] = useState(false);
 
 	const onChangeHandler = (e) => {
-		console.log(e.target.value)
+		if (e.target.checked) {
+			console.log(e.target.value);
+			setCode(e.target.value);
+		}
+	}
+
+	const onMouseOverHandler = () => {
+		setHover(true);
+	}
+
+	const onMouseOutHandler = () => {
+		setHover(false);
 	}
 
 	return (
-		<tr key = {item.trainingCode}>
+		<tr key = {item.trainingCode}
+		    className = {hover ? listCSS.BodyTrStyle : listCSS.BodyTrStyle2}
+		    onMouseOver = {onMouseOverHandler}
+		    onMouseOut = {onMouseOutHandler}>
 			<th>
 				<input type = "checkbox"
 				       className = {CSS.checkBox}
 				       value = {item.trainingCode}
-				       onChange = {onChangeHandler}/>
+				       onChange = {onChangeHandler}
+				/>
 				{item.trainingCode}
 			</th>
 			<th>{item.trainingTitle}</th>
