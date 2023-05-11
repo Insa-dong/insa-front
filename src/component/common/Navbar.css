@@ -54,10 +54,10 @@ a{text-decoration: none; color: inherit;}
 .sideTr{
     border-radius: 0.5rem;
     display: flex;
-      align-items: center;
-      font-weight: bold;
-      color: #687482;
-      padding: 2.1vh;
+    align-items: center;
+    font-weight: bold;
+    color: #687482;
+    padding: 2.1vh;
       
 
 }
@@ -81,12 +81,12 @@ a{text-decoration: none; color: inherit;}
 }
 
 
-.sideTr > img{
+.sideTr img{
     width: 24px;
     margin-left: 0.75vw;
 }
 
-.sideTr > span{
+.sideTr span{
     width: 100px;
     margin-left: 1.05vw;
 }
@@ -97,10 +97,11 @@ a{text-decoration: none; color: inherit;}
 }
 
 #sideBottom > .logoutBox{
-    width: 6vw;
+    width: 8vw;
+    height: 4vh;
     border: 2px solid #8CBAFF;
-    padding: 0.7vw;
-    margin-left: 1.8vw;
+    padding: 0.6vw;
+    margin-left: 1vw;
     border-radius: 10px;
     font-size: 15px;
     color: #8CBAFF;
@@ -109,6 +110,8 @@ a{text-decoration: none; color: inherit;}
     box-sizing: border-box;
     text-align: center;
 }
+
+
 
 
 
