@@ -12,7 +12,6 @@ export const callTrainingList = ({currentPage}) => {
 		const result = await fetch(requestURL).then(res => res.json());
 
 		if (result.status === 200) {
-			console.log(result);
 			dispatch(getTraininglist(result));
 		}
 	};
