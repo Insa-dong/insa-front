@@ -8,6 +8,7 @@ import Emp from "./pages/emp/Emp";
 import Error from "./pages/error/Error"
 import Login from "./pages/Login";
 import Training from "./pages/training/Training";
+import TrainingDetail from "./pages/training/TrainingDetail";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 					<Route path = "/" element = {<Layout/>}>
 						<Route path = "main" element = {<Main/>}/>
 						<Route path = "training" element = {<Training/>}/>
+						<Route path = "training/:trainingCode" element = {<TrainingDetail/>}/>
 						<Route path = "abs" element = {<Abs/>}/>
 						<Route path = "class" element = {<Class/>}/>
 						<Route path = "emp" element = {<Emp/>}/>

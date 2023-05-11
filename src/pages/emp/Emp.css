@@ -1,34 +1,34 @@
-.EmpWrapper{
+.EmpWrapper {
     width: 74vw;
     height: 78vh;
     margin: 0 auto;
 }
 
 /*검색영역*/
-.EmpSearchBox{
+.EmpSearchBox {
     display: flex;
     justify-content: flex-end;
 }
 
-input{
+input {
     border: none;
 }
 
-.EmpSearchBox > *{
+.EmpSearchBox > * {
     margin-right: 1vw;
     border: 2px solid #C5DCFF !important;
-    border-radius: 7px;    
+    border-radius: 7px;
 }
 
 /*셀렉트박스*/
-#EmpSelect{
+#EmpSelect {
     width: 5vw;
     text-align: center;
     color: #424242;
 }
 
 /*검색버튼*/
-.EmpSearchBtn{
+.EmpSearchBtn {
     width: 2.4vw;
     height: 4.4vh;
     background-color: #C5DCFF;
@@ -36,25 +36,25 @@ input{
     cursor: pointer;
 }
 
-.EmpSearchBtn > img{
+.EmpSearchBtn > img {
     width: 2vw;
     height: 4vh;
 }
 
 /*Cont*/
-.EmpContWrapper{
+.EmpContWrapper {
     margin-top: 5vh;
 }
 
-.EmpContBox{
+.EmpContBox {
     display: flex;
     justify-content: space-between;
 }
 
-.EmpContBox li{
+.EmpContBox li {
 }
 
-.EmpContLeft{
+.EmpContLeft {
     width: 20vw;
     height: 55vh;
     font-size: 1.4rem;
@@ -63,49 +63,49 @@ input{
     padding: 3vw;
 }
 
-.EmpContLeftTit{
+.EmpContLeftTit {
     height: 7vh;
 }
 
-.EmpContLeftSubTit{
+.EmpContLeftSubTit {
     height: 7vh;
     color: #424242;
 }
 
-.EmpContLeftDept{
+.EmpContLeftDept {
 }
 
-.EmpContLeftDept li{
+.EmpContLeftDept li {
     height: 5vh;
     color: #424242;
 }
 
-.EmpContRight{
+.EmpContRight {
     width: 50vw;
     height: 50vh;
 }
 
 /* 표 스타일 */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-  }
-  
-  table th,
-  table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    height: 5vh;
-  }
-  
-/* 첫 번째 로우 스타일 */
-table tr:first-child {
-    background-color: #f1f1f1;
-  }
+/*table {*/
+/*    width: 100%;*/
+/*    border-collapse: collapse;*/
+/*    text-align: center;*/
+/*  }*/
+/*  */
+/*  table th,*/
+/*  table td {*/
+/*    border: 1px solid #ddd;*/
+/*    padding: 8px;*/
+/*    height: 5vh;*/
+/*  }*/
+/*  */
+/*!* 첫 번째 로우 스타일 *!*/
+/*table tr:first-child {*/
+/*    background-color: #f1f1f1;*/
+/*  }*/
 
-  /*등록하기 버튼*/
-  .EmpEntBtn{
+/*등록하기 버튼*/
+.EmpEntBtn {
     width: 9vw;
     height: 2vw;
     color: #fff;
@@ -115,12 +115,12 @@ table tr:first-child {
     border-radius: 5px;
     margin-top: 2vw;
     margin-left: 65vw;
-  }
+}
 
-  .EmpPaging{
+.EmpPaging {
     border: 1px solid rgb(82, 82, 82);
     width: 20vw;
     height: 2vw;
     margin: 0 auto;
-  }
+}
 

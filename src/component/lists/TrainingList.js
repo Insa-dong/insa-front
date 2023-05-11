@@ -5,8 +5,6 @@ import CSS from './TrainingList.module.css';
 function TrainingList({training}) {
 
 
-	console.log('training : ', training)
-
 	return (
 		<table className = {CSS.tableStyle}>
 			<thead>

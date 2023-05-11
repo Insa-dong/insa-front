@@ -1,0 +1,84 @@
+
+.ButtonStyle2 {
+    width: 10vh;
+    height: 5vh;
+    background-color: #8CBAFF;
+    border-radius: 5px;
+    color: #FFFFFF;
+    border: 1px solid #8CBAFF;
+    cursor: pointer;
+    font-weight: 700;
+    margin: 3% 0 10% 25%;
+}
+
+.ButtonStyle3 {
+    width: 10vh;
+    height: 5vh;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    color: #8CBAFF;
+    border: 1px solid #8CBAFF;
+    cursor: pointer;
+    margin-top: 3%;
+    margin-left: 2.7%;
+    font-weight: 700;
+}
+
+.tableStyle {
+    max-width: 74vw;
+    max-height: 78vh;
+    margin: 0 auto;
+    border-spacing: 5vh;
+}
+
+.tableStyle td {
+    text-align: center;
+    width: 60vw;
+    max-width: 1075px;
+}
+
+
+.tableStyle th {
+    width: 25vh;
+    height: 10vh;
+    margin-left: 25%;
+}
+
+.centerDiv {
+    margin-left: 30%;
+    margin-top: 5%;
+}
+
+.textInput {
+    text-align: center;
+    width: 60vw;
+    height: 10vh;
+    max-width: 1075px;
+    max-height: 10vh;
+    resize: none;
+}
+
+.textInput2 {
+    width: 60vw;
+    height: 10vh;
+    max-width: 1075px;
+    max-height: 10vh;
+    resize: none;
+}
+
+.specialTextInput {
+    text-align: center;
+    width: 60vw;
+    height: 15vh;
+    max-width: 1075px;
+    max-height: 15vh;
+    resize: none;
+}
+
+.specialTextInput2 {
+    width: 60vw;
+    height: 15vh;
+    max-width: 1075px;
+    max-height: 15vh;
+    resize: none;
+}

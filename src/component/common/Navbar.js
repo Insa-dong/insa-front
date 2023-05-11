@@ -32,21 +32,21 @@ function Navbar() {
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/training" style = {activeStyle} className = "sideTr">
-								<img
-									className = "lecture-Img"
-									alt = "lecture-Img"
-									src = "/images/강의.png"
-								></img><span>강의</span>
-							</NavLink>
-						</div>
-						<div>
-							<NavLink to = '/class' style = {activeStyle} className = "sideTr">
+							<NavLink to = '/training' style = {activeStyle} className = "sideTr">
 								<img
 									className = "curriculum-Img"
 									alt = "curriculum-Img"
 									src = "/images/과정.png"
 								></img><span>과정</span>
+							</NavLink>
+						</div>
+						<div>
+							<NavLink to = "/class" style = {activeStyle} className = "sideTr">
+								<img
+									className = "lecture-Img"
+									alt = "lecture-Img"
+									src = "/images/강의.png"
+								></img><span>강의</span>
 							</NavLink>
 						</div>
 						<div>

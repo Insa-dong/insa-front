@@ -26,6 +26,7 @@
     border-bottom: 1px solid #828282;
     width: 25vh;
     max-width: 25vh;
+    padding: 10px;
     height: 10vh;
     white-space: nowrap;
     overflow: hidden;
@@ -41,6 +42,7 @@
     border-bottom: 1px solid #828282;
     width: 25vh;
     max-width: 25vh;
+    padding: 10px;
     height: 10vh;
     white-space: nowrap;
     overflow: hidden;
