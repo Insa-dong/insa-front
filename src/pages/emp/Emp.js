@@ -1,37 +1,15 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "../../component/common/Header";
-import EmpOrg from "./EmpOrg";
-import EmpManage from "./EmpManage";
+import React from 'react'
+import Header from '../../component/common/Header'
 
 function Emp() {
-  const navigate = useNavigate();
-  const [selectedPage, setSelectedPage] = useState('조직도');
 
-  const headerClick = (page) => {
-    setSelectedPage(page);
-  };
-
-  const selectPage = () => {
-    if (selectedPage === '조직도') {
-      return <EmpOrg />;
-    } else if (selectedPage === '구성원관리') {
-      return <EmpManage />;
-    }
-
-    return <EmpOrg />;
-  };
-
+  const title = "구성원";
   return (
     <>
-      <Header
-        title="조직도"
-        subTitle="구성원관리"
-        onClick={headerClick}
-      />
-      <div>{selectPage()}</div>
+      <Header title = {title}/>
+      <div>Emp</div>
     </>
-  );
+  )
 }
 
-export default Emp;
+export default Emp
