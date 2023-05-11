@@ -40,3 +40,87 @@ input{
     width: 2vw;
     height: 4vh;
 }
+
+/*Cont*/
+.EmpContWrapper{
+    margin-top: 5vh;
+}
+
+.EmpContBox{
+    display: flex;
+    justify-content: space-between;
+}
+
+.EmpContBox li{
+}
+
+.EmpContLeft{
+    width: 20vw;
+    height: 55vh;
+    font-size: 1.4rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 3vw;
+}
+
+.EmpContLeftTit{
+    height: 7vh;
+}
+
+.EmpContLeftSubTit{
+    height: 7vh;
+    color: #424242;
+}
+
+.EmpContLeftDept{
+}
+
+.EmpContLeftDept li{
+    height: 5vh;
+    color: #424242;
+}
+
+.EmpContRight{
+    width: 50vw;
+    height: 50vh;
+}
+
+/* 표 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  table th,
+  table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    height: 5vh;
+  }
+  
+/* 첫 번째 로우 스타일 */
+table tr:first-child {
+    background-color: #f1f1f1;
+  }
+
+  /*등록하기 버튼*/
+  .EmpEntBtn{
+    width: 9vw;
+    height: 2vw;
+    color: #fff;
+    font-size: 1.2rem;
+    background-color: #8CBAFF;
+    border: none;
+    border-radius: 5px;
+    margin-top: 2vw;
+    margin-left: 65vw;
+  }
+
+  .EmpPaging{
+    border: 1px solid rgb(82, 82, 82);
+    width: 20vw;
+    height: 2vw;
+    margin: 0 auto;
+  }
+
