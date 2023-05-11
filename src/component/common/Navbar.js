@@ -26,7 +26,8 @@ function Navbar() {
 						</div>
 						<div>
 							<NavLink to="/" style={activeStyle} className="sideTr">
-								<img className="attendance-Img" src="/images/근태.png"></img><span>근태</span>
+							<div className = "sideTr">
+								<img className = "attendance-Img" src = "/images/근태.png"></img><span>근태</span>
 							</NavLink>
 						</div>
 						<div>
