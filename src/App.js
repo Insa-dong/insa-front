@@ -2,6 +2,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
 import Main from "./component/common/Main";
 import Layout from "./layouts/Layout";
+import Abs from "./pages/abs/Abs";
 import Class from "./pages/class/Class";
 import Emp from "./pages/emp/Emp";
 import Error from "./pages/error/Error"
@@ -18,6 +19,7 @@ function App() {
 					<Route path = "/" element = {<Layout/>}>
 						<Route path = "main" element = {<Main/>}/>
 						<Route path = "training" element = {<Training/>}/>
+						<Route path = "abs" element = {<Abs/>}/>
 						<Route path = "class" element = {<Class/>}/>
 						<Route path = "emp" element = {<Emp/>}/>
 					</Route>
