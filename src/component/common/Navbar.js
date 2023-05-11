@@ -27,7 +27,7 @@ function Navbar() {
 						<div>
 							<NavLink to = "/abs" style = {activeStyle} className = "sideTr">
 								<img className = "attendance-Img" src = "/images/근태.png"
-								    alt = "근태"></img>
+								     alt = "근태"></img>
 								<span>근태</span>
 							</NavLink>
 						</div>
@@ -79,3 +79,4 @@ function Navbar() {
 }
 
 export default Navbar;
+
