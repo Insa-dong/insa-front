@@ -1,13 +1,45 @@
 import { useNavigate } from "react-router-dom";
 import './Login.css';
+import { useEffect, useState } from "react";
+import { callLoginAPI } from "../apis/LoginAPICalls";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
 
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { login } = useSelector(state => state.memberReducer);
 
-	const onClickHandler = () => {
-		navigate('/main');
+
+
+	const[form, setForm] = useState({
+		empId: '',
+		empPwd: ''
+	});
+
+	const onChangeHandler = (e) => {
+		setForm({
+			...form,
+			[e.target.name]: e.target.value
+		});
 	}
+	
+	const onClickHandler = () => {
+		dispatch(callLoginAPI(form));
+	}
+
+	useEffect(
+		() => {
+			if(login?.status === 200) {
+				navigate("/", { replace : true })
+			} else if(login?.state === 400){
+				alert(login.message);
+			}
+		},
+		[login]
+	);
+	
+	
 	return (
 		<div className="inner">
 			<div>
@@ -17,19 +49,20 @@ function Login() {
 				<img className="id-Img" src="/images/아이디로고.png" alt="아이디로고"></img>
 				<input className="inputBox"
 					type="text"
-					name="memberId"
+					name="empId"
 					placeholder="아이디"
 					autoComplete='off'
-				// onChange={ onChangeHandler }
+					onChange={ onChangeHandler }
 				/>
 			</div>
 			<div className="boderPW" id="borderPW">
 				<img className="password-Img" src="/images/비밀번호로고.png" alt="비밀번호로고"></img>
 				<input className="inputBox"
 					type="password"
-					name="memberPassword"
+					name="empPwd"
 					placeholder="비밀번호"
 					autoComplete='off'
+					onChange={ onChangeHandler }
 				/>
 
 				

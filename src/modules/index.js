@@ -1,8 +1,9 @@
 import {combineReducers} from "redux";
 import trainingReducer from "./TrainingModule";
+import memberReducer from "./LoginModule";
 
 const rootReducer = combineReducers({
-	trainingReducer
+	trainingReducer, memberReducer
 });
 
 export default rootReducer;
