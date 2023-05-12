@@ -30,15 +30,16 @@ input {
 /*검색버튼*/
 .EmpSearchBtn {
     width: 2.4vw;
-    height: 4.4vh;
-    background-color: #C5DCFF;
+    height: 2.4vw;
+    background-color: #8CBAFF;
     padding-left: 0.2vw;
     cursor: pointer;
+    border: none !important;
 }
 
 .EmpSearchBtn > img {
     width: 2vw;
-    height: 4vh;
+    height: 2vw;
 }
 
 /*Cont*/
