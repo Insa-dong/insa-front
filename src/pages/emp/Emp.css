@@ -2,6 +2,8 @@
     width: 74vw;
     height: 78vh;
     margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /*검색영역*/

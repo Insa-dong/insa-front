@@ -9,6 +9,7 @@ import Error from "./pages/error/Error"
 import Login from "./pages/Login";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
+import TrainingRegistration from "./pages/training/TrainingRegistration";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 						<Route path = "main" element = {<Main/>}/>
 						<Route path = "training" element = {<Training/>}/>
 						<Route path = "training/:trainingCode" element = {<TrainingDetail/>}/>
+						<Route path = "training/registration" element = {<TrainingRegistration/>}/>
 						<Route path = "abs" element = {<Abs/>}/>
 						<Route path = "class" element = {<Class/>}/>
 						<Route path = "emp" element = {<Emp/>}/>

@@ -64,7 +64,8 @@ function Training() {
 					</button>
 				</div>
 				{training && <TrainingList key = {training.trainingCode} training = {training}/>}
-				<button className = {CSS.ButtonStyle2}>등록하기</button>
+				<button className = {CSS.ButtonStyle2} onClick = {() => navigate('/training/registration')}>등록하기
+				</button>
 				<button className = {CSS.ButtonStyle3}>삭제하기</button>
 				{training.pageInfo && <PagingBar pageInfo = {training.pageInfo} setCurrentPage = {setCurrentPage}/>}
 			</div>
