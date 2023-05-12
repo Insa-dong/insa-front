@@ -1,28 +1,72 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import listCSS from '../lists/TrainingList.module.css'
 import CSS from './TrainingItem.module.css'
 
 function TrainingItem({item}) {
 
-	const [code, setCode] = useState();
+	const navigate = useNavigate();
+	const [trainingCode, setTrainingCode] = useState();
+	const [hover, setHover] = useState(false);
+	const ref = useRef();
 
 	const onChangeHandler = (e) => {
-		console.log(e.target.value)
+		if (e.target.checked) {
+			console.log(e.target.value);
+			setTrainingCode(e.target.value);
+		}
+	}
+
+	const onMouseOverHandler = (e) => {
+		setHover(true);
+		const value = e.target.parentNode.getAttribute('value');
+		setTrainingCode(value);
+	}
+
+	const onMouseOutHandler = () => {
+		setHover(false);
+	}
+
+	const onClickHandler = () => {
+		console.log(trainingCode)
+		navigate(`/training/${trainingCode}`);
+	}
+
+	const onCheckBoxClickHandler = () => {
+		ref.current.checked = !ref.current.checked;
 	}
 
 	return (
-		<tr key = {item.trainingCode}>
-			<th>
+		<tr key = {item.trainingCode}
+		    className = {hover ? listCSS.BodyTrStyle : listCSS.BodyTrStyle2}
+		    onMouseOver = {onMouseOverHandler}
+		    onMouseOut = {onMouseOutHandler}
+		    value = {item.trainingCode}
+		>
+			<th onClick = {onCheckBoxClickHandler}>
 				<input type = "checkbox"
+				       ref = {ref}
 				       className = {CSS.checkBox}
 				       value = {item.trainingCode}
-				       onChange = {onChangeHandler}/>
+				       onChange = {onChangeHandler}
+				/>
 				{item.trainingCode}
 			</th>
-			<th>{item.trainingTitle}</th>
-			<th>{item.trainingTime}</th>
-			<th>{item.trainingQual}</th>
-			<th>{item.trainingKnow}</th>
-			<th>{item.trainingCount}</th>
+			<th
+				onClick = {onClickHandler}
+			>{item.trainingTitle}</th>
+			<th
+				onClick = {onClickHandler}
+			>{item.trainingTime}</th>
+			<th
+				onClick = {onClickHandler}
+			>{item.trainingQual}</th>
+			<th
+				onClick = {onClickHandler}
+			>{item.trainingKnow}</th>
+			<th
+				onClick = {onClickHandler}
+			>{item.trainingCount}</th>
 		</tr>
 	)
 }

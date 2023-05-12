@@ -20,16 +20,35 @@
 }
 
 .BodyTrStyle th {
+    background-color: #E5E5E5;
+    border-left: 1px solid #828282;
+    border-right: 1px solid #828282;
+    border-bottom: 1px solid #828282;
+    width: 25vh;
+    max-width: 25vh;
+    padding: 10px;
+    height: 10vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.BodyTrStyle2 th {
     background-color: #FFFFFF;
     border-left: 1px solid #828282;
     border-right: 1px solid #828282;
     border-bottom: 1px solid #828282;
     width: 25vh;
     max-width: 25vh;
+    padding: 10px;
     height: 10vh;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: normal;
+    cursor: pointer;
 }
+
 
