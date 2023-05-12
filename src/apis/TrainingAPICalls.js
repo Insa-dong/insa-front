@@ -1,4 +1,4 @@
-import {getTraining, getTraininglist, putTraining} from "../modules/TrainingModule";
+import {getTraining, getTraininglist, postTraining, putTraining} from "../modules/TrainingModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -46,6 +46,27 @@ export const callModifyTraining = (formData) => {
 
 		if (result.status === 200) {
 			dispatch(putTraining(result));
+		}
+	}
+}
+
+export const callTrainingRegisterAPI = (form) => {
+
+	const requestURL = `${PRE_URL}/training`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(form)
+		}).then(res => res.json())
+
+		console.log(form);
+		console.log(result);
+		if (result.status === 200) {
+			dispatch(postTraining(result));
 		}
 	}
 }
