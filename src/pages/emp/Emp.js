@@ -106,7 +106,9 @@ function Emp() {
 
             <button className="EmpEntBtn" type="button">+ 구성원 등록하기</button>
 
-            <div className="EmpPaging"></div>
+            <div className="EmpPaging">
+              
+            </div>
         </div>
 
       </div>
