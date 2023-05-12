@@ -16,37 +16,7 @@
     font-size: 1.2rem;
 }
 
-/* 출퇴근 버튼 */
 
-.abs-btns {
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-}
-
-.abs-start-btn {
-    width: 11vw;
-    height: 2.4vw;
-    background-color: #8CBAFF;
-    border : none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    color: white;
-    cursor: pointer;
-}
-
-
-.abs-end-btn {
-    margin-left: 5vw;
-    width: 11vw;
-    height: 2.4vw;
-    background-color: white;
-    border: 3px solid #8CBAFF;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    color : #8CBAFF;
-    cursor: pointer;
-}
 
 /* 날짜 검색창 */
 
@@ -69,7 +39,7 @@
     color: #424242;
 }
 
-.abs-SearchBtn {
+.absSearchBtn {
     width: 2.4vw;
     height: 2.4vw;
     background-color: #8CBAFF;
@@ -79,9 +49,7 @@
     cursor: pointer;
 }
 
-.abs-SearchBtn > img {
+.absSearchBtn > img {
     width: 2vw;
     height: 2vw;
 }
-
-
