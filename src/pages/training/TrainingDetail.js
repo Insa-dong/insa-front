@@ -137,8 +137,7 @@ function TrainingDetail() {
 									className = {!modifyMode ? CSS.textInput : CSS.textInput2}
 									name = 'trainingWriter'
 									defaultValue = {!modifyMode ? data.trainingWriter.empName || "" : form.trainingWriter.empName}
-									onChange = {onChangeHandler}
-									readOnly = {!modifyMode}/></td>
+									onChange = {onChangeHandler}/></td>
 						}
 					</tr>
 					<tr>
@@ -148,8 +147,7 @@ function TrainingDetail() {
 								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
 								name = 'trainingDate'
 								defaultValue = {!modifyMode ? data.trainingDate || "" : form.trainingDate}
-								onChange = {onChangeHandler}
-								readOnly = {!modifyMode}/>
+								onChange = {onChangeHandler}/>
 						</td>
 					</tr>
 					</tbody>
