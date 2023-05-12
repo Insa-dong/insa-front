@@ -1,0 +1,65 @@
+.StuWrapper {
+    width: 74vw;
+    height: 78vh;
+    margin: 0 auto;
+}
+
+/*검색영역*/
+.StuSearchBox {
+    display: flex;
+    justify-content: flex-end;
+}
+
+input {
+    border: none;
+}
+
+.StuSearchBox > * {
+    margin-right: 1vw;
+    border: 2px solid #C5DCFF !important;
+    border-radius: 7px;
+}
+
+/*셀렉트박스*/
+#StuSelect {
+    width: 5vw;
+    text-align: center;
+    color: #424242;
+}
+
+/*검색버튼*/
+.StuSearchBtn {
+    width: 2.4vw;
+    height: 2.4vw;
+    background-color: #8CBAFF;
+    padding-left: 0.2vw;
+    cursor: pointer;
+    border: none !important;
+}
+
+.StuSearchBtn > img {
+    width: 2vw;
+    height: 2vw;
+}
+
+
+
+/*등록하기 버튼*/
+.StuEntBtn {
+    width: 9vw;
+    height: 2vw;
+    color: #fff;
+    font-size: 1.2rem;
+    background-color: #8CBAFF;
+    border: none;
+    border-radius: 5px;
+    margin-top: 2vw;
+    margin-left: 65vw;
+}
+
+.StuPaging {
+    border: 1px solid rgb(82, 82, 82);
+    width: 20vw;
+    height: 2vw;
+    margin: 0 auto;
+}

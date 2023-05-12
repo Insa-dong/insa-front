@@ -55,7 +55,7 @@ function Navbar() {
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/" style = {activeStyle} className = "sideTr">
+							<NavLink to = "/student" style = {activeStyle} className = "sideTr">
 								<img className = "student-Img" src = "/images/수강생.png"></img><span>수강생</span>
 							</NavLink>
 						</div>
