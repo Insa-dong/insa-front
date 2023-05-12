@@ -30,7 +30,7 @@ a{text-decoration: none; color: inherit;}
     justify-content: left;
     box-sizing: border-box;
     margin-top: 3.1vh;
-    
+
 }
 
 #prof {
@@ -44,7 +44,7 @@ a{text-decoration: none; color: inherit;}
     margin: auto 0.4vw;
     box-sizing: border-box;
   }
-  
+
 
 .sideTxt{
     padding-top: 0.1vw;
@@ -58,7 +58,7 @@ a{text-decoration: none; color: inherit;}
     font-weight: bold;
     color: #687482;
     padding: 2.1vh;
-      
+
 
 }
 
@@ -70,13 +70,13 @@ a{text-decoration: none; color: inherit;}
 
 
 .topName{
-    display: block; 
+    display: block;
     padding-top: 0.3vh;
 }
 
 .topAuth{
-    font-weight: normal; 
-    color: gray; 
+    font-weight: normal;
+    color: gray;
     font-size: 10pt
 }
 
