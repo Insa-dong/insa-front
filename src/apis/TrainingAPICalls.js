@@ -30,9 +30,10 @@ export const callTraining = ({trainingCode}) => {
 	}
 }
 
-export const callModifyTraining = (form) => {
+export const callModifyTraining = (formData) => {
 	// 	"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 
+	console.log(formData);
 	const requestURL = `${PRE_URL}/training`
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
@@ -40,10 +41,9 @@ export const callModifyTraining = (form) => {
 			headers: {
 				"Content-Type": "application/json"
 			},
-			body: form
+			body: JSON.stringify(formData)
 		}).then(res => res.json());
 
-		console.log(result);
 		if (result.status === 200) {
 			dispatch(putTraining(result));
 		}

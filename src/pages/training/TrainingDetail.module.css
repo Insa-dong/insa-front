@@ -82,3 +82,13 @@
     max-height: 15vh;
     resize: none;
 }
+
+.rightDiv {
+    display: grid;
+    justify-content: end;
+    margin-right: 10%;
+}
+
+.rightDiv p:last-child {
+    margin-top: 10%;
+}

@@ -25,27 +25,8 @@ function TrainingDetail() {
 		[dispatch, trainingCode]
 	);
 
-	const onClickModifyHandler = (e) => {
-		if (e.target.innerText === '수정하기') {
-			setModifyMode(true);
-			setForm({...data});
-		} else if (e.target.innerText === '저장하기') {
-			// const formData = new FormData();
-			//
-			// formData.append("trainingCode", form.trainingCode);
-			// formData.append("trainingTitle", form.trainingTitle);
-			// formData.append("trainingQual", form.trainingQual);
-			// formData.append("trainingKnow", form.trainingKnow);
-			// formData.append("trainingTime", form.trainingTime);
-			// formData.append("trainingCount", form.trainingCount);
-			// formData.append("trainingWriter", form.trainingWriter);
-			// formData.append("trainingDate", form.trainingDate);
-			// formData.append("trainingUpdate", form.trainingUpdate);
-			// formData.append("trainingModifier", form.trainingModifier);
-
-			console.log(form);
-			dispatch(callModifyTraining(form));
-
+	useEffect(
+		() => {
 			if (modify?.status === 200) {
 				if (window.confirm('수정이 완료되었습니다. 목차로 이동합니다.')) {
 					navigate('/training', {replace: true});
@@ -53,11 +34,33 @@ function TrainingDetail() {
 					alert(`${modify}`);
 				}
 			}
+		},
+		[modify, navigate]
+	)
+
+	const onClickModifyHandler = (e) => {
+		if (e.target.innerText === '수정하기') {
+			setModifyMode(true);
+			setForm({...data});
+		} else if (e.target.innerText === '저장하기') {
+			// const formData = new FormData();
+			// formData.append("trainingCode", form.trainingCode);
+			// formData.append("trainingTitle", form.trainingTitle);
+			// formData.append("trainingQual", form.trainingQual);
+			// formData.append("trainingKnow", form.trainingKnow);
+			// formData.append("trainingTime", form.trainingTime);
+			// formData.append("trainingCount", form.trainingCount);
+			// formData.append("trainingWriter.empCode", form.trainingWriter.empCode);
+			// formData.append("trainingDate", form.trainingDate);
+			// formData.append("trainingUpdate", form.trainingUpdate);
+			// 나중에 현재인증객체로 바꾸야함
+			// formData.append("trainingModifier.empCode", form.trainingModifier.empCode);
+
+			dispatch(callModifyTraining(form));
 		}
 	}
 
 	const onChangeHandler = (e) => {
-		console.log(e.target);
 		setForm({
 			...form,
 			[e.target.name]: e.target.value
@@ -69,12 +72,13 @@ function TrainingDetail() {
 			<Header title = {title} subTitle = {subTitle}/>
 			{data.trainingTime &&
 				<table className = {CSS.tableStyle}>
-					<tbody className = {CSS.tbodyStyle}>
+					<tbody>
 					<tr>
 						<th>과정명</th>
 						<td>
 							<textarea
 								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+								name = 'trainingTitle'
 								defaultValue = {!modifyMode ? data.trainingTitle || "" : form.trainingTitle}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
@@ -85,6 +89,7 @@ function TrainingDetail() {
 						<td>
 							<textarea
 								className = {!modifyMode ? CSS.specialTextInput : CSS.specialTextInput2}
+								name = 'trainingQual'
 								defaultValue = {!modifyMode ? data.trainingQual || "" : form.trainingQual}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}
@@ -96,6 +101,7 @@ function TrainingDetail() {
 						<td>
 							<textarea
 								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+								name = 'trainingKnow'
 								defaultValue = {!modifyMode ? data.trainingKnow || "" : form.trainingKnow}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
@@ -106,6 +112,7 @@ function TrainingDetail() {
 						<td>
 							<textarea
 								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+								name = 'trainingTime'
 								defaultValue = {!modifyMode ? `총 ${data.trainingTime} 시간` || "" : form.trainingTime}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
@@ -116,6 +123,7 @@ function TrainingDetail() {
 						<td>
 							<textarea
 								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+								name = 'trainingCount'
 								defaultValue = {!modifyMode ? data.trainingCount || "" : form.trainingCount}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
@@ -127,16 +135,18 @@ function TrainingDetail() {
 							<td>
 								<textarea
 									className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+									name = 'trainingWriter'
 									defaultValue = {!modifyMode ? data.trainingWriter.empName || "" : form.trainingWriter.empName}
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/></td>
 						}
 					</tr>
 					<tr>
-						<th>작성 일</th>
+						<th>{data.trainingUpdate ? '최초 작성일' : '작성일'}</th>
 						<td>
 							<textarea
 								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+								name = 'trainingDate'
 								defaultValue = {!modifyMode ? data.trainingDate || "" : form.trainingDate}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
@@ -144,6 +154,12 @@ function TrainingDetail() {
 					</tr>
 					</tbody>
 				</table>
+			}
+			{data.trainingUpdate &&
+				<div className = {CSS.rightDiv}>
+					<p>수정일 : {data.trainingUpdate}</p>
+					<p>수정자 : {data.trainingModifier.empName}</p>
+				</div>
 			}
 			<div className = {CSS.centerDiv}>
 				<button className = {CSS.ButtonStyle2}
