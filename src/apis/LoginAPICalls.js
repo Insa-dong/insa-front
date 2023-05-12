@@ -1,4 +1,4 @@
-import { postLogin } from "../modules/LoginModule";
+import {postLogin} from "../modules/LoginModule";
 
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -7,26 +7,27 @@ const PRE_URL = `http://${SERVER_IP}:${SERVER_PORT}`;
 
 export const callLoginAPI = (form) => {
 
-    const requestURL = `${PRE_URL}/auth/login`;
+	const requestURL = `${PRE_URL}/auth/login`;
 
-    return async (dispatch, getState) => {
+	return async (dispatch, getState) => {
 
-        const result = await fetch(requestURL, {
-            method : 'POST',
-            headers : {
-                'Content-Type' : 'application/json'
-            },
-            body : JSON.stringify(form)
-        })
-        .then(response => response.json());
+		console.log('form : ', form);
+		const result = await fetch(requestURL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(form)
+		})
+			.then(response => response.json());
 
-        console.log('[MemberAPICalls] callLoginAPI result : ', result);
+		console.log('[MemberAPICalls] callLoginAPI result : ', result);
 
-        if(result.status === 200) {
+		if (result.status === 200) {
 
-            window.localStorage.setItem('accessToken', result.data.accessToken);
-        }
-        
-        dispatch(postLogin(result));
-    }
+			window.localStorage.setItem('accessToken', result.data.accessToken);
+		}
+
+		dispatch(postLogin(result));
+	}
 }

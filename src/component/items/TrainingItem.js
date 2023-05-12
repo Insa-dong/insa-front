@@ -8,6 +8,7 @@ function TrainingItem({item}) {
 	const navigate = useNavigate();
 	const [trainingCode, setTrainingCode] = useState();
 	const [hover, setHover] = useState(false);
+	const [display, setDisplay] = useState({display: 'none'});
 	const ref = useRef();
 
 	const onChangeHandler = (e) => {
@@ -21,9 +22,13 @@ function TrainingItem({item}) {
 		setHover(true);
 		const value = e.target.parentNode.getAttribute('value');
 		setTrainingCode(value);
+		setDisplay({display: 'block'});
 	}
 
 	const onMouseOutHandler = () => {
+		if (!ref.current.checked) {
+			setDisplay({display: 'none'});
+		}
 		setHover(false);
 	}
 
@@ -49,6 +54,7 @@ function TrainingItem({item}) {
 				       className = {CSS.checkBox}
 				       value = {item.trainingCode}
 				       onChange = {onChangeHandler}
+				       style = {display}
 				/>
 				{item.trainingCode}
 			</th>

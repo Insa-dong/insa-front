@@ -21,7 +21,7 @@ function Training() {
 		() => {
 			dispatch(callTrainingList({currentPage}));
 		},
-		[]
+		[currentPage, dispatch]
 	)
 
 	const onChangeHandler = (e) => {
@@ -38,8 +38,8 @@ function Training() {
 		navigate(`/search?value=${search}`);
 	}
 
-	const onClickDeleteHandler = () => {
-
+	const onClickDeleteHandler = (e) => {
+		window.confirm('삭제하시겠습니까?')
 	}
 
 	return (
@@ -66,7 +66,7 @@ function Training() {
 				{training && <TrainingList key = {training.trainingCode} training = {training}/>}
 				<button className = {CSS.ButtonStyle2} onClick = {() => navigate('/training/registration')}>등록하기
 				</button>
-				<button className = {CSS.ButtonStyle3}>삭제하기</button>
+				<button className = {CSS.ButtonStyle3} onClick = {onClickDeleteHandler}>삭제하기</button>
 				{training.pageInfo && <PagingBar pageInfo = {training.pageInfo} setCurrentPage = {setCurrentPage}/>}
 			</div>
 		</>

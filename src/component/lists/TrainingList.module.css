@@ -32,7 +32,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: normal;
-    cursor: pointer;
 }
 
 .BodyTrStyle2 th {
@@ -48,7 +47,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: normal;
-    cursor: pointer;
+}
+
+.BodyTrStyle3 {
+    background-color: greenyellow;
 }
 
 
