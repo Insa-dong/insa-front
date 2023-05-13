@@ -31,7 +31,6 @@ export const callTraining = ({trainingCode}) => {
 }
 
 export const callModifyTraining = (formData) => {
-	// 	"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 
 	console.log(formData);
 	const requestURL = `${PRE_URL}/training`
@@ -39,7 +38,8 @@ export const callModifyTraining = (formData) => {
 		const result = await fetch(requestURL, {
 			method: 'PUT',
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+			"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
 			body: JSON.stringify(formData)
 		}).then(res => res.json());

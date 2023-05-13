@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
+import ProtectedRoute from './component/router/ProtectedRoute';
 
 
 function App() {
@@ -17,8 +18,8 @@ function App() {
 		<div className = "body">
 			<BrowserRouter>
 				<Routes>
-					<Route path = "/login" element = {<Login/>}/>
-					<Route path = "/" element = {<Layout/>}>
+					<Route path = "/login" element = {<ProtectedRoute loginCheck={false}><Login/></ProtectedRoute>}/>
+					<Route path = "/" element = {<ProtectedRoute loginCheck={true}><Layout/></ProtectedRoute>}>
 						<Route path = "main" element = {<Main/>}/>
 						<Route path = "training" element = {<Training/>}/>
 						<Route path = "training/:trainingCode" element = {<TrainingDetail/>}/>

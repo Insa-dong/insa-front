@@ -1,10 +1,18 @@
 import {NavLink} from 'react-router-dom';
 import './Navbar.css';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
 
 	const style = {textDecoration: 'none', color: 'black'};
 	const activeStyle = ({isActive}) => isActive ? style : undefined;
+	const navigate = useNavigate();
+
+	const onClickLogoutHandler = () => {
+		window.localStorage.removeItem('accessToken');
+		alert('로그아웃 되었습니다.')
+		navigate('/login', { replace : true });
+	}
 
 	return (
 		<>
@@ -68,7 +76,12 @@ function Navbar() {
 
 					<div id = "sideBottom">
 						<div className = "logoutBox">
-							<span className = "logout">로그아웃</span>
+							<button 
+								className = "logout"
+								onClick={ onClickLogoutHandler }
+							>
+								로그아웃
+							</button>
 						</div>
 					</div>
 				</div>

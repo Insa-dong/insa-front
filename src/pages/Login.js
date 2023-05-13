@@ -3,6 +3,7 @@ import './Login.css';
 import { useEffect, useState } from "react";
 import { callLoginAPI } from "../apis/LoginAPICalls";
 import { useDispatch, useSelector } from "react-redux";
+import { resetLogin } from "../modules/LoginModule";
 
 function Login() {
 
@@ -32,8 +33,10 @@ function Login() {
 		() => {
 			if(login?.status === 200) {
 				navigate("/", { replace : true })
+				dispatch(resetLogin());
 			} else if(login?.state === 400){
 				alert(login.message);
+				dispatch(resetLogin());
 			}
 		},
 		[login]

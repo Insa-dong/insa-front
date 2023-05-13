@@ -20,7 +20,7 @@ export const callLoginAPI = (form) => {
         })
         .then(response => response.json());
 
-        console.log('[MemberAPICalls] callLoginAPI result : ', result);
+        console.log('[LoginAPICalls] callLoginAPI result : ', result);
 
         if(result.status === 200) {
 
