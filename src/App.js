@@ -11,6 +11,7 @@ import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
 import ProtectedRoute from './component/router/ProtectedRoute';
+import Board from './pages/board/Board';
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
 				<Routes>
 					<Route path = "/login" element = {<ProtectedRoute loginCheck={false}><Login/></ProtectedRoute>}/>
 					<Route path = "/" element = {<ProtectedRoute loginCheck={true}><Layout/></ProtectedRoute>}>
-						<Route path = "main" element = {<Main/>}/>
+						<Route index element = {<Main/>}/>
+						<Route path = "board" element = {<Board/>}/>
 						<Route path = "training" element = {<Training/>}/>
 						<Route path = "training/:trainingCode" element = {<TrainingDetail/>}/>
 						<Route path = "training/registration" element = {<TrainingRegistration/>}/>

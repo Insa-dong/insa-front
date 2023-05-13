@@ -29,6 +29,12 @@ function Login() {
 		dispatch(callLoginAPI(form));
 	}
 
+	const handleEnter = (e) => {
+		if (e.key === "Enter") {
+			dispatch(callLoginAPI(form));
+		}
+	  };
+
 	useEffect(
 		() => {
 			if(login?.status === 200) {
@@ -66,6 +72,7 @@ function Login() {
 					placeholder="비밀번호"
 					autoComplete='off'
 					onChange={ onChangeHandler }
+					onKeyDown={handleEnter}
 				/>
 
 				

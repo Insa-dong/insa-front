@@ -107,6 +107,7 @@ a{text-decoration: none; color: inherit;}
     text-decoration-line: none;
     box-sizing: border-box;
     text-align: center;
+    cursor: pointer;
 }
 
 .logoutBox button{
@@ -114,6 +115,7 @@ a{text-decoration: none; color: inherit;}
     background-color: white;
     font-size: 15px;
     color: #8CBAFF;
+    cursor: pointer;
 }
 
 
