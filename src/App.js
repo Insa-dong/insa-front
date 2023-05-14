@@ -6,12 +6,14 @@ import Abs from "./pages/abs/Abs";
 import Class from "./pages/class/Class";
 import Emp from "./pages/emp/Emp";
 import Error from "./pages/error/Error"
-import Login from "./pages/Login";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
 import ProtectedRoute from './component/router/ProtectedRoute';
 import Board from './pages/board/Board';
+import Login from './pages/login/Login';
+import IdSearch from './pages/login/IdSearch';
+import IdSearchSuccess from './pages/login/IdSearchSuccess';
 
 
 function App() {
@@ -30,7 +32,8 @@ function App() {
 						<Route path = "class" element = {<Class/>}/>
 						<Route path = "emp" element = {<Emp/>}/>
 					</Route>
-
+					<Route path = "idsearch" element = {<IdSearch/>}/>
+					<Route path = "idsearchsuccess" element = {<IdSearchSuccess/>}/>
 					<Route path = "*" element = {<Error/>}/>
 				</Routes>
 			</BrowserRouter>
