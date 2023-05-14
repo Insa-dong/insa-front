@@ -39,7 +39,7 @@ export const callModifyTraining = (formData) => {
 			method: 'PUT',
 			headers: {
 				"Content-Type": "application/json",
-			"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
 			body: JSON.stringify(formData)
 		}).then(res => res.json());
@@ -53,6 +53,7 @@ export const callModifyTraining = (formData) => {
 export const callTrainingRegisterAPI = (form) => {
 
 	const requestURL = `${PRE_URL}/training`;
+	console.log(form);
 
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
@@ -63,10 +64,29 @@ export const callTrainingRegisterAPI = (form) => {
 			body: JSON.stringify(form)
 		}).then(res => res.json())
 
-		console.log(form);
 		console.log(result);
 		if (result.status === 200) {
 			dispatch(postTraining(result));
+		}
+	}
+}
+
+export const callTrainingDeleteAPI = (trainingCode) => {
+
+	console.log(trainingCode);
+	const requestURL = `${PRE_URL}/training/delete/${trainingCode}`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL, {
+			method: 'PUT',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+			}
+		}).then(res => res.json());
+
+		if (result.status === 200) {
+			dispatch(putTraining(result));
 		}
 	}
 }
