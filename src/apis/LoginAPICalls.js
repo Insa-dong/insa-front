@@ -1,4 +1,4 @@
-import {postLogin} from "../modules/LoginModule";
+import { postIdsearch, postLogin } from "../modules/LoginModule";
 
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -21,7 +21,7 @@ export const callLoginAPI = (form) => {
 		})
 			.then(response => response.json());
 
-		console.log('[MemberAPICalls] callLoginAPI result : ', result);
+        console.log('[LoginAPICalls] callLoginAPI result : ', result);
 
 		if (result.status === 200) {
 
@@ -31,3 +31,26 @@ export const callLoginAPI = (form) => {
 		dispatch(postLogin(result));
 	}
 }
+
+export const idSearchAPI = (form) => {
+
+    const requestURL = `${PRE_URL}/auth/idsearch`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(form)
+        })
+        .then(response => response.json());
+
+        console.log('[LoginAPICalls] idSearchAPI result : ', result);
+        
+        dispatch(postIdsearch(result));
+    }
+}
+
+
