@@ -4,6 +4,7 @@ import adviceReducer from "./AdviceModule";
 import evaReducer from "./EvaModule";
 import memberReducer from "./LoginModule";
 import studentReducer from "./StudentModule";
+import studyInfoReducer from "./StudyInfoModule";
 import studyReducer from "./StudyModule";
 import studyStudentReducer from "./StudyStudentModule";
 import trainingReducer from "./TrainingModule";
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
 	adviceReducer,
 	studyStudentReducer,
 	memberReducer,
-	studyReducer
+	studyReducer,
+	studyInfoReducer
 })
 
 export default rootReducer;
