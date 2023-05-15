@@ -30,7 +30,7 @@ const adviceReducer = handleActions(
     [PUT_ADVICE] : (state, { payload }) => ({ adviceModify : payload }),
     [DELETE_ADVICE] : (state, { payload }) => payload,
 
-    [GET_ADVICES] : (state, { payload })  => payload,
+    [GET_ADVICES] : (state, { payload })  => ({ adviceList : payload}),
     [DELETE_ADVICES] : (state, { payload }) => payload
  },
  initialState
