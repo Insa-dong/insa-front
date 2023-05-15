@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import './Login.css';
 import { useEffect, useState } from "react";
-import { callLoginAPI } from "../apis/LoginAPICalls";
 import { useDispatch, useSelector } from "react-redux";
+import { callLoginAPI } from "../../apis/LoginAPICalls";
+import { resetLogin } from "../../modules/LoginModule";
+
 
 function Login() {
 
@@ -12,7 +14,7 @@ function Login() {
 
 
 
-	const[form, setForm] = useState({
+	const [form, setForm] = useState({
 		empId: '',
 		empPwd: ''
 	});
@@ -23,23 +25,31 @@ function Login() {
 			[e.target.name]: e.target.value
 		});
 	}
-	
+
 	const onClickHandler = () => {
 		dispatch(callLoginAPI(form));
 	}
 
+	const handleEnter = (e) => {
+		if (e.key === "Enter") {
+			dispatch(callLoginAPI(form));
+		}
+	};
+
 	useEffect(
 		() => {
-			if(login?.status === 200) {
-				navigate("/", { replace : true })
-			} else if(login?.state === 400){
+			if (login?.status === 200) {
+				navigate("/", { replace: true })
+				dispatch(resetLogin());
+			} else if (login?.state === 400) {
 				alert(login.message);
+				dispatch(resetLogin());
 			}
 		},
 		[login]
 	);
-	
-	
+
+
 	return (
 		<div className="inner">
 			<div>
@@ -52,7 +62,7 @@ function Login() {
 					name="empId"
 					placeholder="아이디"
 					autoComplete='off'
-					onChange={ onChangeHandler }
+					onChange={onChangeHandler}
 				/>
 			</div>
 			<div className="boderPW" id="borderPW">
@@ -62,34 +72,30 @@ function Login() {
 					name="empPwd"
 					placeholder="비밀번호"
 					autoComplete='off'
-					onChange={ onChangeHandler }
+					onChange={onChangeHandler}
+					onKeyDown={handleEnter}
 				/>
-
-				
-
-
-
 			</div>
 			<button id="loginButton"
-					onClick={onClickHandler}
-				>
-					로그인
+				onClick={onClickHandler}
+			>
+				로그인
 			</button>
 			<div>
-			<button id="idsearch" className="searchButton"
-					onClick={onClickHandler}
+				<button id="idsearch" className="searchButton"
+					onClick={() => navigate("/idsearch")}
 				>
 					아이디찾기
-			</button>
+				</button>
 
-			<button id="pwsearch" className="searchButton"
+				<button id="pwsearch" className="searchButton"
 					onClick={onClickHandler}
 				>
 					비밀번호찾기
-			</button>
+				</button>
 			</div>
 
-			
+
 		</div>
 	);
 }

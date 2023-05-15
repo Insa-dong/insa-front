@@ -96,19 +96,26 @@ a{text-decoration: none; color: inherit;}
     margin-left: 1vw;
 }
 
-#sideBottom > .logoutBox{
+#sideBottom .logoutBox{
     width: 8vw;
     height: 4vh;
     border: 2px solid #8CBAFF;
-    padding: 0.6vw;
+    padding: 0.4vw;
     margin-left: 1vw;
     border-radius: 10px;
-    font-size: 15px;
-    color: #8CBAFF;
     background: white;
     text-decoration-line: none;
     box-sizing: border-box;
     text-align: center;
+    cursor: pointer;
+}
+
+.logoutBox button{
+    border: none;
+    background-color: white;
+    font-size: 15px;
+    color: #8CBAFF;
+    cursor: pointer;
 }
 
 

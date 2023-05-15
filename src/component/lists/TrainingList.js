@@ -2,8 +2,7 @@ import TrainingItem from "../items/TrainingItem";
 import CSS from './TrainingList.module.css';
 
 
-function TrainingList({training}) {
-
+function TrainingList({training, checkValue, setCheckValue}) {
 
 	return (
 		<table className = {CSS.tableStyle}>
@@ -20,7 +19,11 @@ function TrainingList({training}) {
 			<tbody className = {CSS.BodyTrStyle}>
 			{training.data &&
 				training.data.map(item => (
-					<TrainingItem item = {item} key = {item.trainingCode}/>
+					<TrainingItem item = {item}
+					              key = {item.trainingCode}
+					              checkValue = {checkValue}
+					              setCheckValue = {setCheckValue}
+					/>
 				))}
 			</tbody>
 		</table>
