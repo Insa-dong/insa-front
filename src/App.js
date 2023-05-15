@@ -14,6 +14,9 @@ import Login from './pages/login/Login';
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
+import Student from './pages/student/Student';
+import StudentDetail from './pages/student/StudentDetail';
+import StudentRegistration from './pages/student/StudentRegistration';
 import ProtectedRoute from './component/router/ProtectedRoute';
 import Board from './pages/board/Board';
 import Login from './pages/login/Login';
@@ -39,6 +42,11 @@ function App() {
 						<Route path = "abs" element = {<Abs/>}/>
 						<Route path = "class" element = {<Class/>}/>
 						<Route path = "emp" element = {<Emp/>}/>
+						<Route path = "student" element = {<Student/>}/>
+						<Route path="student/:stuCode" element={<StudentDetail />}>
+              		
+            			</Route>
+						<Route path = "student/registration" element = {<StudentRegistration/>}/>
 					</Route>
 					<Route path = "idsearch" element = {<IdSearch/>}/>
 					<Route path = "idsearchsuccess" element = {<IdSearchSuccess/>}/>
