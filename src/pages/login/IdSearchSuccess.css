@@ -1,0 +1,83 @@
+.inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+  }
+
+  input:focus {
+	outline : none;
+} 
+
+.main-Img{
+
+    width: 65%;
+    padding-bottom: 3vh;
+
+}
+
+.idCheck {
+    font-size: 20pt;
+    font-weight: bold;
+    padding-bottom: 2vh;
+}
+
+.idCheckScript {
+    padding-bottom: 1.5vh;
+
+}
+
+#checkID {
+    border-radius: 2rem;
+    border: 1px solid  #8CBAFF;
+    width: 23rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    padding-left: 15px;
+    padding-top: 15px;
+    color: gray;
+    margin-top: 10px;
+    margin: 0 auto;
+}
+
+#loginBtn {
+    border-radius: 0.5rem;
+    border: 1px solid  #8CBAFF;
+    width: 7rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    margin-right: 1vw;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+   
+}
+
+#pwBtn {
+    border-radius: 0.5rem;
+    border: 1px solid  #8CBAFF;
+    width: 7rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+#loginBtn:hover {
+    color: white;
+    background-color: #8CBAFF;
+}
+
+#pwBtn:hover {
+    color: white;
+    background-color: #8CBAFF;
+}

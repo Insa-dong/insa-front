@@ -6,23 +6,27 @@
 }
 
 .SelectBox {
-    background-color: #E6F2F8;
-    border: 1px solid #84BCDA;
+    border: 2px solid #C5DCFF !important;
+    border-radius: 7px;
     margin-left: 72%;
     width: 15vh;
+    height: 2vw;
+    text-align: center;
+    color: #424242;
 }
 
 .InputStyle {
     width: 19vh;
-    height: 3vh;
+    height: 2vw;
     border: 1px solid #8CBAFF;
     border-radius: 5px;
     margin-left: 1%;
 }
 
+
 .ButtonStyle {
-    width: 3vh;
-    height: 3vh;
+    width: 4vh;
+    height: 4vh;
     background-color: #8CBAFF;
     margin-left: 0.5%;
     border-radius: 5px;
@@ -57,8 +61,8 @@
 }
 
 .Image {
-    width: 2.8vh;
-    height: 2.8vh;
+    width: 3.8vh;
+    height: 3.8vh;
 }
 
 .centerDiv {

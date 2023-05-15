@@ -14,7 +14,8 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
         return diffHrs * 60 * 60 * 1000;
     };
 
-    // 시간을 문자열로 변환하는 함수
+    // 시간을 문자열로 변환하는 함수ㅇㅇ
+
     const formatTime = (totalMs) => {
 
         const hours = Math.floor(totalMs / (1000 * 60 * 60));

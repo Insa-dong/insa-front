@@ -71,7 +71,12 @@
     margin-bottom: 1vw;
     text-align: center;
     background-color: white;
+    cursor: pointer;
+}
 
+#loginButton:hover {
+    color: white;
+    background-color: #8CBAFF;
 }
 
 input::placeholder {
@@ -92,8 +97,18 @@ input::placeholder {
 
 #idsearch{
     padding-right: 0.5vw;
+    cursor: pointer;
+}
+
+#idsearch:hover{
+    text-decoration: underline;
 }
 
 #pwsearch{
     padding-left: 0.5vw;
+    cursor: pointer;
+}
+
+#pwsearch:hover{
+    text-decoration: underline;
 }
