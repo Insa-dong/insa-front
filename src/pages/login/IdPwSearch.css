@@ -1,0 +1,87 @@
+.inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+  }
+
+  input:focus {
+	outline : none;
+} 
+
+.main-Img{
+
+    width: 65%;
+    padding-bottom: 3vh;
+
+}
+
+.searchIdPW {
+    font-size: 20pt;
+    padding-bottom: 2vh;
+}
+
+.searchScript {
+    color: gray;
+    padding-bottom: 1.5vh;
+
+}
+
+#searchFirst {
+    border-radius: 0.5rem;
+    border: 1px solid  #8CBAFF;
+    width: 19.5rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    padding-left: 15px;
+    margin-top: 10px;
+    text-align: left;
+    display: flex;
+    margin: 0 auto;
+}
+
+#searchSecond {
+    border-radius: 0.5rem;
+    border: 1px solid  #8CBAFF;
+    width: 19.5rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    padding-left: 15px;
+    text-align: left;
+    display: flex;
+    margin: 2vh auto;
+
+}
+
+#searchButton {
+    border-radius: 0.5rem;
+    border: 1px solid  #8CBAFF;
+    width: 19.5rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    color: white;
+    background-color: #8CBAFF;
+}
+
+.pwCheck{
+    font-size: 20pt;
+    font-weight: bold;
+    padding-bottom: 2vh;
+}
+
+.pwCheckScript{
+    padding-bottom: 1.5vh;
+}
+
