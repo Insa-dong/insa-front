@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './StudentDetail.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callStudentDetailForAdminAPI, callStudentUpdateAPI } from "../../apis/StudentAPICalls";
@@ -20,9 +21,9 @@ function StudentDetail() {
     const data = useSelector(state => state.studentReducer);
     const { modify } = useSelector(state => state.studentReducer);
     const [currentPage, setCurrentPage] = useState();
-    const studyList = useSelector(state => state.studyStuReducer); 
-    const evaList = useSelector(state => state.evaReducer);
-    const adviceList = useSelector(state => state.adviceReducer);
+    const {studyList , studyPageInfo} = useSelector(state => state.studyStudentReducer);
+    const {adviceList, advicePageInfo} = useSelector(state => state.adviceReducer);
+    const {evaList, evaPageInfo} = useSelector(state => state.evaReducer);
   
     useEffect(
         ()=> {
@@ -31,7 +32,7 @@ function StudentDetail() {
             dispatch(callStudentEvaListAPI({ stuCode, currentPage }));
             dispatch(callStudentAdviceListAPI({ stuCode, currentPage }));
         },
-        []
+        [currentPage]
     );
 
     useEffect(
@@ -73,7 +74,6 @@ function StudentDetail() {
         dispatch(callStudentUpdateAPI(formData));
     }
 
-
       return (
         <>
           <Header title={title} />
@@ -82,9 +82,9 @@ function StudentDetail() {
               <table>
                 <tbody>
                 <tr>
-                    <td>이름:</td>
+                    <td>이름</td>
                     <td>
-                        <input 
+                        <input className="stuDetailBox"
                         name='stuName'
                         type='text'
                         onChange={onChangeHandler}
@@ -94,9 +94,9 @@ function StudentDetail() {
                     </td>
                     </tr>
                     <tr>
-                    <td>영문이름:</td>
+                    <td>영문이름</td>
                     <td>
-                        <input 
+                        <input className="stuDetailBox"
                         name='stuEngName'
                         type='text'
                         onChange={onChangeHandler}
@@ -106,9 +106,9 @@ function StudentDetail() {
                     </td>
                     </tr>
                     <tr>
-                    <td>생년월일:</td>
+                    <td>생년월일</td>
                     <td>
-                        <input 
+                        <input className="stuDetailBox"
                         name='stuBirth'
                         type='date'
                         onChange={onChangeHandler}
@@ -118,9 +118,9 @@ function StudentDetail() {
                     </td>
                     </tr>
                     <tr>
-                    <td>학력:</td>
+                    <td>학력</td>
                     <td>
-                        <input 
+                        <input className="stuDetailBox"
                         name='stuEndSchool'
                         type='text'
                         onChange={onChangeHandler}
@@ -130,9 +130,9 @@ function StudentDetail() {
                     </td>
                     </tr>
                     <tr>
-                    <td>이메일:</td>
+                    <td>이메일</td>
                     <td>
-                        <input 
+                        <input className="stuDetailBox"
                         name='stuEmail'
                         type='text'
                         onChange={onChangeHandler}
@@ -142,9 +142,9 @@ function StudentDetail() {
                     </td>
                     </tr>
                     <tr>
-                    <td>전화번호:</td>
+                    <td>전화번호</td>
                     <td>
-                        <input 
+                        <input className="stuDetailBox"
                         name='stuPhone'
                         type='text'
                         onChange={onChangeHandler}
@@ -156,14 +156,15 @@ function StudentDetail() {
 
                 </tbody>
               </table>
+              <br></br>
               {!modifyMode && 
-            <button
+            <button className="stuDetailUpdateBtn"
                 onClick={ onClickmodifyModeHandler }
             > 
                 수정하기
             </button>}
             {modifyMode && 
-                <button
+                <button className="stuDetailUpdateBtn"
                     onClick={ onClickStudentUpdateHandler}
                 >
                     수정
@@ -171,67 +172,47 @@ function StudentDetail() {
             }
             </>
           )}   
-        
-                 
-        <h2>과정 내역</h2>
-
-        <table>
+           
+        <h2 className = "studyHeader">과정 내역</h2>
+        <table className = "stuDetailDiv"> 
             <thead>
             <tr>
                 <th>과정 이름</th>
                 <th>회차</th>
-                <th></th>
+                <th>조회/삭제</th>
             </tr>
             </thead>
             <tbody>
-           {studyList && studyList.map((study) => (
-            <tr key={study.studyCode}>
-              <td>{study.training.trainingTitle}</td>
-              <td>{study.training.trainingCount}</td>
-              <td></td>
-            </tr>
-          ))}
             </tbody>
         </table>
             
-        <h2>평가 내역</h2>
+        <h2 className = "studyHeader">평가 내역</h2>
 
-        <table>
+        <table className = "stuDetailDiv">
             <thead>
             <tr>
+                <th>평가 코드</th>
                 <th>강의 이름</th>
                 <th>강사명</th>
-                <th></th>
+                <th>조회/삭제</th>
             </tr>
             </thead>
-            
             <tbody>
-                {/* {evaList && evaList.map((eva) => (
-                <tr key={eva.evaCode}>
-                    <td>{eva.studyInfo.studyTitle}</td>
-                    <td>{eva.studyInfo.teacher.empName}</td>
-                    <td></td>
-                </tr>
-                ))} */}
             </tbody>
         </table>
 
-        <h2>상담 내역</h2>
+        <h2 className = "studyHeader">상담 내역</h2>
 
-        <table>
+        <table className = "stuDetailDiv">
             <thead>
             <tr>
-                <th>강사명</th>
-                <th></th>
+                <th>일지 코드</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회/삭제</th>
             </tr>
             </thead>
             <tbody>
-            {/* {adviceList && adviceList.map((advice) => (
-                <tr key={advice.adviceLogCode}>
-                    <td>{advice.studyInfo.teacher.empName}</td>
-                    <td></td>
-                </tr>
-                ))} */}
             </tbody>
         </table>
         </>

@@ -1,4 +1,5 @@
 import './Student.css';
+import './StudentRegistration.css';
 import Header from "../../component/common/Header";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -38,13 +39,14 @@ function StudentRegistration() {
 
     return (
         <>
+        <div className="stuRegist">
         <Header title = { title }/>
         <table>
             <tbody>
                 <tr>
                     <th>이름</th>
                     <td>
-                        <input
+                        <input className="stuRegistBox"
                             type="text"
                             placeholder='이름을 입력해주세요'
                             name="stuName"
@@ -55,7 +57,7 @@ function StudentRegistration() {
                 <tr>
                     <th>영문 이름</th>
                     <td>
-                        <input
+                        <input className="stuRegistBox"
                             type="text"
                             placeholder='영문이름을 입력해주세요'
                             name="stuEngName"
@@ -66,7 +68,7 @@ function StudentRegistration() {
                 <tr>
                     <th>휴대폰</th>
                     <td>
-                        <input
+                        <input className="stuRegistBox"
                             type="text"
                             placeholder='휴대폰 번호를 입력해주세요'
                             name="stuPhone"
@@ -77,7 +79,7 @@ function StudentRegistration() {
                 <tr>
                     <th>이메일</th>
                     <td>
-                        <input
+                        <input className="stuRegistBox"
                             type="text"
                             placeholder='이메일을 입력해주세요'
                             name="stuEmail"
@@ -88,7 +90,7 @@ function StudentRegistration() {
                 <tr>
                     <th>생년월일</th>
                     <td>
-                        <input
+                        <input className="stuRegistBox"
                             type="date"
                             name="stuBirth"
                             onChange = {onChangeHandler}
@@ -98,7 +100,7 @@ function StudentRegistration() {
                 <tr>
                     <th>학력</th>
                     <td>
-                        <input
+                        <input className="stuRegistBox"
                             type="text"
                             placeholder='학력을 입력해주세요'
                             name="stuEndSchool"
@@ -108,12 +110,14 @@ function StudentRegistration() {
                 </tr>    
             </tbody>
             </table>
-            <button 
+            <br></br><br></br>
+            <button className="stuRegistEntBtn"
                 onClick = {onClickStudentRegistrationHandler}>등록하기</button>
-
-            <button
+             <br></br>
+            <button className="beforeBtn"
                 onClick ={ () => navigate(-1)}>
                     이전으로</button>    
+            </div>
         </>
     );
 }

@@ -109,7 +109,7 @@ input {
 
 /*등록하기 버튼*/
 .EmpEntBtn {
-    width: 9vw;
+    width: 8vw;
     height: 2vw;
     color: #fff;
     font-size: 1.2rem;
@@ -117,7 +117,7 @@ input {
     border: none;
     border-radius: 5px;
     margin-top: 2vw;
-    margin-left: 65vw;
+    margin-left: 66vw;
 }
 
 .EmpPaging {
