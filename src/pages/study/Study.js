@@ -78,7 +78,7 @@ function Study() {
 						onChange = {onChangeHandler}
 						onKeyDown = {onKeyDownHandler}
 						type = "text"
-						placeholder = {selectedOption === 'trainingTitle' ? "과정명을 입력하세요." : selectedOption === 'studyTitle' ? "강의 명을 입력하세요." : selectedOption === 'studyTeacher' ? "강사 명을 입력하세요." : "검색어를 입력하세요."}
+						placeholder = {selectedOption === 'studyTitle' ? "강의명을 입력하세요." : selectedOption === 'studyTitle' ? "강의 명을 입력하세요." : selectedOption === 'studyTeacher' ? "강사 명을 입력하세요." : "검색어를 입력하세요."}
 					>
 					</input>
 					<button className = {CSS.ButtonStyle} onClick = {onClickHandler}>

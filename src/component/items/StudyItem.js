@@ -1,29 +1,20 @@
-import {useEffect, useRef, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {callStudyInfoListAPI} from "../../apis/StudyInfoAPICalls.js";
 import listCSS from "../lists/TrainingList.module.css";
 import CSS from "./TrainingItem.module.css";
 
-function StudyItem({item, checkValue, setCheckValue, currentPage}) {
+function StudyItem({item, checkValue, setCheckValue, data}) {
 
 	const [hover, setHover] = useState(false);
 	const [display, setDisplay] = useState({display: 'none'});
+	const [targetValue, setTargetValue] = useState();
 	const ref = useRef();
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const studyInfo = useSelector(state => state.studyInfoReducer);
 
-
-	useEffect(
-		() => {
-			dispatch(callStudyInfoListAPI({currentPage}));
-		}, []
-	)
-
-	const onMouseOverHandler = () => {
+	const onMouseOverHandler = (e) => {
 		setHover(true);
 		setDisplay({display: 'block'});
+		setTargetValue(item.studyCode);
 	}
 
 	const onMouseOutHandler = () => {
@@ -34,7 +25,7 @@ function StudyItem({item, checkValue, setCheckValue, currentPage}) {
 	}
 
 	const onClickHandler = () => {
-		navigate(`/study/${checkValue}`);
+		navigate(`/studyInfo/${targetValue}`);
 	}
 
 	const onCheckBoxClickHandler = () => {
@@ -66,7 +57,7 @@ function StudyItem({item, checkValue, setCheckValue, currentPage}) {
 				{`${item.training.trainingCode}-${item.training.trainingCount}-${item.studyCode}`}
 			</th>
 			<th onClick = {onClickHandler}>
-				{item.studyTitle}
+				{data && data.studyContent}
 			</th>
 			<th onClick = {onClickHandler}>
 				{item.training.trainingTitle}</th>
@@ -75,6 +66,9 @@ function StudyItem({item, checkValue, setCheckValue, currentPage}) {
 			</th>
 			<th onClick = {onClickHandler}>
 				{item.studyMaxPeople}
+			</th>
+			<th onClick = {onClickHandler}>
+				{data && data.teacher.empName}
 			</th>
 		</tr>
 	)

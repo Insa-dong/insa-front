@@ -1,8 +1,20 @@
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {callStudyInfoListAPI} from "../../apis/StudyInfoAPICalls";
 import StudyItem from "../items/StudyItem";
 import CSS from "./TrainingList.module.css";
 
 function StudyList({study, checkValue, setCheckValue, currentPage}) {
 
+	const dispatch = useDispatch();
+	const studyInfo = useSelector(state => state.studyInfoReducer);
+
+
+	useEffect(
+		() => {
+			dispatch(callStudyInfoListAPI({currentPage}));
+		}, [currentPage, dispatch]
+	)
 
 	return (
 		<table className = {CSS.tableStyle}>
@@ -19,12 +31,12 @@ function StudyList({study, checkValue, setCheckValue, currentPage}) {
 			</thead>
 			<tbody className = {CSS.BodyTrStyle}>
 			{study.data &&
-				study.data.map(item => (
+				study.data.map((item, index) => (
 					<StudyItem item = {item}
-					           key = {item.trainingCode}
+					           key = {item.studyCode}
 					           checkValue = {checkValue}
 					           setCheckValue = {setCheckValue}
-					           currentPage = {currentPage}
+					           data = {studyInfo[index]}
 					/>
 				))}
 			</tbody>

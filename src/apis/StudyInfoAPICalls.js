@@ -1,4 +1,4 @@
-import {getStudyinfoList} from "../modules/StudyInfoModule";
+import {getStudyinfolist} from "../modules/StudyInfoModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -12,7 +12,7 @@ export const callStudyInfoListAPI = ({currentPage}) => {
 		const result = await fetch(requestURL).then(res => res.json());
 
 		if (result.status === 200) {
-			dispatch(getStudyinfoList(result));
+			dispatch(getStudyinfolist(result));
 		}
 	};
 }
