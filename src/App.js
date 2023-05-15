@@ -10,15 +10,14 @@ import Error from "./pages/error/Error"
 import IdSearch from './pages/login/IdSearch';
 import IdSearchSuccess from './pages/login/IdSearchSuccess';
 import Login from './pages/login/Login';
-import Training from "./pages/training/Training";
-import TrainingDetail from "./pages/training/TrainingDetail";
-import TrainingRegistration from "./pages/training/TrainingRegistration";
+import PwSearch from './pages/login/PwSearch';
+import PwSearchSuccess from './pages/login/PwSearchSuccess';
 import Student from './pages/student/Student';
 import StudentDetail from './pages/student/StudentDetail';
 import StudentRegistration from './pages/student/StudentRegistration';
-import Board from './pages/board/Board';
-import PwSearch from './pages/login/PwSearch';
-import PwSearchSuccess from './pages/login/PwSearchSuccess';
+import Training from "./pages/training/Training";
+import TrainingDetail from "./pages/training/TrainingDetail";
+import TrainingRegistration from "./pages/training/TrainingRegistration";
 
 
 
@@ -39,9 +38,9 @@ function App() {
 						<Route path = "class" element = {<Class/>}/>
 						<Route path = "emp" element = {<Emp/>}/>
 						<Route path = "student" element = {<Student/>}/>
-						<Route path="student/:stuCode" element={<StudentDetail />}>
-              		
-            			</Route>
+						<Route path = "student/:stuCode" element = {<StudentDetail/>}>
+
+						</Route>
 						<Route path = "student/registration" element = {<StudentRegistration/>}/>
 					</Route>
 					<Route path = "idsearch" element = {<IdSearch/>}/>
