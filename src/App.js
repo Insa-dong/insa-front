@@ -14,6 +14,13 @@ import Login from './pages/login/Login';
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
+import ProtectedRoute from './component/router/ProtectedRoute';
+import Board from './pages/board/Board';
+import Login from './pages/login/Login';
+import IdSearch from './pages/login/IdSearch';
+import IdSearchSuccess from './pages/login/IdSearchSuccess';
+import PwSearch from './pages/login/PwSearch';
+import PwSearchSuccess from './pages/login/PwSearchSuccess';
 
 
 function App() {
@@ -35,6 +42,8 @@ function App() {
 					</Route>
 					<Route path = "idsearch" element = {<IdSearch/>}/>
 					<Route path = "idsearchsuccess" element = {<IdSearchSuccess/>}/>
+					<Route path = "pwsearch" element = {<PwSearch/>}/>
+					<Route path = "pwsearchsuccess" element = {<PwSearchSuccess/>}/>
 					<Route path = "*" element = {<Error/>}/>
 				</Routes>
 			</BrowserRouter>

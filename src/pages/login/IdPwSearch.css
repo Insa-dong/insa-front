@@ -17,7 +17,7 @@
 
 }
 
-.searchId {
+.searchIdPW {
     font-size: 20pt;
     padding-bottom: 2vh;
 }
@@ -28,7 +28,7 @@
 
 }
 
-#searchName {
+#searchFirst {
     border-radius: 0.5rem;
     border: 1px solid  #8CBAFF;
     width: 19.5rem;
@@ -42,7 +42,7 @@
     margin: 0 auto;
 }
 
-#searchPhone {
+#searchSecond {
     border-radius: 0.5rem;
     border: 1px solid  #8CBAFF;
     width: 19.5rem;
@@ -74,3 +74,14 @@
     color: white;
     background-color: #8CBAFF;
 }
+
+.pwCheck{
+    font-size: 20pt;
+    font-weight: bold;
+    padding-bottom: 2vh;
+}
+
+.pwCheckScript{
+    padding-bottom: 1.5vh;
+}
+

@@ -1,4 +1,4 @@
-import { postIdsearch, postLogin } from "../modules/LoginModule";
+import { postIdsearch, postLogin, postPwsearch } from "../modules/LoginModule";
 
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -50,6 +50,27 @@ export const idSearchAPI = (form) => {
         console.log('[LoginAPICalls] idSearchAPI result : ', result);
         
         dispatch(postIdsearch(result));
+    }
+}
+
+export const pwSearchAPI = (form) => {
+
+    const requestURL = `${PRE_URL}/auth/sendemail`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(form)
+        })
+        .then(response => response.json());
+
+        console.log('[LoginAPICalls] pwSearchAPI result : ', result);
+        
+        dispatch(postPwsearch(result));
     }
 }
 
