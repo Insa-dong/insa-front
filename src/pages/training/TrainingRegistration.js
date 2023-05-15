@@ -14,10 +14,12 @@ function TrainingRegistration() {
 	const dispatch = useDispatch();
 	const {regist} = useSelector(state => state.trainingReducer);
 
+	console.log(regist);
+
 	useEffect(
 		() => {
-			if (regist?.state === 200) {
-				if (window.confirm('등록이 완료되었습니다. 메인 페이지로 이동합니다.')) {
+			if (regist?.status === 200) {
+				if (window.confirm(`${regist?.message}`)) {
 					navigate('/training', {replace: true});
 				} else {
 					alert('메인 페이지로 이동합니다.');
@@ -25,7 +27,7 @@ function TrainingRegistration() {
 				}
 			}
 		},
-		[regist]
+		[navigate, regist?.message, regist?.state]
 	)
 
 	const onChangeHandler = (e) => {
