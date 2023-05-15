@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { idSearchAPI } from "../../apis/LoginAPICalls";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "./IdSearch.css";
+import "./IdPwSearch.css";
 
 function IdSearch() {
 
@@ -42,9 +42,9 @@ function IdSearch() {
 			<div>
 				<img className="main-Img" src="/images/메인로고.png" alt="메인로고"></img>
 			</div>
-            <p className="searchId">아이디 찾기</p>
+            <p className="searchIdPW">아이디 찾기</p>
             <p className="searchScript">이름과 전화번호를 입력해주세요.</p>
-			<div className="searchName" id="searchName">
+			<div className="searchFirst" id="searchFirst">
 				<input className="inputBox"
 					type="text"
 					name="empName"
@@ -53,7 +53,7 @@ function IdSearch() {
 					onChange={ onChangeHandler }
 				/>
 			</div>
-			<div className="searchPhone" id="searchPhone">
+			<div className="searchSecond" id="searchSecond">
 				<input className="inputBox"
 					type="text"
 					name="empPhone"
