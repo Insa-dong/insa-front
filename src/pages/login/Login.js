@@ -89,7 +89,7 @@ function Login() {
 				</button>
 
 				<button id="pwsearch" className="searchButton"
-					onClick={onClickHandler}
+					onClick={() => navigate("/pwsearch")}
 				>
 					비밀번호찾기
 				</button>

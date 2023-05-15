@@ -8,6 +8,7 @@ function IdSearchSuccess() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { idsearch } = useSelector(state => state.memberReducer);
+
 	const onClickLogin = () => {
 		navigate("/login")
 		dispatch(resetIdsearch())
@@ -28,7 +29,7 @@ function IdSearchSuccess() {
 				로그인 하기
 			</button>
 			<button id="pwBtn"
-			// onClick={onClickHandler}
+				onClick={ () => navigate("/pwsearch") }
 			>
 				비밀번호 찾기
 			</button>
