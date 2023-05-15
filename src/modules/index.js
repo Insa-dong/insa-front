@@ -1,10 +1,12 @@
-import {combineReducers} from "redux";
-import trainingReducer from "./TrainingModule";
-import absReducer from "./AbsModule";
-import memberReducer from './LoginModule';
 
+import {combineReducers} from "redux";
+import absReducer from "./AbsModule";
+import studentReducer from "./StudentModule";
+import evaReducer from "./EvaModule";
+import adviceReducer from "./AdviceModule";
+import studyStudentReducer from "./StudyStudentModule";
 const rootReducer = combineReducers({
-	trainingReducer, absReducer, memberReducer
+	trainingReducer, absReducer, studentReducer, evaReducer , adviceReducer, studyStudentReducer
 });
 
 export default rootReducer;
