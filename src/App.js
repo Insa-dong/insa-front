@@ -16,6 +16,8 @@ import Student from './pages/student/Student';
 import StudentDetail from './pages/student/StudentDetail';
 import StudentRegistration from './pages/student/StudentRegistration';
 import Study from "./pages/study/Study";
+import StudyDetail from "./pages/study/StudyDetail";
+import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
