@@ -1,0 +1,19 @@
+/* 표 스타일 */
+.stuDiv {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 3vw;
+  }
+
+  .stuDiv th,
+  .stuDiv td {
+    border: 1px solid #ddd;
+    font-weight: 400;
+    padding: 8px;
+    height: 5vh;
+  }
+
+  .stuHead {
+    font-weight: 600;
+  }
