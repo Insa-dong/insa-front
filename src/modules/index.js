@@ -7,9 +7,10 @@ import adviceReducer from "./AdviceModule";
 import studyStudentReducer from "./StudyStudentModule";
 import memberReducer from "./LoginModule";
 import trainingReducer from "./TrainingModule";
+import empReducer from "./EmpModule";
 
 const rootReducer = combineReducers({
-	trainingReducer, absReducer, studentReducer, evaReducer , adviceReducer, studyStudentReducer, memberReducer
+	trainingReducer, absReducer, studentReducer, evaReducer , adviceReducer, studyStudentReducer, memberReducer, empReducer
 })
 
 export default rootReducer;
