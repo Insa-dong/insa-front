@@ -70,3 +70,23 @@ export const callTrainingRegisterAPI = (form) => {
 		}
 	}
 }
+
+export const callTrainingDeleteAPI = (trainingCode) => {
+
+	console.log(trainingCode);
+	const requestURL = `${PRE_URL}/training/delete/${trainingCode}`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL, {
+			method: 'PUT',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+			}
+		}).then(res => res.json());
+
+		if (result.status === 200) {
+			dispatch(putTraining(result));
+		}
+	}
+}

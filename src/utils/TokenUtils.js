@@ -1,0 +1,12 @@
+import jwt_decode from "jwt-decode";
+
+export function decodeJwt() {
+    const accessToken = window.localStorage.getItem('accessToken');
+    return accessToken && jwt_decode(accessToken);
+}
+
+export function isLogin() {
+    const token = decodeJwt();
+    return !(token === undefined || token === null || token.exp * 1000 < Date.now());
+}
+
