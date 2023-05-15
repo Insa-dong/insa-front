@@ -1,0 +1,46 @@
+.stuRegist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+    
+.stuRegistBox {
+    border-radius: 0.5rem;
+    border: 1px solid #8CBAFF;
+    width: 19rem;
+    height: 2.5rem;
+    font-weight: bold;
+    font-size: 13pt;
+    padding-left: 15px;
+    margin-left : 10px;
+    margin-top: 10px;
+    text-align: left;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+.stuRegistEntBtn {
+
+    width: 4.5vw;
+    height: 1.8vw;
+    background-color: #8CBAFF;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    color: white;
+    cursor: pointer;
+
+}
+
+.beforeBtn {
+    width: 4.5vw;
+    height: 4vh;
+    border: 2px solid #8CBAFF;
+    border-radius: 10px;
+    background: white;
+    text-decoration-line: none;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+}

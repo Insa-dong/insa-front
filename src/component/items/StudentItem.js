@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { callStudentDeleteAPI } from "../../apis/StudentAPICalls";
+import './StudentItem.css';
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
   if (!onConfirm || typeof onConfirm !== "function") {
@@ -63,7 +64,9 @@ function StudentItem({ item }) {
       <th onClick={onClickStudentHandler}>{item.stuEmail}</th>
       <th onClick={onClickStudentHandler}>{item.stuEndSchool}</th>
       <th>
-        <button onClick={studentDelete}>삭제</button>
+        <div className = "stu-btns">
+        <button className ="stu-delete-btn" onClick={studentDelete}>삭제</button>
+        </div>
       </th>
     </tr>
   );

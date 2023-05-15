@@ -21,6 +21,7 @@ import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
 
 
+
 function App() {
 	return (
 		<div className = "body">
