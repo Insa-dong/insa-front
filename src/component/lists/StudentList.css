@@ -1,54 +1,19 @@
-.tableStyle {
-    margin-top: 5vh;
-    border-collapse: separate;
-    border-spacing: 0;
-}
+/* 표 스타일 */
+.stuDiv {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 3vw;
+  }
 
-.trStyle th {
-    background-color: #E5E5E5;
-    border: 1px solid #828282;
-    width: 25vh;
+  .stuDiv th,
+  .stuDiv td {
+    border: 1px solid #ddd;
+    font-weight: 400;
+    padding: 8px;
     height: 5vh;
-}
+  }
 
-.trStyle :first-child {
-    border-top-left-radius: 8px;
-}
-
-.trStyle :last-child {
-    border-top-right-radius: 8px;
-}
-
-.BodyTrStyle th {
-    background-color: #E5E5E5;
-    border-left: 1px solid #828282;
-    border-right: 1px solid #828282;
-    border-bottom: 1px solid #828282;
-    width: 25vh;
-    max-width: 25vh;
-    padding: 10px;
-    height: 10vh;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: normal;
-    cursor: pointer;
-}
-
-.BodyTrStyle2 th {
-    background-color: #FFFFFF;
-    border-left: 1px solid #828282;
-    border-right: 1px solid #828282;
-    border-bottom: 1px solid #828282;
-    width: 25vh;
-    max-width: 25vh;
-    padding: 10px;
-    height: 10vh;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: normal;
-    cursor: pointer;
-}
-
-
+  .stuHead {
+    font-weight: 600;
+  }

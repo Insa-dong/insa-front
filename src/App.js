@@ -4,7 +4,6 @@ import Main from "./component/common/Main";
 import ProtectedRoute from './component/router/ProtectedRoute';
 import Layout from "./layouts/Layout";
 import Abs from "./pages/abs/Abs";
-import Board from './pages/board/Board';
 import Class from "./pages/class/Class";
 import Emp from "./pages/emp/Emp";
 import Error from "./pages/error/Error"
@@ -19,6 +18,7 @@ import StudentRegistration from './pages/student/StudentRegistration';
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
+
 
 
 function App() {
