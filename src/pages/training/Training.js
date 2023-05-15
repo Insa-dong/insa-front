@@ -49,7 +49,7 @@ function Training() {
 				dispatch(callTrainingList({currentPage}));
 			}
 		},
-		[currentPage, dispatch, searchValue, training]
+		[currentPage, dispatch, searchValue, selectedOption]
 	)
 
 	const onChangeHandler = (e) => {

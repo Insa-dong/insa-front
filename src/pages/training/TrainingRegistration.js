@@ -14,8 +14,6 @@ function TrainingRegistration() {
 	const dispatch = useDispatch();
 	const {regist} = useSelector(state => state.trainingReducer);
 
-	console.log(regist);
-
 	useEffect(
 		() => {
 			if (regist?.status === 200) {
@@ -35,7 +33,6 @@ function TrainingRegistration() {
 			...form,
 			[e.target.name]: e.target.value
 		})
-		console.log(form);
 	}
 
 	const onClickSaveHandler = () => {

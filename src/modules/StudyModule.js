@@ -2,7 +2,7 @@ import {createActions, handleActions} from "redux-actions";
 
 const initialState = [];
 
-const GET_STUDY_LIST = 'study/GET_STUDY_LIST';
+const GET_STUDY_LIST = 'study/GET_STUDYLIST';
 const GET_STUDY = 'study/GET_STUDY';
 
 export const {study: {getStudylist, getStudy}} = createActions({
