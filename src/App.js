@@ -20,6 +20,8 @@ import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
 
+
+
 function App() {
 	return (
 		<div className = "body">
