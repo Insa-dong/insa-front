@@ -1,6 +1,5 @@
 import {NavLink, useNavigate} from 'react-router-dom';
 import './Navbar.css';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function Navbar() {
