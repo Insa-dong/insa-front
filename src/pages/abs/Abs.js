@@ -1,10 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
 import './Abs.css';
-import { callMyAbsListAPI} from '../../apis/AbsAPICalls';
-import AbsList from '../../component/lists/AbsList';
+import { callMyAbsListAPI } from '../../apis/AbsAPICalls';
+import MyAbsList from '../../component/lists/MyAbsList';
 import PagingBar from "../../component/common/PagingBar";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
@@ -30,11 +30,13 @@ function Abs() {
 
     const [currentPage, setCurrentPage] = useState(1)
     const abs = useSelector(state => state.absReducer);
-    const absList = abs.data;
+    const myAbsList = abs.data || [];
     const dispatch = useDispatch();
+    const params = useParams();
+    const empCode = params.empCode;
 
     useEffect(() => {
-        dispatch(callMyAbsListAPI({ currentPage }));
+        dispatch(callMyAbsListAPI({ empCode, currentPage }));
     }, [dispatch, currentPage]);
 
 
@@ -99,7 +101,7 @@ function Abs() {
                 </div>
 
                 <div>
-                    {absList && <AbsList absList={absList} />}
+                    {myAbsList && <MyAbsList myAbsList={myAbsList} />}
                 </div>
                 <div>
                     {abs.pageInfo && <PagingBar pageInfo={abs.pageInfo} setCurrentPage={setCurrentPage} />}

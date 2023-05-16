@@ -1,5 +1,6 @@
 function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
-    const createDate = (dateString) => new Date(dateString);
+    
+  const createDate = (dateString) => new Date(dateString);
   
     const formatTime = (date) => {
       if (date) {

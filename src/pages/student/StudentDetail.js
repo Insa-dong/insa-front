@@ -7,7 +7,8 @@ import Header from "../../component/common/Header";
 import { callStudentEvaListAPI } from "../../apis/EvaAPICalls";
 import { callStudentAdviceListAPI } from "../../apis/AdviceAPICalls";
 import { callStudyStuListAPI } from "../../apis/StudyStuAPICalls";
-import PagingBar from "../../component/common/PagingBar";
+import AdviceReviewModal from "../../component/modal/AdviceReviewModal";
+import AdviceReviewWriteModal from "../../component/modal/AdviceReviewWriteModal";
 
 function StudentDetail() {
 
@@ -22,10 +23,28 @@ function StudentDetail() {
     const { modify } = useSelector(state => state.studentReducer);
     const [currentPage, setCurrentPage] = useState();
     
+    const [ adviceReviewModal, setAdviceReviewModal] = useState(false);
+    const [ adviceReviewWriteModal, setAdviceReviewWriteModal] = useState(false);
+
     const {studyList} = useSelector(state => state.studyStudentReducer);
     const {adviceList} = useSelector(state => state.adviceReducer);
     const {evaList} = useSelector(state => state.evaReducer);
 
+    console.log("adviceList ", adviceList);
+
+    useEffect(() => {
+        if(adviceList?.adviceCode) {
+            setAdviceReviewModal(true);
+        } else if (adviceList) {
+            setAdviceReviewWriteModal(true);
+        }
+    }, [adviceList]);
+
+    const onClickAdviceReviewHandler = (stuCode) => {
+        dispatch(callStudentAdviceListAPI({ stuCode }));
+    };
+    
+    
     useEffect(
         ()=> {
             dispatch(callStudentDetailForAdminAPI({stuCode}));
@@ -79,6 +98,21 @@ function StudentDetail() {
 
       return (
         <>
+        {adviceReviewModal ?(
+            <AdviceReviewModal
+                stuCode={stuCode}
+                studyList={studyList}
+                setAdviceReviewModal={setAdviceReviewModal}
+            />
+            ) : null}
+
+            {adviceReviewWriteModal ? (
+            <AdviceReviewWriteModal
+                stuCode={stuCode}
+                setAdviceReviewWriteModal={setAdviceReviewWriteModal}
+            />
+            ) : null}
+        
           <Header title={title} />
           {data && (
             <>
@@ -184,7 +218,7 @@ function StudentDetail() {
                     <tr>
                     <th>과정 이름</th>
                     <th>회차</th>
-                    <th>조회/삭제</th>
+                    <th>수정/삭제</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -194,7 +228,7 @@ function StudentDetail() {
                         <td>{study.trainingTitle}</td>
                         <td>{study.trainingCount}</td>
                         <td>
-                            <button>조회</button>
+                            <button>수정</button>
                             <button>삭제</button>
                         </td>
                         </tr>
@@ -256,7 +290,7 @@ function StudentDetail() {
                         <td>{advice.writer.empName}</td>
                         <td>{advice.adviceLogDate}</td>
                         <td>
-                            <button>조회</button>
+                            <button onClick={ () => onClickAdviceReviewHandler(stuCode) }>조회</button>
                             <button>삭제</button>
                         </td>
                         </tr>

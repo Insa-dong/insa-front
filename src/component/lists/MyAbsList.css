@@ -1,18 +1,16 @@
+
 /* 표 스타일 */
-.stuDiv {
+.absDiv {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
     margin-top: 3vw;
   }
 
-  .stuDiv th,
-  .stuDiv td {
+  .absDiv th,
+  .absDiv td {
     border: 1px solid #ddd;
     padding: 8px;
-    height: 5vh;
+   height: 5vh;
   }
 
-  .stuDiv tbody tr th {
-    font-weight: 500;
-  }
