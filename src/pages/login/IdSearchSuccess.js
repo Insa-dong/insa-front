@@ -21,7 +21,7 @@ function IdSearchSuccess() {
 			</div>
 			<p className="idCheck">아이디 확인</p>
 			<p className="idCheckScript">입력하신 정보와 일치하는 아이디는 다음과 같습니다.</p>
-			<div className="checkID" id="checkID">{idsearch.data.empId}</div>
+			<div className="checkID" id="checkID">{ idsearch && idsearch.data.empId}</div>
 			<div className="bbttnn">
 				<button id="loginBtn"
 					onClick={ onClickLogin }

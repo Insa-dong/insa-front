@@ -22,5 +22,4 @@ const rootReducer = combineReducers({
 	studyInfoReducer,
   empReducer
 })
-
 export default rootReducer;
