@@ -1,3 +1,4 @@
+import { postAdvice } from "../modules/AdviceModule";
 import { getAdvices } from "../modules/AdviceModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -10,7 +11,13 @@ export const callStudentAdviceListAPI = ({ stuCode , currentPage = 1 }) => {
 
     return async (dispatch, getState) => {
 
-        const result = await fetch(requestURL).then(res => res.json());
+        const result = await fetch(requestURL, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: "Bearer " + window.localStorage.getItem("accessToken"),
+          },
+        }).then(res => res.json());
         console.log(result);
         if(result.status === 200) {
             dispatch(getAdvices(result.data));
@@ -18,3 +25,25 @@ export const callStudentAdviceListAPI = ({ stuCode , currentPage = 1 }) => {
     };
 
 }
+
+export const callAdviceWriteAPI = (form) => {
+    
+    const requestURL = `${PRE_URL}/students/advice`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: "Bearer " + window.localStorage.getItem("accessToken"),
+          },
+          body: JSON.stringify(form),
+        }).then((response) => response.json());
+
+        if (result.status === 200) {
+            console.log("[AdviceAPICalls] callAdviceWriteAPI result : ", result);
+            dispatch(postAdvice(result));
+          }
+        };
+};
+      
