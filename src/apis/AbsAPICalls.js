@@ -1,4 +1,4 @@
-import { getAbss, getMyabs, postCheckin } from "../modules/AbsModule";
+import { getAbss, getAbsDate, getMyabs, postCheckin } from "../modules/AbsModule";
 
 
  const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -18,10 +18,24 @@ export const callAbsListAPI = ({ currentPage = 1 }) => {
 
         if(result.status === 200) {
             console.log('[callAbsListAPI] : callAbsListAPI result : ', result.data);
-            dispatch(getAbss(result.data));
+            dispatch(getAbss(result));
         }
     }
 }
+
+/* 모든 근태 날짜 조회 */
+export const callAbsDateAPI = ({ absDate, currentPage = 1 }) => {
+   
+    const requestURL = `${PRE_URL}/abs-admin/${absDate}?page=${currentPage}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL).then(response => response.json());
+
+        if (result.status === 200) {
+            dispatch(getAbsDate(result));
+        }
+    };
+};
 
 /* 내 근태 조회 */
 export const callMyAbsListAPI = ({ empCode, currentPage = 1}) => {
@@ -33,7 +47,7 @@ export const callMyAbsListAPI = ({ empCode, currentPage = 1}) => {
         const result = await fetch(requestUR).then(response => response.json());
 
         if(result.status === 200) {
-            dispatch(getMyabs(result.data));
+            dispatch(getMyabs(result));
         }
     }
  }

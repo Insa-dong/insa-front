@@ -7,14 +7,17 @@ const initialState = [];
 
 /* 모든 근태 조회 */
 const GET_ABSS = 'abs/GET_ABSS';
+/* 모든 근태 날짜 조회 */
+const GET_ABS_DATE = 'abs/GET_ABS_DATE'
 /* 내 근태 조회 */
 const GET_MYABS = 'abs/GET_MYABS'
 /* 출근 */
 const POST_CHECKIN = 'abs/POST_CHECKIN';
 
 
-export const { abs : { getAbss, getMyabs, postCheckin} } = createActions({
+export const { abs : { getAbss, getAbsDate, getMyabs, postCheckin} } = createActions({
     [GET_ABSS] : (res) => res.data, //result의 data 값
+    [GET_ABS_DATE] : (res) => res.data,
     [GET_MYABS] : (res) => res.data,
     [POST_CHECKIN] : (res) => res
    
@@ -24,6 +27,7 @@ export const { abs : { getAbss, getMyabs, postCheckin} } = createActions({
 const absReducer = handleActions(
     {
         [GET_ABSS] : (state, { payload }) => payload,
+        [GET_ABS_DATE] : (state, { payload }) => payload,
         [GET_MYABS] : (state, { payload }) => payload,
         [POST_CHECKIN] : (state, { payload }) => payload
         
