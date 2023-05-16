@@ -1,0 +1,29 @@
+.boardWrapper {
+    width: 74vw;
+    height: 78vh;
+    margin-left: 20vw;
+}
+
+
+.title{
+    margin-left: 1.7vw;
+    width: 65vw;
+    font-size: 17pt;
+}
+
+.date{
+    font-size: 13pt;
+}
+
+
+.maincontent {
+    border-top: 1px lightgray solid;
+    border-bottom: 1px lightgray solid;
+    margin-right: 1vw;
+    margin-top: 1vh;
+    padding-bottom: 40vh;
+}
+
+.btn {
+    margin-left: 28vw;;
+}

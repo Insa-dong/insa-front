@@ -21,6 +21,7 @@ import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
+import BoardDetail from './pages/board/BoardDetail';
 import AdminAbs from './pages/abs/AdminAbs';
 
 
