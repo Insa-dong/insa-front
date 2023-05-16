@@ -22,6 +22,7 @@ import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
 import BoardDetail from './pages/board/BoardDetail';
+import AdminAbs from './pages/abs/AdminAbs';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
 						<Route path = "training/:trainingCode" element = {<TrainingDetail/>}/>
 						<Route path = "training/registration" element = {<TrainingRegistration/>}/>
 						<Route path = "abs" element = {<Abs/>}/>
+						<Route path = "abs/adminAbs" element = {<AdminAbs/>}/>
 						<Route path = "study" element = {<Study/>}/>
 						<Route path = "studySearch" element = {<Study/>}/>
 						<Route path = "study/registration" element = {<StudyRegistration/>}/>

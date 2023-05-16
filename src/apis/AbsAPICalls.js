@@ -1,4 +1,4 @@
-import { getAbss, getMyAbs, postCheckin } from "../modules/AbsModule";
+import { getAbss, getMyabs, postCheckin } from "../modules/AbsModule";
 
 
  const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -10,7 +10,7 @@ import { getAbss, getMyAbs, postCheckin } from "../modules/AbsModule";
 /* 모든 근태 목록 조회 */
 export const callAbsListAPI = ({ currentPage = 1 }) => {
 
-    const requestURL = `${PRE_URL}/abs-admin/page=${currentPage}`;
+    const requestURL = `${PRE_URL}/abs-admin?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
@@ -22,16 +22,17 @@ export const callAbsListAPI = ({ currentPage = 1 }) => {
     }
 }
 
-export const callMyAbsListAPI = ({ currentPage = 1}) => {
+/* 내 근태 조회 */
+export const callMyAbsListAPI = ({ empCode, currentPage = 1}) => {
 
-    const requestUR = `${PRE_URL}/myAbs/page=${currentPage}}`;
+    const requestUR = `${PRE_URL}/abs-myAbs?empCode=${empCode}&page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
         const result = await fetch(requestUR).then(response => response.json());
 
         if(result.status === 200) {
-            dispatch(getMyAbs(result.data));
+            dispatch(getMyabs(result.data));
         }
     }
  }
