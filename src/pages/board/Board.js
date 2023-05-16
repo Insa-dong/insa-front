@@ -23,13 +23,28 @@ function Board() {
           </button>
         </div>
         <div className={CSS.topline}></div>
+
         <div className={CSS.mainContent}>
-          <div id={CSS.prof}></div>
-          <div>
-            <img src="/images/공지사항제목.png" className={CSS.boardImg} alt="공지사항제목이미지" />
-            <div className={CSS.title}>제목</div>
-          </div>
+          <ul style={{ display: 'flex' }}>
+            <li id={CSS.prof}></li>
+            <li>
+              <ul>
+                <ul style={{ display: 'flex' }}>
+                  <li>
+                    <ul style={{ display: 'flex' }}>
+                      <li><img src="/images/공지사항제목.png" className={CSS.boardImg} alt="공지사항제목이미지" /></li>
+                      <li className={CSS.title}>제목sdfaddddddddddddddddddddddddddddddddddd</li>
+                    </ul>
+                  </li>
+                  <li className={CSS.date}>2023-05-16</li>
+                </ul>
+                <li className={CSS.author}>작성자</li>
+                <li className={CSS.content}>내용ddddddddddddddddddddddddddddddddddddddddddddd</li>
+              </ul>
+            </li>
+          </ul>
         </div>
+
       </div>
     </>
   );

@@ -9,7 +9,7 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
   
         return `${hours}:${minutes}:${seconds}`;
       } else {
-        return "업무 중"; // endTime이 없을 경우
+        return "근무 중"; // endTime이 없을 경우
       }
     };
   
@@ -55,6 +55,7 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
         <td>{formatTime(endTime)}</td>
         <td>{totalWorkTime}</td>
         <td><button>수정</button></td>
+       
       </tr>
     );
   }

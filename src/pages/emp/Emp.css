@@ -1,9 +1,7 @@
 .EmpWrapper {
     width: 74vw;
     height: 78vh;
-    margin: 0 auto;
-    overflow-y: auto;
-    overflow-x: hidden;
+    margin-left: 20vw;
 }
 
 /*검색영역*/
@@ -68,11 +66,13 @@ input {
 
 .EmpContLeftTit {
     height: 7vh;
+    cursor: pointer;
 }
 
 .EmpContLeftSubTit {
     height: 7vh;
     color: #424242;
+    cursor: pointer;
 }
 
 .EmpContLeftDept {
@@ -81,6 +81,7 @@ input {
 .EmpContLeftDept li {
     height: 5vh;
     color: #424242;
+    cursor: pointer;
 }
 
 .EmpContRight {
@@ -116,14 +117,14 @@ input {
     background-color: #8CBAFF;
     border: none;
     border-radius: 5px;
-    margin-top: 2vw;
+    margin-top: 0.8vw;
     margin-left: 66vw;
 }
 
 .EmpPaging {
-    border: 1px solid rgb(82, 82, 82);
     width: 20vw;
     height: 2vw;
     margin: 0 auto;
+    margin-top: 6vw;
 }
 

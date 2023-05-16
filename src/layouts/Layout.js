@@ -7,7 +7,7 @@ function Layout() {
 		<>
 			<div style = {{display: 'flex'}}>
 				<Navbar/>
-				<div>
+				<div> 
 					<Outlet/>
 				</div>
 			</div>

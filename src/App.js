@@ -21,6 +21,8 @@ import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
+import BoardDetail from './pages/board/BoardDetail';
+import AdminAbs from './pages/abs/AdminAbs';
 
 
 function App() {
@@ -32,11 +34,16 @@ function App() {
 					<Route path = "/" element = {<ProtectedRoute loginCheck = {true}><Layout/></ProtectedRoute>}>
 						<Route index element = {<Main/>}/>
 						<Route path = "board" element = {<Board/>}/>
-						<Route path = "training" element = {<Training/>}/>
-						<Route path = "search" element = {<Training/>}/>
-						<Route path = "training/:trainingCode" element = {<TrainingDetail/>}/>
-						<Route path = "training/registration" element = {<TrainingRegistration/>}/>
+						<Route path = "training"
+						       element = {<ProtectedRoute authCheck = {true}><Training/></ProtectedRoute>}/>
+						<Route path = "search"
+						       element = {<ProtectedRoute authCheck = {true}><Training/></ProtectedRoute>}/>
+						<Route path = "training/:trainingCode"
+						       element = {<ProtectedRoute authCheck = {true}><TrainingDetail/></ProtectedRoute>}/>
+						<Route path = "training/registration"
+						       element = {<ProtectedRoute authCheck = {true}><TrainingRegistration/></ProtectedRoute>}/>
 						<Route path = "abs" element = {<Abs/>}/>
+						<Route path = "abs/adminAbs" element = {<AdminAbs/>}/>
 						<Route path = "study" element = {<Study/>}/>
 						<Route path = "studySearch" element = {<Study/>}/>
 						<Route path = "study/registration" element = {<StudyRegistration/>}/>
