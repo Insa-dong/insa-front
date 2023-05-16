@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { callEmpListAPI } from '../../apis/EmpAPICalls';
 import EmpList from '../../component/lists/EmpList';
+import PagingBar from './../../component/common/PagingBar';
 
 
 function Emp() {
@@ -15,6 +16,7 @@ function Emp() {
   const emp = useSelector(state => state.empReducer);
   console.log('emp : ', emp);
   const empList = emp.data;
+  const pageInfo = emp.pageInfo;
   const [searchOption, setSearchOption] = useState('name');
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,14 +41,14 @@ function Emp() {
 
   /* 검색버튼 누르면 검색화면으로 넘어가는 이벤트 */
   const onSearchBtnHandler = (e) => {
-    navigate(`/search?searchOption=${searchOption}&searchKeyword=${searchKeyword}`);
+    navigate(`/empsearch?searchOption=${searchOption}&searchKeyword=${searchKeyword}`);
   }
 
   /* Enter키 입력 시 검색화면으로 넘어가는 이벤트 */
   const onEnterKeyHandler = (e) => {
     if(e.key === 'Enter'){
       console.log('Enter key: ', searchKeyword);
-      navigate(`/search?searchOption=${searchOption}&searchKeyword=${searchKeyword}`);
+      navigate(`/empsearch?searchOption=${searchOption}&searchKeyword=${searchKeyword}`);
     }
   }
 
@@ -55,6 +57,10 @@ function Emp() {
     setAllEmpList(true);
   }
 
+  /* 전체 조회 off */
+  const onEmpOffHandler = (e) => {
+    setAllEmpList(false);
+  }
   return (
     <>
       <Header title={title} />
@@ -91,7 +97,12 @@ function Emp() {
           <ul className="EmpContBox">
             <li >
               <ul className="EmpContLeft">
-                <li className="EmpContLeftTit">more than us</li>
+                <li 
+                  className="EmpContLeftTit"
+                  onClick={onEmpOffHandler}
+                >
+                  more than us
+                </li>
                 <li 
                   className="EmpContLeftSubTit"
                   onClick={onEmpListHandler}
@@ -108,23 +119,25 @@ function Emp() {
               </ul>
 
             </li>
+            { allEmpList ? 
             <li >
               <ul className="EmpContRight">
                 <li>
-                  <EmpList empList={empList} />
-                  {/* { empList && <EmpList empList={empList}/>} */}
+
+                  { empList && <EmpList empList={empList}/>}
                 </li>
               </ul>
+              <div className="EmpPaging">
+              { pageInfo &&<PagingBar pageInfo={ pageInfo } setCurrentPage={ setCurrentPage }/>}
+              </div>
             </li>
+             : '' }
           </ul>
-
             <button className="EmpEntBtn" type="button">+ 구성원 등록하기</button>
-
-            <div className="EmpPaging">
-              
-            </div>
         </div>
-
+        <div>
+          
+        </div>
       </div>
     </>
   )
