@@ -1,8 +1,14 @@
 .HeaderDiv {
     width: 74vw;
     height: 78vh;
-    margin: 0 auto;
     white-space: nowrap;
+    margin-left: 25%;
+}
+
+.HeaderDiv h1 {
+    font-size: 30px;
+    margin-bottom: 2%;
+    margin-top: 2%;
 }
 
 .TopDiv {
@@ -13,22 +19,176 @@
 .TopDiv h2 {
     font-size: 20px;
     font-weight: 400;
-    margin-top: 3%;
+    margin: 2% 0 0 3%;
 }
 
 .TopDiv h3 {
     font-size: 18px;
     font-weight: 400;
-    margin-top: 3%;
+    margin: 3% 0 0 3%;
 }
 
-.TopDivBox {
+.textInput {
     background-color: #E4FBFB;
-    width: 50vw;
+    width: 94%;
     height: 5vw;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 3% auto 0 auto;
+    margin: 1% auto 3% auto;
+    text-align: center;
+    resize: none;
 }
+
+.textInput2 {
+    background-color: #E4FBFB;
+    width: 94%;
+    height: 5vw;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto 3% auto;
+    resize: none;
+}
+
+.textInput3 {
+    background-color: #E4FBFB;
+    width: 100%;
+    height: 2vw;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto 3% auto;
+    text-align: center;
+    resize: none;
+}
+
+.textInput4 {
+    background-color: #E4FBFB;
+    width: 100%;
+    height: 2vw;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto 3% auto;
+    resize: none;
+}
+
+.textInput5 {
+    background-color: #E4FBFB;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 1% auto 3% auto;
+    resize: none;
+}
+
+.textInput6 {
+    background-color: #E4FBFB;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto 3% auto;
+    resize: none;
+}
+
+.selectBox {
+    background-color: #E4FBFB;
+    width: 94%;
+    height: 5vw;
+    border: none;
+    margin: 1% auto 3% 3%;
+}
+
+
+.MiddleBody {
+    border-spacing: 5vh;
+    width: 60vw;
+    border: 1px solid #C5C5C5;
+    display: flex;
+    justify-content: center;
+}
+
+.MiddleBodyDiv {
+    width: 90vh;
+    height: 2vw;
+    background-color: #E4FBFB;
+    text-align: center;
+}
+
+.MiddleBody input {
+    background-color: #E4FBFB;
+    text-align: center;
+}
+
+.MiddleBody2 {
+    margin-top: 10%;
+    text-align: center;
+    width: 60vw;
+    height: 10vw;
+    max-width: 1075px;
+    background-color: #E4FBFB;
+    margin-left: 5%;
+}
+
+.MiddleTh {
+    margin-top: 25%;
+    font-size: 20px;
+    font-weight: 400;
+    width: 25vh;
+    height: 10vh;
+    margin-left: 25%;
+    border: 1px dashed rgba(0, 0, 0, 0.3);
+}
+
+.MiddleTd {
+    margin-top: 10%;
+    text-align: center;
+    width: 60vw;
+    max-width: 1075px;
+    background-color: #E4FBFB;
+    margin-left: 5%;
+}
+
+.centerDiv {
+    margin-left: 30%;
+    margin-top: 5%;
+}
+
+.ButtonStyle2 {
+    width: 10vh;
+    height: 5vh;
+    background-color: #8CBAFF;
+    border-radius: 5px;
+    color: #FFFFFF;
+    border: 1px solid #8CBAFF;
+    cursor: pointer;
+    font-weight: 700;
+    margin: 0 0 10% 5%;
+}
+
+.ButtonStyle3 {
+    width: 10vh;
+    height: 5vh;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    color: #8CBAFF;
+    border: 1px solid #8CBAFF;
+    cursor: pointer;
+    margin-left: 2.7%;
+    font-weight: 700;
+}
+

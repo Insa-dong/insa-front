@@ -1,7 +1,7 @@
 .tableStyle {
     max-width: 74vw;
     max-height: 78vh;
-    margin: 0 auto;
+    margin: 0 7vw 0 18vw;
     border-spacing: 5vh;
 }
 
@@ -48,7 +48,7 @@
     border: 1px solid #8CBAFF;
     cursor: pointer;
     font-weight: 700;
-    margin: 3% 0 10% 25%;
+    margin: 3% 0 10% 30%;
 }
 
 .ButtonStyle3 {
