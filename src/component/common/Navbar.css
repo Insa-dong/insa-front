@@ -9,12 +9,6 @@
     box-sizing: border-box;
 }
 
-html {
-    max-width: 1920px;
-    height: 929px;
-    max-height: 1080px;
-}
-
 body {
     line-height: 100%;
 }
@@ -36,9 +30,9 @@ a {
 
 #sideBar {
     width: 14vw;
-    min-height: 929px;
-    height: auto;
+    height: 100vh;
     background-color: #f9fafa;
+    position: fixed;
 }
 
 #sideTop {
