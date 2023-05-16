@@ -17,11 +17,6 @@ import TrainingRegistration from "./pages/training/TrainingRegistration";
 import Student from './pages/student/Student';
 import StudentDetail from './pages/student/StudentDetail';
 import StudentRegistration from './pages/student/StudentRegistration';
-import ProtectedRoute from './component/router/ProtectedRoute';
-import Board from './pages/board/Board';
-import Login from './pages/login/Login';
-import IdSearch from './pages/login/IdSearch';
-import IdSearchSuccess from './pages/login/IdSearchSuccess';
 import PwSearch from './pages/login/PwSearch';
 import PwSearchSuccess from './pages/login/PwSearchSuccess';
 

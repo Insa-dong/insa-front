@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Navbar() {
+
+	const { login } = useSelector(state => state.memberReducer);
 
 	const style = { textDecoration: 'none', color: 'black' };
 	const activeStyle = ({ isActive }) => isActive ? style : undefined;
