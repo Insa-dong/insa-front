@@ -34,6 +34,7 @@ function App() {
 					<Route path = "/" element = {<ProtectedRoute loginCheck = {true}><Layout/></ProtectedRoute>}>
 						<Route index element = {<Main/>}/>
 						<Route path = "board" element = {<Board/>}/>
+						<Route path = "board/:boardCode" element = {<BoardDetail/>}/>
 						<Route path = "training"
 						       element = {<ProtectedRoute authCheck = {true}><Training/></ProtectedRoute>}/>
 						<Route path = "search"
