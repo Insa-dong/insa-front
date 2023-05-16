@@ -1,6 +1,7 @@
 import { getAbss, getAbsDate, getMyabs, postCheckin } from "../modules/AbsModule";
 
 
+
  const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
  const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
  const PRE_URL = `http://${SERVER_IP}:${SERVER_PORT}/abs`;
@@ -22,6 +23,36 @@ export const callAbsListAPI = ({ currentPage = 1 }) => {
         }
     }
 }
+
+/* 근태 수정  */
+export const callModifyAbsAPI = (formData) => {
+    console.log(formData);
+  
+    const requestURL = `${PRE_URL}/abs-admin`;
+  
+    return async (dispatch, getState) => {
+      const result = await fetch(requestURL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + window.localStorage.getItem('accessToken'),
+        },
+        body: JSON.stringify(formData),
+      }).then((res) => res.json());
+  
+      if (result.status === 200) {
+        dispatch(getAbss(result)); // 변경된 액션 함수로 수정
+      }
+    };
+  };
+
+  
+  
+  
+  
+  
+  
+  
 
 /* 모든 근태 날짜 조회 */
 export const callAbsDateAPI = ({ absDate, currentPage = 1 }) => {
