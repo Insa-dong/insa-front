@@ -18,8 +18,7 @@ function PagingBar({pageInfo, setCurrentPage}) {
 			>
 				&lt;
 			</button>
-			<ul>
-
+			<ul className = {PagingBarCSS.productWrap}>
 			{pageNumber.map(num => (
 				<li key = {num}
 				    onClick = {() => setCurrentPage(num)}
