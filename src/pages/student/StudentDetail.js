@@ -7,7 +7,7 @@ import Header from "../../component/common/Header";
 import { callStudentEvaListAPI } from "../../apis/EvaAPICalls";
 import { callStudentAdviceListAPI } from "../../apis/AdviceAPICalls";
 import { callStudyStuListAPI } from "../../apis/StudyStuAPICalls";
-
+import PagingBar from "../../component/common/PagingBar";
 
 function StudentDetail() {
 
@@ -22,10 +22,10 @@ function StudentDetail() {
     const { modify } = useSelector(state => state.studentReducer);
     const [currentPage, setCurrentPage] = useState();
     
-    const {studyList, studyPageInfo} = useSelector(state => state.studyStudentReducer);
-    const {adviceList, advicePageInfo} = useSelector(state => state.adviceReducer);
-    const {evaList, evaPageInfo} = useSelector(state => state.evaReducer);
-  
+    const {studyList} = useSelector(state => state.studyStudentReducer);
+    const {adviceList} = useSelector(state => state.adviceReducer);
+    const {evaList} = useSelector(state => state.evaReducer);
+
     useEffect(
         ()=> {
             dispatch(callStudentDetailForAdminAPI({stuCode}));
@@ -174,85 +174,104 @@ function StudentDetail() {
             }
             </>
           )}   
-           
-           <h2 className="studyHeader">과정 내역</h2>
-            <table className="stuDetailDiv">
-            <thead>
-                <tr>
-                <th>과정 이름</th>
-                <th>회차</th>
-                <th>조회/삭제</th>
-                </tr>
-            </thead>
-            <tbody>
-                {Array.isArray(studyList) &&
-                studyList.map((study) => (
-                    <tr key={study}>
-                    <td>{study.trainingTitle}</td>
-                    <td>{study.trainingCount}</td>
-                    <td>
-                        <button>조회</button>
-                        <button>삭제</button>
-                    </td>
+        
+        <div className="studyHeaderContainer">
+            <h2 className="studyHeader">과정 내역</h2>
+            <button className="registrationButton">등록</button>
+        </div>
+                <table className="stuDetailDiv">
+                <thead>
+                    <tr>
+                    <th>과정 이름</th>
+                    <th>회차</th>
+                    <th>조회/삭제</th>
                     </tr>
-                ))}
-            </tbody>
-            </table>
-
-            <h2 className="studyHeader">평가 내역</h2>
-
-            <table className="stuDetailDiv">
-            <thead>
-                <tr>
-                <th>평가 코드</th>
-                <th>강의 이름</th>
-                <th>강사명</th>
-                <th>조회/삭제</th>
-                </tr>
-            </thead>
-            <tbody>
-                {Array.isArray(evaList) &&
-                evaList.map((eva) => (
-                    <tr key={eva}>
-                    <td>{eva.evaCode}</td>
-                    <td>{eva.studyInfo.studyTitle}</td>
-                    <td>{eva.studyInfo.teacher.empName}</td>
-                    <td>
-                        <button>조회</button>
-                        <button>삭제</button>
-                    </td>
+                </thead>
+                <tbody>
+                    {Array.isArray(studyList) && studyList.length > 0 ? (
+                    studyList.map((study) => (
+                        <tr key={study}>
+                        <td>{study.trainingTitle}</td>
+                        <td>{study.trainingCount}</td>
+                        <td>
+                            <button>조회</button>
+                            <button>삭제</button>
+                        </td>
+                        </tr>
+                    ))
+                    ) : (
+                    <tr>
+                        <td colSpan="3">수강 중인 강의가 없습니다.</td>
                     </tr>
-                ))}
-            </tbody>
-            </table>
+                    )}
+                </tbody>
+                </table>
 
-            <h2 className="studyHeader">상담 내역</h2>
-
-            <table className="stuDetailDiv">
-            <thead>
-                <tr>
-                <th>일지 코드</th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>조회/삭제</th>
-                </tr>
-            </thead>
-            <tbody>
-                {Array.isArray(adviceList) &&
-                adviceList.map((advice) => (
-                    <tr key={advice}>
-                    <td>{advice.adviceLogCode}</td>
-                    <td>{advice.writer.empName}</td>
-                    <td>{advice.adviceLogDate}</td>
-                    <td>
-                        <button>조회</button>
-                        <button>삭제</button>
-                    </td>
+                <h2 className="studyHeader">평가 내역</h2>
+                <table className="stuDetailDiv">
+                <thead>
+                    <tr>
+                    <th>평가 코드</th>
+                    <th>강의 이름</th>
+                    <th>강사명</th>
+                    <th>조회/삭제</th>
                     </tr>
-                ))}
-            </tbody>
-            </table>
-
+                </thead>
+                <tbody>
+                    {Array.isArray(evaList) && evaList.length > 0 ? (
+                    evaList.map((eva) => (
+                        <tr key={eva}>
+                        <td>{eva.evaCode}</td>
+                        <td>{eva.studyInfo.studyTitle}</td>
+                        <td>{eva.studyInfo.teacher.empName}</td>
+                        <td>
+                            <button>조회</button>
+                            <button>삭제</button>
+                        </td>
+                        </tr>
+                    ))
+                    ) : (
+                    <tr>
+                        <td colSpan="4">평가 내역이 없습니다.</td>
+                    </tr>
+                    )}
+                </tbody>
+                </table>
+     
+                <h2 className="studyHeader">상담 내역</h2>
+                <table className="stuDetailDiv">
+                <thead>
+                    <tr>
+                    <th>일지 코드</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>조회/삭제</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Array.isArray(adviceList) && adviceList.length > 0 ? (
+                    adviceList.map((advice) => (
+                        <tr key={advice}>
+                        <td>{advice.adviceLogCode}</td>
+                        <td>{advice.writer.empName}</td>
+                        <td>{advice.adviceLogDate}</td>
+                        <td>
+                            <button>조회</button>
+                            <button>삭제</button>
+                        </td>
+                        </tr>
+                    ))
+                    ) : (
+                    <tr>
+                        <td colSpan="4">상담 내역이 없습니다.</td>
+                    </tr>
+                    )}
+                </tbody>
+                </table>
+                <br></br><br></br>
+                <button className="stubeforeBtn"
+                onClick ={ () => navigate(-1)}>
+                    이전으로</button>                     
         </>
       );
     }

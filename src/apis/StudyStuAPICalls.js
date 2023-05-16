@@ -9,11 +9,12 @@ export const callStudyStuListAPI = ({ stuCode , currentPage = 1 }) => {
     const requestURL = `${PRE_URL}/students-management/study/${stuCode}?page=${currentPage}`;
 
     return async (dispatch, getState) => {
-
+        
         const result = await fetch(requestURL).then(res => res.json());
         console.log(result);
         if(result.status === 200) {
             dispatch(getStudyStudent(result.data));
+
         }
     };
 
