@@ -1,7 +1,7 @@
 .EmpWrapper {
     width: 74vw;
     height: 78vh;
-    margin: 0 auto;
+    margin-left: 20vw;
 }
 
 /*검색영역*/
@@ -81,6 +81,7 @@ input {
 .EmpContLeftDept li {
     height: 5vh;
     color: #424242;
+    cursor: pointer;
 }
 
 .EmpContRight {

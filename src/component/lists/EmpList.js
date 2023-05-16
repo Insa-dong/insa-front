@@ -15,9 +15,9 @@ function EmpList({ empList }) {
                 </tr>
             </thead>
             <tbody>
-                {Array.isArray(empList) && empList.map(emp => (
-                    <EmpItem key={emp.empCode} emp={emp} />
-                ))}
+                    {Array.isArray(empList) && empList.map(emp => (
+                        <EmpItem key={emp.empCode} emp={emp} />
+                    ))}
             </tbody>
         </table>
     );

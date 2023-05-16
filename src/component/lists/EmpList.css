@@ -8,6 +8,11 @@
 .EmpDiv th,
 .EmpDiv td{
     border: 1px solid #ddd;
-    padding: 8px;
+    width: 33%;
     height: 5vh;
 }
+
+.EmpDiv tbody tr th{
+    font-weight: 500;
+}
+                                            
