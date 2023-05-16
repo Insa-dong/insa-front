@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
 import './Abs.css';
-import { callAbsListAPI} from '../../apis/AbsAPICalls';
-import AdminAbsList from '../../component/lists/AbsList';
+import { callMyAbsListAPI} from '../../apis/AbsAPICalls';
+import AbsList from '../../component/lists/AbsList';
 import PagingBar from "../../component/common/PagingBar";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
@@ -34,7 +34,7 @@ function Abs() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(callAbsListAPI({ currentPage }));
+        dispatch(callMyAbsListAPI({ currentPage }));
     }, [dispatch, currentPage]);
 
 
@@ -72,7 +72,7 @@ function Abs() {
                         </div>
                     </NavLink>
 
-                    <NavLink to="/abs/teamAbs" >
+                    <NavLink to="/abs/adminAbs" >
                         <div className="abs-menu" style={{ color: 'gray' }}>
                             구성원 근태
                         </div>
@@ -99,7 +99,7 @@ function Abs() {
                 </div>
 
                 <div>
-                    {absList && <AdminAbsList absList={absList} />}
+                    {absList && <AbsList absList={absList} />}
                 </div>
                 <div>
                     {abs.pageInfo && <PagingBar pageInfo={abs.pageInfo} setCurrentPage={setCurrentPage} />}
