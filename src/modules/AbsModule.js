@@ -17,7 +17,8 @@ export const { abs : { getAbss, getMyabs, postCheckin} } = createActions({
     [GET_ABSS] : (res) => res.data, //result의 data 값
     [GET_MYABS] : (res) => res.data,
     [POST_CHECKIN] : (res) => res
-   }); 
+   
+}); 
 
 /* 리듀서 : 최종적으로 state를 관리한다 */
 const absReducer = handleActions(
