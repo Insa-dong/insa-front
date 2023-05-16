@@ -1,0 +1,18 @@
+.EmpDiv{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+   
+}
+
+.EmpDiv th,
+.EmpDiv td{
+    border: 1px solid #ddd;
+    width: 33%;
+    height: 5vh;
+}
+
+.EmpDiv tbody tr th{
+    font-weight: 500;
+}
+                                            
