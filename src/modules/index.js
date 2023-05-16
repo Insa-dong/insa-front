@@ -1,14 +1,15 @@
 import {combineReducers} from "redux";
 import absReducer from "./AbsModule";
 import adviceReducer from "./AdviceModule";
+import empReducer from "./EmpModule";
 import evaReducer from "./EvaModule";
 import memberReducer from "./LoginModule";
 import studentReducer from "./StudentModule";
 import studyInfoReducer from "./StudyInfoModule";
 import studyReducer from "./StudyModule";
 import studyStudentReducer from "./StudyStudentModule";
+import studyTimeReducer from "./StudyTimeModule";
 import trainingReducer from "./TrainingModule";
-import empReducer from "./EmpModule";
 
 const rootReducer = combineReducers({
 	trainingReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
 	memberReducer,
 	studyReducer,
 	studyInfoReducer,
-  empReducer
+	empReducer,
+	studyTimeReducer
 })
 export default rootReducer;
