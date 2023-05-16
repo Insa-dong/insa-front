@@ -20,7 +20,7 @@ function PwSearchSuccess() {
 
 
         </div >
-    )
+    );
 }
 
-export default PwSearchSuccess
+export default PwSearchSuccess;
