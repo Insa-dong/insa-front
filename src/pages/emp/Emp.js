@@ -143,15 +143,23 @@ function Emp() {
                     {empList && <EmpList empList={empList} />}
                   </li>
                 </ul>
-                <li>
+                
                   <div className="EmpPaging">
                     {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
                   </div>
-                </li>
+              
               </li>
             ) : null}
           </ul>
-          <button className="EmpEntBtn" type="button">+ 구성원 등록하기</button>
+         
+            <button 
+              className="EmpEntBtn" 
+              type="button"
+              onClick = {() => navigate('/emp/empregistration')}
+            >
+              + 구성원 등록하기
+              </button>
+    
         </div>
 
 
