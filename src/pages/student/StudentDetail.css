@@ -1,3 +1,29 @@
+.allWrapper {
+  width: 74vw;
+  height: 78vh;
+  margin: 0 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.studyHeaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.studyHeader {
+  margin: 0;
+}
+
+.registrationButton {
+  height: 2.5rem;
+  width: 2.5rem;
+  font-size: 1rem;
+  
+}
+
 .stuDetail {
     display: flex;
     flex-direction: column;
@@ -28,19 +54,27 @@
     margin-left: 9vw;
 }
 
-.studyHeader {
+  .studyHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-bottom: 1px lightgray solid;
     width: 86vw;
-    font-size : 20px;
+    font-size: 20px;
     height: 5vh;
     margin-bottom: 6vh;
-}
-
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 3vw;
+  }
+  
   .stuDetailDiv {
-    width: auto;
+    width: 74vw;
     border-collapse: collapse;
     text-align: center;
     margin-top: 5vw;
+    margin: 0 auto;
+    
   }
   
   .stuDetailDiv th,
@@ -50,3 +84,23 @@
     padding: 8px;
     height: 5vh;
   }
+
+  .stubeforeBtn {
+    width: 4.5vw;
+    height: 4vh;
+    border: 2px solid #8CBAFF;
+    border-radius: 10px;
+    background: white;
+    text-decoration-line: none;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top : 3vw;
+    margin-bottom: 5vw;
+  } 
+  
+

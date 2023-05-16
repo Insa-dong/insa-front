@@ -13,7 +13,8 @@ export const callStudyStuListAPI = ({ stuCode , currentPage = 1 }) => {
         const result = await fetch(requestURL).then(res => res.json());
         console.log(result);
         if(result.status === 200) {
-            dispatch(getStudyStudent(result.data));
+            const { data, pageInfo } = result;
+      dispatch(getStudyStudent({ data, pageInfo }));
         }
     };
 
