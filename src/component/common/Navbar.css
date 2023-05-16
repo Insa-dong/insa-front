@@ -11,7 +11,7 @@
 
 html {
     max-width: 1920px;
-    height: 929px;
+    height: 969px;
     max-height: 1080px;
 }
 
@@ -36,7 +36,7 @@ a {
 
 #sideBar {
     width: 14vw;
-    min-height: 929px;
+    min-height: 969px;
     height: auto;
     background-color: #f9fafa;
 }
