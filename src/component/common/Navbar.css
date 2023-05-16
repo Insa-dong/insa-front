@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;500&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -7,24 +8,44 @@
     font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
 }
-body{line-height: 100%;}
-ul, ol, li{list-style: none;}
-a{text-decoration: none; color: inherit;}
-.clear_fix::after, .clear_fix::before{
-    content: ""; display: block; clear: both;
+
+html {
+    max-width: 1920px;
+    height: 929px;
+    max-height: 1080px;
 }
 
-#sideBar{
+body {
+    line-height: 100%;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.clear_fix::after, .clear_fix::before {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#sideBar {
     width: 14vw;
-    height: 100vh;
+    min-height: 929px;
+    height: auto;
     background-color: #f9fafa;
 }
 
-#sideTop{
+#sideTop {
     margin-left: 1.2vw;
 }
 
-.sideBox{
+.sideBox {
     padding: 2.5vh;
     display: flex;
     justify-content: left;
@@ -43,15 +64,15 @@ a{text-decoration: none; color: inherit;}
     font-weight: bold;
     margin: auto 0.4vw;
     box-sizing: border-box;
-  }
+}
 
 
-.sideTxt{
+.sideTxt {
     padding-top: 0.1vw;
 }
 
 
-.sideTr{
+.sideTr {
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
@@ -68,35 +89,34 @@ a{text-decoration: none; color: inherit;}
 }
 
 
-
-.topName{
+.topName {
     display: block;
     padding-top: 0.3vh;
 }
 
-.topAuth{
+.topAuth {
     font-weight: normal;
     color: gray;
     font-size: 10pt
 }
 
 
-.sideTr img{
+.sideTr img {
     width: 24px;
     margin-left: 0.75vw;
 }
 
-.sideTr span{
+.sideTr span {
     width: 100px;
     margin-left: 1.05vw;
 }
 
-#sideBottom{
+#sideBottom {
     margin-top: 21vh;
     margin-left: 1vw;
 }
 
-#sideBottom .logoutBox{
+#sideBottom .logoutBox {
     width: 8vw;
     height: 4vh;
     border: 2px solid #8CBAFF;
@@ -110,7 +130,7 @@ a{text-decoration: none; color: inherit;}
     cursor: pointer;
 }
 
-.logoutBox button{
+.logoutBox button {
     border: none;
     background-color: white;
     font-size: 15px;

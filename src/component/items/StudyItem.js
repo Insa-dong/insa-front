@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import listCSS from "../lists/TrainingList.module.css";
 import CSS from "./TrainingItem.module.css";
 
-function StudyItem({item, checkValue, setCheckValue, data}) {
+function StudyItem({item, checkValue, setCheckValue}) {
 
 	const [hover, setHover] = useState(false);
 	const [display, setDisplay] = useState({display: 'none'});
@@ -11,10 +11,10 @@ function StudyItem({item, checkValue, setCheckValue, data}) {
 	const ref = useRef();
 	const navigate = useNavigate();
 
-	const onMouseOverHandler = (e) => {
+	const onMouseOverHandler = () => {
 		setHover(true);
 		setDisplay({display: 'block'});
-		setTargetValue(item.studyCode);
+		setTargetValue(item.studyInfoCode);
 	}
 
 	const onMouseOutHandler = () => {
@@ -30,45 +30,45 @@ function StudyItem({item, checkValue, setCheckValue, data}) {
 
 	const onCheckBoxClickHandler = () => {
 		ref.current.checked = !ref.current.checked;
-		setCheckValue(item.studyCode);
+		setCheckValue(item.studyInfoCode);
 		setDisplay({display: 'block'});
 	}
 
 	const onChangeHandler = (e) => {
 		e.target.checked = !e.target.checked;
-		setCheckValue(item.studyCode)
+		setCheckValue(item.studyInfoCode)
 	}
 
 	return (
-		<tr key = {item.studyCode}
+		<tr key = {item.studyInfoCode}
 		    className = {hover ? listCSS.BodyTrStyle : listCSS.BodyTrStyle2}
 		    onMouseOver = {onMouseOverHandler}
 		    onMouseOut = {onMouseOutHandler}
-		    value = {item.studyCode}
+		    value = {item.studyInfoCode}
 		>
 			<th onClick = {onCheckBoxClickHandler}>
 				<input type = "checkbox"
 				       ref = {ref}
 				       className = {CSS.checkBox}
-				       value = {item.studyCode}
+				       value = {item.studyInfoCode}
 				       onChange = {onChangeHandler}
 				       style = {display}
 				/>
-				{`${item.training.trainingCode}-${item.training.trainingCount}-${item.studyCode}`}
+				{`${item.study.training.trainingCode}-${item.study.training.trainingCount}-${item.studyInfoCode}`}
 			</th>
 			<th onClick = {onClickHandler}>
-				{data && data.studyContent}
+				{item && item.studyTitle}
 			</th>
 			<th onClick = {onClickHandler}>
-				{item.training.trainingTitle}</th>
+				{item.study.training.trainingTitle}</th>
 			<th onClick = {onClickHandler}>
 				{`${item.studyStartDate} ~ ${item.studyEndDate}`}
 			</th>
 			<th onClick = {onClickHandler}>
-				{item.studyMaxPeople}
+				{item.study.studyMaxPeople}
 			</th>
 			<th onClick = {onClickHandler}>
-				{data && data.teacher.empName}
+				{item && item.teacher.empName}
 			</th>
 		</tr>
 	)

@@ -3,6 +3,8 @@
     height: 78vh;
     margin: 0 auto;
     white-space: nowrap;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .SelectBox {
