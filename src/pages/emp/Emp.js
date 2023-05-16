@@ -3,7 +3,7 @@ import Header from '../../component/common/Header'
 import './Emp.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { callEmpListAPI, empListDeptAPI } from '../../apis/EmpAPICalls';
+import { callEmpListAPI, empListDeptAPI, empListSearchAPI } from '../../apis/EmpAPICalls';
 import EmpList from '../../component/lists/EmpList';
 import PagingBar from './../../component/common/PagingBar';
 
@@ -22,14 +22,15 @@ function Emp() {
   const [allEmpList, setAllEmpList] = useState(false);
 
   useEffect(
-    ()=>{
+    () => {
       dispatch(callEmpListAPI({ currentPage }));
-    },[currentPage]
-    );
+    }, [currentPage]
+  );
 
   /* 검색 옵션 상태 저장 */
   const onSearchOptionChangeHandler = (e) => {
     setSearchOption(e.target.value);
+    console.log('searchOption : ', searchOption)
   }
 
   /* 검색어 입력값 상태 저장*/
@@ -39,14 +40,19 @@ function Emp() {
 
   /* 검색버튼 누르면 검색화면으로 넘어가는 이벤트 */
   const onSearchBtnHandler = (e) => {
-    navigate(`/empsearch?searchOption=${searchOption}&searchKeyword=${searchKeyword}`);
+    console.log('searchBtnKeyword: ', searchKeyword);
+    console.log('searchBtnOption : ', searchOption);
+    dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage }));
+    setAllEmpList(true);
   }
 
   /* Enter키 입력 시 검색화면으로 넘어가는 이벤트 */
   const onEnterKeyHandler = (e) => {
     if (e.key === 'Enter') {
-      console.log('Enter key: ', searchKeyword);
-      navigate(`/empsearch?searchOption=${searchOption}&searchKeyword=${searchKeyword}`);
+      console.log('searchBtnKeyword: ', searchKeyword);
+      console.log('searchBtnOption : ', searchOption);
+      dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage }));
+      setAllEmpList(true);
     }
   }
 
@@ -64,7 +70,7 @@ function Emp() {
 
   /* 부서별 조회 */
   const EmpListDeptHandler = (e) => {
-    dispatch(empListDeptAPI({deptCode : e.target.getAttribute("name"), currentPage : 1}));
+    dispatch(empListDeptAPI({ deptCode: e.target.getAttribute("name"), currentPage: 1 }));
     setAllEmpList(true);
   }
 
@@ -91,12 +97,13 @@ function Emp() {
             id="search"
             placeholder="  검색어를 입력하세요"
             onChange={onSearchChangeHandler}
+            onKeyUp={onEnterKeyHandler}
           />
 
           <button
             className="EmpSearchBtn"
             onClick={onSearchBtnHandler}
-            onKeyUp={onEnterKeyHandler}
+
           >
             <img src="/images/search.png" alt="검색" />
           </button >
@@ -104,7 +111,7 @@ function Emp() {
 
         <div className="EmpContWrapper">
           <ul className="EmpContBox">
-            <li >
+            <li>
               <ul className="EmpContLeft">
                 <li
                   className="EmpContLeftTit"
@@ -114,36 +121,40 @@ function Emp() {
                 </li>
                 <li
                   className="EmpContLeftSubTit"
-                   onClick={onEmpListHandler}
+                  onClick={onEmpListHandler}
                 >
                   전체 구성원
                 </li>
-                <ul className="EmpContLeftDept">
-                  <li name="DE0001" onClick={EmpListDeptHandler} >• 행정팀</li>
-                  <li name="DE0002" onClick={EmpListDeptHandler} >• 경영지원팀</li>
-                  <li name="DE0003" onClick={EmpListDeptHandler} >• 강사팀</li>
-                  <li name="DE0004" onClick={EmpListDeptHandler} >• 홍보팀</li>
-                  <li name="DE0005" onClick={EmpListDeptHandler} >• 개발팀</li>                  
-                </ul>
+                <li>
+                  <ul className="EmpContLeftDept">
+                    <li name="DE0001" onClick={EmpListDeptHandler}>• 행정팀</li>
+                    <li name="DE0002" onClick={EmpListDeptHandler}>• 경영지원팀</li>
+                    <li name="DE0003" onClick={EmpListDeptHandler}>• 강사팀</li>
+                    <li name="DE0004" onClick={EmpListDeptHandler}>• 홍보팀</li>
+                    <li name="DE0005" onClick={EmpListDeptHandler}>• 개발팀</li>
+                  </ul>
+                </li>
               </ul>
-
             </li>
-            {allEmpList ?
-              <li >
+            {allEmpList ? (
+              <li>
                 <ul className="EmpContRight">
                   <li>
-
                     {empList && <EmpList empList={empList} />}
                   </li>
                 </ul>
-                <div className="EmpPaging">
-                  {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
-                </div>
+                <li>
+                  <div className="EmpPaging">
+                    {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
+                  </div>
+                </li>
               </li>
-              : ''}
+            ) : null}
           </ul>
           <button className="EmpEntBtn" type="button">+ 구성원 등록하기</button>
         </div>
+
+
         <div>
 
         </div>
