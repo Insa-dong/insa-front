@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {callStudyListAPI} from "../../apis/StudyAPICalls";
+import {callStudyInfoListAPI} from "../../apis/StudyInfoAPICalls";
 import Header from "../../component/common/Header";
 import PagingBar from "../../component/common/PagingBar";
 import StudyList from "../../component/lists/StudyList";
@@ -19,7 +19,7 @@ function Study() {
 	const searchValue = searchParams.get('value');
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const study = useSelector(state => state.studyReducer);
+	const study = useSelector(state => state.studyInfoReducer);
 
 	useEffect(
 		() => {
@@ -30,7 +30,7 @@ function Study() {
 			} else if (selectedOption === 'studyTeacher' && searchValue) {
 
 			} else {
-				dispatch(callStudyListAPI({currentPage}));
+				dispatch(callStudyInfoListAPI({currentPage}));
 			}
 		},
 		[currentPage, dispatch, searchValue, selectedOption]
@@ -86,7 +86,7 @@ function Study() {
 					</button>
 				</div>
 				{study &&
-					<StudyList key = {study.studyCode}
+					<StudyList key = {study.studyInfoCode}
 					           study = {study}
 					           checkValue = {checkValue}
 					           setCheckValue = {setCheckValue}

@@ -16,7 +16,6 @@ import Student from './pages/student/Student';
 import StudentDetail from './pages/student/StudentDetail';
 import StudentRegistration from './pages/student/StudentRegistration';
 import Study from "./pages/study/Study";
-import StudyDetail from "./pages/study/StudyDetail";
 import StudyInfo from "./pages/study/StudyInfo";
 import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
@@ -42,7 +41,6 @@ function App() {
 						<Route path = "abs" element = {<Abs/>}/>
 						<Route path = "study" element = {<Study/>}/>
 						<Route path = "studySearch" element = {<Study/>}/>
-						<Route path = "study/:studyCode" element = {< StudyDetail/>}/>
 						<Route path = "study/registration" element = {<StudyRegistration/>}/>
 						<Route path = "studyInfo/:studyInfoCode" element = {<StudyInfo/>}/>
 						<Route path = "emp" element = {<Emp/>}/>
