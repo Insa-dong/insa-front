@@ -31,7 +31,7 @@ const evaReducer = handleActions(
     [PUT_EVA] : (state, { payload }) => ({ evaModify : payload }),
     [DELETE_EVA] : (state, { payload }) => payload,
 
-    [GET_EVAS] : (state, { payload }) => payload,
+    [GET_EVAS] : (state, { payload }) => ({ evaList : payload}),
     [DELETE_EVAS] : (state, { payload }) => payload
 
  },

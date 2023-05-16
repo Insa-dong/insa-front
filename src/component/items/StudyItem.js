@@ -1,20 +1,20 @@
 import {useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import listCSS from '../lists/TrainingList.module.css'
-import CSS from './TrainingItem.module.css'
+import listCSS from "../lists/TrainingList.module.css";
+import CSS from "./TrainingItem.module.css";
 
-function TrainingItem({item, checkValue, setCheckValue}) {
+function StudyItem({item, checkValue, setCheckValue}) {
 
-	const navigate = useNavigate();
 	const [hover, setHover] = useState(false);
-	const [targetValue, setTargetValue] = useState();
 	const [display, setDisplay] = useState({display: 'none'});
+	const [targetValue, setTargetValue] = useState();
 	const ref = useRef();
+	const navigate = useNavigate();
 
 	const onMouseOverHandler = () => {
 		setHover(true);
 		setDisplay({display: 'block'});
-		setTargetValue(item.trainingCode);
+		setTargetValue(item.studyInfoCode);
 	}
 
 	const onMouseOutHandler = () => {
@@ -25,54 +25,54 @@ function TrainingItem({item, checkValue, setCheckValue}) {
 	}
 
 	const onClickHandler = () => {
-		navigate(`/training/${targetValue}`);
+		navigate(`/studyInfo/${targetValue}`);
 	}
 
 	const onCheckBoxClickHandler = () => {
 		ref.current.checked = !ref.current.checked;
-		setCheckValue(item.trainingCode);
+		setCheckValue(item.studyInfoCode);
 		setDisplay({display: 'block'});
 	}
 
 	const onChangeHandler = (e) => {
 		e.target.checked = !e.target.checked;
-		setCheckValue(item.trainingCode)
+		setCheckValue(item.studyInfoCode)
 	}
 
 	return (
-		<tr key = {item.trainingCode}
+		<tr key = {item.studyInfoCode}
 		    className = {hover ? listCSS.BodyTrStyle : listCSS.BodyTrStyle2}
 		    onMouseOver = {onMouseOverHandler}
 		    onMouseOut = {onMouseOutHandler}
-		    value = {item.trainingCode}
+		    value = {item.studyInfoCode}
 		>
 			<th onClick = {onCheckBoxClickHandler}>
 				<input type = "checkbox"
 				       ref = {ref}
 				       className = {CSS.checkBox}
-				       value = {item.trainingCode}
+				       value = {item.studyInfoCode}
 				       onChange = {onChangeHandler}
 				       style = {display}
 				/>
-				{item.trainingCode}
+				{`${item.study.training.trainingCode}-${item.study.training.trainingCount}-${item.studyInfoCode}`}
 			</th>
-			<th
-				onClick = {onClickHandler}
-			>{item.trainingTitle}</th>
-			<th
-				onClick = {onClickHandler}
-			>{item.trainingTime}</th>
-			<th
-				onClick = {onClickHandler}
-			>{item.trainingQual}</th>
-			<th
-				onClick = {onClickHandler}
-			>{item.trainingKnow}</th>
-			<th
-				onClick = {onClickHandler}
-			>{item.trainingCount}</th>
+			<th onClick = {onClickHandler}>
+				{item && item.studyTitle}
+			</th>
+			<th onClick = {onClickHandler}>
+				{item.study.training.trainingTitle}</th>
+			<th onClick = {onClickHandler}>
+				{`${item.studyStartDate} ~ ${item.studyEndDate}`}
+			</th>
+			<th onClick = {onClickHandler}>
+				{item.study.studyMaxPeople}
+			</th>
+			<th onClick = {onClickHandler}>
+				{item && item.teacher.empName}
+			</th>
 		</tr>
 	)
+
 }
 
-export default TrainingItem;
+export default StudyItem;

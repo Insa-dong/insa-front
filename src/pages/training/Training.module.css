@@ -1,8 +1,10 @@
 .HeaderDiv {
     width: 74vw;
     height: 78vh;
-    margin: 0 auto;
+    margin: 0 7vw 0 18vw;
     white-space: nowrap;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .SelectBox {
