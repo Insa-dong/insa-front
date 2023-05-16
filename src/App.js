@@ -39,7 +39,6 @@ function App() {
 						<Route path = "training/registration" element = {<TrainingRegistration/>}/>
 						<Route path = "abs" element = {<Abs/>}/>
 						<Route path = "abs/adminAbs" element = {<AdminAbs/>}/>
-						<Route path = "class" element = {<Class/>}/>
 						<Route path = "study" element = {<Study/>}/>
 						<Route path = "studySearch" element = {<Study/>}/>
 						<Route path = "study/registration" element = {<StudyRegistration/>}/>
