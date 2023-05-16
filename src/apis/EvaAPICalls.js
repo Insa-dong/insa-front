@@ -13,7 +13,7 @@ export const callStudentEvaListAPI = ({ stuCode , currentPage = 1 }) => {
         const result = await fetch(requestURL).then(res => res.json());
         console.log(result);
         if(result.status === 200) {
-            dispatch(getEvas(result));
+            dispatch(getEvas(result.data));
         }
     };
 

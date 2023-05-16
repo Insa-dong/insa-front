@@ -5,7 +5,6 @@ import ProtectedRoute from './component/router/ProtectedRoute';
 import Layout from "./layouts/Layout";
 import Abs from "./pages/abs/Abs";
 import Board from './pages/board/Board';
-import Class from "./pages/class/Class";
 import Emp from "./pages/emp/Emp";
 import Error from "./pages/error/Error"
 import IdSearch from './pages/login/IdSearch';
@@ -16,10 +15,13 @@ import PwSearchSuccess from './pages/login/PwSearchSuccess';
 import Student from './pages/student/Student';
 import StudentDetail from './pages/student/StudentDetail';
 import StudentRegistration from './pages/student/StudentRegistration';
+import Study from "./pages/study/Study";
+import StudyDetail from "./pages/study/StudyDetail";
+import StudyInfo from "./pages/study/StudyInfo";
+import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
-
 
 
 function App() {
@@ -36,7 +38,11 @@ function App() {
 						<Route path = "training/:trainingCode" element = {<TrainingDetail/>}/>
 						<Route path = "training/registration" element = {<TrainingRegistration/>}/>
 						<Route path = "abs" element = {<Abs/>}/>
-						<Route path = "class" element = {<Class/>}/>
+						<Route path = "study" element = {<Study/>}/>
+						<Route path = "studySearch" element = {<Study/>}/>
+						<Route path = "study/:studyCode" element = {< StudyDetail/>}/>
+						<Route path = "study/registration" element = {<StudyRegistration/>}/>
+						<Route path = "studyInfo/:studyInfoCode" element = {<StudyInfo/>}/>
 						<Route path = "emp" element = {<Emp/>}/>
 						<Route path = "student" element = {<Student/>}/>
 						<Route path = "student/:stuCode" element = {<StudentDetail/>}>

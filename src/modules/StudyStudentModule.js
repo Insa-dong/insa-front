@@ -12,7 +12,7 @@ export const { studystu : { getStudyStudent } } = createActions ({
 
 const studyStudentReducer = handleActions(
     {
-       [GET_STUDY_STUDENT] : (state, { payload }) => payload,
+       [GET_STUDY_STUDENT] : (state, { payload }) => ({ studyList : payload}),
    
     },
        initialState
