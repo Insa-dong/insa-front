@@ -12,6 +12,8 @@ export function isLogin() {
 
 export function isAdmin() {
 	const token = decodeJwt();
-	return (token && token.exp * 1000 > Date.now() && token.auth[token.auth.length - 1] === 'ROLE_ADMIN');
+	console.log(token.auth)
+	// return (token && token.exp * 1000 > Date.now() && token.auth[token.auth.length - 1] === 'ROLE_ADMIN');
+	return (token && token.exp * 1000 > Date.now() && token.auth[0] === 'ROLE_ADMIN');
 }
 

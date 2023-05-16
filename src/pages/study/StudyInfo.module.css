@@ -32,6 +32,8 @@
     background-color: #E4FBFB;
     width: 94%;
     height: 5vw;
+    font-size: 20px;
+    font-weight: 700;
     border: none;
     display: flex;
     align-items: center;
