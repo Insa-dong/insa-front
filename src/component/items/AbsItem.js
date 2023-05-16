@@ -1,3 +1,5 @@
+import './AbsItem.css'
+
 function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
     
   const createDate = (dateString) => new Date(dateString);
@@ -49,13 +51,14 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
   
     return (
       <tr>
-        <td>{absCode}</td>
-        <td>{empCode.empCode}</td>
         <td>{formatDate(new Date(absDate))}</td>
+        <td>{empCode.dept.deptName}</td>
+        <td>{empCode.job.jobName}</td>
+        <td>{empCode.empName}</td>
         <td>{formatTime(startTime)}</td>
         <td>{formatTime(endTime)}</td>
         <td>{totalWorkTime}</td>
-        <td><button>수정</button></td>
+        <td><button className="abs-modify-btn">수정</button></td>
        
       </tr>
     );

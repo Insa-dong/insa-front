@@ -1,0 +1,10 @@
+.abs-modify-btn{
+    width: 3.3vw;
+    height: 1.8vw;
+    background-color: #8CBAFF;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    color: white;
+    cursor: pointer;
+}

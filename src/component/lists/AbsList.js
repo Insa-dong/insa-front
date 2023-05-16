@@ -6,9 +6,10 @@ function AbsList({absList}) {
         <table className="absDiv">
             <thead>
                 <tr>
-                    <th>근태 코드</th>
-                    <th>사번</th>
                     <th>출근일</th>
+                    <th>부서명</th>
+                    <th>직급명</th>
+                    <th>이름</th>
                     <th>출근시간</th>
                     <th>퇴근시간</th>
                     <th>총 근무시간</th>
