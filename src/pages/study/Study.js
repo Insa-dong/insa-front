@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {callTrainingDeleteAPI} from "../../apis/TrainingAPICalls";
+import {callStudyListAPI} from "../../apis/StudyAPICalls";
 import Header from "../../component/common/Header";
 import PagingBar from "../../component/common/PagingBar";
-import TrainingList from "../../component/lists/TrainingList";
+import StudyList from "../../component/lists/StudyList";
 import CSS from "../training/Training.module.css";
 
 function Study() {
@@ -19,11 +19,21 @@ function Study() {
 	const searchValue = searchParams.get('value');
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const study = useSelector(state => state.studyReducer);
 
 	useEffect(
 		() => {
-			dispatch(callStudyListAPI({currentPage}))
-		}
+			if (selectedOption === 'trainingTitle' && searchValue) {
+
+			} else if (selectedOption === 'studyTitle' && searchValue) {
+
+			} else if (selectedOption === 'studyTeacher' && searchValue) {
+
+			} else {
+				dispatch(callStudyListAPI({currentPage}));
+			}
+		},
+		[currentPage, dispatch, searchValue, selectedOption]
 	);
 
 	const onChangeHandler = (e) => {
@@ -37,13 +47,12 @@ function Study() {
 	}
 
 	const onClickHandler = () => {
-		navigate(`/search?value=${search}`);
+		navigate(`/studySearch?value=${search}`);
 	}
 
 	const onClickDeleteHandler = () => {
-		console.log(checkValue)
 		if (window.confirm(`${checkValue}번 강의를 삭제하시겠습니까?`)) {
-			dispatch(callTrainingDeleteAPI(checkValue));
+			alert('삭제')
 		} else {
 			alert('안하기')
 		}
@@ -69,23 +78,25 @@ function Study() {
 						onChange = {onChangeHandler}
 						onKeyDown = {onKeyDownHandler}
 						type = "text"
-						placeholder = {selectedOption === 'trainingTitle' ? "과정명을 입력하세요." : selectedOption === 'studyTitle' ? "강의 명을 입력하세요." : selectedOption === 'studyTeacher' ? "강사 명을 입력하세요." : "검색어를 입력하세요."}
+						placeholder = {selectedOption === 'studyTitle' ? "강의명을 입력하세요." : selectedOption === 'studyTitle' ? "강의 명을 입력하세요." : selectedOption === 'studyTeacher' ? "강사 명을 입력하세요." : "검색어를 입력하세요."}
 					>
 					</input>
 					<button className = {CSS.ButtonStyle} onClick = {onClickHandler}>
 						<img src = "/images/돋보기.png" alt = "검색" className = {CSS.Image}/>
 					</button>
 				</div>
-				{training &&
-					<TrainingList key = {training.trainingCode}
-					              training = {training}
-					              checkValue = {checkValue}
-					              setCheckValue = {setCheckValue}/>
+				{study &&
+					<StudyList key = {study.studyCode}
+					           study = {study}
+					           checkValue = {checkValue}
+					           setCheckValue = {setCheckValue}
+					           currentPage = {currentPage}
+					/>
 				}
 				<button className = {CSS.ButtonStyle2} onClick = {() => navigate('/training/registration')}>등록하기
 				</button>
 				<button className = {CSS.ButtonStyle3} onClick = {onClickDeleteHandler}>삭제하기</button>
-				{training.pageInfo && <PagingBar pageInfo = {training.pageInfo} setCurrentPage = {setCurrentPage}/>}
+				{study.pageInfo && <PagingBar pageInfo = {study.pageInfo} setCurrentPage = {setCurrentPage}/>}
 			</div>
 		</>
 	);

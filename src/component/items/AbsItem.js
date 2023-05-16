@@ -1,51 +1,62 @@
-
-
 function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
-
-    // Date 객체를 생성하는 함수
-    const createDate = (dateString) => new Date(`1970-01-01T${dateString}Z`);
-
-    // 시간의 차이를 계산하는 함수
+    const createDate = (dateString) => new Date(dateString);
+  
+    const formatTime = (date) => {
+      if (date) {
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+  
+        return `${hours}:${minutes}:${seconds}`;
+      } else {
+        return "업무 중"; // endTime이 없을 경우
+      }
+    };
+  
     const calculateTimeDifference = (start, end) => {
-
-        const diffMs = end - start - 3600000; // 점심시간 1시간 제외
+      if (start && end) {
+        const diffMs = end.getTime() - start.getTime() - 3600000; // 점심시간 1시간 제외
         const diffHrs = diffMs / (1000 * 60 * 60);
-
+  
         return diffHrs * 60 * 60 * 1000;
+      } else {
+        return 0; // endTime이 없을 경우 0을 반환
+      }
     };
-
-    // 시간을 문자열로 변환하는 함수ㅇㅇ
-
-    const formatTime = (totalMs) => {
-
-        const hours = Math.floor(totalMs / (1000 * 60 * 60));
-        const minutes = Math.floor((totalMs % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((totalMs % (1000 * 60)) / 1000);
-
-        return `${hours}시간 ${minutes}분 ${seconds}초`;
+  
+    const formatTime2 = (totalMs) => {
+      const hours = Math.floor(totalMs / (1000 * 60 * 60));
+      const minutes = Math.floor((totalMs % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((totalMs % (1000 * 60)) / 1000);
+  
+      return `${hours}시간 ${minutes}분 ${seconds}초`;
     };
-
-    // 날짜를 문자열로 변환하는 함수
+  
     const formatDate = (date) => {
-
-        return new Date(date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short' }).replace(/. /g, '.');
+      return new Intl.DateTimeFormat('ko-KR', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        weekday: 'short'
+      }).format(date).replace(/. /g, '.');
     };
-
+  
     const startTime = createDate(absStart);
-    const endTime = createDate(absEnd);
+    const endTime = absEnd ? createDate(absEnd) : null;
     const totalWorkMs = calculateTimeDifference(startTime, endTime);
-    const totalWorkTime = formatTime(totalWorkMs);
-
+    const totalWorkTime = formatTime2(totalWorkMs);
+  
     return (
-        <tr>
-            <td>{absCode}</td>
-            <td>{empCode.empCode}</td>
-            <td>{formatDate(absDate)}</td>
-            <td>{absStart}</td>
-            <td>{absEnd}</td>
-            <td>{totalWorkTime}</td>
-        </tr>
+      <tr>
+        <td>{absCode}</td>
+        <td>{empCode.empCode}</td>
+        <td>{formatDate(new Date(absDate))}</td>
+        <td>{formatTime(startTime)}</td>
+        <td>{formatTime(endTime)}</td>
+        <td>{totalWorkTime}</td>
+        <td><button>수정</button></td>
+      </tr>
     );
-}
-
-export default AbsItem;
+  }
+  
+  export default AbsItem;

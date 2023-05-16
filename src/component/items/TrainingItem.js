@@ -7,13 +7,14 @@ function TrainingItem({item, checkValue, setCheckValue}) {
 
 	const navigate = useNavigate();
 	const [hover, setHover] = useState(false);
+	const [targetValue, setTargetValue] = useState();
 	const [display, setDisplay] = useState({display: 'none'});
 	const ref = useRef();
-
 
 	const onMouseOverHandler = () => {
 		setHover(true);
 		setDisplay({display: 'block'});
+		setTargetValue(item.trainingCode);
 	}
 
 	const onMouseOutHandler = () => {
@@ -24,7 +25,7 @@ function TrainingItem({item, checkValue, setCheckValue}) {
 	}
 
 	const onClickHandler = () => {
-		navigate(`/training/${checkValue}`);
+		navigate(`/training/${targetValue}`);
 	}
 
 	const onCheckBoxClickHandler = () => {
