@@ -22,6 +22,7 @@ import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
+import BoardDetail from './pages/board/BoardDetail';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
 					<Route path = "/" element = {<ProtectedRoute loginCheck = {true}><Layout/></ProtectedRoute>}>
 						<Route index element = {<Main/>}/>
 						<Route path = "board" element = {<Board/>}/>
+						<Route path = "board/:boardCode" element = {<BoardDetail/>}/>
 						<Route path = "training" element = {<Training/>}/>
 						<Route path = "search" element = {<Training/>}/>
 						<Route path = "training/:trainingCode" element = {<TrainingDetail/>}/>

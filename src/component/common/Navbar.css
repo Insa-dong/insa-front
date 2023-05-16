@@ -72,6 +72,7 @@ a{text-decoration: none; color: inherit;}
 .topName{
     display: block;
     padding-top: 0.3vh;
+    padding-bottom: 0.3vh;
 }
 
 .topAuth{
