@@ -11,7 +11,7 @@ function AdminAbs() {
 
     const [currentPage, setCurrentPage] = useState(1)
     const abs = useSelector(state => state.absReducer);
-    const absList = abs.data;
+    const absList = abs.data || [];
     const dispatch = useDispatch();
 
     useEffect(() => {
