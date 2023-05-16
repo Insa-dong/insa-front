@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { callAdviceWriteAPI } from "../../apis/AdviceAPICalls";
+import CSS from "./AdviceReviewModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
 function AdviceReviewWriteModal({ stuCode, setAdviceReviewWriteModal }) {
@@ -28,6 +29,9 @@ function AdviceReviewWriteModal({ stuCode, setAdviceReviewWriteModal }) {
 
     return (
         <>
+        <div className={CSS.modal}>
+            <div className={CSS.modalContainer}>
+                <div className={CSS.adviceReviewModalDiv}>
             <h1>상담일지</h1>
 
             <h1>작성자</h1>
@@ -46,6 +50,10 @@ function AdviceReviewWriteModal({ stuCode, setAdviceReviewWriteModal }) {
             <button onClick={() => setAdviceReviewWriteModal(false)}>
                 돌아가기
             </button>
+            </div>
+      </div>
+    </div>
+
         </>
     );
 }
