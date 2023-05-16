@@ -34,3 +34,19 @@ export const empListDeptAPI = ({ deptCode, currentPage = 1 }) => {
 
     }
 }
+
+/* 구성원 검색*/
+export const empListSearchAPI = ({ searchOption, searchKeyword, currentPage = 1 }) => {
+
+    const requestURL = `${PRE_URL}/empsearch?page=${currentPage}&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL).then(response => response.json());
+
+        if(result.status === 200){
+            console.log('[EmpAPICalls] : empListDeptAPI result : ', result);
+            dispatch(getEmp(result));
+        }
+
+    }
+}
