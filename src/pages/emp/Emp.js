@@ -61,6 +61,12 @@ function Emp() {
   const onEmpOffHandler = (e) => {
     setAllEmpList(false);
   }
+
+  /* 부서별 조회 */
+  const EmpListDeptHandler = (deptCode) => {
+
+  }
+  
   return (
     <>
       <Header title={title} />
@@ -110,11 +116,11 @@ function Emp() {
                   전체 구성원
                 </li>
                 <ul className="EmpContLeftDept">
-                  <li>• 행정팀</li>
-                  <li>• 경영지원팀</li>
-                  <li>• 강사팀</li>
-                  <li>• 홍보팀</li>
-                  <li>• 개발팀</li>
+                  <li onClick={EmpListDeptHandler('DE0001')}>• 행정팀</li>
+                  <li onClick={EmpListDeptHandler('DE0002')}>• 경영지원팀</li>
+                  <li onClick={EmpListDeptHandler('DE0003')}>• 강사팀</li>
+                  <li onClick={EmpListDeptHandler('DE0004')}>• 홍보팀</li>
+                  <li onClick={EmpListDeptHandler('DE0005')}>• 개발팀</li>
                 </ul>
               </ul>
 
