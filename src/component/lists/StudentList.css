@@ -9,11 +9,10 @@
   .stuDiv th,
   .stuDiv td {
     border: 1px solid #ddd;
-    font-weight: 400;
     padding: 8px;
     height: 5vh;
   }
 
-  .stuHead {
-    font-weight: 600;
+  .stuDiv tbody tr th {
+    font-weight: 500;
   }
