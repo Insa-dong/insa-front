@@ -13,6 +13,7 @@ function AbsList({absList}) {
                     <th>퇴근시간</th>
                     <th>총 근무시간</th>
                     <th>근태 수정</th>
+                   
                 </tr>
             </thead>
             <tbody>
