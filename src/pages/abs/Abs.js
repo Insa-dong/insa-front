@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
 import './Abs.css';
-import { callAbsListAPI } from '../../apis/AbsAPICalls';
-import AbsList from '../../component/lists/AbsList';
+import { callAbsListAPI} from '../../apis/AbsAPICalls';
+import AdminAbsList from '../../component/lists/AbsList';
 import PagingBar from "../../component/common/PagingBar";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
@@ -33,12 +33,17 @@ function Abs() {
     const absList = abs.data;
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(callAbsListAPI({ currentPage }));
+    }, [dispatch, currentPage]);
+
 
     const okConfirm = () => console.log("등록되었습니다.");
     const cancelConfirm = () => console.log("취소되었습니다.");
 
     const absStartConfirm = useConfirm(
         "출근 하시겠습니까?",
+
         okConfirm,
         cancelConfirm
     );
@@ -49,9 +54,7 @@ function Abs() {
         cancelConfirm
     );
 
-    useEffect(() => {
-        dispatch(callAbsListAPI({ currentPage }));
-    }, [dispatch, currentPage]);
+   
 
 
     return (
@@ -78,7 +81,8 @@ function Abs() {
                 </div>
                 <div className="abs-btns">
                     <button className="abs-start-btn"
-                        onClick={absStartConfirm}>출근하기</button>
+                        onClick={absStartConfirm}
+                        >출근하기</button>
                     <button className="abs-end-btn"
                         onClick={absEndConfirm}>퇴근하기</button>
                 </div>
@@ -95,12 +99,10 @@ function Abs() {
                 </div>
 
                 <div>
-                    {absList && <AbsList absList={absList} />}
+                    {absList && <AdminAbsList absList={absList} />}
                 </div>
                 <div>
                     {abs.pageInfo && <PagingBar pageInfo={abs.pageInfo} setCurrentPage={setCurrentPage} />}
-
-
                 </div>
 
             </div>
