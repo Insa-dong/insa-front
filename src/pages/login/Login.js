@@ -12,8 +12,6 @@ function Login() {
 	const dispatch = useDispatch();
 	const { login } = useSelector(state => state.memberReducer);
 
-
-
 	const [form, setForm] = useState({
 		empId: '',
 		empPwd: ''

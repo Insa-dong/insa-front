@@ -21,7 +21,8 @@ function StudentDetail() {
     const data = useSelector(state => state.studentReducer);
     const { modify } = useSelector(state => state.studentReducer);
     const [currentPage, setCurrentPage] = useState();
-    const {studyList , studyPageInfo} = useSelector(state => state.studyStudentReducer);
+    
+    const {studyList, studyPageInfo} = useSelector(state => state.studyStudentReducer);
     const {adviceList, advicePageInfo} = useSelector(state => state.adviceReducer);
     const {evaList, evaPageInfo} = useSelector(state => state.evaReducer);
   
@@ -34,6 +35,8 @@ function StudentDetail() {
         },
         [currentPage]
     );
+
+
 
     useEffect(
         () => {
@@ -153,7 +156,6 @@ function StudentDetail() {
                         />
                     </td>
                     </tr>
-
                 </tbody>
               </table>
               <br></br>
@@ -173,48 +175,84 @@ function StudentDetail() {
             </>
           )}   
            
-        <h2 className = "studyHeader">과정 내역</h2>
-        <table className = "stuDetailDiv"> 
+           <h2 className="studyHeader">과정 내역</h2>
+            <table className="stuDetailDiv">
             <thead>
-            <tr>
+                <tr>
                 <th>과정 이름</th>
                 <th>회차</th>
                 <th>조회/삭제</th>
-            </tr>
+                </tr>
             </thead>
             <tbody>
+                {Array.isArray(studyList) &&
+                studyList.map((study) => (
+                    <tr key={study}>
+                    <td>{study.trainingTitle}</td>
+                    <td>{study.trainingCount}</td>
+                    <td>
+                        <button>조회</button>
+                        <button>삭제</button>
+                    </td>
+                    </tr>
+                ))}
             </tbody>
-        </table>
-            
-        <h2 className = "studyHeader">평가 내역</h2>
+            </table>
 
-        <table className = "stuDetailDiv">
+            <h2 className="studyHeader">평가 내역</h2>
+
+            <table className="stuDetailDiv">
             <thead>
-            <tr>
+                <tr>
                 <th>평가 코드</th>
                 <th>강의 이름</th>
                 <th>강사명</th>
                 <th>조회/삭제</th>
-            </tr>
+                </tr>
             </thead>
             <tbody>
+                {Array.isArray(evaList) &&
+                evaList.map((eva) => (
+                    <tr key={eva}>
+                    <td>{eva.evaCode}</td>
+                    <td>{eva.studyInfo.studyTitle}</td>
+                    <td>{eva.studyInfo.teacher.empName}</td>
+                    <td>
+                        <button>조회</button>
+                        <button>삭제</button>
+                    </td>
+                    </tr>
+                ))}
             </tbody>
-        </table>
+            </table>
 
-        <h2 className = "studyHeader">상담 내역</h2>
+            <h2 className="studyHeader">상담 내역</h2>
 
-        <table className = "stuDetailDiv">
+            <table className="stuDetailDiv">
             <thead>
-            <tr>
+                <tr>
                 <th>일지 코드</th>
                 <th>작성자</th>
                 <th>작성일</th>
                 <th>조회/삭제</th>
-            </tr>
+                </tr>
             </thead>
             <tbody>
+                {Array.isArray(adviceList) &&
+                adviceList.map((advice) => (
+                    <tr key={advice}>
+                    <td>{advice.adviceLogCode}</td>
+                    <td>{advice.writer.empName}</td>
+                    <td>{advice.adviceLogDate}</td>
+                    <td>
+                        <button>조회</button>
+                        <button>삭제</button>
+                    </td>
+                    </tr>
+                ))}
             </tbody>
-        </table>
+            </table>
+
         </>
       );
     }
