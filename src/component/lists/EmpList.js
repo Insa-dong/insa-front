@@ -1,12 +1,13 @@
 
 import EmpItem from "../items/EmpItem";
+import './EmpList.css'
 
 
 function EmpList({ empList }) {
 
     return (
-        <table className="">
-            <thead className="">
+        <table className="EmpDiv">
+            <thead >
                 <tr>
                     <th>이름</th>
                     <th>부서</th>
@@ -14,9 +15,9 @@ function EmpList({ empList }) {
                 </tr>
             </thead>
             <tbody>
-                {Array.isArray(empList) && empList.map(emp => (
-                    <EmpItem key={emp.empCode} emp={emp} />
-                ))}
+                    {Array.isArray(empList) && empList.map(emp => (
+                        <EmpItem key={emp.empCode} emp={emp} />
+                    ))}
             </tbody>
         </table>
     );

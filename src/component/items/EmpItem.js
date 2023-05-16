@@ -1,11 +1,11 @@
 
 
-function EmpItem({ emp : {empCode, empName, deptCode, deptName, jobCode, jobName}}) {
+function EmpItem({ emp : {empCode, empName, dept, job}}) {
   return (
     <tr>
         <th>{empName}</th>
-        <th>{deptName}</th>
-        <th>{jobName}</th>
+        <th>{dept.deptName}</th>
+        <th>{job.jobName}</th>
     </tr>
   )
 }
