@@ -62,7 +62,7 @@ function StudyItem({item, checkValue, setCheckValue}) {
 			<th onClick = {onClickHandler}>
 				{item.study.training.trainingTitle}</th>
 			<th onClick = {onClickHandler}>
-				{`${item.studyStartDate} ~ ${item.studyEndDate}`}
+				{`${item.studyInfoStartDate} ~ ${item.studyInfoEndDate}`}
 			</th>
 			<th onClick = {onClickHandler}>
 				{item.study.studyMaxPeople}
