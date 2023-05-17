@@ -8,7 +8,6 @@ import { callStudentEvaListAPI } from "../../apis/EvaAPICalls";
 import { callStudentAdviceListAPI } from "../../apis/AdviceAPICalls";
 import { callStudyStuListAPI } from "../../apis/StudyStuAPICalls";
 import AdviceReviewModal from "../../component/modal/AdviceReviewModal";
-import AdviceReviewWriteModal from "../../component/modal/AdviceReviewWriteModal";
 
 function StudentDetail() {
 
@@ -24,26 +23,31 @@ function StudentDetail() {
     const [currentPage, setCurrentPage] = useState();
     
     const [ adviceReviewModal, setAdviceReviewModal] = useState(false);
-    const [ adviceReviewWriteModal, setAdviceReviewWriteModal] = useState(false);
 
     const {studyList} = useSelector(state => state.studyStudentReducer);
     const {adviceList} = useSelector(state => state.adviceReducer);
     const {evaList} = useSelector(state => state.evaReducer);
+    const [selectedAdvice, setSelectedAdvice] = useState(null);
+
 
     console.log("adviceList ", adviceList);
 
     useEffect(() => {
         if(adviceList?.adviceCode) {
             setAdviceReviewModal(true);
-        } else if (adviceList) {
-            setAdviceReviewWriteModal(true);
         }
+
     }, [adviceList]);
 
-    const onClickAdviceReviewHandler = (stuCode) => {
-        dispatch(callStudentAdviceListAPI({ stuCode }));
-    };
-    
+    // const onClickAdviceReviewHandler = (stuCode) => {
+    //     dispatch(callStudentAdviceListAPI({ stuCode }));
+    // };
+
+    const onClickAdviceReviewHandler = (advice) => {
+        setSelectedAdvice(advice);
+        setAdviceReviewModal(true);
+      };
+      
     
     useEffect(
         ()=> {
@@ -103,13 +107,6 @@ function StudentDetail() {
                 stuCode={stuCode}
                 studyList={studyList}
                 setAdviceReviewModal={setAdviceReviewModal}
-            />
-            ) : null}
-
-            {adviceReviewWriteModal ? (
-            <AdviceReviewWriteModal
-                stuCode={stuCode}
-                setAdviceReviewWriteModal={setAdviceReviewWriteModal}
             />
             ) : null}
         
@@ -290,7 +287,8 @@ function StudentDetail() {
                         <td>{advice.writer.empName}</td>
                         <td>{advice.adviceLogDate}</td>
                         <td>
-                            <button onClick={ () => onClickAdviceReviewHandler(stuCode) }>조회</button>
+                            {/* <button onClick={ () => onClickAdviceReviewHandler(stuCode) }>조회</button> */}
+                            <button onClick={() => onClickAdviceReviewHandler(advice)}>조회</button>
                             <button>삭제</button>
                         </td>
                         </tr>
