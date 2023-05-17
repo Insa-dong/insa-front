@@ -2,8 +2,8 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {callTeacherList} from "../../apis/EmpAPICalls";
-import {callStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
-import {callModifyTraining, callTrainingTitle} from "../../apis/TrainingAPICalls";
+import {callModifyStudyInfo, callStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
+import {callTrainingTitle} from "../../apis/TrainingAPICalls";
 import Header from "../../component/common/Header";
 import CSS from "./StudyInfo.module.css";
 import StudyTime from "./StudyTime";
@@ -21,8 +21,6 @@ function StudyInfo() {
 	const trainingList = useSelector(state => state.trainingReducer);
 	const {teacher} = useSelector(state => state.empReducer);
 
-	console.log(teacher);
-
 	useEffect(
 		() => {
 			dispatch(callStudyInfoAPI(studyInfoCode));
@@ -36,20 +34,31 @@ function StudyInfo() {
 			setForm({...studyInfo});
 			dispatch(callTrainingTitle());
 			dispatch(callTeacherList());
+			console.log('name : ', e.target.name);
+			console.log('form : ', form);
 		} else if (e.target.innerText === '저장하기') {
-			dispatch(callModifyTraining(form));
+			console.log('name : ', e.target.name);
+			console.log('form : ', form);
+			dispatch(callModifyStudyInfo({form, studyInfoCode}));
 		}
 	}
 
 	const onChangeHandler = (e) => {
+		console.log('date 이벤트 : ', e.target);
+		console.log('date 이벤트 : ', e.target.value);
 		setForm({
 			...form,
 			[e.target.name]: e.target.value
 		})
 	}
 
-	const selectOnChangeHandler = () => {
-
+	const selectOnChangeHandler = (e) => {
+		console.log(e.target.name);
+		console.log(e.target.value);
+		setForm({
+			...form,
+			[e.target.name]: e.target.value
+		})
 	}
 
 
@@ -62,7 +71,7 @@ function StudyInfo() {
 					<h2>강의 명</h2>
 					<textarea
 						className = {!modifyMode ? CSS.textInput : CSS.textInput2}
-						name = 'studyTitle'
+						name = 'studyInfo.studyTitle'
 						defaultValue = {!modifyMode ? studyInfo && studyInfo.studyTitle : form.studyTitle}
 						onChange = {onChangeHandler}
 						readOnly = {!modifyMode}/>
@@ -70,18 +79,20 @@ function StudyInfo() {
 					{!modifyMode ?
 						<textarea
 							className = {CSS.textInput}
-							name = 'trainingTitle'
+							name = 'studyInfo.study.training.trainingTitle'
 							defaultValue = {studyInfo.study && studyInfo.study.training.trainingTitle}
 							onChange = {onChangeHandler}
 							readOnly = {!modifyMode}/>
-						: <select onChange = {selectOnChangeHandler} className = {CSS.selectBox}>
+						: <select onChange = {selectOnChangeHandler} className = {CSS.selectBox}
+						          name = {studyInfo.study.training.trainingTitle}
+						>
 							<option
 								value = {studyInfo.study.training.trainingCode}>{studyInfo.study.training.trainingTitle}
 							</option>
 							{trainingList && trainingList.map(training =>
 								studyInfo.study.training.trainingCode !== training.trainingCode &&
 								<option
-									value = {training.trainingTitle}
+									value = {training.trainingCode}
 									key = {training.trainingCode}
 								>{training.trainingTitle}
 								</option>)}
@@ -96,7 +107,7 @@ function StudyInfo() {
 						<td colSpan = {3} className = {CSS.MiddleBodyDiv}>
 							<textarea
 								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
-								name = 'studyRoom'
+								name = 'studyInfo.studyRoom'
 								defaultValue = {studyInfo && studyInfo.studyRoom}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
@@ -108,17 +119,19 @@ function StudyInfo() {
 							{!modifyMode ?
 								<textarea
 									className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
-									name = 'teacher'
+									name = 'studyInfo.teacher.empName'
 									defaultValue = {studyInfo.teacher && studyInfo.teacher.empName}
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/>
 								:
-								<select onChange = {selectOnChangeHandler} className = {CSS.selectBox}>
-									<option
-										value = {studyInfo.teacher}>{studyInfo.teacher.empName}
-									</option>
+								<select onChange = {selectOnChangeHandler} className = {CSS.selectBox}
+								        name = 'studyInfo.teacher.empName'
+								>
+									{/*<option*/}
+									{/*	value = {studyInfo.teacher.empCode}>{studyInfo.teacher.empName}*/}
+									{/*</option>*/}
 									{teacher && teacher.map(name =>
-										studyInfo.teacher.empName !== name.empName &&
+										// studyInfo.teacher.empName !== name.empName &&
 										<option
 											value = {name.empCode}
 											key = {name.empCode}
@@ -130,7 +143,7 @@ function StudyInfo() {
 						<td colSpan = {1} className = {CSS.MiddleBodyDiv}>
 							<textarea
 								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
-								name = 'trainingCount'
+								name = 'studyInfo.study.training.trainingCount'
 								defaultValue = {studyInfo.study && `${studyInfo.study.training.trainingCount} 회차`}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
@@ -141,7 +154,7 @@ function StudyInfo() {
 						<td className = {CSS.MiddleBody2} colSpan = {3}>
 							<textarea
 								className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}
-								name = 'studyContent'
+								name = 'studyInfo.studyContent'
 								defaultValue = {studyInfo && studyInfo.studyContent}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
@@ -158,16 +171,17 @@ function StudyInfo() {
 							{!modifyMode ?
 								<textarea
 									className = {CSS.textInput5}
-									name = 'studyStartDate'
-									defaultValue = {studyInfo.study && studyInfo.study.studyStartDate}
+									name = 'studyInfo.study.studyStartDate'
+									value = {studyInfo.study && studyInfo.study.studyStartDate}
 									onChange = {onChangeHandler}
 									readOnly = {modifyMode}/>
 								: <input
 									type = "date"
 									className = {CSS.textInput5}
 									name = 'studyStartDate'
-									value = {studyInfo.study && studyInfo.study.studyStartDate}
+									value = {!modifyMode ? studyInfo.study && studyInfo.study.studyStartDate : form.studyStartDate}
 									onChange = {onChangeHandler}
+									max = {form.studyEndDate}
 									readOnly = {!modifyMode}/>
 							}
 						</td>
@@ -178,7 +192,7 @@ function StudyInfo() {
 							{!modifyMode ?
 								<textarea
 									className = {CSS.textInput5}
-									name = 'studyEndDate'
+									name = 'studyInfo.study.studyEndDate'
 									defaultValue = {studyInfo.study && studyInfo.study.studyEndDate}
 									onChange = {onChangeHandler}
 									readOnly = {modifyMode}/>
@@ -186,7 +200,8 @@ function StudyInfo() {
 									type = "date"
 									className = {CSS.textInput5}
 									name = 'studyEndDate'
-									value = {studyInfo.study && studyInfo.study.studyEndDate}
+									value = {!modifyMode ? studyInfo.study && studyInfo.study.studyEndDate : form.studyEndDate}
+									min = {form.studyStartDate}
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/>
 							}
