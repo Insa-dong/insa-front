@@ -33,6 +33,12 @@ const absReducer = handleActions(
     {
       [GET_ABSS]: (state, { payload }) => payload,
       [PUT_ABSS]: (state, { payload }) => {
+        // state가 배열인지 확인한다
+        if (!Array.isArray(state)) {
+          // 배열이 아니면, payload를 배열로 변환하여 반환한다
+          return [payload];
+        }
+
         // 기존의 state에서 수정된 근태 정보만을 업데이트
         const updatedState = state.map((abs) => {
           if (abs.absCode === payload.absCode) {
@@ -47,7 +53,7 @@ const absReducer = handleActions(
       [POST_CHECKIN]: (state, { payload }) => payload,
     },
     initialState
-  );
+);
   
 
 export default absReducer;
