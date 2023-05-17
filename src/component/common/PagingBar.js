@@ -18,6 +18,7 @@ function PagingBar({pageInfo, setCurrentPage}) {
 			>
 				&lt;
 			</button>
+			<ul className = {PagingBarCSS.productWrap}>
 			{pageNumber.map(num => (
 				<li key = {num}
 				    onClick = {() => setCurrentPage(num)}
@@ -31,6 +32,7 @@ function PagingBar({pageInfo, setCurrentPage}) {
 				</li>
 			))
 			}
+			</ul>
 			<button className = {PagingBarCSS.pagingBtn}
 			        onClick = {() => setCurrentPage(pageInfo.currentPage + 1)}
 			        disabled = {pageInfo.currentPage >= pageInfo.maxPage}
