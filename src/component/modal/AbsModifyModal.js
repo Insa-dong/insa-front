@@ -8,22 +8,22 @@ function AbsModifyModal({ abs, setAbsModifyModal }) {
     const [form, setForm] = useState({ abs: abs });
     const dispatch = useDispatch();
     const { absModify } = useSelector((state) => state.absReducer);
+
     const createDate = (dateString) => {
-        const date = new Date(dateString);
-        return isNaN(date) ? new Date() : date;
+        return dateString ? new Date(dateString) : null;
     };
 
     const formatTime = (date) => {
         if (date instanceof Date) {
-            const hours = date.getHours().toString().padStart(2, '0');
-            const minutes = date.getMinutes().toString().padStart(2, '0');
-            const seconds = date.getSeconds().toString().padStart(2, '0');
-
-            return `${hours}:${minutes}:${seconds}`;
+            const localTime = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+            return localTime.toISOString().slice(0, 16);
+        } else if (date === null) {
+            return "근무 중";
         } else {
-            return "근무 중"; // endTime이 없을 경우
+            return date;
         }
     };
+
 
     const absStart = createDate(abs.absStart);
     const absEnd = abs.absEnd ? createDate(abs.absEnd) : null;
@@ -36,15 +36,38 @@ function AbsModifyModal({ abs, setAbsModifyModal }) {
     }, [absModify]);
 
     /* 입력값 변경 이벤트 */
+      
     const onChangeHandler = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
+        const { name, value } = e.target;
+        if (name === 'endTime' && value === '근무 중') {
+          setForm((prevForm) => ({
+            ...prevForm,
+            abs: {
+              ...prevForm.abs,
+              absEnd: null,
+            },
+          }));
+        } else {
+          setForm((prevForm) => ({
+            ...prevForm,
+            abs: {
+              ...prevForm.abs,
+              [name]: value,
+            },
+          }));
+        }
+      };
+      
 
-    const onClickAbsModifyHandler = () => {
-        dispatch(callModifyAbsAPI(form));
+      const onClickAbsModifyHandler = () => {
+        console.log('onClickAbsModifyHandler called');
+        dispatch(callModifyAbsAPI(form)).then(() => {
+            // 업데이트 후에 수행할 작업을 여기에 추가합니다.
+            console.log('근태 수정 완료');
+        }).catch((error) => {
+            // 업데이트 실패 시 에러 처리를 여기에 추가합니다.
+            console.log('근태 수정 실패:', error);
+        });
     };
 
     const onClickOutsideModal = (e) => {
@@ -53,12 +76,14 @@ function AbsModifyModal({ abs, setAbsModifyModal }) {
         }
     };
 
+    console.log(absEnd)
+
     return (
         <div className="abs-modify-modal" onClick={onClickOutsideModal} >
             <div className="absModalContainer">
-            <div className="absModalClose" onClick={() => setAbsModifyModal(false)}>
-                        x
-                    </div>
+                <div className="absModalClose" onClick={() => setAbsModifyModal(false)}>
+                    x
+                </div>
                 <div className="absModalDiv">
 
 
@@ -69,7 +94,7 @@ function AbsModifyModal({ abs, setAbsModifyModal }) {
                         <input
                             type="date"
                             name="absDate"
-                            value={abs.absDate}
+                            value={form.absDate || abs.absDate }
                             onChange={onChangeHandler}
                         />
                     </div>
@@ -98,9 +123,9 @@ function AbsModifyModal({ abs, setAbsModifyModal }) {
                     <div className="absField">
                         <h1>출근 시간</h1>
                         <input
-                            type="tdatetime-local"
+                            type="datetime-local"
                             name="startTime"
-                            value={formatTime(absStart)}
+                            value={formatTime(form.absStart) || formatTime(absStart)}
                             onChange={onChangeHandler}
                         />
                     </div>
@@ -109,7 +134,7 @@ function AbsModifyModal({ abs, setAbsModifyModal }) {
                         <input
                             type="datetime-local"
                             name="endTime"
-                            value={formatTime(absEnd)}
+                            value={formatTime(form.absEnd) || formatTime(absEnd)}
                             onChange={onChangeHandler}
                         />
                     </div>
