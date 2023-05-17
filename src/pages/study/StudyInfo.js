@@ -1,6 +1,8 @@
-import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
+import {callStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
+import {callStudyTimeListAPI} from "../../apis/StudyTimeAPICalls";
 import {callModifyTraining} from "../../apis/TrainingAPICalls";
 import Header from "../../component/common/Header";
 import CSS from "./StudyInfo.module.css";
@@ -14,6 +16,16 @@ function StudyInfo() {
 	const navigate = useNavigate();
 	const [modifyMode, setModifyMode] = useState(false);
 	const [form, setForm] = useState({});
+	const studyTime = useSelector(state => state.studyTimeReducer);
+	const studyInfo = useSelector(state => state.studyInfoReducer);
+
+	useEffect(
+		() => {
+			dispatch(callStudyTimeListAPI(studyInfoCode));
+			dispatch(callStudyInfoAPI(studyInfoCode));
+		},
+		[dispatch, studyInfoCode]
+	)
 
 	const onClickModifyHandler = (e) => {
 		if (e.target.innerText === '수정하기') {
@@ -45,7 +57,7 @@ function StudyInfo() {
 					<textarea
 						className = {!modifyMode ? CSS.textInput : CSS.textInput2}
 						name = 'studyTitle'
-						defaultValue = '안녕'
+						defaultValue = {studyInfo && studyInfo.studyTitle}
 						onChange = {onChangeHandler}
 						readOnly = {!modifyMode}/>
 					<h3>과정 명</h3>
@@ -53,7 +65,7 @@ function StudyInfo() {
 						<textarea
 							className = {CSS.textInput}
 							name = 'trainingTitle'
-							defaultValue = '안녕'
+							defaultValue = {studyInfo.study && studyInfo.study.training.trainingTitle}
 							onChange = {onChangeHandler}
 							readOnly = {!modifyMode}/>
 						: <select onChange = {selectOnChangeHandler} className = {CSS.selectBox}>
@@ -116,24 +128,62 @@ function StudyInfo() {
 							{!modifyMode ?
 								<textarea
 									className = {CSS.textInput5}
-									name = 'trainingTitle'
-									defaultValue = '안녕'
+									name = 'studyStartDate'
+									defaultValue = '2022-02-02'
+									onChange = {onChangeHandler}
+									readOnly = {modifyMode}/>
+								: <input
+									type = "date"
+									className = {CSS.textInput5}
+									name = 'studyStartDate'
+									defaultValue = '2022-02-02'
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/>
-								: <select onChange = {selectOnChangeHandler} className = {CSS.selectBox}>
-									<option value = "뿌리기 해야함">이것도</option>
-								</select>
 							}
 						</td>
 					</tr>
 					<tr>
 						<th className = {CSS.MiddleTh}>종료일</th>
-						<td className = {CSS.MiddleTd}>강의실 정보</td>
+						<td className = {CSS.MiddleTd}>
+							{!modifyMode ?
+								<textarea
+									className = {CSS.textInput5}
+									name = 'studyEndDate'
+									defaultValue = '2022-02-02'
+									onChange = {onChangeHandler}
+									readOnly = {modifyMode}/>
+								: <input
+									type = "date"
+									className = {CSS.textInput5}
+									name = 'studyEndDate'
+									defaultValue = '2022-02-02'
+									onChange = {onChangeHandler}
+									readOnly = {!modifyMode}/>
+							}
+						</td>
 					</tr>
 					<tr>
-						<th className = {CSS.MiddleTh}>강의 총 시간</th>
-						<td className = {CSS.MiddleTd}>강의실 정보</td>
+						<th className = {CSS.MiddleTh}>수업 일정</th>
+						<td className = {CSS.MiddleTd}>
+														<textarea
+															className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}
+															name = 'studyTime'
+															defaultValue = 'studyDate.studyStartTime.studyEndTime'
+															onChange = {onChangeHandler}
+															readOnly = {!modifyMode}/>
+						</td>
 					</tr>
+					{/*<tr>*/}
+					{/*	<th className = {CSS.MiddleTh}>강의 총 시간</th>*/}
+					{/*	<td className = {CSS.MiddleTd}>*/}
+					{/*									<textarea*/}
+					{/*										className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}*/}
+					{/*										name = 'studyContent'*/}
+					{/*										defaultValue = '강의 내용 및 특징'*/}
+					{/*										onChange = {onChangeHandler}*/}
+					{/*										readOnly = {!modifyMode}/>*/}
+					{/*	</td>*/}
+					{/*</tr>*/}
 					</tbody>
 				</table>
 				<div className = {CSS.centerDiv}>

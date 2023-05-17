@@ -1,3 +1,4 @@
+import CSS from "./AdviceReviewModal.module.css";
 
 function AdviceReviewModal({ adviceReview, setAdviceReviewModal }) {
 
@@ -6,7 +7,9 @@ function AdviceReviewModal({ adviceReview, setAdviceReviewModal }) {
     };
 
     return (
-        <>
+        <div className={CSS.modal}>
+            <div className={CSS.modalContainer}>
+                <div className={CSS.adviceReviewModalDiv}>
             <h1>상담일지</h1>
 
             <h1>작성자</h1>
@@ -22,10 +25,19 @@ function AdviceReviewModal({ adviceReview, setAdviceReviewModal }) {
                 readOnly={true}
                 value={adviceReview.adviceLogContent}
             ></textarea>
-            <button onClick={onClickHandler}>
+            <button
+             style={{
+                border: "none",
+                margin: 0,
+                fontSize: "10px",
+                height: "10px",
+             }}
+            onClick={onClickHandler}>
                 돌아가기
             </button>
-        </>
+        </div>
+        </div>
+        </div>
     );
 }
 
