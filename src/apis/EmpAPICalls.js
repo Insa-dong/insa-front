@@ -1,4 +1,4 @@
-import {getEmp, getEmplist} from "../modules/EmpModule";
+import {getEmp, getEmplist, getEmpDeptJob, postEmpRegist} from "../modules/EmpModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -50,6 +50,47 @@ export const empListSearchAPI = ({searchOption, searchKeyword, currentPage = 1})
 
 	}
 }
+
+/* 구성원 부서 직책 조회 */
+export const empDeptJobListAPI = () => {
+
+	const requestURL = `${PRE_URL}/emp/deptjoblist`;
+	return async (dispatch, getState) => {
+
+		const result = await fetch(requestURL).then(response => response.json());
+
+		if (result.status === 200) {
+			console.log('[EmpAPICalls] : empDeptJobListAPI result : ', result);
+			dispatch(getEmpDeptJob(result));
+		}
+
+	}
+}
+
+/* 구성원 등록 */
+export const callEmpRegistAPI = (form) => {
+
+	const requestURL =`${PRE_URL}/emp/empregist`;
+    console.log(form);
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'POST',
+            headers : {
+                "Content-Type": "application/json",
+                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body: JSON.stringify(form)
+        }).then(res => res.json());
+        
+        console.log(result);
+        if(result.status === 200) {
+            dispatch(postEmpRegist(result));
+        }
+    }
+}
+
 
 /* 강사 조회 */
 export const callTeacherList = () => {
