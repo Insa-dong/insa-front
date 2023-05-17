@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {callTeacherList} from "../../apis/EmpAPICalls";
-import {callModifyStudyInfo, callStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
+import {callModifyStudyInfo, callPetiteStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
 import {callTrainingTitle} from "../../apis/TrainingAPICalls";
 import Header from "../../component/common/Header";
 import CSS from "./StudyInfo.module.css";
@@ -21,9 +21,11 @@ function StudyInfo() {
 	const trainingList = useSelector(state => state.trainingReducer);
 	const {teacher} = useSelector(state => state.empReducer);
 
+	console.log('studyInfo : ', studyInfo);
+
 	useEffect(
 		() => {
-			dispatch(callStudyInfoAPI(studyInfoCode));
+			dispatch(callPetiteStudyInfoAPI(studyInfoCode));
 		},
 		[dispatch, studyInfoCode]
 	)
@@ -34,18 +36,12 @@ function StudyInfo() {
 			setForm({...studyInfo});
 			dispatch(callTrainingTitle());
 			dispatch(callTeacherList());
-			console.log('name : ', e.target.name);
-			console.log('form : ', form);
 		} else if (e.target.innerText === '저장하기') {
-			console.log('name : ', e.target.name);
-			console.log('form : ', form);
 			dispatch(callModifyStudyInfo({form, studyInfoCode}));
 		}
 	}
 
 	const onChangeHandler = (e) => {
-		console.log('date 이벤트 : ', e.target);
-		console.log('date 이벤트 : ', e.target.value);
 		setForm({
 			...form,
 			[e.target.name]: e.target.value
@@ -53,8 +49,6 @@ function StudyInfo() {
 	}
 
 	const selectOnChangeHandler = (e) => {
-		console.log(e.target.name);
-		console.log(e.target.value);
 		setForm({
 			...form,
 			[e.target.name]: e.target.value
@@ -127,11 +121,11 @@ function StudyInfo() {
 								<select onChange = {selectOnChangeHandler} className = {CSS.selectBox}
 								        name = 'studyInfo.teacher.empName'
 								>
-									{/*<option*/}
-									{/*	value = {studyInfo.teacher.empCode}>{studyInfo.teacher.empName}*/}
-									{/*</option>*/}
+									<option
+										value = {studyInfo.teacher.empCode}>{studyInfo.teacher.empName}
+									</option>
 									{teacher && teacher.map(name =>
-										// studyInfo.teacher.empName !== name.empName &&
+										studyInfo.teacher.empName !== name.empName &&
 										<option
 											value = {name.empCode}
 											key = {name.empCode}
@@ -172,14 +166,14 @@ function StudyInfo() {
 								<textarea
 									className = {CSS.textInput5}
 									name = 'studyInfo.study.studyStartDate'
-									value = {studyInfo.study && studyInfo.study.studyStartDate}
+									defaultValue = {studyInfo.study && studyInfo.studyInfoStartDate}
 									onChange = {onChangeHandler}
 									readOnly = {modifyMode}/>
 								: <input
 									type = "date"
 									className = {CSS.textInput5}
-									name = 'studyStartDate'
-									value = {!modifyMode ? studyInfo.study && studyInfo.study.studyStartDate : form.studyStartDate}
+									name = 'studyInfoStartDate'
+									defaultValue = {!modifyMode ? studyInfo.study && studyInfo.studyStartDate : form.studyInfoStartDate}
 									onChange = {onChangeHandler}
 									max = {form.studyEndDate}
 									readOnly = {!modifyMode}/>
@@ -193,14 +187,14 @@ function StudyInfo() {
 								<textarea
 									className = {CSS.textInput5}
 									name = 'studyInfo.study.studyEndDate'
-									defaultValue = {studyInfo.study && studyInfo.study.studyEndDate}
+									defaultValue = {studyInfo.study && studyInfo.studyInfoEndDate}
 									onChange = {onChangeHandler}
 									readOnly = {modifyMode}/>
 								: <input
 									type = "date"
 									className = {CSS.textInput5}
-									name = 'studyEndDate'
-									value = {!modifyMode ? studyInfo.study && studyInfo.study.studyEndDate : form.studyEndDate}
+									name = 'studyInfoEndDate'
+									defaultValue = {!modifyMode ? studyInfo.study && studyInfo.studyInfoEndDate : form.studyInfoEndDate}
 									min = {form.studyStartDate}
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/>
