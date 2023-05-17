@@ -1,6 +1,6 @@
 import CSS from "./AdviceReviewModal.module.css";
 
-function AdviceReviewModal({ adviceReview, setAdviceReviewModal }) {
+function AdviceReviewModal({ studyList,adviceReview, setAdviceReviewModal, selectedAdvice }) {
 
     const onClickHandler = () => {
         setAdviceReviewModal(false);

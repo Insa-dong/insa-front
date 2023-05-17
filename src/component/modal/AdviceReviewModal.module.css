@@ -11,32 +11,27 @@
     z-index: 100;
 }
 
-
-.modalContainer{
-    position: absolute;
-    width: 400px;
-    height: 500px;
-    padding: 10px;
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);    
-    z-index: 1000;
+.title{
+    margin-bottom: 1.5vw;
 }
+
+ .modalContainer{
+    position: relative;
+   
+}  
 
 .adviceReviewModalDiv{    
     width: 400px;
-    height: 500px;
+    height: 450px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column; /*수평 정렬*/
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
     margin: 0;
     padding: 0;
     background-color: white;
-    border: solid 1px black;
-    border-radius: 25px;    
 }
 
 .adviceReviewModalDiv input {
@@ -44,24 +39,47 @@
     margin-bottom: 5px;
     height: 30px;
     width: 90%;
-    border-radius: 25px;
+    border-radius: 5px;
     text-indent: 1.2em;
+    border: solid 1.5px #8CBAFF;
 }
 
 .adviceReviewModalDiv textarea {
     width: 90%;
     height: 250px;
     resize: none;
-    border-radius: 20px;
+    border-radius: 5px;
     text-indent: 1em;
+    border: solid 1.5px #8CBAFF;
 }
 
 .adviceReviewModalDiv button {
     margin-top: 5px;
     margin-bottom: 5px;
     height: 30px;
-    width: 250px;
-    border-radius: 25px;
-    background-color: white;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #8CBAFF;
+    color : #fff;
+    border: solid 1.5px #8CBAFF;
+}
+
+.btn {
+    margin-top: 2vw;
+}
+
+.close {
+    color: #AAAAAA;
+    font-size: 18px;
     font-weight: bold;
+    position: absolute;
+    top: 23px;
+    right: 23px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
