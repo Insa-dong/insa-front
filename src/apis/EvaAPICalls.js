@@ -1,3 +1,4 @@
+import { deleteEvas } from "../modules/EvaModule";
 import { getEvas } from "../modules/EvaModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -19,3 +20,21 @@ export const callStudentEvaListAPI = ({ stuCode , currentPage = 1 }) => {
 
 }
 
+export const callEvaDeleteForAdminAPI = (stuCode) => {
+
+    const requestURL = `${PRE_URL}/students-management/eva/${stuCode}`;
+  
+    return async (dispatch, getState) => {
+      const result = await fetch(requestURL, {
+        method: 'DELETE',
+        headers: {
+          // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+        }
+      }).then(res => res.json());
+  
+      console.log(result);
+      if (result.status === 200) {
+        dispatch(deleteEvas(result));
+      }
+    }
+  };

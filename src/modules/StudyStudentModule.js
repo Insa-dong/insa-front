@@ -4,19 +4,19 @@ const initialState = [];
 
 const GET_STUDY_STUDENT = 'studystu/GET_STUDY_STUDENT';
 
-export const { studystu : { getStudyStudent } } = createActions ({
-    
-    [GET_STUDY_STUDENT] : res => res.data   
- 
+export const { studystu: { getStudyStudent } } = createActions({
+
+    [GET_STUDY_STUDENT]: res => res.data
+
 });
 
 const studyStudentReducer = handleActions(
     {
-       [GET_STUDY_STUDENT] : (state, { payload }) => ({ studyList : payload}),
-   
+        [GET_STUDY_STUDENT]: (state, { payload }) => ({ studyList: payload }),
+
     },
-       initialState
-   );
-   
+    initialState
+);
+
 export default studyStudentReducer;
 

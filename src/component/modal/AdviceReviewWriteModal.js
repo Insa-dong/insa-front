@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { callAdviceWriteAPI } from "../../apis/AdviceAPICalls";
-import CSS from "./AdviceReviewModal.module.css";
+import CSS from "./AdviceReviewModalWrite.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
 function AdviceReviewWriteModal({ stuCode, setAdviceReviewWriteModal }) {
@@ -38,6 +38,13 @@ function AdviceReviewWriteModal({ stuCode, setAdviceReviewWriteModal }) {
                         <div className={CSS.title}>
                             <h1>상담일지</h1>
                         </div>
+                        {/* <h1>작성자</h1>
+                            <input
+                                type="text"
+                                name="writer.empName"
+                                readOnly={true}
+                                value={adviceReview.writer.empName}
+                            /> */}
                         <textarea
                             placeholder="상담 일지 본문"
                             name="adviceLogContent"

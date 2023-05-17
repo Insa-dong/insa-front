@@ -12,7 +12,7 @@
 }
 
 .title{
-    margin-bottom: 6vw;
+    margin-bottom: 2vw;
 }
 
  .modalContainer{
@@ -51,6 +51,21 @@
     border-radius: 5px;
     text-indent: 1em;
     border: solid 1.5px #8CBAFF;
+}
+
+.adviceReviewModalDiv button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #8CBAFF;
+    color : #fff;
+    border: solid 1.5px #8CBAFF;
+}
+
+.btn {
+    margin-top: 2vw;
 }
 
 .close {
