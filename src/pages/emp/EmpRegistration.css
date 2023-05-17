@@ -1,14 +1,9 @@
 .EmpRegWrap{
-    width: 74vw;
-    height: 78vh;
-    margin-left: 20vw;
-}
-
-.EmpRegist {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
+}
+
     
 .EmpRegistBox {
     border-radius: 0.5rem;
