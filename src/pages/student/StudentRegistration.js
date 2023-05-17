@@ -39,9 +39,8 @@ function StudentRegistration() {
 
     return (
         <>
-            <Header title={title} />
             <div className="stuRegist">
-                <h1>수강생 등록</h1>
+                <Header title={title} />
                 <table>
                     <tbody>
                         <tr>
@@ -111,18 +110,13 @@ function StudentRegistration() {
                         </tr>
                     </tbody>
                 </table>
-
-                <div className="stuRegistBtnWrap">
-                    <button className="stuRegistEntBtn"
-                        onClick={onClickStudentRegistrationHandler}>등록하기
-                    </button>
-
-                    <button className="beforeBtn"
-                        onClick={() => navigate(-1)}>
-                        이전으로
-                    </button>
-                </div>
-
+                <br></br><br></br>
+                <button className="stuRegistEntBtn"
+                    onClick={onClickStudentRegistrationHandler}>등록하기</button>
+                <br></br>
+                <button className="beforeBtn"
+                    onClick={() => navigate(-1)}>
+                    이전으로</button>
             </div>
         </>
     );

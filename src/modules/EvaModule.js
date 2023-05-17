@@ -12,29 +12,29 @@ const DELETE_EVA = 'eva/DELETE_EVA';
 const GET_EVAS = 'eva/GET_EVAS';
 const DELETE_EVAS = 'eva/DELETE_EVAS';
 
-export const { eva : { getEva, postEva, putEva, deleteEva, getEvas, deleteEvas} } = createActions({
+export const { eva: { getEva, postEva, putEva, deleteEva, getEvas, deleteEvas } } = createActions({
 
-    [GET_EVA] : res => res.data,
-    [POST_EVA] : res => res,
-    [PUT_EVA] : res => res,
-    [DELETE_EVA] : res => res,
+    [GET_EVA]: res => res.data,
+    [POST_EVA]: res => res,
+    [PUT_EVA]: res => res,
+    [DELETE_EVA]: res => res,
 
-    [GET_EVAS] : res => res.data,
-    [DELETE_EVAS] : res => res
+    [GET_EVAS]: res => res.data,
+    [DELETE_EVAS]: res => res
 
 });
 
 const evaReducer = handleActions(
- {
-    [GET_EVA] : (state, { payload }) => payload,
-    [POST_EVA] : (state, { payload }) => ({ evaRegist : payload }),
-    [PUT_EVA] : (state, { payload }) => ({ evaModify : payload }),
-    [DELETE_EVA] : (state, { payload }) => payload,
+    {
+        [GET_EVA]: (state, { payload }) => payload,
+        [POST_EVA]: (state, { payload }) => ({ evaRegist: payload }),
+        [PUT_EVA]: (state, { payload }) => ({ evaModify: payload }),
+        [DELETE_EVA]: (state, { payload }) => payload,
 
-    [GET_EVAS] : (state, { payload }) => ({ evaList : payload}),
-    [DELETE_EVAS] : (state, { payload }) => payload
+        [GET_EVAS]: (state, { payload }) => ({ evaList: payload }),
+        [DELETE_EVAS]: (state, { payload }) => payload
 
- },
+    },
     initialState
 );
 

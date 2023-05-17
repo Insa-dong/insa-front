@@ -1,6 +1,6 @@
 import CSS from "./AdviceReviewModal.module.css";
 
-function AdviceReviewModal({ studyList,adviceReview, setAdviceReviewModal, selectedAdvice }) {
+function AdviceReviewModal({ adviceReview, setAdviceReviewModal }) {
 
     const onClickHandler = () => {
         setAdviceReviewModal(false);
@@ -9,34 +9,21 @@ function AdviceReviewModal({ studyList,adviceReview, setAdviceReviewModal, selec
     return (
         <div className={CSS.modal}>
             <div className={CSS.modalContainer}>
+                <div className={CSS.close} onClick={onClickHandler}>
+                    X
+                </div>
                 <div className={CSS.adviceReviewModalDiv}>
-            <h1>상담일지</h1>
-
-            <h1>작성자</h1>
-            <input
-                type="text"
-                name="writer.empName"
-                readOnly={true}
-                value={adviceReview.writer.empName}
-            />
-            <textarea
-                placeholder="상담 일지 본문"
-                name="adviceLogContent"
-                readOnly={true}
-                value={adviceReview.adviceLogContent}
-            ></textarea>
-            <button
-             style={{
-                border: "none",
-                margin: 0,
-                fontSize: "10px",
-                height: "10px",
-             }}
-            onClick={onClickHandler}>
-                돌아가기
-            </button>
-        </div>
-        </div>
+                    <div className={CSS.title}>
+                        <h1>상담일지</h1>
+                    </div>
+                    <textarea
+                        placeholder="상담 일지 본문"
+                        name="adviceLogContent"
+                        readOnly={true}
+                        value={adviceReview.adviceLogContent}
+                    ></textarea>
+                </div>
+            </div>
         </div>
     );
 }

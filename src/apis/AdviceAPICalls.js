@@ -1,5 +1,4 @@
-import { postAdvice } from "../modules/AdviceModule";
-import { getAdvices } from "../modules/AdviceModule";
+import { postAdvice, getAdvices, deleteAdvices } from "../modules/AdviceModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -25,8 +24,27 @@ export const callStudentAdviceListAPI = ({ stuCode , currentPage = 1 }) => {
     };
 
 }
+ 
+export const callAdviceDeleteForAdminAPI = (stuCode) => {
 
-export const callAdviceWriteAPI = (form) => {
+  const requestURL = `${PRE_URL}/students-management/advice/${stuCode}`;
+  
+    return async (dispatch, getState) => {
+      const result = await fetch(requestURL, {
+        method: 'DELETE',
+        headers: {
+          // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+        }
+      }).then(res => res.json());
+  
+      console.log(result);
+      if (result.status === 200) {
+        dispatch(deleteAdvices(result));
+      }
+    }
+  };
+
+  export const callAdviceWriteAPI = (form) => {
     
     const requestURL = `${PRE_URL}/students/advice`;
 
@@ -46,4 +64,4 @@ export const callAdviceWriteAPI = (form) => {
           }
         };
 };
-      
+     
