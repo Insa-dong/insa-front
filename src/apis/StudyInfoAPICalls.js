@@ -24,7 +24,6 @@ export const callStudyInfoAPI = (studyInfoCode) => {
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL).then(res => res.json());
 
-		console.log('result : ', result);
 		if (result.status === 200) {
 			dispatch(getStudyinfo(result));
 		}

@@ -8,7 +8,6 @@ import studentReducer from "./StudentModule";
 import studyInfoReducer from "./StudyInfoModule";
 import studyReducer from "./StudyModule";
 import studyStudentReducer from "./StudyStudentModule";
-import studyTimeReducer from "./StudyTimeModule";
 import trainingReducer from "./TrainingModule";
 
 const rootReducer = combineReducers({
@@ -21,7 +20,6 @@ const rootReducer = combineReducers({
 	memberReducer,
 	studyReducer,
 	studyInfoReducer,
-	empReducer,
-	studyTimeReducer
+	empReducer
 })
 export default rootReducer;

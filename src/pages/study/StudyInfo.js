@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {callStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
-import {callStudyTimeListAPI} from "../../apis/StudyTimeAPICalls";
 import {callModifyTraining} from "../../apis/TrainingAPICalls";
 import Header from "../../component/common/Header";
 import CSS from "./StudyInfo.module.css";
@@ -16,12 +15,10 @@ function StudyInfo() {
 	const navigate = useNavigate();
 	const [modifyMode, setModifyMode] = useState(false);
 	const [form, setForm] = useState({});
-	const studyTime = useSelector(state => state.studyTimeReducer);
 	const studyInfo = useSelector(state => state.studyInfoReducer);
 
 	useEffect(
 		() => {
-			dispatch(callStudyTimeListAPI(studyInfoCode));
 			dispatch(callStudyInfoAPI(studyInfoCode));
 		},
 		[dispatch, studyInfoCode]
@@ -82,7 +79,7 @@ function StudyInfo() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
 								name = 'studyRoom'
-								defaultValue = '강의실'
+								defaultValue = {studyInfo && studyInfo.studyRoom}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>
@@ -93,7 +90,7 @@ function StudyInfo() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
 								name = 'teacher'
-								defaultValue = '강사 이름'
+								defaultValue = {studyInfo.teacher && studyInfo.teacher.empName}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>
@@ -101,7 +98,7 @@ function StudyInfo() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
 								name = 'trainingCount'
-								defaultValue = '회차'
+								defaultValue = {studyInfo.study && `${studyInfo.study.training.trainingCount} 회차`}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>
@@ -112,7 +109,7 @@ function StudyInfo() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}
 								name = 'studyContent'
-								defaultValue = '강의 내용 및 특징'
+								defaultValue = {studyInfo && studyInfo.studyContent}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>
@@ -129,14 +126,14 @@ function StudyInfo() {
 								<textarea
 									className = {CSS.textInput5}
 									name = 'studyStartDate'
-									defaultValue = '2022-02-02'
+									defaultValue = {studyInfo.study && studyInfo.study.studyStartDate}
 									onChange = {onChangeHandler}
 									readOnly = {modifyMode}/>
 								: <input
 									type = "date"
 									className = {CSS.textInput5}
 									name = 'studyStartDate'
-									defaultValue = '2022-02-02'
+									value = {studyInfo.study && studyInfo.study.studyStartDate}
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/>
 							}
@@ -149,14 +146,14 @@ function StudyInfo() {
 								<textarea
 									className = {CSS.textInput5}
 									name = 'studyEndDate'
-									defaultValue = '2022-02-02'
+									defaultValue = {studyInfo.study && studyInfo.study.studyEndDate}
 									onChange = {onChangeHandler}
 									readOnly = {modifyMode}/>
 								: <input
 									type = "date"
 									className = {CSS.textInput5}
 									name = 'studyEndDate'
-									defaultValue = '2022-02-02'
+									value = {studyInfo.study && studyInfo.study.studyEndDate}
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/>
 							}
@@ -165,12 +162,12 @@ function StudyInfo() {
 					<tr>
 						<th className = {CSS.MiddleTh}>수업 일정</th>
 						<td className = {CSS.MiddleTd}>
-														<textarea
-															className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}
-															name = 'studyTime'
-															defaultValue = 'studyDate.studyStartTime.studyEndTime'
-															onChange = {onChangeHandler}
-															readOnly = {!modifyMode}/>
+							<textarea
+								className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}
+								name = 'studyTime'
+								defaultValue = 'studyDate.studyStartTime.studyEndTime'
+								onChange = {onChangeHandler}
+								readOnly = {!modifyMode}/>
 						</td>
 					</tr>
 					{/*<tr>*/}
