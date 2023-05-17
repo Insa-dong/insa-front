@@ -9,7 +9,6 @@ function StudyTime({studyTimes, readOnly}) {
 
 		return dateArray.map(date => {
 			const find = studyTimes.find(time => time.studyDate === date);
-			console.log(find);
 			if (find)
 				return (
 					<div className = {DateCSS.calendarDateComponent} key = {"RCA-header-" + date}>
