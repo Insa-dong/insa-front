@@ -2,9 +2,10 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {callStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
-import {callModifyTraining} from "../../apis/TrainingAPICalls";
+import {callModifyTraining, callTrainingTitle} from "../../apis/TrainingAPICalls";
 import Header from "../../component/common/Header";
 import CSS from "./StudyInfo.module.css";
+import StudyTime from "./StudyTime";
 
 function StudyInfo() {
 
@@ -16,6 +17,9 @@ function StudyInfo() {
 	const [modifyMode, setModifyMode] = useState(false);
 	const [form, setForm] = useState({});
 	const studyInfo = useSelector(state => state.studyInfoReducer);
+	const trainingList = useSelector(state => state.trainingReducer);
+
+	console.log(trainingList);
 
 	useEffect(
 		() => {
@@ -27,7 +31,8 @@ function StudyInfo() {
 	const onClickModifyHandler = (e) => {
 		if (e.target.innerText === '수정하기') {
 			setModifyMode(true);
-			// setForm({...data});
+			setForm({...studyInfo});
+			dispatch(callTrainingTitle());
 		} else if (e.target.innerText === '저장하기') {
 			dispatch(callModifyTraining(form));
 		}
@@ -40,9 +45,10 @@ function StudyInfo() {
 		})
 	}
 
-	const selectOnChangeHandler = (e) => {
+	const selectOnChangeHandler = () => {
 
 	}
+
 
 	return (
 		<>
@@ -54,7 +60,7 @@ function StudyInfo() {
 					<textarea
 						className = {!modifyMode ? CSS.textInput : CSS.textInput2}
 						name = 'studyTitle'
-						defaultValue = {studyInfo && studyInfo.studyTitle}
+						defaultValue = {!modifyMode ? studyInfo && studyInfo.studyTitle : form.studyTitle}
 						onChange = {onChangeHandler}
 						readOnly = {!modifyMode}/>
 					<h3>과정 명</h3>
@@ -66,7 +72,16 @@ function StudyInfo() {
 							onChange = {onChangeHandler}
 							readOnly = {!modifyMode}/>
 						: <select onChange = {selectOnChangeHandler} className = {CSS.selectBox}>
-							<option value = "뿌리기 해야함">이것도</option>
+							<option
+								value = {studyInfo.study.training.trainingCode}>{studyInfo.study.training.trainingTitle}
+							</option>
+							{trainingList && trainingList.map(training =>
+								studyInfo.study.training.trainingCode !== training.trainingCode &&
+								<option
+									value = {training.trainingTitle}
+									key = {training.trainingCode}
+								>{training.trainingTitle}
+								</option>)}
 						</select>
 					}
 				</div>
@@ -160,27 +175,11 @@ function StudyInfo() {
 						</td>
 					</tr>
 					<tr>
-						<th className = {CSS.MiddleTh}>수업 일정</th>
-						<td className = {CSS.MiddleTd}>
-							<textarea
-								className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}
-								name = 'studyTime'
-								defaultValue = 'studyDate.studyStartTime.studyEndTime'
-								onChange = {onChangeHandler}
-								readOnly = {!modifyMode}/>
+						<td className = {CSS.BottomTd} colSpan = {3}>
+							<StudyTime studyTimes = {studyInfo.study && studyInfo.study.studyTimes}
+							           readOnly = {!modifyMode}/>
 						</td>
 					</tr>
-					{/*<tr>*/}
-					{/*	<th className = {CSS.MiddleTh}>강의 총 시간</th>*/}
-					{/*	<td className = {CSS.MiddleTd}>*/}
-					{/*									<textarea*/}
-					{/*										className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}*/}
-					{/*										name = 'studyContent'*/}
-					{/*										defaultValue = '강의 내용 및 특징'*/}
-					{/*										onChange = {onChangeHandler}*/}
-					{/*										readOnly = {!modifyMode}/>*/}
-					{/*	</td>*/}
-					{/*</tr>*/}
 					</tbody>
 				</table>
 				<div className = {CSS.centerDiv}>

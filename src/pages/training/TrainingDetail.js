@@ -43,19 +43,6 @@ function TrainingDetail() {
 			setModifyMode(true);
 			setForm({...data});
 		} else if (e.target.innerText === '저장하기') {
-			// const formData = new FormData();
-			// formData.append("trainingCode", form.trainingCode);
-			// formData.append("trainingTitle", form.trainingTitle);
-			// formData.append("trainingQual", form.trainingQual);
-			// formData.append("trainingKnow", form.trainingKnow);
-			// formData.append("trainingTime", form.trainingTime);
-			// formData.append("trainingCount", form.trainingCount);
-			// formData.append("trainingWriter.empCode", form.trainingWriter.empCode);
-			// formData.append("trainingDate", form.trainingDate);
-			// formData.append("trainingUpdate", form.trainingUpdate);
-			// 나중에 현재인증객체로 바꾸야함
-			// formData.append("trainingModifier.empCode", form.trainingModifier.empCode);
-
 			dispatch(callModifyTraining(form));
 		}
 	}
