@@ -1,0 +1,25 @@
+/* calendar-header */
+
+.calendarDateComponent {
+    width: 25%;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: #E4FBFB;
+    font-size: 1.5rem;
+    line-height: 50px;
+    margin: 0 0 2% 8%;
+}
+
+.calendarDateComponent:nth-child(odd) {
+    border-left: none;
+    border-right: none;
+}
+
+.date-weekday {
+    color: rgba(255, 255, 255, 0.603)
+}
+
+.calendarDateTime {
+    margin-left: 145%;
+}
+

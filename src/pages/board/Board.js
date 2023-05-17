@@ -38,7 +38,7 @@ function Board() {
                   </li>
                   <li className={CSS.date}>2023-05-16</li>
                 </ul>
-                <li className={CSS.author}>작성자</li>
+                <li className={CSS.writer}>작성자</li>
                 <li className={CSS.content}>내용ddddddddddddddddddddddddddddddddddddddddddddd</li>
               </ul>
             </li>

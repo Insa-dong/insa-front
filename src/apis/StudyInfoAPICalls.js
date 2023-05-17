@@ -24,7 +24,28 @@ export const callStudyInfoAPI = (studyInfoCode) => {
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL).then(res => res.json());
 
-		console.log('result : ', result);
+		if (result.status === 200) {
+			dispatch(getStudyinfo(result));
+		}
+	};
+}
+
+export const callModifyStudyInfo = ({form, studyInfoCode}) => {
+
+	console.log(form);
+	console.log(studyInfoCode);
+	const requestURL = `${PRE_URL}/studyInfo/${studyInfoCode}`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL, {
+			method: 'PUT',
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+			},
+			body: JSON.stringify(form)
+		}).then(res => res.json());
+
 		if (result.status === 200) {
 			dispatch(getStudyinfo(result));
 		}

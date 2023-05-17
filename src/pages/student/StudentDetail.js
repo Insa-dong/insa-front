@@ -4,11 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callStudentDetailForAdminAPI, callStudentUpdateAPI } from "../../apis/StudentAPICalls";
 import Header from "../../component/common/Header";
-import { callStudentEvaListAPI } from "../../apis/EvaAPICalls";
-import { callStudentAdviceListAPI } from "../../apis/AdviceAPICalls";
+import { callEvaDeleteForAdminAPI, callStudentEvaListAPI } from "../../apis/EvaAPICalls";
+import { callAdviceDeleteForAdminAPI, callStudentAdviceListAPI } from "../../apis/AdviceAPICalls";
 import { callStudyStuListAPI } from "../../apis/StudyStuAPICalls";
 import AdviceReviewModal from "../../component/modal/AdviceReviewModal";
-import AdviceReviewWriteModal from "../../component/modal/AdviceReviewWriteModal";
+import EvaReviewCheckModal from "../../component/modal/EvaReviewCheckModal";
+
+const useConfirm = (message = null, onConfirm, onCancel) => {
+    if (!onConfirm || typeof onConfirm !== "function") {
+        return;
+    }
+    if (onCancel && typeof onCancel !== "function") {
+        return;
+    }
+
+    const confirmAction = () => {
+        if (window.confirm(message)) {
+            onConfirm();
+        } else {
+            onCancel();
+        }
+    };
+
+    return confirmAction;
+};
 
 function StudentDetail() {
 
@@ -22,32 +41,60 @@ function StudentDetail() {
     const data = useSelector(state => state.studentReducer);
     const { modify } = useSelector(state => state.studentReducer);
     const [currentPage, setCurrentPage] = useState();
-    
-    const [ adviceReviewModal, setAdviceReviewModal] = useState(false);
-    const [ adviceReviewWriteModal, setAdviceReviewWriteModal] = useState(false);
+    const [adviceReviewModal, setAdviceReviewModal] = useState(false);
+    const [selectedAdviceReview, setSelectedAdviceReview] = useState(null);
+    const [adviceReviewModalVisible, setAdviceReviewModalVisible] = useState(false);
+    const [selectedEvaReview, setSelectedEvaReview] = useState(null);
+    const [evaReviewModalVisible, setEvaReviewModalVisible] = useState(false);
+    const { studyList } = useSelector(state => state.studyStudentReducer);
+    const { adviceList } = useSelector(state => state.adviceReducer);
+    const { evaList } = useSelector(state => state.evaReducer);
 
-    const {studyList} = useSelector(state => state.studyStudentReducer);
-    const {adviceList} = useSelector(state => state.adviceReducer);
-    const {evaList} = useSelector(state => state.evaReducer);
 
-    console.log("adviceList ", adviceList);
-
-    useEffect(() => {
-        if(adviceList?.adviceCode) {
-            setAdviceReviewModal(true);
-        } else if (adviceList) {
-            setAdviceReviewWriteModal(true);
-        }
-    }, [adviceList]);
-
-    const onClickAdviceReviewHandler = (stuCode) => {
-        dispatch(callStudentAdviceListAPI({ stuCode }));
+    const okAdviceConfirm = () => {
+        dispatch(callAdviceDeleteForAdminAPI(stuCode));
     };
-    
-    
+
+    const cancelAdviceConfirm = () => {
+        console.log("상담 삭제가 취소되었습니다.");
+    };
+
+    const okEvaConfirm = () => {
+        dispatch(callEvaDeleteForAdminAPI(stuCode));
+    };
+
+    const cancelEvaConfirm = () => {
+        console.log("평가 삭제가 취소되었습니다.");
+    };
+
+    const adviceDelete = useConfirm(
+        "상담 내역을 삭제하시겠습니까?",
+        okAdviceConfirm,
+        cancelAdviceConfirm
+    );
+
+    const evaDelete = useConfirm(
+        "평가 내역을 삭제하시겠습니까?",
+        okEvaConfirm,
+        cancelEvaConfirm
+    );
+
+
+    const onClickAdviceReviewHandler = (adviceReview) => {
+        setSelectedAdviceReview(adviceReview);
+        setAdviceReviewModalVisible(true);
+    };
+
+
+    const onClickEvaReviewHandler = (evaReview) => {
+        setSelectedEvaReview(evaReview);
+        setEvaReviewModalVisible(true);
+    }
+
+
     useEffect(
-        ()=> {
-            dispatch(callStudentDetailForAdminAPI({stuCode}));
+        () => {
+            dispatch(callStudentDetailForAdminAPI({ stuCode }));
             dispatch(callStudyStuListAPI({ stuCode, currentPage }));
             dispatch(callStudentEvaListAPI({ stuCode, currentPage }));
             dispatch(callStudentAdviceListAPI({ stuCode, currentPage }));
@@ -70,19 +117,19 @@ function StudentDetail() {
     /* 수정 모드 변경 */
     const onClickmodifyModeHandler = () => {
         setModifyMode(true);
-        setForm({...data});
+        setForm({ ...data });
     }
 
     const onChangeHandler = (e) => {
         setForm({
             ...form,
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
     /* 수정 저장 버튼 클릭 이벤트 */
     const onClickStudentUpdateHandler = () => {
-        
+
         const formData = new FormData();
 
         // formData.append("stuCode", form.stuCode);
@@ -92,223 +139,224 @@ function StudentDetail() {
         // formData.append("stuEndSchool", form.stuEndSchool);
         // formData.append("stuEmail", form.stuEmail);
         // formData.append("stuPhone", form.stuPhone);
-      
+
         dispatch(callStudentUpdateAPI(formData));
     }
 
-      return (
+    return (
         <>
-        {adviceReviewModal ?(
-            <AdviceReviewModal
-                stuCode={stuCode}
-                studyList={studyList}
-                setAdviceReviewModal={setAdviceReviewModal}
-            />
-            ) : null}
+            <Header title={title} />
+            <div className="allWrapper">
+                {data && (
+                    <>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>이름</td>
+                                    <td>
+                                        <input className="stuDetailBox"
+                                            name='stuName'
+                                            type='text'
+                                            onChange={onChangeHandler}
+                                            value={!modifyMode ? (data.stuName || "") : form.stuName}
+                                            readOnly={!modifyMode}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>영문이름</td>
+                                    <td>
+                                        <input className="stuDetailBox"
+                                            name='stuEngName'
+                                            type='text'
+                                            onChange={onChangeHandler}
+                                            value={!modifyMode ? (data.stuEngName || "") : form.stuEngName}
+                                            readOnly={!modifyMode}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>생년월일</td>
+                                    <td>
+                                        <input className="stuDetailBox"
+                                            name='stuBirth'
+                                            type='date'
+                                            onChange={onChangeHandler}
+                                            value={!modifyMode ? (data.stuBirth || "") : form.stuBirth}
+                                            readOnly={!modifyMode}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>학력</td>
+                                    <td>
+                                        <input className="stuDetailBox"
+                                            name='stuEndSchool'
+                                            type='text'
+                                            onChange={onChangeHandler}
+                                            value={!modifyMode ? (data.stuEndSchool || "") : form.stuEndSchool}
+                                            readOnly={!modifyMode}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>이메일</td>
+                                    <td>
+                                        <input className="stuDetailBox"
+                                            name='stuEmail'
+                                            type='text'
+                                            onChange={onChangeHandler}
+                                            value={!modifyMode ? (data.stuEmail || "") : form.stuEmail}
+                                            readOnly={!modifyMode}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>전화번호</td>
+                                    <td>
+                                        <input className="stuDetailBox"
+                                            name='stuPhone'
+                                            type='text'
+                                            onChange={onChangeHandler}
+                                            value={!modifyMode ? (data.stuPhone || "") : form.stuPhone}
+                                            readOnly={!modifyMode}
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br></br>
+                        {!modifyMode &&
+                            <button className="stuDetailUpdateBtn"
+                                onClick={onClickmodifyModeHandler}
+                            >
+                                수정하기
+                            </button>}
+                        {modifyMode &&
+                            <button className="stuDetailUpdateBtn"
+                                onClick={onClickStudentUpdateHandler}
+                            >
+                                수정
+                            </button>
+                        }
+                    </>
+                )}
 
-            {adviceReviewWriteModal ? (
-            <AdviceReviewWriteModal
-                stuCode={stuCode}
-                setAdviceReviewWriteModal={setAdviceReviewWriteModal}
-            />
-            ) : null}
-        
-          <Header title={title} />
-          {data && (
-            <>
-              <table>
-                <tbody>
-                <tr>
-                    <td>이름</td>
-                    <td>
-                        <input className="stuDetailBox"
-                        name='stuName'
-                        type='text'
-                        onChange={onChangeHandler}
-                        value={!modifyMode ? (data.stuName || "") : form.stuName}
-                        readOnly={!modifyMode}
-                        />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>영문이름</td>
-                    <td>
-                        <input className="stuDetailBox"
-                        name='stuEngName'
-                        type='text'
-                        onChange={onChangeHandler}
-                        value={!modifyMode ? (data.stuEngName || "") : form.stuEngName}
-                        readOnly={!modifyMode}
-                        />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>생년월일</td>
-                    <td>
-                        <input className="stuDetailBox"
-                        name='stuBirth'
-                        type='date'
-                        onChange={onChangeHandler}
-                        value={!modifyMode ? (data.stuBirth || "") : form.stuBirth}
-                        readOnly={!modifyMode}
-                        />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>학력</td>
-                    <td>
-                        <input className="stuDetailBox"
-                        name='stuEndSchool'
-                        type='text'
-                        onChange={onChangeHandler}
-                        value={!modifyMode ? (data.stuEndSchool || "") : form.stuEndSchool}
-                        readOnly={!modifyMode}
-                        />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>이메일</td>
-                    <td>
-                        <input className="stuDetailBox"
-                        name='stuEmail'
-                        type='text'
-                        onChange={onChangeHandler}
-                        value={!modifyMode ? (data.stuEmail || "") : form.stuEmail}
-                        readOnly={!modifyMode}
-                        />
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>전화번호</td>
-                    <td>
-                        <input className="stuDetailBox"
-                        name='stuPhone'
-                        type='text'
-                        onChange={onChangeHandler}
-                        value={!modifyMode ? (data.stuPhone || "") : form.stuPhone}
-                        readOnly={!modifyMode}
-                        />
-                    </td>
-                    </tr>
-                </tbody>
-              </table>
-              <br></br>
-              {!modifyMode && 
-            <button className="stuDetailUpdateBtn"
-                onClick={ onClickmodifyModeHandler }
-            > 
-                수정하기
-            </button>}
-            {modifyMode && 
-                <button className="stuDetailUpdateBtn"
-                    onClick={ onClickStudentUpdateHandler}
-                >
-                    수정
-                </button>
-            }
-            </>
-          )}   
-        
-        <div className="studyHeaderContainer">
-            <h2 className="studyHeader">과정 내역</h2>
-            <button className="registrationButton">등록</button>
-        </div>
+                <div className="studyHeaderContainer">
+                    <h2 className="studyHeader">과정 내역</h2>
+                    <button className="registrationButton">등록</button>
+                </div>
                 <table className="stuDetailDiv">
-                <thead>
-                    <tr>
-                    <th>과정 이름</th>
-                    <th>회차</th>
-                    <th>수정/삭제</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Array.isArray(studyList) && studyList.length > 0 ? (
-                    studyList.map((study) => (
-                        <tr key={study}>
-                        <td>{study.trainingTitle}</td>
-                        <td>{study.trainingCount}</td>
-                        <td>
-                            <button>수정</button>
-                            <button>삭제</button>
-                        </td>
+                    <thead>
+                        <tr>
+                            <th>과정 이름</th>
+                            <th>회차</th>
+                            <th>수정/삭제</th>
                         </tr>
-                    ))
-                    ) : (
-                    <tr>
-                        <td colSpan="3">수강 중인 강의가 없습니다.</td>
-                    </tr>
-                    )}
-                </tbody>
+                    </thead>
+                    <tbody>
+                        {Array.isArray(studyList) && studyList.length > 0 ? (
+                            studyList.map((study) => (
+                                <tr key={study}>
+                                    <td>{study.trainingTitle}</td>
+                                    <td>{study.trainingCount}</td>
+                                    <td>
+                                        <button className="studyStuUpdateBtn">수정</button>
+                                        <button className="studyStuDeleteBtn">삭제</button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="3">수강 중인 강의가 없습니다.</td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table>
+
+                {evaReviewModalVisible && (
+                    <EvaReviewCheckModal
+                        evaReview={selectedEvaReview}
+                        setEvaReviewModal={setAdviceReviewModalVisible}
+                    />
+                )}
 
                 <h2 className="studyHeader">평가 내역</h2>
                 <table className="stuDetailDiv">
-                <thead>
-                    <tr>
-                    <th>평가 코드</th>
-                    <th>강의 이름</th>
-                    <th>강사명</th>
-                    <th>조회/삭제</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Array.isArray(evaList) && evaList.length > 0 ? (
-                    evaList.map((eva) => (
-                        <tr key={eva}>
-                        <td>{eva.evaCode}</td>
-                        <td>{eva.studyInfo.studyTitle}</td>
-                        <td>{eva.studyInfo.teacher.empName}</td>
-                        <td>
-                            <button>조회</button>
-                            <button>삭제</button>
-                        </td>
+                    <thead>
+                        <tr>
+                            <th>평가 코드</th>
+                            <th>강의 이름</th>
+                            <th>강사명</th>
+                            <th>조회/삭제</th>
                         </tr>
-                    ))
-                    ) : (
-                    <tr>
-                        <td colSpan="4">평가 내역이 없습니다.</td>
-                    </tr>
-                    )}
-                </tbody>
+                    </thead>
+                    <tbody>
+                        {Array.isArray(evaList) && evaList.length > 0 ? (
+                            evaList.map((eva) => (
+                                <tr key={eva}>
+                                    <td>{eva.evaCode}</td>
+                                    <td>{eva.studyInfo.studyTitle}</td>
+                                    <td>{eva.studyInfo.teacher.empName}</td>
+                                    <td>
+                                        <button className="evaSelectBtn" onClick={() => onClickEvaReviewHandler(eva)}>조회</button>
+                                        <button className="evaDeleteBtn" onClick={evaDelete}>삭제</button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="4">평가 내역이 없습니다.</td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table>
-     
+
+                {adviceReviewModalVisible && (
+                    <AdviceReviewModal
+                        adviceReview={selectedAdviceReview}
+                        setAdviceReviewModal={setAdviceReviewModalVisible}
+                    />
+                )}
+
                 <h2 className="studyHeader">상담 내역</h2>
                 <table className="stuDetailDiv">
-                <thead>
-                    <tr>
-                    <th>일지 코드</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>조회/삭제</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Array.isArray(adviceList) && adviceList.length > 0 ? (
-                    adviceList.map((advice) => (
-                        <tr key={advice}>
-                        <td>{advice.adviceLogCode}</td>
-                        <td>{advice.writer.empName}</td>
-                        <td>{advice.adviceLogDate}</td>
-                        <td>
-                            <button onClick={ () => onClickAdviceReviewHandler(stuCode) }>조회</button>
-                            <button>삭제</button>
-                        </td>
+                    <thead>
+                        <tr>
+                            <th>일지 코드</th>
+                            <th>작성자</th>
+                            <th>작성일</th>
+                            <th>조회/삭제</th>
                         </tr>
-                    ))
-                    ) : (
-                    <tr>
-                        <td colSpan="4">상담 내역이 없습니다.</td>
-                    </tr>
-                    )}
-                </tbody>
+                    </thead>
+                    <tbody>
+                        {Array.isArray(adviceList) && adviceList.length > 0 ? (
+                            adviceList.map((advice) => (
+                                <tr key={advice}>
+                                    <td>{advice.adviceLogCode}</td>
+                                    <td>{advice.writer.empName}</td>
+                                    <td>{advice.adviceLogDate}</td>
+                                    <td>
+                                        <button className="adviceSelectBtn" onClick={() => onClickAdviceReviewHandler(advice)}>조회</button>
+                                        <button className="adviceDeleteBtn" onClick={adviceDelete}>삭제</button>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="4">상담 내역이 없습니다.</td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table>
                 <br></br><br></br>
                 <button className="stubeforeBtn"
-                onClick ={ () => navigate(-1)}>
-                    이전으로</button>                     
+                    onClick={() => navigate(-1)}>
+                    이전으로</button>
+            </div>
         </>
-      );
-    }
-    
+    );
+}
+
 
 export default StudentDetail;

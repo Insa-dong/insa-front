@@ -41,7 +41,7 @@
 .title {
     font-size: 12pt;
     width: 15vw;
-    padding-bottom: 0.5vh;
+    padding-bottom: 1vh;
     padding-left: 0.5vw;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -53,8 +53,9 @@
     margin-left: 2vw;
 }
 
-.author{
+.writer{
     font-size: 9pt;
+    padding-bottom: 0.8vh;
 }
 
 .content {

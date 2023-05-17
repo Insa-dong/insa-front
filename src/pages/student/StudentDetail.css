@@ -1,9 +1,8 @@
 .allWrapper {
   width: 74vw;
   height: 78vh;
-  margin: 0 auto;
-  overflow-y: auto;
-  overflow-x: hidden;
+  margin-left : 20vw;
+  margin-bottom: 60vh;
 }
 
 .studyHeaderContainer {
@@ -18,9 +17,15 @@
 }
 
 .registrationButton {
-  height: 2.5rem;
-  width: 2.5rem;
-  font-size: 1rem;
+  width: 4.5vw;
+    height: 1.8vw;
+    background-color: #8CBAFF;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    color: white;
+    cursor: pointer;
+
   
 }
 
@@ -59,7 +64,7 @@
     align-items: center;
     justify-content: center;
     border-bottom: 1px lightgray solid;
-    width: 86vw;
+    width: 75vw;
     font-size: 20px;
     height: 5vh;
     margin-bottom: 6vh;
@@ -99,8 +104,86 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    margin-top : 3vw;
-    margin-bottom: 5vw;
+    margin-top: 4vh;
+
   } 
   
+.studyStuUpdateBtn {
+  width: 4vw;
+  height: 1.8vw;
+  background-color: #8CBAFF;
+  border : none;
+  border-radius: 5px;
+  font-size: 1.0rem;
+  color: white;
+  cursor: pointer;
+}
 
+.studyStuDeleteBtn {
+  width: 4vw;
+  height: 4vh;
+  border: 2px solid #8CBAFF;
+  border-radius: 10px;
+  background: white;
+  text-decoration-line: none;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
+
+.studyStuRegistBtn {
+  width: 4vw;
+  height: 1.8vw;
+  background-color: #8CBAFF;
+  border : none;
+  border-radius: 5px;
+  font-size: 1.0rem;
+  color: white;
+  cursor: pointer;
+}
+
+.evaSelectBtn {
+  width: 4vw;
+  height: 1.8vw;
+  background-color: #8CBAFF;
+  border : none;
+  border-radius: 5px;
+  font-size: 1.0rem;
+  color: white;
+  cursor: pointer;
+}
+
+.evaDeleteBtn {
+  width: 4vw;
+  height: 4vh;
+  border: 2px solid #8CBAFF;
+  border-radius: 10px;
+  background: white;
+  text-decoration-line: none;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
+
+.adviceSelectBtn {
+  width: 4vw;
+  height: 1.8vw;
+  background-color: #8CBAFF;
+  border : none;
+  border-radius: 5px;
+  font-size: 1.0rem;
+  color: white;
+  cursor: pointer;
+}
+
+.adviceDeleteBtn {
+  width: 4vw;
+  height: 4vh;
+  border: 2px solid #8CBAFF;
+  border-radius: 10px;
+  background: white;
+  text-decoration-line: none;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
