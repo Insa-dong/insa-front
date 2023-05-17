@@ -14,18 +14,25 @@
 
 .absModalContainer{
     position: absolute;
-    width: 400px;
-    height: 500px;
-    padding: 10px;
-    text-align: center;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);    
-    z-index: 1000;
+   
 }
 
-.absModifyModalDiv{    
-    width: 400px;
+.absModalClose {
+    color: #AAAAAA;
+    font-size: 30px;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+.absModalClose:hover,
+.absModalClose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.absModalDiv{    
+    width: 500px;
     height: 500px;
     display: flex;
     flex-wrap: wrap;
@@ -35,27 +42,45 @@
     margin: 0;
     padding: 0;
     background-color: white;
-    border: solid 1px black;
     border-radius: 25px;    
+}
+
+.absModalTitle {
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+}
+
+.absField {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.absField h1 {
+    width: 100px;
+    text-align: left;
 }
 
 .absModalDiv input {
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 10px;
     height: 30px;
-    width: 90%;
-    border-radius: 25px;
+    width: 200px;
+    border-radius: 10px;
+    border: 1px solid #8CBAFF;
     text-indent: 1.2em;
 }
 
 
 .absModalDiv button {
-    margin-top: 5px;
+    margin-top: 45px;
     margin-bottom: 5px;
-    height: 30px;
-    width: 250px;
-    border-radius: 25px;
-    background-color: white;
-    font-weight: bold;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    background-color: #8CBAFF;
+    color : #fff;
+    border: solid 1.5px #8CBAFF;
 }
 

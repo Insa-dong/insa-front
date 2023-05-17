@@ -6,7 +6,11 @@ import AbsModifyModal from "../modal/AbsModifyModal"
 function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
 
 
-  const createDate = (dateString) => new Date(dateString);
+  const createDate = (dateString) => {
+    if (!dateString) return null;
+    const date = new Date(dateString);
+    return isNaN(date) ? null : date;
+  };
 
   const formatTime = (date) => {
     if (date) {
@@ -22,7 +26,16 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
 
   const calculateTimeDifference = (start, end) => {
     if (start && end) {
-      const diffMs = end.getTime() - start.getTime() - 3600000; // 점심시간 1시간 제외
+      const startHour = start.getHours();
+      const endHour = end.getHours();
+
+      let diffMs = end.getTime() - start.getTime();
+
+      // 출근 시간이 12시 이전이고 퇴근 시간이 13시 이후인 경우에만 점심 시간을 제외
+      if (startHour < 12 && endHour >= 13) {
+        diffMs -= 3600000; // 점심 시간 1시간 제외
+      }
+
       const diffHrs = diffMs / (1000 * 60 * 60);
 
       return diffHrs * 60 * 60 * 1000;
@@ -30,6 +43,7 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
       return 0; // endTime이 없을 경우 0을 반환
     }
   };
+
 
   const formatTime2 = (totalMs) => {
     const hours = Math.floor(totalMs / (1000 * 60 * 60));
@@ -70,36 +84,43 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
   };
 
 
-
-
   return (
-    <tr>
-      <td>{formatDate(new Date(absDate))}</td>
-      <td>{empCode.dept.deptName}</td>
-      <td>{empCode.job.jobName}</td>
-      <td>{empCode.empName}</td>
-      <td>{formatTime(startTime)}</td>
-      <td>{formatTime(endTime)}</td>
-      <td>{totalWorkTime}</td>
-      <td><button
-        className="abs-modify-btn"
-        onClick={onClickAbsModifyHandler}
-      >수정</button></td>
-
+    <>
+      <tr>
+        <td>{formatDate(new Date(absDate))}</td>
+        <td>{empCode.dept.deptName}</td>
+        <td>{empCode.job.jobName}</td>
+        <td>{empCode.empName}</td>
+        <td>{formatTime(startTime)}</td>
+        <td>{formatTime(endTime)}</td>
+        <td>{totalWorkTime}</td>
+        <td>
+          <button
+            className="abs-modify-btn"
+            onClick={onClickAbsModifyHandler}
+          >
+            수정
+          </button>
+        </td>
+      </tr>
       {absModifyModal && (
-        <AbsModifyModal
-          abs={{
-            absCode,
-            absDate,
-            absStart,
-            absEnd,
-            empCode: empCode.empName,
-          }}
-          setAbsModifyModal={setAbsModifyModal}
-        />
+        <tr>
+          <td colSpan="8">
+            <AbsModifyModal
+              abs={{
+                absCode,
+                absDate,
+                absStart,
+                absEnd,
+                empCode,
+              }}
+              setAbsModifyModal={setAbsModifyModal}
+            />
+          </td>
+        </tr>
       )}
-    </tr>
+    </>
   );
-}
+            }
 
 export default AbsItem;
