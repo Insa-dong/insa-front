@@ -31,13 +31,23 @@ export const { abs : { getAbss, putAbss, getAbsDate, getMyabs, postCheckin} } = 
 /* 리듀서 : 최종적으로 state를 관리한다 */
 const absReducer = handleActions(
     {
-        [GET_ABSS] : (state, { payload }) => payload,
-        [PUT_ABSS] : (state, { payload }) => payload,
-        [GET_ABS_DATE] : (state, { payload }) => payload,
-        [GET_MYABS] : (state, { payload }) => payload,
-        [POST_CHECKIN] : (state, { payload }) => payload
-        
-    }
-, initialState);
+      [GET_ABSS]: (state, { payload }) => payload,
+      [PUT_ABSS]: (state, { payload }) => {
+        // 기존의 state에서 수정된 근태 정보만을 업데이트
+        const updatedState = state.map((abs) => {
+          if (abs.absCode === payload.absCode) {
+            return payload;
+          }
+          return abs;
+        });
+        return updatedState;
+      },
+      [GET_ABS_DATE]: (state, { payload }) => payload,
+      [GET_MYABS]: (state, { payload }) => payload,
+      [POST_CHECKIN]: (state, { payload }) => payload,
+    },
+    initialState
+  );
+  
 
 export default absReducer;

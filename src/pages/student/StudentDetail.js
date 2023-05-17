@@ -132,13 +132,13 @@ function StudentDetail() {
 
         const formData = new FormData();
 
-        // formData.append("stuCode", form.stuCode);
-        // formData.append("stuName", form.stuName);
-        // formData.append("stuEngName", form.stuEngName);
-        // formData.append("stuBirth", form.stuBirth);
-        // formData.append("stuEndSchool", form.stuEndSchool);
-        // formData.append("stuEmail", form.stuEmail);
-        // formData.append("stuPhone", form.stuPhone);
+        formData.append("stuCode", form.stuCode);
+        formData.append("stuName", form.stuName);
+        formData.append("stuEngName", form.stuEngName);
+        formData.append("stuBirth", form.stuBirth);
+        formData.append("stuEndSchool", form.stuEndSchool);
+        formData.append("stuEmail", form.stuEmail);
+        formData.append("stuPhone", form.stuPhone);
 
         dispatch(callStudentUpdateAPI(formData));
     }
