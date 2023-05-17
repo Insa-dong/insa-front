@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
+import {callTeacherList} from "../../apis/EmpAPICalls";
 import {callStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
 import {callModifyTraining, callTrainingTitle} from "../../apis/TrainingAPICalls";
 import Header from "../../component/common/Header";
@@ -18,8 +19,9 @@ function StudyInfo() {
 	const [form, setForm] = useState({});
 	const studyInfo = useSelector(state => state.studyInfoReducer);
 	const trainingList = useSelector(state => state.trainingReducer);
+	const {teacher} = useSelector(state => state.empReducer);
 
-	console.log(trainingList);
+	console.log(teacher);
 
 	useEffect(
 		() => {
@@ -33,6 +35,7 @@ function StudyInfo() {
 			setModifyMode(true);
 			setForm({...studyInfo});
 			dispatch(callTrainingTitle());
+			dispatch(callTeacherList());
 		} else if (e.target.innerText === '저장하기') {
 			dispatch(callModifyTraining(form));
 		}
@@ -102,12 +105,27 @@ function StudyInfo() {
 					<tr>
 						<th>담당 강사, 회차</th>
 						<td colSpan = {1} className = {CSS.MiddleBodyDiv}>
-							<textarea
-								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
-								name = 'teacher'
-								defaultValue = {studyInfo.teacher && studyInfo.teacher.empName}
-								onChange = {onChangeHandler}
-								readOnly = {!modifyMode}/>
+							{!modifyMode ?
+								<textarea
+									className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
+									name = 'teacher'
+									defaultValue = {studyInfo.teacher && studyInfo.teacher.empName}
+									onChange = {onChangeHandler}
+									readOnly = {!modifyMode}/>
+								:
+								<select onChange = {selectOnChangeHandler} className = {CSS.selectBox}>
+									<option
+										value = {studyInfo.teacher}>{studyInfo.teacher.empName}
+									</option>
+									{teacher && teacher.map(name =>
+										studyInfo.teacher.empName !== name.empName &&
+										<option
+											value = {name.empCode}
+											key = {name.empCode}
+										>{name.empName}
+										</option>)}
+								</select>
+							}
 						</td>
 						<td colSpan = {1} className = {CSS.MiddleBodyDiv}>
 							<textarea
