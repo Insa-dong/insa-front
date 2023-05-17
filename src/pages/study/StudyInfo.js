@@ -2,10 +2,10 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {callStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
-import {callStudyTimeListAPI} from "../../apis/StudyTimeAPICalls";
-import {callModifyTraining} from "../../apis/TrainingAPICalls";
+import {callModifyTraining, callTrainingTitle} from "../../apis/TrainingAPICalls";
 import Header from "../../component/common/Header";
 import CSS from "./StudyInfo.module.css";
+import StudyTime from "./StudyTime";
 
 function StudyInfo() {
 
@@ -16,12 +16,13 @@ function StudyInfo() {
 	const navigate = useNavigate();
 	const [modifyMode, setModifyMode] = useState(false);
 	const [form, setForm] = useState({});
-	const studyTime = useSelector(state => state.studyTimeReducer);
 	const studyInfo = useSelector(state => state.studyInfoReducer);
+	const trainingList = useSelector(state => state.trainingReducer);
+
+	console.log(trainingList);
 
 	useEffect(
 		() => {
-			dispatch(callStudyTimeListAPI(studyInfoCode));
 			dispatch(callStudyInfoAPI(studyInfoCode));
 		},
 		[dispatch, studyInfoCode]
@@ -30,7 +31,8 @@ function StudyInfo() {
 	const onClickModifyHandler = (e) => {
 		if (e.target.innerText === '수정하기') {
 			setModifyMode(true);
-			// setForm({...data});
+			setForm({...studyInfo});
+			dispatch(callTrainingTitle());
 		} else if (e.target.innerText === '저장하기') {
 			dispatch(callModifyTraining(form));
 		}
@@ -43,9 +45,10 @@ function StudyInfo() {
 		})
 	}
 
-	const selectOnChangeHandler = (e) => {
+	const selectOnChangeHandler = () => {
 
 	}
+
 
 	return (
 		<>
@@ -57,7 +60,7 @@ function StudyInfo() {
 					<textarea
 						className = {!modifyMode ? CSS.textInput : CSS.textInput2}
 						name = 'studyTitle'
-						defaultValue = {studyInfo && studyInfo.studyTitle}
+						defaultValue = {!modifyMode ? studyInfo && studyInfo.studyTitle : form.studyTitle}
 						onChange = {onChangeHandler}
 						readOnly = {!modifyMode}/>
 					<h3>과정 명</h3>
@@ -69,7 +72,16 @@ function StudyInfo() {
 							onChange = {onChangeHandler}
 							readOnly = {!modifyMode}/>
 						: <select onChange = {selectOnChangeHandler} className = {CSS.selectBox}>
-							<option value = "뿌리기 해야함">이것도</option>
+							<option
+								value = {studyInfo.study.training.trainingCode}>{studyInfo.study.training.trainingTitle}
+							</option>
+							{trainingList && trainingList.map(training =>
+								studyInfo.study.training.trainingCode !== training.trainingCode &&
+								<option
+									value = {training.trainingTitle}
+									key = {training.trainingCode}
+								>{training.trainingTitle}
+								</option>)}
 						</select>
 					}
 				</div>
@@ -82,7 +94,7 @@ function StudyInfo() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
 								name = 'studyRoom'
-								defaultValue = '강의실'
+								defaultValue = {studyInfo && studyInfo.studyRoom}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>
@@ -93,7 +105,7 @@ function StudyInfo() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
 								name = 'teacher'
-								defaultValue = '강사 이름'
+								defaultValue = {studyInfo.teacher && studyInfo.teacher.empName}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>
@@ -101,7 +113,7 @@ function StudyInfo() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
 								name = 'trainingCount'
-								defaultValue = '회차'
+								defaultValue = {studyInfo.study && `${studyInfo.study.training.trainingCount} 회차`}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>
@@ -112,7 +124,7 @@ function StudyInfo() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}
 								name = 'studyContent'
-								defaultValue = '강의 내용 및 특징'
+								defaultValue = {studyInfo && studyInfo.studyContent}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>
@@ -129,14 +141,14 @@ function StudyInfo() {
 								<textarea
 									className = {CSS.textInput5}
 									name = 'studyStartDate'
-									defaultValue = '2022-02-02'
+									defaultValue = {studyInfo.study && studyInfo.study.studyStartDate}
 									onChange = {onChangeHandler}
 									readOnly = {modifyMode}/>
 								: <input
 									type = "date"
 									className = {CSS.textInput5}
 									name = 'studyStartDate'
-									defaultValue = '2022-02-02'
+									value = {studyInfo.study && studyInfo.study.studyStartDate}
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/>
 							}
@@ -149,41 +161,25 @@ function StudyInfo() {
 								<textarea
 									className = {CSS.textInput5}
 									name = 'studyEndDate'
-									defaultValue = '2022-02-02'
+									defaultValue = {studyInfo.study && studyInfo.study.studyEndDate}
 									onChange = {onChangeHandler}
 									readOnly = {modifyMode}/>
 								: <input
 									type = "date"
 									className = {CSS.textInput5}
 									name = 'studyEndDate'
-									defaultValue = '2022-02-02'
+									value = {studyInfo.study && studyInfo.study.studyEndDate}
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/>
 							}
 						</td>
 					</tr>
 					<tr>
-						<th className = {CSS.MiddleTh}>수업 일정</th>
-						<td className = {CSS.MiddleTd}>
-														<textarea
-															className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}
-															name = 'studyTime'
-															defaultValue = 'studyDate.studyStartTime.studyEndTime'
-															onChange = {onChangeHandler}
-															readOnly = {!modifyMode}/>
+						<td className = {CSS.BottomTd} colSpan = {3}>
+							<StudyTime studyTimes = {studyInfo.study && studyInfo.study.studyTimes}
+							           readOnly = {!modifyMode}/>
 						</td>
 					</tr>
-					{/*<tr>*/}
-					{/*	<th className = {CSS.MiddleTh}>강의 총 시간</th>*/}
-					{/*	<td className = {CSS.MiddleTd}>*/}
-					{/*									<textarea*/}
-					{/*										className = {!modifyMode ? CSS.textInput5 : CSS.textInput6}*/}
-					{/*										name = 'studyContent'*/}
-					{/*										defaultValue = '강의 내용 및 특징'*/}
-					{/*										onChange = {onChangeHandler}*/}
-					{/*										readOnly = {!modifyMode}/>*/}
-					{/*	</td>*/}
-					{/*</tr>*/}
 					</tbody>
 				</table>
 				<div className = {CSS.centerDiv}>
