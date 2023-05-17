@@ -32,6 +32,8 @@
     background-color: #E4FBFB;
     width: 94%;
     height: 5vw;
+    font-size: 20px;
+    font-weight: 700;
     border: none;
     display: flex;
     align-items: center;
@@ -105,6 +107,33 @@
     resize: none;
 }
 
+.textInput7 {
+    background-color: #E4FBFB;
+    width: 100%;
+    height: 15vh;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 1% auto 3% auto;
+    resize: none;
+}
+
+.textInput8 {
+    background-color: #E4FBFB;
+    width: 100%;
+    height: 15vh;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto 3% auto;
+    resize: none;
+}
+
 .selectBox {
     background-color: #E4FBFB;
     width: 94%;
@@ -157,6 +186,16 @@
 .MiddleTd {
     margin-top: 10%;
     text-align: center;
+    width: 60vw;
+    max-width: 1075px;
+    background-color: #E4FBFB;
+    margin-left: 5%;
+}
+
+.BottomTd {
+    margin-top: 10%;
+    text-align: center;
+    height: 20vw;
     width: 60vw;
     max-width: 1075px;
     background-color: #E4FBFB;
