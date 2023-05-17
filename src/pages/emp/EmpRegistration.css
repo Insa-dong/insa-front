@@ -1,0 +1,101 @@
+.EmpRegWrap{
+    width: 74vw;
+    height: 78vh;
+    margin-left: 20vw;
+}
+
+.EmpRegist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+    
+.EmpRegistBox {
+    border-radius: 0.5rem;
+    border: 1px solid #8CBAFF;
+    width: 19rem;
+    height: 2.5rem;
+    font-weight: bold;
+    font-size: 13pt;
+    padding-left: 15px;
+    margin-left : 10px;
+    margin-top: 10px;
+    text-align: left;
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+.EmpRegistBtnWrap{
+    width: 10vw;
+    margin: 3vw auto;
+    
+}
+  
+.EmpRegistEntBtn {
+
+    width: 4.5vw;
+    height: 1.8vw;
+    background-color: #8CBAFF;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    color: white;
+    cursor: pointer;
+    
+
+}
+
+.beforeBtn {
+    width: 4.5vw;
+    height: 1.8vw;
+    margin-left: 0.8vw;
+    border: 2px solid #8CBAFF;
+    border-radius: 10px;
+    background: white;
+    text-decoration-line: none;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+    color: rgb(55, 55, 55);
+}
+
+.EmpRegWrap h1{
+    text-align: center;
+    margin-bottom: 3vw;
+    font-size: 1.4rem;
+    color: rgb(55, 55, 55);
+}
+
+.EmpRegWrap table{
+    margin: 0 auto;
+}
+
+.EmpRegWrap th{
+    text-align: left;
+    padding-right: 5vw;
+    color: rgb(55, 55, 55);
+}
+
+.EmpRegistBox::placeholder{
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+select.EmpRegistBox {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  input[type="date"].EmpRegistBox::-webkit-inner-spin-button,
+  input[type="date"].EmpRegistBox::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type="date"].EmpRegistBox {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  
+  

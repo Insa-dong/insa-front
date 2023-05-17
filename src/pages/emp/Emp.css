@@ -89,25 +89,6 @@ input {
     height: 50vh;
 }
 
-/* 표 스타일 */
-/*table {*/
-/*    width: 100%;*/
-/*    border-collapse: collapse;*/
-/*    text-align: center;*/
-/*  }*/
-/*  */
-/*  table th,*/
-/*  table td {*/
-/*    border: 1px solid #ddd;*/
-/*    padding: 8px;*/
-/*    height: 5vh;*/
-/*  }*/
-/*  */
-/*!* 첫 번째 로우 스타일 *!*/
-/*table tr:first-child {*/
-/*    background-color: #f1f1f1;*/
-/*  }*/
-
 /*등록하기 버튼*/
 .EmpEntBtn {
     width: 8vw;
@@ -119,6 +100,7 @@ input {
     border-radius: 5px;
     margin-top: 0.8vw;
     margin-left: 66vw;
+    cursor: pointer;
 }
 
 .EmpPaging {
@@ -127,4 +109,9 @@ input {
     margin: 0 auto;
     margin-top: 6vw;
 }
+
+.EmpContLeftDept .selected {
+    font-weight: bold;
+  }
+  
 
