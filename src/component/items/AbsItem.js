@@ -13,14 +13,16 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
   };
 
   const formatTime = (date) => {
-    if (date) {
+    if (date && date instanceof Date) {
       const hours = date.getHours().toString().padStart(2, '0');
       const minutes = date.getMinutes().toString().padStart(2, '0');
       const seconds = date.getSeconds().toString().padStart(2, '0');
 
       return `${hours}:${minutes}:${seconds}`;
-    } else {
+    } else if (!date) {
       return "근무 중"; // endTime이 없을 경우
+    } else {
+      return date; // Date 객체가 아닌 경우 그대로 반환
     }
   };
 
@@ -71,12 +73,12 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
   const [absModifyModal, setAbsModifyModal] = useState(false);
 
 
-  /* 리뷰 존재 유무에 따라 Modal 띄우기 */
+  /* 리뷰 존재 유무에 따라 Modal 띄우기 
   useEffect(() => {
     if (absModifyModal) {
       setAbsModifyModal(true);
     }
-  }, [absModifyModal]);
+  }, [absModifyModal]);*/
 
   /* 수정 버튼 클릭 이벤트 */
   const onClickAbsModifyHandler = () => {
@@ -121,6 +123,6 @@ function AbsItem({ abs: { absCode, empCode, absDate, absStart, absEnd } }) {
       )}
     </>
   );
-            }
+}
 
 export default AbsItem;
