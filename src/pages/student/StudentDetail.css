@@ -25,6 +25,7 @@
     font-size: 1.0rem;
     color: white;
     cursor: pointer;
+    margin-bottom: 2vh;
 
   
 }
@@ -117,6 +118,7 @@
   font-size: 1.0rem;
   color: white;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .studyStuDeleteBtn {
@@ -151,6 +153,7 @@
   font-size: 1.0rem;
   color: white;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .evaDeleteBtn {
@@ -174,6 +177,7 @@
   font-size: 1.0rem;
   color: white;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .adviceDeleteBtn {

@@ -56,8 +56,10 @@ function Student() {
                 <div>
                     {student && <StudentList key={student.stuCode} student={student} />}
                 </div>
-                <div>
+                <div className = "StuPaging">
                     {student.pageInfo && <PagingBar pageInfo={student.pageInfo} setCurrentPage={setCurrentPage} />}
+                    </div>
+                    <div>
                     <button className="stuEntBtn" onClick={() => navigate('/student/registration')}>+ 수강생 추가</button>
                 </div>
             </div>
