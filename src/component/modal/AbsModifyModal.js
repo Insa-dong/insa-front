@@ -57,6 +57,8 @@ function AbsModifyModal({ abs, setAbsModifyModal }) {
         <div className="abs-modify-modal" onClick={onClickOutsideModal} >
          <div className="absModalContainer">
             <div className="absModalDiv">
+            <h1>{abs.empCode.empName}님의 근태 수정</h1>
+            
             <h1>근무일</h1>
             <input
                 type="date"

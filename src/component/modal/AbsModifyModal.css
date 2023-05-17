@@ -24,7 +24,7 @@
     z-index: 1000;
 }
 
-.absModalDiv{    
+.absModifyModalDiv{    
     width: 400px;
     height: 500px;
     display: flex;
