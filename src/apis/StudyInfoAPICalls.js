@@ -30,6 +30,20 @@ export const callStudyInfoAPI = (studyInfoCode) => {
 	};
 }
 
+export const callPetiteStudyInfoAPI = (studyInfoCode) => {
+
+	const requestURL = `${PRE_URL}/PetiteStudyInfo/${studyInfoCode}`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL).then(res => res.json());
+
+		if (result.status === 200) {
+			dispatch(getStudyinfo(result));
+		}
+	};
+}
+
+
 export const callModifyStudyInfo = ({form, studyInfoCode}) => {
 
 	console.log(form);
