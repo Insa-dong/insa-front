@@ -67,15 +67,19 @@
 .writeDate {
     margin-top: 0.7vh;
     margin-left: 3vw;
+    padding-top: 0.4vh;
     background-color: black;
     color: white;
     border-radius: 10px;
+    font-size: 10pt;
 }
 
 .date {
     margin-top: 0.7vh;
     margin-left: 3vw;
+    padding-top: 0.4vh;
     background-color: black;
     color: white;
     border-radius: 10px;
+    font-size: 10pt;
 }
