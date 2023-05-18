@@ -1,20 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../component/common/Header';
 import './EmpRegistration.css';
-import { useNavigate } from 'react-router-dom';
+import { empDeptJobListAPI, callEmpRegistAPI } from '../../apis/EmpAPICalls';
 
 function EmpRegistration() {
-
   const title = '구성원';
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const empDeptJob = useSelector(state => state.empReducer);
+  const [form, setForm] = useState({});
+
+  useEffect(() => {
+    dispatch(empDeptJobListAPI());
+    console.log('empDeptJobListAPI 호출됨');
+
+  }, []);
+
+  useEffect(() => {
+    if (empDeptJob?.status === 200) {
+      alert('구성원 등록이 완료되었습니다.');
+      navigate('/emp', { replace: true });
+    }
+
+  }, [empDeptJob]);
 
   const onChangeHandler = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  };
 
-  }
+  const onClickEmpRegistrationHandler = () => {
 
-  const onClickEmpRegistrationHandler = (e) => {
+    dispatch(callEmpRegistAPI(form));
+  };
 
-  }
 
   return (
     <>
@@ -84,9 +107,12 @@ function EmpRegistration() {
               <td>
                 <select
                   className="EmpRegistBox"
+                  name="deptCode"
                   onChange={onChangeHandler}
                 >
-                  <option value="w">행정</option>
+                  {Array.isArray(empDeptJob.deptList) && empDeptJob.deptList.map(empDeptJob => (
+                    <option value={empDeptJob.deptCode}>{empDeptJob.deptName}</option>
+                  ))}
                 </select>
               </td>
             </tr>
@@ -95,9 +121,12 @@ function EmpRegistration() {
               <td>
                 <select
                   className="EmpRegistBox"
+                  name="jobCode"
                   onChange={onChangeHandler}
                 >
-                  <option value="w">팀장</option>
+                  {Array.isArray(empDeptJob.jobList) && empDeptJob.jobList.map(empDeptJob => (
+                    <option value={empDeptJob.jobCode}>{empDeptJob.jobName}</option>
+                  ))}
                 </select>
               </td>
             </tr>
@@ -107,6 +136,7 @@ function EmpRegistration() {
                 <input className="EmpRegistBox"
                   type="date"
                   name="selectDate"
+                  onChange={onChangeHandler}
                 />
               </td>
             </tr>
@@ -121,10 +151,10 @@ function EmpRegistration() {
           </button>
 
           <button className="beforeBtn"
-                onClick ={ () => navigate(-1)}
+            onClick={() => navigate(-1)}
           >
-                    이전으로
-          </button> 
+            이전으로
+          </button>
         </div>
       </div>
     </>

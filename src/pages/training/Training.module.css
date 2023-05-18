@@ -18,7 +18,7 @@
 .InputStyle {
     width: 19vh;
     height: 2vw;
-    border: 1px solid #8CBAFF;
+    border: 2px solid #C5DCFF;
     border-radius: 5px;
     margin-left: 1%;
 }
@@ -30,7 +30,7 @@
     background-color: #8CBAFF;
     margin-left: 0.5%;
     border-radius: 5px;
-    border: 1px solid black;
+    border: none;
     cursor: pointer;
 }
 
