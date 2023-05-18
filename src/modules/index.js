@@ -9,6 +9,7 @@ import studyInfoReducer from "./StudyInfoModule";
 import studyReducer from "./StudyModule";
 import studyStudentReducer from "./StudyStudentModule";
 import trainingReducer from "./TrainingModule";
+import boardReducer from "./BoardModule";
 
 const rootReducer = combineReducers({
 	trainingReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
 	memberReducer,
 	studyReducer,
 	studyInfoReducer,
-	empReducer
+	empReducer,
+	boardReducer
 })
 export default rootReducer;

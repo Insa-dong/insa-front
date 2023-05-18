@@ -1,9 +1,30 @@
+import { useEffect, useState } from "react";
 import Header from "../../component/common/Header";
 import CSS from "./Board.module.css";
+import BoardDetailModal from './../../component/modal/BoardDetailModal';
+import PagingBar from "../../component/common/PagingBar";
+import { useDispatch, useSelector } from "react-redux";
+import { callBoardListAPI } from "../../apis/BoardAPICall";
+import boardReducer from "../../modules/BoardModule";
 
 function Board() {
 
   const title = '공지사항';
+  const dispatch = useDispatch();
+  const boardlist = useSelector(state => state.boardReducer);
+  console.log('boardlist: ', boardlist);
+  const [currentPage, setCurrentPage] = useState(1);
+  // const { data, pageInfo } = useSelector(state => state.productReducer);
+  // const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(
+    () => {
+      dispatch(callBoardListAPI({ currentPage }));
+    },
+    [currentPage]
+  );
+
+
 
   return (
     <>
@@ -44,7 +65,9 @@ function Board() {
             </li>
           </ul>
         </div>
-
+        {/* <div className="EmpPaging">
+          {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
+        </div> */}
       </div>
     </>
   );
