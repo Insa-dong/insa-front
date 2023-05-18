@@ -17,6 +17,7 @@ function StudyInfo() {
 	const navigate = useNavigate();
 	const [modifyMode, setModifyMode] = useState(false);
 	const [form, setForm] = useState({});
+	const [studyDate, setStudyDate] = useState();
 	const studyInfo = useSelector(state => state.studyInfoReducer);
 	const trainingList = useSelector(state => state.trainingReducer);
 	const {teacher} = useSelector(state => state.empReducer);
@@ -202,6 +203,8 @@ function StudyInfo() {
 							           onChange = {onChangeHandler}
 							           form = {form}
 							           setForm = {setForm}
+							           studyDate = {studyDate}
+							           setStudyDate = {setStudyDate}
 							/>
 						</td>
 					</tr>

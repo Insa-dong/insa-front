@@ -71,6 +71,8 @@ export const empDeptJobListAPI = () => {
 export const callEmpRegistAPI = (form) => {
 
 	const requestURL =`${PRE_URL}/emp/empregist`;
+	form.dept.deptCode = form.deptCode;
+	form.job.jobCode = form.jobCode;
     console.log(form);
 
     return async (dispatch, getState) => {
