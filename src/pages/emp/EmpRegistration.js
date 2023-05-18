@@ -10,34 +10,33 @@ function EmpRegistration() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const empDeptJob = useSelector(state => state.empReducer);
-  //액션 만들기
-  const Empregist = useSelector(state => state.empReducer);
   const [form, setForm] = useState({});
-
-
 
   useEffect(() => {
     dispatch(empDeptJobListAPI());
     console.log('empDeptJobListAPI 호출됨');
 
-    if (Empregist?.status === 200) {
-      alert('구성원 등록이 완료 되었습니다.');
+  }, []);
+
+  useEffect(() => {
+    if (empDeptJob?.status === 200) {
+      alert('구성원 등록이 완료되었습니다.');
       navigate('/emp', { replace: true });
-  }
-  },
-    [Empregist]
-  );
+    }
+
+  }, [empDeptJob]);
 
   const onChangeHandler = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value
-    })
+    });
   };
 
   const onClickEmpRegistrationHandler = () => {
-    dispatch(callEmpRegistAPI(form))
-};
+
+    dispatch(callEmpRegistAPI(form));
+  };
 
 
   return (
@@ -108,10 +107,11 @@ function EmpRegistration() {
               <td>
                 <select
                   className="EmpRegistBox"
+                  name="deptCode"
                   onChange={onChangeHandler}
                 >
                   {Array.isArray(empDeptJob.deptList) && empDeptJob.deptList.map(empDeptJob => (
-                    <option value={empDeptJob.deptName}>{empDeptJob.deptName}</option>
+                    <option value={empDeptJob.deptCode}>{empDeptJob.deptName}</option>
                   ))}
                 </select>
               </td>
@@ -121,10 +121,11 @@ function EmpRegistration() {
               <td>
                 <select
                   className="EmpRegistBox"
+                  name="jobCode"
                   onChange={onChangeHandler}
                 >
                   {Array.isArray(empDeptJob.jobList) && empDeptJob.jobList.map(empDeptJob => (
-                    <option value={empDeptJob.jobName}>{empDeptJob.jobName}</option>
+                    <option value={empDeptJob.jobCode}>{empDeptJob.jobName}</option>
                   ))}
                 </select>
               </td>
