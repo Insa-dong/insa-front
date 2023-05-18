@@ -126,10 +126,16 @@ function Board() {
             </ul>
           </div>))
         }
+        <button 
+              className={CSS.boardBtn} 
+              type="button"
+            >
+              + 공지 등록하기
+              </button>
         <BoardDetailModal isOpen={isModalOpen} onClose={closeModal} selectedItem={selectedItem} />
 
 
-        <div className="EmpPaging">
+        <div className={CSS.paging}>
           {board.pageInfo && <PagingBar pageInfo={board.pageInfo} setCurrentPage={setCurrentPage} />}
         </div>
       </div>

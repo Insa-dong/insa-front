@@ -8,10 +8,18 @@ function formatDate(dateString) {
 
 function BoardDetailModal({ isOpen, onClose, selectedItem }) {
 
+    const handleBackgroundClick = () => {
+        onClose();
+    };
+
+    const handleModalClick = (e) => {
+        e.stopPropagation();
+    };
+
     return (
         isOpen && selectedItem && (
-            <div className={CSS.modal}>
-                <div className={CSS.modalContainer}>
+            <div className={CSS.modal} onClick={handleBackgroundClick}>
+                <div className={CSS.modalContainer} onClick={handleModalClick}>
                     <div className={CSS.close} onClick={onClose}>X</div>
                     <div className={CSS.edgeContainer}>
                         <ul style={{ display: 'flex', marginTop: '1vw' }}>

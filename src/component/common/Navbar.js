@@ -20,6 +20,9 @@ function Navbar() {
 		<>
 			<div id="sideBar">
 				<div id="sideTop" className="border-bottom">
+					<NavLink to="/">
+					<img src="/images/mainTITLE.png" className="moreThanus"></img>
+					</NavLink>
 					<div className="sideBox">
 						<NavLink to="/">
 							<div id="prof"></div>
