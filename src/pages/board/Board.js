@@ -1,50 +1,137 @@
+import { useEffect, useState } from "react";
 import Header from "../../component/common/Header";
 import CSS from "./Board.module.css";
+import PagingBar from "../../component/common/PagingBar";
+import { useDispatch, useSelector } from "react-redux";
+import { callBoardListAPI, callBoardSearchAPI } from "../../apis/BoardAPICall";
+import boardReducer from "../../modules/BoardModule";
+import BoardDetailModal from "../../component/modal/BoardDetailModal";
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = { year: "numeric", month: "2-digit", day: "2-digit"};
+  return new Intl.DateTimeFormat("ko-KR", options).format(date).replace(/\.$/, "");;
+}
 
 function Board() {
 
   const title = '공지사항';
+  const dispatch = useDispatch();
+  const board = useSelector(state => state.boardReducer);
+  const { data } = useSelector(state => state.boardReducer);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchOption, setSearchOption] = useState('all');
+  const [searchKeyword, setSearchKeyword] = useState('');
+
+  /* 공지사항 모달창 */
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const openModal = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
+
+  /* 검색 옵션 상태 저장 */
+  const onSearchOptionChangeHandler = (e) => {
+    setSearchOption(e.target.value);
+    console.log('searchOption : ', searchOption)
+  }
+
+  /* 검색어 입력값 상태 저장*/
+  const onSearchChangeHandler = (e) => {
+    setSearchKeyword(e.target.value);
+  }
+
+  /* 검색버튼 누르면 검색화면으로 넘어가는 이벤트 */
+  const onClickSearchHandler = (e) => {
+    console.log('searchKeyword: ', searchKeyword);
+    console.log('searchOption : ', searchOption);
+    dispatch(callBoardSearchAPI({ searchOption, searchKeyword, currentPage }));
+  }
+
+  useEffect(
+    () => {
+      dispatch(callBoardListAPI({ currentPage }));
+    },
+    [currentPage]
+  );
+
+
 
   return (
     <>
       <Header title={title} />
       <div className={CSS.boardWrapper}>
         <div className="StuSearchBox">
-          <select id="StuSelect">
+          <select
+            id="StuSelect"
+            onChange={onSearchOptionChangeHandler}
+          >
             <option value="all">전체</option>
             <option value="title">제목</option>
             <option value="content">내용</option>
-            <option value="author">작성자</option>
+            <option value="writer">작성자</option>
           </select>
 
-          <input type="text" id="search" placeholder=" 검색어를 입력하세요" />
+          <input
+            type="text"
+            id="search"
+            placeholder=" 검색어를 입력하세요"
+            onChange={onSearchChangeHandler}
+          />
           <button className="StuSearchBtn">
-            <img src="/images/search.png" alt="검색" />
+            <img
+              src="/images/search.png"
+              alt="검색"
+              onClick={onClickSearchHandler} />
           </button>
         </div>
         <div className={CSS.topline}></div>
 
-        <div className={CSS.mainContent}>
-          <ul style={{ display: 'flex' }}>
-            <li id={CSS.prof}></li>
-            <li>
-              <ul>
-                <ul style={{ display: 'flex' }}>
-                  <li>
-                    <ul style={{ display: 'flex' }}>
-                      <li><img src="/images/공지사항제목.png" className={CSS.boardImg} alt="공지사항제목이미지" /></li>
-                      <li className={CSS.title}>제목sdfaddddddddddddddddddddddddddddddddddd</li>
-                    </ul>
-                  </li>
-                  <li className={CSS.date}>2023-05-16</li>
+        {data && data.map(p => (
+          <div
+            key={p.noticeCode}
+            className={CSS.mainContent}
+            onClick={() => openModal(p)}
+          >
+            <ul style={{ display: 'flex' }}>
+              <li id={CSS.prof}></li>
+              <li>
+                <ul>
+                  <ul style={{ display: 'flex' }}>
+                    <li>
+                      <ul style={{ display: 'flex' }}>
+                        <li><img src="/images/공지사항제목.png" className={CSS.boardImg} alt="공지사항제목이미지" /></li>
+                        <li className={CSS.title}>{p.noticeTitle}</li>
+                      </ul>
+                    </li>
+                    <li className={CSS.date}>{formatDate(p.noticeWriteDate)}</li>
+                  </ul>
+                  <ul style={{ display: 'flex' }}>
+                    <li className={CSS.writer}>{p.noticeWriter.empName}</li>
+                    <li><img src="/images/화살표.png" className={CSS.allowImg} alt="화살표이미지" /> </li>
+                    <li className={CSS.dept}>{p.noticeWriter.dept.deptName}팀·</li>
+                    <li className={CSS.job}>{p.noticeWriter.job.jobName}</li>
+                  </ul>
+                  <li className={CSS.content}>{p.noticeContent}</li>
                 </ul>
-                <li className={CSS.writer}>작성자</li>
-                <li className={CSS.content}>내용ddddddddddddddddddddddddddddddddddddddddddddd</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+              </li>
+            </ul>
+          </div>))
+        }
+        <BoardDetailModal isOpen={isModalOpen} onClose={closeModal} selectedItem={selectedItem} />
 
+
+        <div className="EmpPaging">
+          {board.pageInfo && <PagingBar pageInfo={board.pageInfo} setCurrentPage={setCurrentPage} />}
+        </div>
       </div>
     </>
   );

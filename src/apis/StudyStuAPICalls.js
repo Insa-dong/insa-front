@@ -1,4 +1,4 @@
-import { getStudyStudent } from "../modules/StudyStudentModule";
+import { deleteStudyStudents, getStudyStudent, postStudyStudents, getStudyStudents } from "../modules/StudyStudentModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -14,6 +14,65 @@ export const callStudyStuListAPI = ({ stuCode , currentPage = 1 }) => {
         console.log(result);
         if(result.status === 200) {
             dispatch(getStudyStudent(result.data));
+
+        }
+    };
+
+}
+
+export const callStudyStuDeleteAdminAPI = (stuCode) => {
+
+   const requestURL = `${PRE_URL}/students-management/study/${stuCode}`;
+  
+    return async (dispatch, getState) => {
+      const result = await fetch(requestURL, {
+        method: 'DELETE',
+        headers: {
+          // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+        }
+      }).then(res => res.json());
+  
+      console.log(result);
+      if (result.status === 200) {
+        dispatch(deleteStudyStudents(result));
+      }
+    }
+  };
+
+  export const callStudyStuRegistAdminAPI = (form) => {
+
+    const requestURL =`${PRE_URL}/students-management/study`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'POST',
+            headers : {
+                "Content-Type": "application/json",
+                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body: JSON.stringify(form)
+        }).then(res => res.json());
+        
+        console.log(result);
+        if(result.status === 200) {
+            dispatch(postStudyStudents(result));
+        }
+    }
+
+  }
+
+
+export const callStudyStuTrainingTitleListAPI = () => {
+
+    const requestURL = `${PRE_URL}/students-management/studylist`;
+
+    return async (dispatch, getState) => {
+        
+        const result = await fetch(requestURL).then(res => res.json());
+        console.log(result);
+        if(result.status === 200) {
+            dispatch(getStudyStudents(result));
 
         }
     };
