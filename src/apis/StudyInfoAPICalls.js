@@ -1,4 +1,4 @@
-import {getStudyinfo, getStudyinfolist} from "../modules/StudyInfoModule";
+import {getStudyinfo, getStudyinfolist, putStudyinfo} from "../modules/StudyInfoModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -47,8 +47,18 @@ export const callPetiteStudyInfoAPI = (studyInfoCode) => {
 export const callModifyStudyInfo = ({form, studyInfoCode}) => {
 
 	console.log(form);
-	console.log(studyInfoCode);
 	const requestURL = `${PRE_URL}/studyInfo/${studyInfoCode}`;
+
+	const studyTimes = form.study.studyTimes.map((time) => {
+		return {
+			studyDate: time.studyDate,
+			studyStartTime: `${time.studyDate}`.startTime,
+			studyEndTime: `${time.studyDate}`.endTime,
+			studyTimeCode: time.studyTimeCode
+		};
+	});
+	console.log(form.study.studyTimes);
+	console.log(studyTimes);
 
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
@@ -57,11 +67,35 @@ export const callModifyStudyInfo = ({form, studyInfoCode}) => {
 				"Content-Type": "application/json",
 				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
-			body: JSON.stringify(form)
+			body: JSON.stringify({
+				study: {
+					studyCode: form.study.studyCode,
+					studyDeleteYn: form.study.studyDeleteYn,
+					studyStartDate: form.study.studyStartDate,
+					studyEndDate: form.study.studyEndDate,
+					studyMaxPeople: form.study.studyMaxPeople,
+					studyTimes: studyTimes,
+					training: {
+						trainingCode: form.study.training.trainingCode,
+						trainingCount: form.study.training.trainingCount,
+						trainingTitle: form.study.training.trainingTitle
+					}
+				},
+				studyInfoCode: form.studyInfoCode,
+				studyContent: form.studyContent,
+				studyRoom: form.studyRoom,
+				studyTitle: form.studyTitle,
+				studyInfoStartDate: form.studyInfoStartDate,
+				studyInfoEndDate: form.studyInfoEndDate,
+				teacher: {
+					empCode: form.teacher.empCode,
+					empName: form.teacher.empName
+				}
+			})
 		}).then(res => res.json());
 
 		if (result.status === 200) {
-			dispatch(getStudyinfo(result));
+			dispatch(putStudyinfo(result));
 		}
 	};
 }
