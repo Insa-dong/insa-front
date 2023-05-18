@@ -72,7 +72,7 @@ function Navbar() {
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to="/" style={activeStyle} className="sideTr">
+							<NavLink to="/off" style={activeStyle} className="sideTr">
 								<img className="vacation-Img" src="/images/연차.png"></img><span>연차</span>
 							</NavLink>
 						</div>
