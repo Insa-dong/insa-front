@@ -4,17 +4,21 @@ import DateCSS from './StudyTime.module.css';
 function StudyTime({studyTimes, readOnly, form, setForm}) {
 
 	const [dates, setDates] = useState(["월", "화", "수", "목", "금"]);
+	const [day, setDay] = useState([]);
 
 	const onChangeHandler = (e) => {
+		day.push({
+			[e.target.name]: e.target.value
+		});
 		setForm({
 			...form,
-			[e.target.name]: e.target.value
-		})
+			day
+		});
 	}
 
 	const mapArrayToDate = (dateArray) => {
 
-		return dateArray.map(date => {
+		return dateArray.map((date, index) => {
 			const find = studyTimes.find(time => time.studyDate === date);
 			if (find)
 				return (
@@ -25,13 +29,13 @@ function StudyTime({studyTimes, readOnly, form, setForm}) {
 						        defaultValue = {readOnly ? find.studyStartTime : form.study.studyTimes.studyStartTimes}
 						        readOnly = {readOnly}
 						        onChange = {onChangeHandler}
-						        name = "study.studyTimes.studyStartTime"
+						        name = {`${index}.startTime`}
 						/>}
 						{<input type = "time" className = {DateCSS.calendarDateTime2}
 						        onChange = {onChangeHandler}
 						        defaultValue = {readOnly ? find.studyEndTime : form.study.studyTimes.studyEndTimes}
 						        readOnly = {readOnly}
-						        name = "study.studyTimes.studyEndTime"
+						        name = {`${index}.endTime`}
 						/>}
 					</div>
 				);
@@ -42,12 +46,12 @@ function StudyTime({studyTimes, readOnly, form, setForm}) {
 					       className = {DateCSS.calendarDateTime}
 					       readOnly = {readOnly}
 					       onChange = {onChangeHandler}
-					       name = {`${date}.startTime`}
+					       name = {`${index}.startTime`}
 					/>
 					{<input type = "time" className = {DateCSS.calendarDateTime2}
 					        onChange = {onChangeHandler}
 					        readOnly = {readOnly}
-					        name = {`${date}.endTime`}
+					        name = {`${index}.endTime`}
 					/>}
 
 				</div>

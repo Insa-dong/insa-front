@@ -28,8 +28,8 @@ function TrainingDetail() {
 	useEffect(
 		() => {
 			if (modify?.status === 200) {
-				if (window.confirm('수정이 완료되었습니다. 목차로 이동합니다.')) {
-					navigate('/training', {replace: true});
+				if (window.confirm('수정이 완료되었습니다. 메인 페이지로 이동합니다.')) {
+					navigate('/', {replace: true});
 				} else {
 					alert(`${modify}`);
 				}
@@ -150,7 +150,7 @@ function TrainingDetail() {
 				<button className = {CSS.ButtonStyle2}
 				        onClick = {onClickModifyHandler}>{!modifyMode ? '수정하기' : '저장하기'}
 				</button>
-				<button className = {CSS.ButtonStyle3} onClick = {() => navigate(-1)}>뒤로가기</button>
+				<button className = {CSS.ButtonStyle3} onClick = {() => navigate('/training')}>뒤로가기</button>
 			</div>
 		</>
 	);

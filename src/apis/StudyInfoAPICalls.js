@@ -49,16 +49,31 @@ export const callModifyStudyInfo = ({form, studyInfoCode}) => {
 	console.log(form);
 	const requestURL = `${PRE_URL}/studyInfo/${studyInfoCode}`;
 
-	const studyTimes = form.study.studyTimes.map((time) => {
-		return {
-			studyDate: time.studyDate,
-			studyStartTime: `${time.studyDate}`.startTime,
-			studyEndTime: `${time.studyDate}`.endTime,
-			studyTimeCode: time.studyTimeCode
-		};
+	const daysOfWeek = ['월', '화', '수', '목', '금'];
+
+	const formattedStudyTimes = [];
+	let currentStudyTime = {};
+
+	form.day.forEach((time, index) => {
+		const dayIndex = Math.floor(index / 2);
+		const dayOfWeek = daysOfWeek[dayIndex];
+
+		if (index % 2 === 0) {
+			const startTime = time[index].startTime;
+			console.log(time.startTime);
+			currentStudyTime = {
+				studyDate: dayOfWeek,
+				studyStartTime: startTime
+			};
+		} else {
+			const endTime = time.endTime;
+			console.log(time.endTime)
+			currentStudyTime.studyEndTime = endTime;
+			formattedStudyTimes.push(currentStudyTime);
+		}
 	});
-	console.log(form.study.studyTimes);
-	console.log(studyTimes);
+
+	console.log(formattedStudyTimes)
 
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
@@ -74,7 +89,7 @@ export const callModifyStudyInfo = ({form, studyInfoCode}) => {
 					studyStartDate: form.study.studyStartDate,
 					studyEndDate: form.study.studyEndDate,
 					studyMaxPeople: form.study.studyMaxPeople,
-					studyTimes: studyTimes,
+					studyTimes: formattedStudyTimes,
 					training: {
 						trainingCode: form.study.training.trainingCode,
 						trainingCount: form.study.training.trainingCount,
