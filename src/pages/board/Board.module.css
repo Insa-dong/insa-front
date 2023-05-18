@@ -18,7 +18,7 @@
 }
 
 .mainContent:hover {
-     background-color: lightgray;
+     background-color: #eee;
      cursor: pointer;
 }
 
@@ -59,8 +59,16 @@
 }
 
 .writer{
-    font-size: 9pt;
+    font-size: 10pt;
     padding-bottom: 0.8vh;
+}
+
+.dept {
+    font-size: 10pt;
+}
+
+.job {
+    font-size: 10pt;
 }
 
 .content {
@@ -74,4 +82,11 @@
 
 .boardImg {
     width: 1vw;
+}
+
+.allowImg{
+    margin-left: 0.3vw;
+    margin-right: 0.3vw;
+    margin-bottom: 0.2vw;
+    width: 0.3vw;
 }

@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import Header from "../../component/common/Header";
 import CSS from "./Board.module.css";
-import BoardDetailModal from './../../component/modal/BoardDetailModal';
 import PagingBar from "../../component/common/PagingBar";
 import { useDispatch, useSelector } from "react-redux";
 import { callBoardListAPI, callBoardSearchAPI } from "../../apis/BoardAPICall";
 import boardReducer from "../../modules/BoardModule";
+import BoardDetailModal from "../../component/modal/BoardDetailModal";
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = { year: "numeric", month: "2-digit", day: "2-digit"};
+  return new Intl.DateTimeFormat("ko-KR", options).format(date).replace(/\.$/, "");;
+}
 
 function Board() {
 
@@ -16,6 +22,20 @@ function Board() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchOption, setSearchOption] = useState('all');
   const [searchKeyword, setSearchKeyword] = useState('');
+
+  /* 공지사항 모달창 */
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const openModal = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
 
 
   /* 검색 옵션 상태 저장 */
@@ -76,7 +96,11 @@ function Board() {
         <div className={CSS.topline}></div>
 
         {data && data.map(p => (
-          <div key={p.noticeCode} className={CSS.mainContent}>
+          <div
+            key={p.noticeCode}
+            className={CSS.mainContent}
+            onClick={() => openModal(p)}
+          >
             <ul style={{ display: 'flex' }}>
               <li id={CSS.prof}></li>
               <li>
@@ -88,15 +112,21 @@ function Board() {
                         <li className={CSS.title}>{p.noticeTitle}</li>
                       </ul>
                     </li>
-                    <li className={CSS.date}>{p.noticeWriteDate}</li>
+                    <li className={CSS.date}>{formatDate(p.noticeWriteDate)}</li>
                   </ul>
-                  <li className={CSS.writer}>{p.noticeWriter.empName}</li>
+                  <ul style={{ display: 'flex' }}>
+                    <li className={CSS.writer}>{p.noticeWriter.empName}</li>
+                    <li><img src="/images/화살표.png" className={CSS.allowImg} alt="화살표이미지" /> </li>
+                    <li className={CSS.dept}>{p.noticeWriter.dept.deptName}팀·</li>
+                    <li className={CSS.job}>{p.noticeWriter.job.jobName}</li>
+                  </ul>
                   <li className={CSS.content}>{p.noticeContent}</li>
                 </ul>
               </li>
             </ul>
           </div>))
         }
+        <BoardDetailModal isOpen={isModalOpen} onClose={closeModal} selectedItem={selectedItem} />
 
 
         <div className="EmpPaging">
