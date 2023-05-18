@@ -24,6 +24,8 @@ import TrainingDetail from "./pages/training/TrainingDetail";
 import TrainingRegistration from "./pages/training/TrainingRegistration";
 import BoardDetail from './pages/board/BoardDetail';
 import EmpRegistration from './pages/emp/EmpRegistration';
+import EmpDetail from './pages/emp/EmpDetail';
+import EmpPopup from './pages/emp/EmpPopup';
 import Off from './pages/off/Off';
 import AdminOff from './pages/off/AdminOff';
 
@@ -54,11 +56,13 @@ function App() {
 						<Route path="studyInfo/:studyInfoCode" element={<StudyInfo />} />
 						<Route path="emp" element={<Emp />} />
 						<Route path="emp/empregistration" element={<EmpRegistration/>}/>
+						<Route path="emp/empdetail" element={<EmpDetail/>}/>
 						<Route path="student" element={<Student />} />
 						<Route path="student/:stuCode" element={<StudentDetail />}/>
 						<Route path="off" element={<Off />} />
 						<Route path="off/adminOff" element={<AdminOff />} />
 						<Route path="student/registration" element={<StudentRegistration />} />
+						
 					</Route>
 					<Route path="idsearch" element={<IdSearch />} />
 					<Route path="idsearchsuccess" element={<IdSearchSuccess />} />

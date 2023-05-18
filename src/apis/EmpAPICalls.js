@@ -71,9 +71,9 @@ export const empDeptJobListAPI = () => {
 export const callEmpRegistAPI = (form) => {
 
 	const requestURL =`${PRE_URL}/emp/empregist`;
-	form.dept.deptCode = form.deptCode;
-	form.job.jobCode = form.jobCode;
-    console.log(form);
+	form = ({ ...form, dept : { deptCode : form.deptCode}, job : { jobCode : form.jobCode }});
+	console.log(form);
+
 
     return async (dispatch, getState) => {
 
@@ -87,6 +87,7 @@ export const callEmpRegistAPI = (form) => {
         }).then(res => res.json());
         
         console.log(result);
+		
         if(result.status === 200) {
             dispatch(postEmpRegist(result));
         }
