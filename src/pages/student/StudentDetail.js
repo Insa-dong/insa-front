@@ -6,9 +6,10 @@ import { callStudentDetailForAdminAPI, callStudentUpdateAPI } from "../../apis/S
 import Header from "../../component/common/Header";
 import { callEvaDeleteForAdminAPI, callStudentEvaListAPI } from "../../apis/EvaAPICalls";
 import { callAdviceDeleteForAdminAPI, callStudentAdviceListAPI } from "../../apis/AdviceAPICalls";
-import { callStudyStuListAPI } from "../../apis/StudyStuAPICalls";
+import { callStudyStuDeleteAdminAPI, callStudyStuListAPI } from "../../apis/StudyStuAPICalls";
 import AdviceReviewModal from "../../component/modal/AdviceReviewModal";
 import EvaReviewCheckModal from "../../component/modal/EvaReviewCheckModal";
+import StudyStudentRegistModal from "../../component/modal/StudyStudentRegistModal";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -50,6 +51,8 @@ function StudentDetail() {
     const { adviceList } = useSelector(state => state.adviceReducer);
     const { evaList } = useSelector(state => state.evaReducer);
 
+    const [selectedRegistStudy, setSelectedRegistStudy] = useState(null);
+    const [registModalVisible, setRegistModalVisible] = useState(false);
 
     const okAdviceConfirm = () => {
         dispatch(callAdviceDeleteForAdminAPI(stuCode));
@@ -79,6 +82,20 @@ function StudentDetail() {
         cancelEvaConfirm
     );
 
+    const okStudyStuConfirm = () => {
+        dispatch(callStudyStuDeleteAdminAPI(stuCode));
+    }
+
+    const cancelStudyStuConfirm = () => {
+        console.log("수강생 강의 삭제가 취소되었습니다.");
+    };
+
+    const studyStuDelete = useConfirm(
+        "수강생 강의를 삭제하시겠습니까?",
+        okStudyStuConfirm,
+        cancelStudyStuConfirm
+    );
+
 
     const onClickAdviceReviewHandler = (adviceReview) => {
         setSelectedAdviceReview(adviceReview);
@@ -91,6 +108,10 @@ function StudentDetail() {
         setEvaReviewModalVisible(true);
     }
 
+    const onClickRegistHandler = (studyStudentRegist) => {
+        setSelectedRegistStudy(studyStudentRegist);
+        setRegistModalVisible(true);
+    }
 
     useEffect(
         () => {
@@ -242,9 +263,16 @@ function StudentDetail() {
                     </>
                 )}
 
+                {registModalVisible && (
+                    <StudyStudentRegistModal
+                    studyStudentRegist={ selectedRegistStudy }
+                        setSelectedRegistStudy = {setRegistModalVisible}
+                    />
+                )}
+
                 <div className="studyHeaderContainer">
                     <h2 className="studyHeader">과정 내역</h2>
-                    <button className="registrationButton">등록</button>
+                    <button className="registrationButton" onClick = { onClickRegistHandler }>등록</button>
                 </div>
                 <table className="stuDetailDiv">
                     <thead>
@@ -262,7 +290,7 @@ function StudentDetail() {
                                     <td>{study.trainingCount}</td>
                                     <td>
                                         <button className="studyStuUpdateBtn">수정</button>
-                                        <button className="studyStuDeleteBtn">삭제</button>
+                                        <button className="studyStuDeleteBtn" onClick={studyStuDelete}>삭제</button>
                                     </td>
                                 </tr>
                             ))

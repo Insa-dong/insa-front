@@ -10,7 +10,13 @@ function EmpRegistration() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const empDeptJob = useSelector(state => state.empReducer);
-  const [form, setForm] = useState({});
+  const {empRegist} = useSelector(state => state.empReducer);
+  const [form, setForm] = useState({
+    empGender:"w",
+    deptCode:"DE0001",
+    jobCode:"JB0001"
+
+  });
 
   useEffect(() => {
     dispatch(empDeptJobListAPI());
@@ -19,12 +25,12 @@ function EmpRegistration() {
   }, []);
 
   useEffect(() => {
-    if (empDeptJob?.status === 200) {
+    if (empRegist?.status === 200) {
       alert('구성원 등록이 완료되었습니다.');
       navigate('/emp', { replace: true });
     }
 
-  }, [empDeptJob]);
+  }, [empRegist]);
 
   const onChangeHandler = (e) => {
     setForm({
@@ -34,8 +40,9 @@ function EmpRegistration() {
   };
 
   const onClickEmpRegistrationHandler = () => {
-
     dispatch(callEmpRegistAPI(form));
+
+    console.log('empRegist', empRegist);
   };
 
 
@@ -52,7 +59,7 @@ function EmpRegistration() {
                 <input className="EmpRegistBox"
                   type="text"
                   placeholder='이름을 입력해주세요'
-                  name="EmpName"
+                  name="empName"
                   onChange={onChangeHandler}
                 />
               </td>
@@ -63,7 +70,7 @@ function EmpRegistration() {
                 <input className="EmpRegistBox"
                   type="text"
                   placeholder='아이디를 입력해주세요'
-                  name="EmpEngName"
+                  name="empId"
                   onChange={onChangeHandler}
                 />
               </td>
@@ -74,7 +81,7 @@ function EmpRegistration() {
                 <input className="EmpRegistBox"
                   type="text"
                   placeholder='휴대전화 번호를 입력해주세요'
-                  name="EmpPhone"
+                  name="empPhone"
                   onChange={onChangeHandler}
                 />
               </td>
@@ -85,7 +92,7 @@ function EmpRegistration() {
                 <input className="EmpRegistBox"
                   type="text"
                   placeholder='이메일을 입력해주세요'
-                  name="EmpEmail"
+                  name="empEmail"
                   onChange={onChangeHandler}
                 />
               </td>
@@ -95,6 +102,7 @@ function EmpRegistration() {
               <td>
                 <select
                   className="EmpRegistBox"
+                  name="empGender"
                   onChange={onChangeHandler}
                 >
                   <option value="w">여성</option>
@@ -135,7 +143,7 @@ function EmpRegistration() {
               <td>
                 <input className="EmpRegistBox"
                   type="date"
-                  name="selectDate"
+                  name="hireDate"
                   onChange={onChangeHandler}
                 />
               </td>

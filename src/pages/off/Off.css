@@ -1,0 +1,17 @@
+.off-wrapp {
+    width: 74vw;
+    height: 78vh;
+    /*margin: 0 auto;*/
+    margin-left: 20vw;
+   /* border: 1px solid red;*/
+}
+
+.off-menu-bar {
+    margin-bottom: 3.5vw;
+ }
+
+.off-menu {
+    display: inline-block;
+    margin-left: 2vw;
+    font-size: 1.2rem;
+}
