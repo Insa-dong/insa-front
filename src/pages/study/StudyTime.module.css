@@ -4,7 +4,7 @@
     width: 25%;
     text-align: center;
     box-sizing: border-box;
-    background-color: #E4FBFB;
+    background-color: #F9FAFA;
     font-size: 1.5rem;
     line-height: 50px;
     margin: 0 0 2% 8%;
@@ -20,6 +20,10 @@
 }
 
 .calendarDateTime {
-    margin-left: 145%;
+    margin-left: 135%;
+}
+
+.calendarDateTime2 {
+    margin-left: 10%;
 }
 
