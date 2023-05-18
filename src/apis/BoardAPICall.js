@@ -1,13 +1,13 @@
 import { getBoardlist } from "../modules/BoardModule";
 
-const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
-const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
-const PRE_URL = `http://${SERVER_IP}:${SERVER_PORT}`;
+const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
+const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
+const PRE_URL = `http://${RESTAPI_SERVER_IP}:${RESTAPI_SERVER_PORT}/insa/v1`;
 
 
-export const callBoardListAPI = ({currentPage = 1}) => {
+export const callBoardListAPI = ({ currentPage = 1 }) => {
 
-	const requestURL = `${PRE_URL}/board?page=${currentPage}`
+	const requestURL = `${PRE_URL}/noticelist?page=${currentPage}`
 
 	return async (dispatch, getState) => {
 

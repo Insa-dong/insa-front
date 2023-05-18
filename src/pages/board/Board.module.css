@@ -12,9 +12,14 @@
 
 .mainContent {
     border-bottom: 1px lightgray solid;
-    margin-top: 3vh;
     margin-right: 1vw;
+    padding-top: 3vh;
     padding-bottom: 5vh;
+}
+
+.mainContent:hover {
+     background-color: lightgray;
+     cursor: pointer;
 }
 
 #prof {

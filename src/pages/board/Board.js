@@ -11,11 +11,9 @@ function Board() {
 
   const title = '공지사항';
   const dispatch = useDispatch();
-  const boardlist = useSelector(state => state.boardReducer);
-  console.log('boardlist: ', boardlist);
+  const board = useSelector(state => state.boardReducer);
+  const { data } = useSelector(state => state.boardReducer);
   const [currentPage, setCurrentPage] = useState(1);
-  // const { data, pageInfo } = useSelector(state => state.productReducer);
-  // const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(
     () => {
@@ -45,29 +43,33 @@ function Board() {
         </div>
         <div className={CSS.topline}></div>
 
-        <div className={CSS.mainContent}>
-          <ul style={{ display: 'flex' }}>
-            <li id={CSS.prof}></li>
-            <li>
-              <ul>
-                <ul style={{ display: 'flex' }}>
-                  <li>
-                    <ul style={{ display: 'flex' }}>
-                      <li><img src="/images/공지사항제목.png" className={CSS.boardImg} alt="공지사항제목이미지" /></li>
-                      <li className={CSS.title}>제목sdfaddddddddddddddddddddddddddddddddddd</li>
-                    </ul>
-                  </li>
-                  <li className={CSS.date}>2023-05-16</li>
+        {data && data.map(p => (
+          <div key={p.noticeCode} className={CSS.mainContent}>
+            <ul style={{ display: 'flex' }}>
+              <li id={CSS.prof}></li>
+              <li>
+                <ul>
+                  <ul style={{ display: 'flex' }}>
+                    <li>
+                      <ul style={{ display: 'flex' }}>
+                        <li><img src="/images/공지사항제목.png" className={CSS.boardImg} alt="공지사항제목이미지" /></li>
+                        <li className={CSS.title}>{p.noticeTitle}</li>
+                      </ul>
+                    </li>
+                    <li className={CSS.date}>{p.noticeWriteDate}</li>
+                  </ul>
+                  <li className={CSS.writer}>{p.noticeWriter.empName}</li>
+                  <li className={CSS.content}>{p.noticeContent}</li>
                 </ul>
-                <li className={CSS.writer}>작성자</li>
-                <li className={CSS.content}>내용ddddddddddddddddddddddddddddddddddddddddddddd</li>
-              </ul>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>))
+        }
+
+
+        <div className="EmpPaging">
+          {board.pageInfo && <PagingBar pageInfo={board.pageInfo} setCurrentPage={setCurrentPage} />}
         </div>
-        {/* <div className="EmpPaging">
-          {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
-        </div> */}
       </div>
     </>
   );
