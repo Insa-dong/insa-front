@@ -12,9 +12,14 @@
 
 .mainContent {
     border-bottom: 1px lightgray solid;
-    margin-top: 3vh;
     margin-right: 1vw;
+    padding-top: 3vh;
     padding-bottom: 5vh;
+}
+
+.mainContent:hover {
+     background-color: #eee;
+     cursor: pointer;
 }
 
 #prof {
@@ -54,8 +59,16 @@
 }
 
 .writer{
-    font-size: 9pt;
+    font-size: 10pt;
     padding-bottom: 0.8vh;
+}
+
+.dept {
+    font-size: 10pt;
+}
+
+.job {
+    font-size: 10pt;
 }
 
 .content {
@@ -69,4 +82,11 @@
 
 .boardImg {
     width: 1vw;
+}
+
+.allowImg{
+    margin-left: 0.3vw;
+    margin-right: 0.3vw;
+    margin-bottom: 0.2vw;
+    width: 0.3vw;
 }
