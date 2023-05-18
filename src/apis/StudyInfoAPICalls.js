@@ -51,29 +51,10 @@ export const callModifyStudyInfo = ({form, studyInfoCode}) => {
 
 	const daysOfWeek = ['월', '화', '수', '목', '금'];
 
-	const formattedStudyTimes = [];
-	let currentStudyTime = {};
+	daysOfWeek.map((day, index) => {
+		// if(){}
+	})
 
-	form.day.forEach((time, index) => {
-		const dayIndex = Math.floor(index / 2);
-		const dayOfWeek = daysOfWeek[dayIndex];
-
-		if (index % 2 === 0) {
-			const startTime = time[index].startTime;
-			console.log(time.startTime);
-			currentStudyTime = {
-				studyDate: dayOfWeek,
-				studyStartTime: startTime
-			};
-		} else {
-			const endTime = time.endTime;
-			console.log(time.endTime)
-			currentStudyTime.studyEndTime = endTime;
-			formattedStudyTimes.push(currentStudyTime);
-		}
-	});
-
-	console.log(formattedStudyTimes)
 
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
@@ -89,7 +70,7 @@ export const callModifyStudyInfo = ({form, studyInfoCode}) => {
 					studyStartDate: form.study.studyStartDate,
 					studyEndDate: form.study.studyEndDate,
 					studyMaxPeople: form.study.studyMaxPeople,
-					studyTimes: formattedStudyTimes,
+					// studyTimes: formattedStudyTimes,
 					training: {
 						trainingCode: form.study.training.trainingCode,
 						trainingCount: form.study.training.trainingCount,
