@@ -22,7 +22,8 @@
 }
 
 .edgeContainer {
-    margin: 3vw;
+    margin-top: 1vh;
+    margin-left: 3vw;
 }
 
 .close {
@@ -89,6 +90,7 @@
     margin-top: 1.5vh;
     border: 1px solid black;
     border-radius: 10px;
+    width: 29vw;
 }
 
 .fileImg {

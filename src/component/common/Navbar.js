@@ -36,7 +36,7 @@ function Navbar() {
 					<div id="sideMiddle" className="border-bottom">
 						<div>
 							<NavLink to="/board" style={activeStyle} className="sideTr">
-								<img className="notice-Img" src="/images/공지사항.png"></img><span>공지사항</span>
+								<img className="notice-Img" src="/images/공지사항.png"></img><span className='sideBoard'>공지사항</span>
 							</NavLink>
 						</div>
 						<div>
@@ -66,17 +66,17 @@ function Navbar() {
 						</div>
 						<div>
 							<NavLink to="/emp" style={activeStyle} className="sideTr">
-								<img className="member-Img" src="/images/구성원.png"></img><span>구성원</span>
+								<img className="member-Img" src="/images/구성원.png"></img><span className='sideMember'>구성원</span>
 							</NavLink>
 						</div>
 						<div>
 							<NavLink to="/student" style={activeStyle} className="sideTr">
-								<img className="student-Img" src="/images/수강생.png"></img><span>수강생</span>
+								<img className="student-Img" src="/images/수강생.png"></img><span className='sideStudent'>수강생</span>
 							</NavLink>
 						</div>
 						<div>
 							<NavLink to="/off" style={activeStyle} className="sideTr">
-								<img className="vacation-Img" src="/images/연차.png"></img><span>연차</span>
+								<img className="vacation-Img" src="/images/연차.png"></img><span className='sideVacation'>연차</span>
 							</NavLink>
 						</div>
 					</div>
