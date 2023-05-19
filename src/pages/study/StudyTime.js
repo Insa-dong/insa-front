@@ -5,14 +5,6 @@ function StudyTime({studyTimes, readOnly, form, day, setDay}) {
 
 	const [dates, setDates] = useState(["월", "화", "수", "목", "금"]);
 
-	const formatTime = (date) => {
-		if (date instanceof Date) {
-			const hours = String(date.getHours()).padStart(2, '0');
-			const minutes = String(date.getMinutes()).padStart(2, '0');
-			return `${hours}:${minutes}`;
-		}
-	}
-
 	const onChangeHandler = (e, index) => {
 		if (day.length === 0) {
 			const initialDay = dates.map(date => {
@@ -56,14 +48,14 @@ function StudyTime({studyTimes, readOnly, form, day, setDay}) {
 						{date}
 						{<input type = "time"
 						        className = {DateCSS.calendarDateTime}
-						        defaultValue = {readOnly ? formatTime(new Date(find.studyStartTime)) : formatTime(new Date(form.study.studyTimes.studyStartTime))}
+						        defaultValue = {readOnly ? find.studyStartTime : form.study.studyTimes.studyStartTime}
 						        readOnly = {readOnly}
 						        onChange = {(val) => onChangeHandler(val, index)}
 						        name = "startTime"
 						/>}
 						{<input type = "time" className = {DateCSS.calendarDateTime2}
 						        onChange = {(val) => onChangeHandler(val, index)}
-						        defaultValue = {readOnly ? formatTime(new Date(find.studyEndTime)) : formatTime(new Date(form.study.studyTimes.studyEndTime))}
+						        defaultValue = {readOnly ? find.studyEndTime : form.study.studyTimes.studyEndTime}
 						        readOnly = {readOnly}
 						        name = "endTime"
 						/>}
