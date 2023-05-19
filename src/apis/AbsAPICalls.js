@@ -79,15 +79,22 @@ export const callAbsDateAPI = ({ absDate, currentPage = 1 }) => {
 };
 
 /* 내 근태 조회 */
-export const callMyAbsListAPI = ({ empCode, currentPage = 1 }) => {
+export const callMyAbsListAPI = ({ currentPage = 1 }) => {
 
-    const requestUR = `${PRE_URL}/abs-myAbs?empCode=${empCode}&page=${currentPage}`;
+    const requestURL = `${PRE_URL}/abs-myAbs?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
-        const result = await fetch(requestUR).then(response => response.json());
+        const result = await fetch(requestURL, {
+            method : 'GET',
+            headers : {
+                "Content-Type" : "application/json",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
 
-        if (result.status === 200) {
+
+        if(result.status === 200) {
             dispatch(getMyabs(result));
         }
     }

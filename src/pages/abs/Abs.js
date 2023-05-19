@@ -1,23 +1,34 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
 import './Abs.css';
-import { callMyAbsListAPI, callCheckInAPI } from '../../apis/AbsAPICalls';
+import { callMyAbsListAPI,callAbsDateAPI , callCheckInAPI } from '../../apis/AbsAPICalls';
 import MyAbsList from '../../component/lists/MyAbsList';
 import PagingBar from "../../component/common/PagingBar";
 
 function Abs() {
     const [currentPage, setCurrentPage] = useState(1);
+    const [selectedDate, setSelectedDate] = useState('');
     const abs = useSelector(state => state.absReducer);
     const myAbsList = abs.data || [];
     const dispatch = useDispatch();
-    const params = useParams();
-    const empCode = params.empCode;
+
+
 
     useEffect(() => {
-        dispatch(callMyAbsListAPI({ empCode, currentPage }));
+        dispatch(callMyAbsListAPI({ currentPage }));
     }, [dispatch, currentPage]);
+
+    const handleDateChange = (event) => {
+        setSelectedDate(event.target.value);
+    };
+
+    const handleSearchDate = () => {
+        if (selectedDate) {
+            dispatch(callAbsDateAPI({ absDate: selectedDate, currentPage }));
+        }
+    };
 
     const handleCheckIn = async () => {
         const confirmResult = window.confirm("출근 하시겠습니까?");
@@ -58,8 +69,14 @@ function Abs() {
                 </div>
 
                 <div className="abs-search-container">
-                    <input className="abs-searchDate" type="date" name="selectDate" />
-                    <button className="abs-SearchBtn">
+                    <input className="abs-searchDate"
+                        type="date"
+                        name="selectDate"
+                        value={selectedDate}
+                        onChange={handleDateChange}
+
+                    />
+                    <button className="abs-SearchBtn" onClick={handleSearchDate}>
                         <img src="/images/search.png" alt="검색" />
                     </button>
                 </div>
