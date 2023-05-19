@@ -23,14 +23,14 @@ function Abs() {
 
     useEffect(() => {
         let timer;
-    
+
         const startTime = localStorage.getItem('startTime');
         if (startTime && !isNaN(Date.parse(startTime)) && !isWorking) {
             const elapsedTime = Math.floor((new Date().getTime() - new Date(startTime).getTime()) / 1000);
             setIsWorking(true);
             setWorkTime(elapsedTime);
         }
-    
+
         if (isWorking) {
             timer = setInterval(() => {
                 setWorkTime(prevTime => prevTime + 1);
@@ -38,7 +38,7 @@ function Abs() {
         } else if (timer) {
             clearInterval(timer);
         }
-    
+
         return () => clearInterval(timer);
     }, [isWorking]);
 
@@ -46,11 +46,11 @@ function Abs() {
         const hours = Math.floor(timeInSeconds / 3600);
         const minutes = Math.floor((timeInSeconds - (hours * 3600)) / 60);
         const seconds = timeInSeconds - (hours * 3600) - (minutes * 60);
-    
+
         const formattedHours = hours.toString().padStart(2, '0');
         const formattedMinutes = minutes.toString().padStart(2, '0');
         const formattedSeconds = seconds.toString().padStart(2, '0');
-    
+
         return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
     };
 
@@ -126,8 +126,8 @@ function Abs() {
                     try {
                         await dispatch(callCheckInAPI());
                         localStorage.setItem('startTime', new Date().toString()); // 출근 버튼을 누른 시간 저장
-            setIsWorking(true);
-            setWorkTime(0);
+                        setIsWorking(true);
+                        setWorkTime(0);
                         Swal.fire({
                             title: '등록 완료',
                             text: '출근 시간을 확인하세요.',
@@ -157,7 +157,7 @@ function Abs() {
         const todayDate = `${year}-${month}-${day}`;
         const hasCheckedIn = myAbsList.some(abs => abs.absDate === todayDate && abs.absStart !== null);
         const hasCheckedOut = myAbsList.some(abs => abs.absDate === todayDate && abs.absEnd !== null);
-    
+
         if (!hasCheckedIn) {
             Swal.fire({
                 title: '출근 기록이 없습니다',
@@ -253,7 +253,7 @@ function Abs() {
 
                 {/*타이머 */}
                 <div className="abs-timer">
-                 {formatTime(workTime)}
+                    {formatTime(workTime)}
                 </div>
 
                 <div className="abs-search-container">

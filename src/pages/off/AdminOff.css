@@ -1,1 +1,36 @@
-/* 추후 추가*/
+.admin-off-menu-bar {
+    margin-bottom: 3.5vw;
+  }
+  
+  
+  .admin-off-menu {
+    display: inline-block;
+    margin-left: 3vw;
+    font-size: 1.2rem;
+    position: relative;
+  }
+  
+  .admin-off-menu:after {
+    display: block;
+    content: '';
+    border-bottom: solid 0.3vw #8CBAFF;
+    margin-top: 0.7vw;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+}
+
+.admin-off-menu:hover:after {
+    transform: scaleX(1);
+}
+
+.active-link .admin-off-menu:after {
+    transform: scaleX(1);
+}
+
+  
+  
+  
+  
+  
+  
+  
