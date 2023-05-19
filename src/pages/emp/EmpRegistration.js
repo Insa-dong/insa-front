@@ -13,7 +13,7 @@ function EmpRegistration() {
   const empDeptJob = useSelector(state => state.empReducer);
   const {empRegist} = useSelector(state => state.empReducer);
   const [form, setForm] = useState({
-    empGender:"남",
+    empGender:"여",
     deptCode:"DE0001",
     jobCode:"JB0001"
 
@@ -27,7 +27,6 @@ function EmpRegistration() {
 
   useEffect(() => {
     if (empRegist?.status === 200) {
-      /*alert('구성원 등록이 완료되었습니다.');*/
       navigate('/emp');
     }
 
@@ -43,7 +42,6 @@ function EmpRegistration() {
   const onClickEmpRegistrationHandler = () => {
     console.log('onClickAbsModifyHandler called');
     Swal.fire({
-       /* title: '근태 시간을 수정하시겠습니까?',*/
         text: '구성원을 등록하시겠습니까?',
         icon: 'warning',
         showCancelButton: true,
@@ -142,8 +140,8 @@ function EmpRegistration() {
                   name="empGender"
                   onChange={onChangeHandler}
                 >
-                  <option value="남">남</option>
-                  <option value="여">여</option>
+                  <option value="여">여성</option>
+                  <option value="남">남성</option>
                 </select>
               </td>
             </tr>
