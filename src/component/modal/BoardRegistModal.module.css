@@ -1,0 +1,77 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  
+  .modalContainer {
+    width: 30vw;
+    height: 70vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: white;
+  }
+  
+  .edgeContainer {
+      margin-top: 1vh;
+      margin-left: 3vw;
+  }
+
+  .close {
+    width: 1vw;
+    margin-top: 3vh;
+    margin-left: auto;
+    margin-right: 3vw;
+    cursor: pointer;
+  }
+
+  .boardContentImg {
+    margin-top: 1vh;
+    margin-right: 1vh;
+}
+
+.boardContent{
+    margin-top: 0.8vh;
+}
+
+.title {
+    margin-top: 1.5vh;
+    margin-bottom: 2.5vh;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 24vw;
+}
+
+.content {
+    margin-top: 1.5vh;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 24vw;
+    height: 25vh;
+}
+
+.fileImgg {
+  width: 0.9vw;
+  margin-top: 1.5vh;
+}
+
+.ButtonStyle2 {
+  width: 10vh;
+  height: 5vh;
+  background-color: #8CBAFF;
+  border-radius: 5px;
+  color: #FFFFFF;
+  border: 1px solid #8CBAFF;
+  cursor: pointer;
+  margin-top: 6vh;
+  margin-left: 9vw;
+}

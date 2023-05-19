@@ -1,4 +1,4 @@
-import { getAbss, putAbss, getAbsDate, getMyabs, postCheckin } from "../modules/AbsModule";
+import { getAbss, putAbss, getAbsDate, getMyabs, postCheckin, putCheckout } from "../modules/AbsModule";
 
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -79,13 +79,20 @@ export const callAbsDateAPI = ({ absDate, currentPage = 1 }) => {
 };
 
 /* 내 근태 조회 */
-export const callMyAbsListAPI = ({ empCode, currentPage = 1 }) => {
+export const callMyAbsListAPI = ({ currentPage = 1 }) => {
 
-    const requestUR = `${PRE_URL}/abs-myAbs?empCode=${empCode}&page=${currentPage}`;
+    const requestURL = `${PRE_URL}/abs-myAbs?page=${currentPage}`;
 
     return async (dispatch, getState) => {
 
-        const result = await fetch(requestUR).then(response => response.json());
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
+
 
         if (result.status === 200) {
             dispatch(getMyabs(result));
@@ -93,31 +100,73 @@ export const callMyAbsListAPI = ({ empCode, currentPage = 1 }) => {
     }
 }
 
-/* 출근하기 API 호출 */
+/* 출근하기 API */
 export const callCheckInAPI = () => {
     const requestURL = `${PRE_URL}/checkIn`;
-
+  
     return async (dispatch, getState) => {
-        const accessToken = window.localStorage.getItem('accessToken');
-        const loggedInUser = getState().auth.user;
-
-        const result = await fetch(requestURL, {
-            method: 'POST',
-            headers: {
-                "Authorization": "Bearer " + accessToken,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                empCode: loggedInUser.empCode
-            })
-        }).then(response => response.json());
-
-        if (result.status === 200) {
-            // 결과를 전달하면서 액션 객체 생성
-            dispatch(postCheckin(result));
-        }
+      const accessToken = window.localStorage.getItem('accessToken');
+      const myAbsList = getState().absReducer.data || [];
+  
+      if (myAbsList.some(abs => abs.absEnd === null)) {
+        // 이미 출근한 상태인 경우 경고창 표시 후 Promise.reject() 반환
+        return Promise.reject(new Error('이미 출근했습니다'));
+      }
+  
+      const result = await fetch(requestURL, {
+        method: 'POST',
+        headers: {
+          "Authorization": "Bearer " + accessToken,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({})
+      }).then(response => response.json());
+  
+      if (result.status === 200) {
+        // 결과를 전달하면서 액션 객체 생성
+        dispatch(callMyAbsListAPI({ currentPage: 1 }));
+      } else {
+        throw new Error(result.error); // 실패한 경우 오류 throw
+      }
     };
-};
+  };
+  
+  /* 퇴근하기 API */
+  export const callCheckOutAPI = () => {
+    const requestURL = `${PRE_URL}/checkOut`;
+  
+    return async (dispatch, getState) => {
+      const accessToken = window.localStorage.getItem('accessToken');
+  
+      try {
+        const response = await fetch(requestURL, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify()
+        });
+  
+        const result = await response.json();
+  
+        if (response.ok) {
+          // 퇴근 성공 시 내 근태 조회 API를 호출하여 업데이트된 내 근태를 가져옵니다.
+          dispatch(callMyAbsListAPI({ currentPage: 1 }));
+          return Promise.resolve(); // 퇴근 성공을 알리기 위해 Promise.resolve()를 반환합니다.
+        } else {
+          return Promise.reject(result); // 퇴근 실패 시 오류를 알리기 위해 Promise.reject()를 반환합니다.
+        }
+      } catch (error) {
+        console.log('[callCheckOutAPI] Error:', error);
+        return Promise.reject(error); // 예기치 않은 오류가 발생한 경우 오류를 알리기 위해 Promise.reject()를 반환합니다.
+      }
+    };
+  };
+
+
+
+
 
 
 

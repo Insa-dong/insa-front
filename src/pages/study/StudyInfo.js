@@ -70,7 +70,7 @@ function StudyInfo() {
 							onChange = {onChangeHandler}
 							readOnly = {!modifyMode}/>
 						: <select onChange = {onChangeHandler} className = {CSS.selectBox}
-						          name = 'study.training.trainingCode'
+						          name = 'trainingCode'
 						>
 							<option
 								value = {studyInfo.study.training.trainingCode}>{studyInfo.study.training.trainingTitle}
@@ -106,13 +106,13 @@ function StudyInfo() {
 							{!modifyMode ?
 								<textarea
 									className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
-									name = 'teacher.empCode'
+									name = 'empCode'
 									defaultValue = {studyInfo.teacher && studyInfo.teacher.empName}
 									onChange = {onChangeHandler}
 									readOnly = {!modifyMode}/>
 								:
 								<select onChange = {onChangeHandler} className = {CSS.selectBox}
-								        name = 'teacher.empCode'
+								        name = 'empCode'
 								>
 									<option
 										value = {studyInfo.teacher.empCode}>{studyInfo.teacher.empName}
@@ -131,8 +131,8 @@ function StudyInfo() {
 							<input
 								type = "number"
 								className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
-								name = 'study.training.trainingCount'
-								defaultValue = {studyInfo.study && studyInfo.study.training.trainingCount}
+								name = 'studyCount'
+								defaultValue = {studyInfo.study && studyInfo.study.studyCount}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>

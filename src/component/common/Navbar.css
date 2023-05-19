@@ -105,11 +105,11 @@ a {
 
 .sideTr span {
     width: 100px;
-    margin-left: 1.05vw;
+    margin-left: 1.2vw;
 }
 
 #sideBottom {
-    margin-top: 21vh;
+    margin-top: 10vh;
     margin-left: 1vw;
 }
 
@@ -138,6 +138,91 @@ a {
 .moreThanus{
     padding-top: 2.5vh;
     width: 12vw;
+}
+
+.sideTr > .notice-Img {
+    width: 1.2vw;
+}
+
+.sideTr > .sideBoard {
+    margin-left: 1vw;
+}
+
+.sideTr > .attendance-Img {
+    width: 1.1vw;
+}
+
+.sideTr > .curriculum-Img {
+    width: 1.1vw;
+}
+
+.sideTr > .lecture-Img {
+    width: 1.2vw;
+}
+
+.sideTr > .member-Img {
+    width: 1.3vw;
+}
+
+.sideTr > .sideMember {
+    margin-left: 1vw;
+}
+
+.sideTr > .student-Img {
+    width: 1.6vw;
+    margin-left: 0.6vw;
+}
+
+.sideTr > .sideStudent {
+    margin-left: 0.8vw;
+    margin-bottom: 0.6vh;
+}
+
+.sideTr > .vacation-Img {
+    width: 1.5vw;
+    margin-left: 0.5vw;
+}
+
+.sideTr > .vacation-Img {
+    width: 1.4vw;
+    margin-left: 0.7vw;
+}
+
+.sideTr > .sideVacation {
+    margin-left: 1vw;
+}
+
+.custom-confirm-button{
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    margin-left: 30px
+}
+.custom-cancel-button {
+    background-color: #DADADA!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #DADADA;
+}
+.custom-success-button {
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    outline: none;
 }
 
 
