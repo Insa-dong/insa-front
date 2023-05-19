@@ -59,6 +59,8 @@
     height: 25vh;
 }
 
-.fileImg {
 
+.fileImgDiv {
+  width: 0.4vw;
+  margin-top: 1.5vh;
 }

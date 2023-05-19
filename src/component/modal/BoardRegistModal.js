@@ -26,7 +26,7 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
                             <li className={CSS.boardContent}>공지내용</li>
                         </ul>
                         <input className={CSS.content}></input>
-                        <div><img src="/images/파일첨부.png" className={CSS.fileImg} alt="파일첨부이미지" /></div>
+                        <div className={CSS.fileImgDiv}><img src="/images/파일첨부.png" className={CSS.fileImg} alt="파일첨부이미지" /></div>
                     </div>
                 </div>
 

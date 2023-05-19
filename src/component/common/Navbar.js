@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import Swal from "sweetalert2";
 
 function Navbar() {
 
@@ -12,9 +13,44 @@ function Navbar() {
 
 	const onClickLogoutHandler = () => {
 		window.localStorage.removeItem('accessToken');
-		alert('로그아웃 되었습니다.')
-		navigate('/login', { replace: true });
-	}
+		Swal.fire({
+		  text: '로그아웃 하시겠습니까?',
+		  icon: 'warning',
+		  showCancelButton: true,
+		  customClass: {
+			confirmButton: 'custom-confirm-button',
+			cancelButton: 'custom-cancel-button'
+		  },
+		  confirmButtonColor: '#8CBAFF',
+		  cancelButtonColor: '#DADADA',
+		  confirmButtonText: '확인',
+		  cancelButtonText: '취소',
+		  reverseButtons: true,
+		  buttonsStyling: false,
+		}).then((result) => {
+		  if (result.isConfirmed) {
+			Swal.fire({
+			  title: '로그아웃 완료',
+			//   text: '안녕히가세요',
+			  icon: 'success',
+			  buttonsStyling: false,
+			  customClass: {
+				confirmButton: 'custom-success-button'
+			  }
+			})
+			.then(() => {
+			  navigate('/login', { replace: true });
+			})
+			.catch((error) => {
+			  Swal.fire(
+				'저장 실패',
+				'다시 시도하세요.',
+				'error'
+			  );
+			});
+		  }
+		});
+	  };
 
 	return (
 		<>
