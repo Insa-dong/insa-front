@@ -18,21 +18,23 @@
 }
 
 .mainContent:hover {
-     background-color: #eee;
-     cursor: pointer;
+    background-color: #eee;
+    cursor: pointer;
 }
 
 #prof {
     width: 50px;
     height: 50px;
     border-radius: 15px;
-    background-color: #FFA9B0;
+    background-color: #D8C5E2;
     color: white;
     text-align: center;
-    font-weight: bold;
     margin: auto 0.4vw;
     margin-right: 1.3vw;
     box-sizing: border-box;
+    padding-top: 1.5vh;
+    font-size: 12pt;
+
 }
 
 .wrapper {
@@ -53,12 +55,12 @@
     white-space: nowrap;
 }
 
-.date{
+.date {
     font-size: 10pt;
     margin-left: 2vw;
 }
 
-.writer{
+.writer {
     font-size: 10pt;
     padding-bottom: 0.8vh;
 }
@@ -84,26 +86,58 @@
     width: 1vw;
 }
 
-.allowImg{
+.allowImg {
     margin-left: 0.3vw;
     margin-right: 0.3vw;
     margin-bottom: 0.2vw;
     width: 0.3vw;
 }
 
-.boardBtn{
-        width: 8vw;
-        height: 2vw;
-        color: #fff;
-        font-size: 1.2rem;
-        background-color: #8CBAFF;
-        border: none;
-        border-radius: 5px;
-        margin-left: 65vw;
-        cursor: pointer;
+.boardBtn {
+    width: 8vw;
+    height: 2vw;
+    color: #fff;
+    font-size: 1.2rem;
+    background-color: #8CBAFF;
+    border: none;
+    border-radius: 5px;
+    margin-left: 65vw;
+    cursor: pointer;
 }
 
 .paging {
     margin-bottom: -6vh;
 }
-  
+
+#deptCode {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    margin: auto 0.4vw;
+    margin-right: 1.3vw;
+    box-sizing: border-box;
+    padding-top: 1.5vh;
+    font-size: 12pt;
+}
+
+.deptCode-DE0001 {
+    background-color: #D8C5E2;
+}
+
+.deptCode-DE0002 {
+    background-color: #FFA9B0;
+}
+
+.deptCode-DE0003 {
+    background-color: #FFDDA6;
+}
+
+.deptCode-DE0004 {
+    background-color: #C3C95E;
+}
+
+.deptCode-DE0005 {
+    background-color: #D9B89A;
+}
