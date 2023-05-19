@@ -6,10 +6,18 @@ import { callStudyStuRegistAdminAPI, callStudyStuTrainingTitleListAPI } from "..
 function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModal }) {
     const [form, setForm] = useState({});
     const dispatch = useDispatch();
-    const { trainingList, loading } = useSelector(state => state.studyStudentReducer);
+    const { trainingList } = useSelector(state => state.studyStudentReducer);
+
+    
 
     const onClickHandler = () => {
         setStudyStudentRegistModal(false);
+    };
+
+    const onClickOutsideModal = (e) => {
+        if (e.target === e.currentTarget) {
+            setStudyStudentRegistModal(false);
+        }
     };
 
     useEffect(() => {
@@ -35,12 +43,8 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
         dispatch(callStudyStuRegistAdminAPI(form));
     };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
     return (
-        <div className={CSS.modal}>
+        <div className={CSS.modal} onClick={onClickOutsideModal} >
             <div className={CSS.modalContainer}>
                 <div className={CSS.close} onClick={onClickHandler}>
                     X
@@ -53,10 +57,10 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
                                 <tr>
                                     <th>과정</th>
                                     <td>
-                                        <select className={CSS.selectBox} name="trainingTitle" onChange={onChangeHandler}>
+                                        <select className={CSS.selectBox} name="studyCode" onChange={onChangeHandler}>
                                             {trainingList && Array.isArray(trainingList) && trainingList.map((training, index) => (
-                                                <option key={index} value={training}>
-                                                    {training}
+                                                <option key={index} value={training.trainingCode}>
+                                                    {training.trainingTitle}
                                                 </option>
                                             ))}
                                         </select>
@@ -64,12 +68,34 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
                                 </tr>
                                 <tr>
                                     <th>회차</th>
-                                    <td>
+                                    <td>                  
                                         <input
                                             type="number"
                                             name="trainingCount"
+                                            placeholder={trainingList && trainingList.trainingCount}
                                             onChange={onChangeHandler}
                                         />
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <th>수강 등록</th>
+                                    <td>
+                                        <input
+                                            type="date"
+                                            name="studyEnrollDate"
+                                            onChange={ onChangeHandler }
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>수강 상태</th>
+                                    <td>
+                                        <select 
+                                            name = "studyState"
+                                            onChange = { onChangeHandler }>
+                                            <option>수강 중</option>
+                                            <option>수강 취소</option>
+                                        </select>
                                     </td>
                                 </tr>
                             </tbody>
