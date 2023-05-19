@@ -10,8 +10,7 @@ function MyAbsList({ myAbsList }) {
                     <th>출근시간</th>
                     <th>퇴근시간</th>
                     <th>총 근무시간</th>
-
-
+                    <th>연차 여부</th>
                 </tr>
             </thead>
             <tbody>

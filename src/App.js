@@ -27,6 +27,7 @@ import EmpRegistration from './pages/emp/EmpRegistration';
 import EmpDetail from './pages/emp/EmpDetail';
 import Off from './pages/off/Off';
 import AdminOff from './pages/off/AdminOff';
+import OffNow from './pages/off/OffNow';
 import Mypage from './pages/mpg/Mypage';
 
 
@@ -62,6 +63,7 @@ function App() {
 						<Route path="student/:stuCode" element={<StudentDetail />}/>
 						<Route path="off" element={<Off />} />
 						<Route path="off/adminOff" element={<AdminOff />} />
+						<Route path="off/adminOff/offNow" element={<OffNow />} />
 						<Route path="student/registration" element={<StudentRegistration />} />
 						
 					</Route>
