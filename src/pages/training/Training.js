@@ -21,6 +21,8 @@ function Training() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	console.log(training);
+
 	useEffect(
 		() => {
 			if (modify?.status === 200) {

@@ -111,7 +111,7 @@ function TrainingDetail() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
 								name = 'trainingCount'
-								defaultValue = {!modifyMode ? data.trainingCount || "" : form.trainingCount}
+								defaultValue = {!modifyMode ? data.studyCount || "" : form.studyCount}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>

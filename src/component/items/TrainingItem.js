@@ -70,7 +70,7 @@ function TrainingItem({item, checkValue, setCheckValue}) {
 			>{item.trainingKnow}</th>
 			<th
 				onClick = {onClickHandler}
-			>{item.trainingCount}</th>
+			>{item.studyCount}</th>
 		</tr>
 	)
 }
