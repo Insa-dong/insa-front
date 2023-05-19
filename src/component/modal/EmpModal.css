@@ -33,7 +33,7 @@
 
 .EmpModalDiv{    
   width: 500px;
-  height: 500px;
+  height: 460px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column; /*수평 정렬*/
@@ -50,9 +50,9 @@
 }
 
 .EmpModalTitle {
-  margin-bottom: 50px;
+  margin-bottom:7vh;
   font-size: 1.2rem;
-  margin-top: 5vw;
+  margin-top: 3.6vw;
 }
 
 
@@ -115,8 +115,8 @@
 }
 
 .EmpModalWrap h2{
-  margin-top: 4vw;
-  margin-bottom: 2.5vw;
+  margin-top: 3vw;
+  margin-bottom: 2vw;
 }
 
 .EmpField h1 {
