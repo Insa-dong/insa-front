@@ -114,8 +114,8 @@ function Board() {
             onClick={() => openModal(p)}
           >
             <ul style={{ display: 'flex' }}>
-              <li className={`${CSS[`deptCode-${p.noticeWriter.dept.deptCode}`]}`}>{p.noticeWriter.empName.slice(-2)}</li>
-              <li>
+                <li id={CSS.deptCode} className={`${CSS[`deptCode-${p.noticeWriter.dept.deptCode}`]}`}>{p.noticeWriter.empName.slice(-2)}</li>
+                <li>
                 <ul>
                   <ul style={{ display: 'flex' }}>
                     <li>
