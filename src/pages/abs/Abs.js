@@ -17,6 +17,42 @@ function Abs() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    /* 타이머 */
+    const [isWorking, setIsWorking] = useState(false);
+    const [workTime, setWorkTime] = useState(0);
+
+    useEffect(() => {
+        let timer;
+    
+        const startTime = localStorage.getItem('startTime');
+        if (startTime && !isNaN(Date.parse(startTime)) && !isWorking) {
+            const elapsedTime = Math.floor((new Date().getTime() - new Date(startTime).getTime()) / 1000);
+            setIsWorking(true);
+            setWorkTime(elapsedTime);
+        }
+    
+        if (isWorking) {
+            timer = setInterval(() => {
+                setWorkTime(prevTime => prevTime + 1);
+            }, 1000);
+        } else if (timer) {
+            clearInterval(timer);
+        }
+    
+        return () => clearInterval(timer);
+    }, [isWorking]);
+
+    const formatTime = (timeInSeconds) => {
+        const hours = Math.floor(timeInSeconds / 3600);
+        const minutes = Math.floor((timeInSeconds - (hours * 3600)) / 60);
+        const seconds = timeInSeconds - (hours * 3600) - (minutes * 60);
+    
+        const formattedHours = hours.toString().padStart(2, '0');
+        const formattedMinutes = minutes.toString().padStart(2, '0');
+        const formattedSeconds = seconds.toString().padStart(2, '0');
+    
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    };
 
 
     useEffect(() => {
@@ -38,7 +74,7 @@ function Abs() {
         }
     };
 
-    const handleCheckIn = () => {
+    const handleCheckIn = async () => {
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -85,33 +121,35 @@ function Abs() {
                 cancelButtonText: '취소',
                 reverseButtons: true,
                 buttonsStyling: false,
-            }).then((result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
-                    dispatch(callCheckInAPI())
-                        .then(() => {
-                            Swal.fire({
-                                title: '등록 완료',
-                                text: '출근 시간을 확인하세요.',
-                                icon: 'success',
-                                buttonsStyling: false,
-                                customClass: {
-                                    confirmButton: 'custom-success-button'
-                                }
-                            });
-                        })
-                        .catch((error) => {
-                            Swal.fire(
-                                '등록 실패',
-                                '다시 시도하세요.',
-                                'error'
-                            );
+                    try {
+                        await dispatch(callCheckInAPI());
+                        localStorage.setItem('startTime', new Date().toString()); // 출근 버튼을 누른 시간 저장
+            setIsWorking(true);
+            setWorkTime(0);
+                        Swal.fire({
+                            title: '등록 완료',
+                            text: '출근 시간을 확인하세요.',
+                            icon: 'success',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-success-button'
+                            },
                         });
+                    } catch (error) {
+                        Swal.fire(
+                            '등록 실패',
+                            '다시 시도하세요.',
+                            'error'
+                        );
+                    }
                 }
             });
         }
     };
 
-    const handleCheckOut = () => {
+    const handleCheckOut = async () => {
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, '0');
@@ -119,7 +157,7 @@ function Abs() {
         const todayDate = `${year}-${month}-${day}`;
         const hasCheckedIn = myAbsList.some(abs => abs.absDate === todayDate && abs.absStart !== null);
         const hasCheckedOut = myAbsList.some(abs => abs.absDate === todayDate && abs.absEnd !== null);
-
+    
         if (!hasCheckedIn) {
             Swal.fire({
                 title: '출근 기록이 없습니다',
@@ -158,27 +196,28 @@ function Abs() {
                 cancelButtonText: '취소',
                 reverseButtons: true,
                 buttonsStyling: false,
-            }).then((result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
-                    dispatch(callCheckOutAPI())
-                        .then(() => {
-                            Swal.fire({
-                                title: '등록 완료',
-                                text: '퇴근 시간을 확인하세요.',
-                                icon: 'success',
-                                buttonsStyling: false,
-                                customClass: {
-                                    confirmButton: 'custom-success-button'
-                                }
-                            });
-                        })
-                        .catch((error) => {
-                            Swal.fire(
-                                '등록 실패',
-                                '다시 시도하세요.',
-                                'error'
-                            );
+                    try {
+                        await dispatch(callCheckOutAPI());
+                        localStorage.removeItem('startTime'); // 퇴근 버튼을 누르면 startTime 제거
+                        setIsWorking(false);
+                        Swal.fire({
+                            title: '등록 완료',
+                            text: '퇴근 시간을 확인하세요.',
+                            icon: 'success',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-success-button'
+                            },
                         });
+                    } catch (error) {
+                        Swal.fire(
+                            '등록 실패',
+                            '다시 시도하세요.',
+                            'error'
+                        );
+                    }
                 }
             });
         }
@@ -210,6 +249,11 @@ function Abs() {
                     <button className="abs-end-btn" onClick={handleCheckOut}>
                         퇴근하기
                     </button>
+                </div>
+
+                {/*타이머 */}
+                <div className="abs-timer">
+                 {formatTime(workTime)}
                 </div>
 
                 <div className="abs-search-container">
