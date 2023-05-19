@@ -1,7 +1,7 @@
 import MyAbsItem from "../items/MyAbsItem";
 import './MyAbsList.css';
 
-function MyAbsList({myAbsList}) {
+function MyAbsList({ myAbsList }) {
     return (
         <table className="absDiv">
             <thead>
@@ -10,14 +10,18 @@ function MyAbsList({myAbsList}) {
                     <th>출근시간</th>
                     <th>퇴근시간</th>
                     <th>총 근무시간</th>
-                   
-                   
+
+
                 </tr>
             </thead>
             <tbody>
-                {Array.isArray(myAbsList) && myAbsList.map(abs => (
-                    <MyAbsItem key={abs.absCode} abs={abs} />
-                ))}
+                {Array.isArray(myAbsList) && myAbsList.length > 0 ? (
+                    myAbsList.map(abs => <MyAbsItem key={abs.absCode} abs={abs} />)
+                ) : (
+                    <tr>
+                        <td colSpan="8">데이터가 없습니다.</td>
+                    </tr>
+                )}
             </tbody>
         </table>
     )
