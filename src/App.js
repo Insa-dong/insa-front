@@ -27,6 +27,7 @@ import EmpRegistration from './pages/emp/EmpRegistration';
 import EmpDetail from './pages/emp/EmpDetail';
 import Off from './pages/off/Off';
 import AdminOff from './pages/off/AdminOff';
+import Mypage from './pages/mpg/Mypage';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 					<Route path="/login" element={<ProtectedRoute loginCheck={false}><Login /></ProtectedRoute>} />
 					<Route path="/" element={<ProtectedRoute loginCheck={true}><Layout /></ProtectedRoute>}>
 						<Route index element={<Main />} />
+						<Route path="mypage" element={<Mypage/>}/>
 						<Route path="board" element={<Board />} />
 						<Route path="board/:boardCode" element={<BoardDetail />} />
 						<Route path="training"

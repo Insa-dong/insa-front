@@ -113,7 +113,7 @@ function Board() {
             onClick={() => openModal(p)}
           >
             <ul style={{ display: 'flex' }}>
-              <li id={CSS.prof}></li>
+              <li id={CSS.prof}>{p.noticeWriter.empName}</li>
               <li>
                 <ul>
                   <ul style={{ display: 'flex' }}>

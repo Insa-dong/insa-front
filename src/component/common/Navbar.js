@@ -60,7 +60,7 @@ function Navbar() {
 					<img src="/images/mainTITLE.png" className="moreThanus"></img>
 					</NavLink>
 					<div className="sideBox">
-						<NavLink to="/">
+						<NavLink to="/mypage">
 							<div id="prof"></div>
 						</NavLink>
 						<div className="sideTxt">

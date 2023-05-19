@@ -59,8 +59,19 @@
     height: 25vh;
 }
 
-
-.fileImgDiv {
-  width: 0.4vw;
+.fileImgg {
+  width: 0.9vw;
   margin-top: 1.5vh;
+}
+
+.ButtonStyle2 {
+  width: 10vh;
+  height: 5vh;
+  background-color: #8CBAFF;
+  border-radius: 5px;
+  color: #FFFFFF;
+  border: 1px solid #8CBAFF;
+  cursor: pointer;
+  margin-top: 6vh;
+  margin-left: 9vw;
 }
