@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import CSS from "./StudyStudentUpdateModal.module.css";
 
-function StudyStudentUpdateModal({ setStudyStudentUpdateModal, student, study }) {
-  const [form, setForm] = useState();
+function StudyStudentUpdateModal({ studyStuReview ,setStudyStudentUpdateModal }) {
+
   const dispatch = useDispatch();
 
   const onBackClickHandler = () => {
@@ -27,7 +27,7 @@ function StudyStudentUpdateModal({ setStudyStudentUpdateModal, student, study })
                     <input
                       type="text"
                       name="trainingTitle"
-                    //   value={study ? study.trainingTitle : ""}
+                      value={studyStuReview ? studyStuReview.trainingTitle : ""}
                       readOnly={true}
                     />
                   </td>
@@ -38,7 +38,7 @@ function StudyStudentUpdateModal({ setStudyStudentUpdateModal, student, study })
                     <input
                       type="date"
                       name="studyEnrollDate"
-                    //   value={study ? study.studyEnrollDate : ""}
+                      value={studyStuReview ? studyStuReview.studyEnrollDate : ""}
                     />
                   </td>
                 </tr>
@@ -48,7 +48,7 @@ function StudyStudentUpdateModal({ setStudyStudentUpdateModal, student, study })
                     <input
                       type="text"
                       name="StudyState"
-                    //   value={study ? study.studyState : ""}
+                      value={studyStuReview ? studyStuReview.studyState : ""}
                     />
                   </td>
                 </tr>
@@ -60,5 +60,6 @@ function StudyStudentUpdateModal({ setStudyStudentUpdateModal, student, study })
     </div>
   );
 }
+
 
 export default StudyStudentUpdateModal;
