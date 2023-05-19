@@ -40,12 +40,7 @@ function Mypage() {
                     </ul>
                     <ul style={{ display: 'flex' }}>
                         <li className={CSS.gender}>성별</li>
-                        <li>
-                            <select className={CSS.genderinfo}>
-                                <option value="male">남</option>
-                                <option value="female">여</option>
-                            </select>
-                        </li>
+                        <li className={CSS.genderinfo}>여</li>
                     </ul>
                 </div>
                 <div className={CSS.hrContainer}>
@@ -68,7 +63,6 @@ function Mypage() {
                     </ul>
                 </div>
             </div>
-
         </>
     );
 }
