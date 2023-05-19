@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { callModifyEmpAPI } from "../../apis/EmpAPICalls";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
+
 import './EmpModal.css';
 
-function EmpModal({ empCode, setEmpModal }) {
+function EmpModal({emp, setEmpModal }) {
+
+    console.log(emp);
+
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -33,15 +38,15 @@ function EmpModal({ empCode, setEmpModal }) {
                         <div className="EmpPropBox">
                             <div className="EmpPropLeft"></div>
                             <div className="EmpPropRight">
-                                <div className="EmpPropName">김영한</div>
+                                <div className="EmpPropName">{emp.empName}</div>
                                 <div>
                                     <div className="EmpPropTxtBox">
                                         <div className="EmpPropTit">부서</div>
-                                        <div className="EmpPropInfo">행정</div>
+                                        <div className="EmpPropInfo">{emp.dept.deptName}</div>
                                     </div>
                                     <div className="EmpPropTxtBox">
                                         <div className="EmpPropTit">직책</div>
-                                        <div className="EmpPropInfo">대표</div>
+                                        <div className="EmpPropInfo">{emp.job.jobName}</div>
                                     </div>
                                 </div>
                             </div>
@@ -55,11 +60,11 @@ function EmpModal({ empCode, setEmpModal }) {
                             <div>
                                 <div className="EmpPropTxtBox">
                                     <div className="EmpInfoTit">휴대전화</div>
-                                    <div className="EmpPropInfo">010-1234-5678</div>
+                                    <div className="EmpPropInfo">{emp.empPhone}</div>
                                 </div>
                                 <div className="EmpPropTxtBox">
                                     <div className="EmpInfoTit">이메일 </div>
-                                    <div className="EmpPropInfo">hellogreedy@gmail.com</div>
+                                    <div className="EmpPropInfo">{emp.empEmail}</div>
                                 </div>
                             </div>
 
