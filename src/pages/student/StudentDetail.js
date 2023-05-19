@@ -11,6 +11,7 @@ import AdviceReviewModal from "../../component/modal/AdviceReviewModal";
 import EvaReviewCheckModal from "../../component/modal/EvaReviewCheckModal";
 import StudyStudentRegistModal from "../../component/modal/StudyStudentRegistModal";
 import StudyStudentUpdateModal from "../../component/modal/StudyStudentUpdateModal";
+import Swal from "sweetalert2";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -61,6 +62,7 @@ function StudentDetail() {
     const [updateModalVisible, setUpdateModalVisible] = useState(false);
     const [studyStudentUpdate, setStudyStudentUpdate] = useState("");
 
+    
     const okAdviceConfirm = () => {
         dispatch(callAdviceDeleteForAdminAPI(stuCode));
     };
@@ -121,8 +123,8 @@ function StudentDetail() {
         setRegistModalVisible(true);
     }
 
-    const onClickUpdateStudyStuHandler =() => {
-        setStudyStudentUpdate();
+    const onClickUpdateStudyStuHandler =(studyStudentUpdate) => {
+        setStudyStudentUpdate(studyStudentUpdate);
         setUpdateModalVisible(true);
     }
 
@@ -142,8 +144,43 @@ function StudentDetail() {
     useEffect(
         () => {
             if (modify?.status === 200) {
-                alert('수강생 정보 수정이 완료 되었습니다.');
-            }
+                Swal.fire({
+                    text: '수정 하시겠습니까?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    customClass: {
+                      confirmButton: 'custom-confirm-button',
+                      cancelButton: 'custom-cancel-button'
+                    },
+                    confirmButtonColor: '#8CBAFF',
+                    cancelButtonColor: '#DADADA',
+                    confirmButtonText: '확인',
+                    cancelButtonText: '취소',
+                    reverseButtons: true,
+                    buttonsStyling: false,
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire({
+                        title: '수정이 완료 되었습니다.',
+                        icon: 'success',
+                        buttonsStyling: false,
+                        customClass: {
+                          confirmButton: 'custom-success-button'
+                        }
+                      })
+                    //   .then(() => {
+                    //     navigate('/login', { replace: true });
+                    //   })
+                      .catch((error) => {
+                        Swal.fire(
+                          '저장 실패',
+                          '다시 시도하세요.',
+                          'error'
+                        );
+                      });
+                    }
+                  });
+                };
         },
         [modify]
     );
@@ -314,7 +351,7 @@ function StudentDetail() {
                                     <td>{study.trainingTitle}</td>
                                     <td>{study.trainingCount}</td>
                                     <td>
-                                        <button className="studyStuUpdateBtn" onClick={ onClickUpdateStudyStuHandler }>수정</button>
+                                        <button className="studyStuUpdateBtn" onClick={() => onClickUpdateStudyStuHandler(study) }>수정</button>
                                         <button className="studyStuDeleteBtn" onClick={studyStuDelete}>삭제</button>
                                     </td>
                                 </tr>
