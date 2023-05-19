@@ -1,6 +1,6 @@
 
 
-function MyAbsItem({ abs: {absDate, absStart, absEnd }}) {
+function MyAbsItem({ abs: {absDate, absStart, absEnd, offDiv }}) {
   
   
     const formatDate = (dateString) => {
@@ -68,6 +68,7 @@ function MyAbsItem({ abs: {absDate, absStart, absEnd }}) {
         <td>{formatTime(absStart)}</td>
         <td>{formatTime(absEnd)}</td>
         <td>{calculateTotalWorkTime(absStart, absEnd)}</td>
+        <td>{offDiv}</td>
       </tr>
     );
   }
