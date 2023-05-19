@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { callBoardListAPI, callBoardSearchAPI } from "../../apis/BoardAPICall";
 import boardReducer from "../../modules/BoardModule";
 import BoardDetailModal from "../../component/modal/BoardDetailModal";
+import BoardRegistModal from "../../component/modal/BoardRegistModal";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -34,6 +35,17 @@ function Board() {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  /* 공지 등록하기 모달창 */
+  const [isRegistModalOpen, setIsRegistModalOpen] = useState(false);
+
+  const openRegistModal = () => {
+    setIsRegistModalOpen(true);
+  };
+
+  const closeRegistModal = () => {
+    setIsRegistModalOpen(false);
   };
 
 
@@ -74,7 +86,6 @@ function Board() {
             id="StuSelect"
             onChange={onSearchOptionChangeHandler}
           >
-            <option value="all">전체</option>
             <option value="title">제목</option>
             <option value="content">내용</option>
             <option value="writer">작성자</option>
@@ -102,7 +113,7 @@ function Board() {
             onClick={() => openModal(p)}
           >
             <ul style={{ display: 'flex' }}>
-              <li id={CSS.prof}></li>
+              <li id={CSS.prof}>{p.noticeWriter.empName}</li>
               <li>
                 <ul>
                   <ul style={{ display: 'flex' }}>
@@ -126,18 +137,19 @@ function Board() {
             </ul>
           </div>))
         }
-        <button 
-              className={CSS.boardBtn} 
-              type="button"
-            >
-              + 공지 등록하기
-              </button>
-        <BoardDetailModal isOpen={isModalOpen} onClose={closeModal} selectedItem={selectedItem} />
-
-
         <div className={CSS.paging}>
           {board.pageInfo && <PagingBar pageInfo={board.pageInfo} setCurrentPage={setCurrentPage} />}
         </div>
+        <button 
+              className={CSS.boardBtn} 
+              type="button"
+              onClick={() => openRegistModal()}
+            >
+              + 공지 등록하기
+            </button>
+        <BoardDetailModal isOpen={isModalOpen} onClose={closeModal} selectedItem={selectedItem} />
+        <BoardRegistModal isRegistOpen={isRegistModalOpen} onRegistClose={closeRegistModal}/>
+
       </div>
     </>
   );

@@ -1,0 +1,21 @@
+.mypageWrapper {
+    width: 74vw;
+    height: 78vh;
+    margin-left: 20vw;
+}
+
+.profContainer {
+    display: flex;
+}
+
+.prof {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    background-color: #FFA9B0;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    margin: auto 0.4vw;
+    box-sizing: border-box;
+}
