@@ -27,9 +27,9 @@
 
 .close {
   width: 1vw;
-  margin-top: 0.5vw;
+  margin-top: 3vh;
   margin-left: auto;
-  margin-right: 0;
+  margin-right: 3vw;
   cursor: pointer;
 }
 
@@ -65,8 +65,8 @@
 }
 
 .writeDate {
-    margin-top: 0.7vh;
-    margin-left: 3vw;
+    margin-top: 0.5vh;
+    margin-left: 8.2vw;
     padding-top: 0.4vh;
     background-color: black;
     color: white;
@@ -75,11 +75,42 @@
 }
 
 .date {
-    margin-top: 0.7vh;
-    margin-left: 3vw;
+    margin-top: 0.5vh;
+    margin-left: 1vw;
     padding-top: 0.4vh;
     background-color: black;
     color: white;
     border-radius: 10px;
     font-size: 10pt;
+}
+
+.title {
+    margin-left: 0.3vw;
+    margin-top: 1.5vh;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.fileImg {
+    margin-top: 1.5vh;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    width: 0.8vw;
+}
+
+.boardContentImg {
+    margin-top: 1vh;
+}
+
+.boardContent{
+    margin-top: 2.3vh;
+}
+
+.content {
+    margin-left: 0.3vw;
+    margin-top: 1.5vh;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 29vw;
+    height: 40vh;
 }
