@@ -44,16 +44,25 @@ export const callPetiteStudyInfoAPI = (studyInfoCode) => {
 }
 
 
-export const callModifyStudyInfo = ({form, studyInfoCode}) => {
+export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 
 	console.log(form);
-	const requestURL = `${PRE_URL}/studyInfo/${studyInfoCode}`;
+	console.log('api day', day);
+	const date1 = new Date(`2022-02-12 ${day[0].startTime}`);
+	console.log(date1);
 
 	const daysOfWeek = ['월', '화', '수', '목', '금'];
 
-	daysOfWeek.map((day, index) => {
-		// if(){}
-	})
+	day = day.filter(date => date.startTime && date.endTime)
+		.map((date, index) => ({
+			studyCode: form.study.studyCode,
+			studyDate: daysOfWeek[index],
+			studyStartTime: new Date(`2022-02-12 ${date.startTime}`),
+			studyEndTime: new Date(`2022-02-12 ${date.endTime}`),
+		}))
+
+	console.log(day);
+	const requestURL = `${PRE_URL}/studyInfo/${studyInfoCode}`;
 
 
 	return async (dispatch, getState) => {
@@ -70,7 +79,7 @@ export const callModifyStudyInfo = ({form, studyInfoCode}) => {
 					studyStartDate: form.study.studyStartDate,
 					studyEndDate: form.study.studyEndDate,
 					studyMaxPeople: form.study.studyMaxPeople,
-					// studyTimes: formattedStudyTimes,
+					studyTimes: day,
 					training: {
 						trainingCode: form.study.training.trainingCode,
 						trainingCount: form.study.training.trainingCount,
@@ -90,6 +99,7 @@ export const callModifyStudyInfo = ({form, studyInfoCode}) => {
 			})
 		}).then(res => res.json());
 
+		console.log(result);
 		if (result.status === 200) {
 			dispatch(putStudyinfo(result));
 		}

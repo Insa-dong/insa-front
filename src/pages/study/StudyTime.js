@@ -1,43 +1,51 @@
 import {useState} from "react";
 import DateCSS from './StudyTime.module.css';
 
-function StudyTime({studyTimes, readOnly, form, setForm, studyDate, setStudyDate}) {
+function StudyTime({studyTimes, readOnly, form, day, setDay}) {
 
 	const [dates, setDates] = useState(["월", "화", "수", "목", "금"]);
-	const [day, setDay] = useState([]);
-	const makeInitialDay = () => {
-		const initialDay = dates.map(date => {
-			const find = studyTimes.find(time => time.studyDate === date);
-			let startTime = '';
-			let endTime = '';
-			if (find) {
-				startTime = find.startTime;
-				endTime = find.endTime;
-			}
-			return {
-				startTime, endTime
-			}
-		});
 
-		setDay(initialDay);
+	const formatTime = (date) => {
+		if (date instanceof Date) {
+			const hours = String(date.getHours()).padStart(2, '0');
+			const minutes = String(date.getMinutes()).padStart(2, '0');
+			return `${hours}:${minutes}`;
+		}
 	}
+
 	const onChangeHandler = (e, index) => {
-		console.log(e);
-		console.log(index);
-		if (day.length === 0) makeInitialDay();
-		let temp = day.map(i => i);
-		temp[index] = ({
-			...temp[index],
-			[e.target.name]: e.target.value
-		})
-		setDay(temp);
-		setForm({
-			...form,
-			day
-		})
+		if (day.length === 0) {
+			const initialDay = dates.map(date => {
+				const find = studyTimes.find(time => time.studyDate === date);
+				let startTime = '';
+				let endTime = '';
+				if (find) {
+					startTime = find.studyStartTime;
+					endTime = find.studyEndTime;
+				}
+				return {
+					startTime, endTime
+				}
+			});
+			initialDay[index] = ({[e.target.name]: e.target.value});
+			setDay(initialDay);
+		} else {
+			let temp = day.map(i => i);
+			temp[index] = ({
+				...temp[index],
+				[e.target.name]: e.target.value
+			})
+			setDay(preDay => {
+					preDay[index] = temp[index];
+					return preDay;
+				}
+			)
+			console.log('temp : ', temp);
+		}
 	}
 
 	console.log('day', day);
+
 	const mapArrayToDate = (dateArray) => {
 
 		return dateArray.map((date, index) => {
@@ -48,14 +56,14 @@ function StudyTime({studyTimes, readOnly, form, setForm, studyDate, setStudyDate
 						{date}
 						{<input type = "time"
 						        className = {DateCSS.calendarDateTime}
-						        defaultValue = {readOnly ? find.studyStartTime : form.study.studyTimes.studyStartTimes}
+						        defaultValue = {readOnly ? formatTime(new Date(find.studyStartTime)) : formatTime(new Date(form.study.studyTimes.studyStartTime))}
 						        readOnly = {readOnly}
 						        onChange = {(val) => onChangeHandler(val, index)}
 						        name = "startTime"
 						/>}
 						{<input type = "time" className = {DateCSS.calendarDateTime2}
 						        onChange = {(val) => onChangeHandler(val, index)}
-						        defaultValue = {readOnly ? find.studyEndTime : form.study.studyTimes.studyEndTimes}
+						        defaultValue = {readOnly ? formatTime(new Date(find.studyEndTime)) : formatTime(new Date(form.study.studyTimes.studyEndTime))}
 						        readOnly = {readOnly}
 						        name = "endTime"
 						/>}
