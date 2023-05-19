@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
@@ -14,10 +14,16 @@ function AdminAbs() {
     const abs = useSelector(state => state.absReducer);
     const absList = abs.data || [];
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(callAbsListAPI({ currentPage }));
     }, [dispatch, currentPage]);
+
+    const handleReloadPage = () => {
+        navigate('/abs/adminAbs', { replace: true });
+        window.location.reload();
+    };
 
     const handleDateChange = (event) => {
         setSelectedDate(event.target.value);
@@ -46,7 +52,7 @@ function AdminAbs() {
                     </NavLink>
 
                     <NavLink to="/abs/adminAbs" >
-                        <div className="abs-menu">
+                        <div className="abs-menu" onClick={handleReloadPage}>
                             구성원 근태
                         </div>
                     </NavLink>
