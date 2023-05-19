@@ -154,7 +154,7 @@ function EmpRegistration() {
                   onChange={onChangeHandler}
                 >
                   {Array.isArray(empDeptJob.deptList) && empDeptJob.deptList.map(empDeptJob => (
-                    <option value={empDeptJob.deptCode}>{empDeptJob.deptName}</option>
+                    <option key={empDeptJob.deptCode} value={empDeptJob.deptCode}>{empDeptJob.deptName}</option>
                   ))}
                 </select>
               </td>
@@ -168,7 +168,7 @@ function EmpRegistration() {
                   onChange={onChangeHandler}
                 >
                   {Array.isArray(empDeptJob.jobList) && empDeptJob.jobList.map(empDeptJob => (
-                    <option value={empDeptJob.jobCode}>{empDeptJob.jobName}</option>
+                    <option key={empDeptJob.jobCode} value={empDeptJob.jobCode}>{empDeptJob.jobName}</option>
                   ))}
                 </select>
               </td>
