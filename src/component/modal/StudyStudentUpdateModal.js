@@ -27,7 +27,7 @@ function StudyStudentUpdateModal({ setStudyStudentUpdateModal, student, study })
                     <input
                       type="text"
                       name="trainingTitle"
-                    //   value={study ? study.trainingTitle : ""}
+                      value={study ? study.trainingTitle : ""}
                       readOnly={true}
                     />
                   </td>
@@ -38,7 +38,7 @@ function StudyStudentUpdateModal({ setStudyStudentUpdateModal, student, study })
                     <input
                       type="date"
                       name="studyEnrollDate"
-                    //   value={study ? study.studyEnrollDate : ""}
+                      value={study ? study.studyEnrollDate : ""}
                     />
                   </td>
                 </tr>
@@ -48,7 +48,7 @@ function StudyStudentUpdateModal({ setStudyStudentUpdateModal, student, study })
                     <input
                       type="text"
                       name="StudyState"
-                    //   value={study ? study.studyState : ""}
+                      value={study ? study.studyState : ""}
                     />
                   </td>
                 </tr>
