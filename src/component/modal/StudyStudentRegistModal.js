@@ -60,7 +60,7 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
                                         <select className={CSS.selectBox} name="studyCode" onChange={onChangeHandler}>
                                             {trainingList && Array.isArray(trainingList) && trainingList.map((training, index) => (
                                                 <option key={index} value={training.studyCode}>
-                                                    {training.trainingTitle}
+                                                    {training.trainingTitle} 
                                                 </option>
                                             ))}
                                         </select>
