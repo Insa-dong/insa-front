@@ -17,19 +17,6 @@ export const callStudyInfoListAPI = ({currentPage}) => {
 	};
 }
 
-export const callStudyInfoAPI = (studyInfoCode) => {
-
-	const requestURL = `${PRE_URL}/studyInfo/${studyInfoCode}`;
-
-	return async (dispatch, getState) => {
-		const result = await fetch(requestURL).then(res => res.json());
-
-		if (result.status === 200) {
-			dispatch(getStudyinfo(result));
-		}
-	};
-}
-
 export const callPetiteStudyInfoAPI = (studyInfoCode) => {
 
 	const requestURL = `${PRE_URL}/PetiteStudyInfo/${studyInfoCode}`;
@@ -48,18 +35,15 @@ export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 
 	console.log(form);
 	console.log('api day', day);
-	const date1 = new Date(`2022-02-12 ${day[0].startTime}`);
-	console.log(date1);
 
 	const daysOfWeek = ['월', '화', '수', '목', '금'];
 
-	day = day.filter(date => date.startTime && date.endTime)
-		.map((date, index) => ({
-			studyCode: form.study.studyCode,
-			studyDate: daysOfWeek[index],
-			studyStartTime: new Date(`2022-02-12 ${date.startTime}`),
-			studyEndTime: new Date(`2022-02-12 ${date.endTime}`),
-		}))
+	day = day.map((date, index) => ({
+		studyCode: form.study.studyCode,
+		studyDate: daysOfWeek[index],
+		studyStartTime: date.startTime,
+		studyEndTime: date.endTime,
+	})).filter(date => date.studyStartTime && date.studyEndTime)
 
 	console.log(day);
 	const requestURL = `${PRE_URL}/studyInfo/${studyInfoCode}`;
@@ -79,10 +63,10 @@ export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 					studyStartDate: form.study.studyStartDate,
 					studyEndDate: form.study.studyEndDate,
 					studyMaxPeople: form.study.studyMaxPeople,
+					studyCount: form.studyCount ? form.studyCount : form.study.studyCount,
 					studyTimes: day,
 					training: {
-						trainingCode: form.study.training.trainingCode,
-						trainingCount: form.study.training.trainingCount,
+						trainingCode: form.trainingCode ? form.trainingCode : form.study.training.trainingCode,
 						trainingTitle: form.study.training.trainingTitle
 					}
 				},
@@ -93,7 +77,7 @@ export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 				studyInfoStartDate: form.studyInfoStartDate,
 				studyInfoEndDate: form.studyInfoEndDate,
 				teacher: {
-					empCode: form.teacher.empCode,
+					empCode: form.empCode ? form.empCode : form.teacher.empCode,
 					empName: form.teacher.empName
 				}
 			})

@@ -54,7 +54,7 @@ function StudyItem({item, checkValue, setCheckValue}) {
 				       onChange = {onChangeHandler}
 				       style = {display}
 				/>
-				{`${item.study.training.trainingCode}-${item.study.training.trainingCount}-${item.studyInfoCode}`}
+				{`${item.study.training.trainingCode}-${item.study.studyCount}-${item.studyInfoCode}`}
 			</th>
 			<th onClick = {onClickHandler}>
 				{item && item.studyTitle}

@@ -10,6 +10,7 @@ import { callStudyStuDeleteAdminAPI, callStudyStuListAPI } from "../../apis/Stud
 import AdviceReviewModal from "../../component/modal/AdviceReviewModal";
 import EvaReviewCheckModal from "../../component/modal/EvaReviewCheckModal";
 import StudyStudentRegistModal from "../../component/modal/StudyStudentRegistModal";
+import StudyStudentUpdateModal from "../../component/modal/StudyStudentUpdateModal";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -53,6 +54,12 @@ function StudentDetail() {
 
     const [selectedRegistStudy, setSelectedRegistStudy] = useState(null);
     const [registModalVisible, setRegistModalVisible] = useState(false);
+
+    const [studyStudentRegist, setStudyStudentRegist] = useState("");
+
+    const [selectedUpdateStudy, setSelectedUpdateStudy] = useState(null);
+    const [updateModalVisible, setUpdateModalVisible] = useState(false);
+    const [studyStudentUpdate, setStudyStudentUpdate] = useState("");
 
     const okAdviceConfirm = () => {
         dispatch(callAdviceDeleteForAdminAPI(stuCode));
@@ -108,10 +115,17 @@ function StudentDetail() {
         setEvaReviewModalVisible(true);
     }
 
-    const onClickRegistHandler = (studyStudentRegist) => {
+    const onClickRegistHandler = (studyStudentRegist, stuCode) => {
         setSelectedRegistStudy(studyStudentRegist);
+        console.log(stuCode);
         setRegistModalVisible(true);
     }
+
+    const onClickUpdateStudyStuHandler =() => {
+        setStudyStudentUpdate();
+        setUpdateModalVisible(true);
+    }
+
 
     useEffect(
         () => {
@@ -265,15 +279,26 @@ function StudentDetail() {
 
                 {registModalVisible && (
                     <StudyStudentRegistModal
-                    studyStudentRegist={ selectedRegistStudy }
-                        setSelectedRegistStudy = {setRegistModalVisible}
+                        studyStudentRegist={selectedRegistStudy}
+                        setStudyStudentRegistModal={setRegistModalVisible}
+                        stuCode={stuCode}
                     />
                 )}
 
                 <div className="studyHeaderContainer">
                     <h2 className="studyHeader">과정 내역</h2>
-                    <button className="registrationButton" onClick = { onClickRegistHandler }>등록</button>
+                    {/* <button className="registrationButton" onClick={ onClickRegistHandler }>등록</button> */}
+                    <button className="registrationButton" onClick={() => onClickRegistHandler(studyStudentRegist, stuCode)}>등록</button>
+
                 </div>
+
+                {updateModalVisible && (
+                    <StudyStudentUpdateModal
+                    studyStudentUpdate = { selectedUpdateStudy }
+                    setStudyStudentUpdateModal = { setUpdateModalVisible }
+                    />
+                )}
+
                 <table className="stuDetailDiv">
                     <thead>
                         <tr>
@@ -289,7 +314,7 @@ function StudentDetail() {
                                     <td>{study.trainingTitle}</td>
                                     <td>{study.trainingCount}</td>
                                     <td>
-                                        <button className="studyStuUpdateBtn">수정</button>
+                                        <button className="studyStuUpdateBtn" onClick={ onClickUpdateStudyStuHandler }>수정</button>
                                         <button className="studyStuDeleteBtn" onClick={studyStuDelete}>삭제</button>
                                     </td>
                                 </tr>
@@ -305,7 +330,7 @@ function StudentDetail() {
                 {evaReviewModalVisible && (
                     <EvaReviewCheckModal
                         evaReview={selectedEvaReview}
-                        setEvaReviewModal={setAdviceReviewModalVisible}
+                        setEvaReviewModal={setEvaReviewModalVisible}
                     />
                 )}
 
