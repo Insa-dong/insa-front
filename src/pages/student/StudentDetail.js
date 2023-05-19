@@ -265,14 +265,15 @@ function StudentDetail() {
 
                 {registModalVisible && (
                     <StudyStudentRegistModal
-                    studyStudentRegist={ selectedRegistStudy }
-                        setSelectedRegistStudy = {setRegistModalVisible}
+                        studyStudentRegist={selectedRegistStudy}
+                        setStudyStudentRegistModal={setRegistModalVisible}
+                        stuCode={stuCode}
                     />
                 )}
 
                 <div className="studyHeaderContainer">
                     <h2 className="studyHeader">과정 내역</h2>
-                    <button className="registrationButton" onClick = { onClickRegistHandler }>등록</button>
+                    <button className="registrationButton" onClick={onClickRegistHandler}>등록</button>
                 </div>
                 <table className="stuDetailDiv">
                     <thead>

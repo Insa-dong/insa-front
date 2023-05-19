@@ -3,7 +3,7 @@ import CSS from "./StudyStudentRegistModal.module.css";
 import { useEffect, useState } from "react";
 import { callStudyStuRegistAdminAPI, callStudyStuTrainingTitleListAPI } from "../../apis/StudyStuAPICalls";
 
-function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModal }) {
+function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModal , stuCode }) {
     const [form, setForm] = useState({});
     const dispatch = useDispatch();
     const { trainingList } = useSelector(state => state.studyStudentReducer);
@@ -59,14 +59,14 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
                                     <td>
                                         <select className={CSS.selectBox} name="studyCode" onChange={onChangeHandler}>
                                             {trainingList && Array.isArray(trainingList) && trainingList.map((training, index) => (
-                                                <option key={index} value={training.trainingCode}>
+                                                <option key={index} value={training.studyCode}>
                                                     {training.trainingTitle}
                                                 </option>
                                             ))}
                                         </select>
                                     </td>
                                 </tr>
-                                <tr>
+                                {/* <tr>
                                     <th>회차</th>
                                     <td>                  
                                         <input
@@ -76,7 +76,7 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
                                             onChange={onChangeHandler}
                                         />
                                     </td> 
-                                </tr>
+                                </tr> */}
                                 <tr>
                                     <th>수강 등록</th>
                                     <td>
