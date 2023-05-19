@@ -1,0 +1,130 @@
+.Emp-modify-modal {
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+
+
+.EmpModalContainer{
+  position: absolute;
+}
+
+.EmpModalClose {
+  color: #AAAAAA;
+  font-size: 30px;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+.EmpModalClose:hover,
+.EmpModalClose:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.EmpModalDiv{    
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수평 정렬*/
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  border-radius: 25px;    
+}
+
+.EmpModalWrap{
+  width: 320px;
+  height: 500px;
+}
+
+.EmpModalTitle {
+  margin-bottom: 50px;
+  font-size: 1.2rem;
+  margin-top: 5vw;
+}
+
+
+.EmpPropBox{
+    display: flex;
+    box-sizing: border-box;
+    width: 320px;    
+}
+
+.EmpInfoTit{
+  width: 60px;
+}
+
+.EmpPropLeft {
+  width: 80px;
+  height: 80px;
+  border-radius: 15px;
+  background-color: #D8C5E2;
+  color: wshite;
+  font-weight: bold;
+  margin-right: 4vw;
+  box-sizing: border-box;
+}
+
+.EmpPropRight{
+  text-align: left;
+  margin-top: -9px;
+}
+
+.EmpPropName {
+  display: block;
+  padding-top: 0.3vh;
+  padding-bottom: 0.5vh;
+  text-align: left;
+}
+.EmpPropTxtBox div{
+  font-weight: normal;
+  color: gray;
+  font-size: 10pt;
+  display: inline-block;
+  line-height: 30px;
+}
+
+.EmpPropTit {
+  width: 40px;
+}
+
+.EmpPropInfo{
+  display: inline-block;
+  color: #222222 !important;
+  margin-left: 5vw;
+}
+
+.EmpMyInfoBox{
+  text-align: left;
+}
+
+.EmpInfoTit{
+  width: 60px;
+}
+
+.EmpModalWrap h2{
+  margin-top: 4vw;
+  margin-bottom: 2.5vw;
+}
+
+.EmpField h1 {
+  width: 100px;
+  text-align: left;
+
+}
+
+
+
+
