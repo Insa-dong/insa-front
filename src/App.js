@@ -25,7 +25,6 @@ import TrainingRegistration from "./pages/training/TrainingRegistration";
 import BoardDetail from './pages/board/BoardDetail';
 import EmpRegistration from './pages/emp/EmpRegistration';
 import EmpDetail from './pages/emp/EmpDetail';
-import EmpPopup from './pages/emp/EmpPopup';
 import Off from './pages/off/Off';
 import AdminOff from './pages/off/AdminOff';
 

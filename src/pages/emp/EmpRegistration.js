@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../component/common/Header';
 import './EmpRegistration.css';
 import { empDeptJobListAPI, callEmpRegistAPI } from '../../apis/EmpAPICalls';
+import Swal from "sweetalert2";
 
 function EmpRegistration() {
   const title = '구성원';
@@ -12,7 +13,7 @@ function EmpRegistration() {
   const empDeptJob = useSelector(state => state.empReducer);
   const {empRegist} = useSelector(state => state.empReducer);
   const [form, setForm] = useState({
-    empGender:"w",
+    empGender:"남",
     deptCode:"DE0001",
     jobCode:"JB0001"
 
@@ -26,8 +27,8 @@ function EmpRegistration() {
 
   useEffect(() => {
     if (empRegist?.status === 200) {
-      alert('구성원 등록이 완료되었습니다.');
-      navigate('/emp', { replace: true });
+      /*alert('구성원 등록이 완료되었습니다.');*/
+      navigate('/emp');
     }
 
   }, [empRegist]);
@@ -40,10 +41,46 @@ function EmpRegistration() {
   };
 
   const onClickEmpRegistrationHandler = () => {
-    dispatch(callEmpRegistAPI(form));
-
-    console.log('empRegist', empRegist);
-  };
+    console.log('onClickAbsModifyHandler called');
+    Swal.fire({
+       /* title: '근태 시간을 수정하시겠습니까?',*/
+        text: '구성원을 등록하시겠습니까?',
+        icon: 'warning',
+        showCancelButton: true,
+        customClass: {
+            confirmButton: 'custom-confirm-button',
+            cancelButton: 'custom-cancel-button'
+        },
+        confirmButtonColor: '#8CBAFF',
+        cancelButtonColor: '#DADADA',
+        confirmButtonText: '저장',
+        cancelButtonText: '취소',
+        reverseButtons: true,
+        buttonsStyling: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            dispatch(callEmpRegistAPI(form))
+            .then(() => {
+                Swal.fire({
+                    title: '저장 완료',
+                    text: '등록 사항을 확인하세요.',
+                    icon: 'success',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'custom-success-button'
+                    }
+                });
+            })
+                .catch((error) => {
+                    Swal.fire(
+                        '저장 실패',
+                        '다시 시도하세요.',
+                        'error'
+                    );
+                });
+        }
+    });
+};
 
 
   return (
@@ -105,8 +142,8 @@ function EmpRegistration() {
                   name="empGender"
                   onChange={onChangeHandler}
                 >
-                  <option value="w">여성</option>
-                  <option value="m">남성</option>
+                  <option value="남">남</option>
+                  <option value="여">여</option>
                 </select>
               </td>
             </tr>

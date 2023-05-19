@@ -9,7 +9,7 @@ import BoardDetailModal from "../../component/modal/BoardDetailModal";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
-  const options = { year: "numeric", month: "2-digit", day: "2-digit"};
+  const options = { year: "numeric", month: "2-digit", day: "2-digit", weekday: "short"};
   return new Intl.DateTimeFormat("ko-KR", options).format(date).replace(/\.$/, "");;
 }
 
@@ -126,10 +126,16 @@ function Board() {
             </ul>
           </div>))
         }
+        <button 
+              className={CSS.boardBtn} 
+              type="button"
+            >
+              + 공지 등록하기
+              </button>
         <BoardDetailModal isOpen={isModalOpen} onClose={closeModal} selectedItem={selectedItem} />
 
 
-        <div className="EmpPaging">
+        <div className={CSS.paging}>
           {board.pageInfo && <PagingBar pageInfo={board.pageInfo} setCurrentPage={setCurrentPage} />}
         </div>
       </div>

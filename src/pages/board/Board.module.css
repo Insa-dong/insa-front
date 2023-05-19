@@ -90,3 +90,16 @@
     margin-bottom: 0.2vw;
     width: 0.3vw;
 }
+
+.boardBtn{
+        width: 8vw;
+        height: 2vw;
+        color: #fff;
+        font-size: 1.2rem;
+        background-color: #8CBAFF;
+        border: none;
+        border-radius: 5px;
+        margin-top: 0.8vw;
+        margin-left: 65vw;
+        cursor: pointer;
+}

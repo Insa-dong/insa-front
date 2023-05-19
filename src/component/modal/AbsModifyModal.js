@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { callModifyAbsAPI } from "../../apis/AbsAPICalls";
 import { useDispatch, useSelector } from "react-redux";
 import './AbsModifyModal.css';
@@ -54,21 +55,49 @@ function AbsModifyModal({ abs, setAbsModifyModal }) {
 
     const onClickAbsModifyHandler = () => {
         console.log('onClickAbsModifyHandler called');
-        if (window.confirm('수정하시겠습니까?')) {
-            const absStart = form.absStart ? new Date(new Date(form.absStart).getTime() + 9 * 60 * 60 * 1000) : form.absStart;
-            const absEnd = form.absEnd ? new Date(new Date(form.absEnd).getTime() + 9 * 60 * 60 * 1000) : form.absEnd;
-            const modifiedForm = { ...form, absStart, absEnd };
-    
-            dispatch(callModifyAbsAPI(modifiedForm))
+        Swal.fire({
+           /* title: '근태 시간을 수정하시겠습니까?',*/
+            text: '근태 시간을 수정하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            customClass: {
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            },
+            confirmButtonColor: '#8CBAFF',
+            cancelButtonColor: '#DADADA',
+            confirmButtonText: '저장',
+            cancelButtonText: '취소',
+            reverseButtons: true,
+            buttonsStyling: false,
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const absStart = form.absStart ? new Date(new Date(form.absStart).getTime() + 9 * 60 * 60 * 1000) : form.absStart;
+                const absEnd = form.absEnd ? new Date(new Date(form.absEnd).getTime() + 9 * 60 * 60 * 1000) : form.absEnd;
+                const modifiedForm = { ...form, absStart, absEnd };
+
+                dispatch(callModifyAbsAPI(modifiedForm))
                 .then(() => {
-                    console.log('근태 수정 완료');
+                    Swal.fire({
+                        title: '저장 완료',
+                        text: '수정 사항을 확인하세요.',
+                        icon: 'success',
+                        buttonsStyling: false,
+                        customClass: {
+                            confirmButton: 'custom-success-button'
+                        }
+                    });
                 })
-                .catch((error) => {
-                    console.log('근태 수정 실패:', error);
-                });
-        } else {
-            setAbsModifyModal(false);
-        }
+                    .catch((error) => {
+                        Swal.fire(
+                            '저장 실패',
+                            '다시 시도하세요.',
+                            'error'
+                        );
+                    });
+            }
+        });
     };
 
     const onClickOutsideModal = (e) => {

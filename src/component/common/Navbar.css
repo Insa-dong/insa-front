@@ -45,7 +45,8 @@ a {
     display: flex;
     justify-content: left;
     box-sizing: border-box;
-    margin-top: 3.1vh;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
 
 }
 
@@ -134,6 +135,10 @@ a {
     cursor: pointer;
 }
 
+.moreThanus{
+    padding-top: 2.5vh;
+    width: 12vw;
+}
 
 
 

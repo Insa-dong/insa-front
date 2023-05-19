@@ -21,6 +21,7 @@ function StudyInfo() {
 	const studyInfo = useSelector(state => state.studyInfoReducer);
 	const trainingList = useSelector(state => state.trainingReducer);
 	const {teacher} = useSelector(state => state.empReducer);
+	const [day, setDay] = useState([]);
 
 	useEffect(
 		() => {
@@ -36,7 +37,7 @@ function StudyInfo() {
 			dispatch(callTrainingTitle());
 			dispatch(callTeacherList());
 		} else if (e.target.innerText === '저장하기') {
-			dispatch(callModifyStudyInfo({form, studyInfoCode}));
+			dispatch(callModifyStudyInfo({form, day, studyInfoCode}));
 		}
 	}
 
@@ -198,14 +199,13 @@ function StudyInfo() {
 						<td className = {CSS.BottomTd} colSpan = {3}>
 							<span className = {CSS.BottomSpan}>수업 시작</span>
 							<span className = {CSS.BottomSpan2}>수업 종료</span>
-							<StudyTime studyTimes = {studyInfo.study && studyInfo.study.studyTimes}
-							           readOnly = {!modifyMode}
-							           onChange = {onChangeHandler}
-							           form = {form}
-							           setForm = {setForm}
-							           studyDate = {studyDate}
-							           setStudyDate = {setStudyDate}
-							/>
+							{studyInfo.study &&
+								<StudyTime studyTimes = {studyInfo.study.studyTimes}
+								           readOnly = {!modifyMode}
+								           form = {form}
+								           day = {day}
+								           setDay = {setDay}
+								/>}
 						</td>
 					</tr>
 					</tbody>
