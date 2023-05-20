@@ -6,11 +6,12 @@
 
 .profContainer {
     display: flex;
+    margin-bottom: 3vw;
 }
 
 .prof {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 15px;
     background-color: #FFA9B0;
     color: white;
@@ -18,4 +19,84 @@
     font-weight: bold;
     margin: auto 0.4vw;
     box-sizing: border-box;
+}
+
+.info{
+    margin-top: -10px;
+    margin-left: 4vw;
+    width: 20vw;
+    height: 100px;
+    line-height: 32px;
+}
+
+.name{
+    font-size: 1.25rem;
+}
+
+.dept, .job{
+    width: 3vw;
+    color: gray;
+    /* border: 1px solid blue;     */
+}
+
+.state{
+    width: 5.4vw;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.state span{
+    color: #6cc667;
+}
+
+.privacyContainer ul , .hrContainer ul{
+    margin: 2vw 0;
+}
+
+.privacy, .privacyTit{
+    font-size: 1.1rem;
+    padding-bottom: 0.8vw;
+    border-bottom: 1px solid #ccc;
+}
+
+.privacyTit{
+    margin-top: 5vw;
+}
+
+.phone, .email, .gender, .phone{
+    color: gray;
+    width: 11vw;
+}
+
+.btnWrap{
+    text-align: center;
+    margin-top: 5vw;
+    padding-bottom: 5vw;
+
+}
+
+.btnWrap button{
+    width: 11vh;
+    height: 4vh;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.pwdBtn {
+    background-color: #8CBAFF;
+    border-radius: 5px;
+    color: #FFFFFF;
+    border: 1px solid #8CBAFF;
+    margin-right: 2vw;
+  
+}
+
+.infoBtn {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    color: #8CBAFF;
+    border: 1px solid #8CBAFF;
+    cursor: pointer;
+   
 }
