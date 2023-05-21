@@ -25,7 +25,10 @@ function Mypage() {
                                 <li className={CSS.jobinfo}>관리자</li>
                             </ul>
                         </li>
-                        <li className={CSS.state}>재직</li>
+                        <li className={CSS.state}>
+                            <span>● </span>
+                            재직 중
+                        </li>
                     </ul>
                 </div>
                 <div className={CSS.privacyContainer}>
@@ -44,7 +47,7 @@ function Mypage() {
                     </ul>
                 </div>
                 <div className={CSS.hrContainer}>
-                    <div className={CSS.privacy}>인사 정보</div>
+                    <div className={CSS.privacyTit}>인사 정보</div>
                     <ul style={{ display: 'flex' }}>
                         <li className={CSS.phone}>사번</li>
                         <li className={CSS.phoneinfo}>TE0001</li>
@@ -61,6 +64,11 @@ function Mypage() {
                         <li className={CSS.email}>입사일</li>
                         <li className={CSS.emailinfo}>2020.05.31</li>
                     </ul>
+                </div>
+
+                <div className={CSS.btnWrap}>
+                    <button className={CSS.pwdBtn}>비밀번호변경</button>
+                    <button className={CSS.infoBtn}>개인정보변경</button>
                 </div>
             </div>
         </>
