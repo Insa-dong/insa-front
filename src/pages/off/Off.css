@@ -1,17 +1,52 @@
 .off-wrapp {
     width: 74vw;
     height: 78vh;
-    /*margin: 0 auto;*/
     margin-left: 20vw;
-   /* border: 1px solid red;*/
+    /* border: 1px solid red;*/
 }
 
 .off-menu-bar {
     margin-bottom: 3.5vw;
- }
+}
 
 .off-menu {
     display: inline-block;
     margin-left: 2vw;
     font-size: 1.2rem;
+}
+
+/* 연차 신청 버튼 */
+.applyOffBtn {
+    width: 8vw;
+    height: 2vw;
+    color: #fff;
+    font-size: 1.2rem;
+    background-color: #8CBAFF;
+    border: none;
+    border-radius: 5px;
+    margin-top: 0.8vw;
+    margin-left: 66vw;
+    cursor: pointer;
+}
+
+/*연차 현황 구역*/
+.my-off-now {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20vw;
+    margin-top: 2vw;
+}
+
+.offNowList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.offNowList div {
+    font-size: 3rem;
+    margin-bottom: 2vw;
 }
