@@ -99,7 +99,8 @@ export const callTrainingRegisterAPI = (form) => {
 		const result = await fetch(requestURL, {
 			method: 'POST',
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
 			body: JSON.stringify(form)
 		}).then(res => res.json())
@@ -129,4 +130,17 @@ export const callTrainingDeleteAPI = (trainingCode) => {
 			dispatch(putTraining(result));
 		}
 	}
+}
+
+export const callResetTraining = () => {
+
+	const requestURL = `${PRE_URL}/trainingList`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL).then(res => res.json());
+
+		if (result.status === 200) {
+			dispatch(getTraininglist(result));
+		}
+	};
 }
