@@ -1,21 +1,26 @@
+import { postApply } from "../modules/OffModule";
 
-/* 추후 작성 */
-/* 모든 근태 목록 조회 */
-export const callAbsListAPI = ({ currentPage = 1 }) => {
-    const requestURL = `${PRE_URL}/abs-admin?page=${currentPage}`;
+const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
+const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
+const PRE_URL = `http://${SERVER_IP}:${SERVER_PORT}/off`;
 
+/* 연차 신청 API */
+export const callApplyAPI = (formData) => {
+    const requestURL = `${PRE_URL}/apply`;
+  
     return async (dispatch, getState) => {
-        try {
-            const response = await fetch(requestURL);
-            const result = await response.json();
 
-            if (response.ok) {
-                dispatch(getAbss(result));
-            } else {
-                console.log('[callAbsListAPI] Error:', result.error);
-            }
-        } catch (error) {
-            console.log('[callAbsListAPI] Error:', error);
+        const result = await fetch(requestURL, {
+            method : 'POST',
+            headers : {
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : formData
+        }).then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[OffAPICalls] : callApplyAPI result : ', result);
+            dispatch(postApply(result));
         }
-    };
-};
+    }
+  };
