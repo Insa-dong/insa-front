@@ -57,9 +57,9 @@ function Off() {
                         <p>잔여 연차</p>
                     </div>
                 </div>
-
+                <p className='comingup-title'> 예정 연차 </p>
                 <div className="my-off-request">
-                    
+                   
 
                 </div>
 
