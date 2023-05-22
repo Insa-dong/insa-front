@@ -27,7 +27,7 @@ function Mypage() {
                         </li>
                         <li className={CSS.state}>
                             <span>● </span>
-                            재직 중
+                            재직중
                         </li>
                     </ul>
                 </div>
@@ -47,7 +47,7 @@ function Mypage() {
                     </ul>
                 </div>
                 <div className={CSS.hrContainer}>
-                    <div className={CSS.privacyTit}>인사 정보</div>
+                <div className={`${CSS.privacyTit} ${CSS.recordTit}`}>인사 정보</div>
                     <ul style={{ display: 'flex' }}>
                         <li className={CSS.phone}>사번</li>
                         <li className={CSS.phoneinfo}>TE0001</li>

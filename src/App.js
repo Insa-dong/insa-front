@@ -58,7 +58,7 @@ function App() {
 						<Route path="studyInfo/:studyInfoCode" element={<StudyInfo />} />
 						<Route path="emp" element={<Emp />} />
 						<Route path="emp/empregistration" element={<EmpRegistration/>}/>
-						<Route path="emp/empdetail" element={<EmpDetail/>}/>
+						<Route path="emp/empdetail/:empCode" element={<EmpDetail/>}/>
 						<Route path="student" element={<Student />} />
 						<Route path="student/:stuCode" element={<StudentDetail />}/>
 						<Route path="off" element={<Off />} />
