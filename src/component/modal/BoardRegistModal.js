@@ -26,9 +26,12 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
                             <li className={CSS.boardContent}>공지내용</li>
                         </ul>
                         <input className={CSS.content}></input>
-                        <div><img src="/images/파일첨부.png" className={CSS.fileImgg} alt="파일첨부이미지" /></div>
-                        <button 
-                            className = {CSS.ButtonStyle2} 
+                        <div>
+                            <img src="/images/파일첨부.png" className={CSS.fileImgg} alt="파일첨부이미지" />
+                            <input clssName={CSS.file} multiple="multiple" type="file" name="file"></input>
+                        </div>
+                        <button
+                            className={CSS.ButtonStyle2}
                         >
                             등록하기
                         </button>

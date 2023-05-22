@@ -59,9 +59,12 @@
     height: 25vh;
 }
 
+
 .fileImgg {
-  width: 0.9vw;
-  margin-top: 1.5vh;
+  width: 1vw;
+  margin-top: 2vh;
+  padding-top: 2vh;
+  margin-right: 0.5vw;
 }
 
 .ButtonStyle2 {
