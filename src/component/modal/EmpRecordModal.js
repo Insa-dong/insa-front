@@ -25,7 +25,19 @@ function EmpRecordModal({ empCode, setEmpRecordModal }) {
                 </div>
                 <div className="EmpModalDiv">
                     <h1 className="EmpRecordModalTitle">인사이력</h1>
-                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>내역</th>
+                                <th>변경전</th>
+                                <th>변경후</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

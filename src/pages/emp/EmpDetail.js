@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import CSS from "../mpg/Mypage.module.css";
+import CSS from "./EmpDetail.module.css";
 import Header from "../../component/common/Header";
 import { callEmpDetailAPI } from '../../apis/EmpAPICalls';
 import EmpRecordModal from './../../component/modal/EmpRecordModal';
