@@ -1,4 +1,4 @@
-import { deleteStudyStudents, getStudyStudent, postStudyStudents, getStudyStudents } from "../modules/StudyStudentModule";
+import { deleteStudyStudents, getStudyStudent, postStudyStudents, getStudyStudents, putStudyStudents } from "../modules/StudyStudentModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -78,3 +78,26 @@ export const callStudyStuTrainingTitleListAPI = () => {
     };
 
 }
+
+export const callStudyStuUpdateForAdminAPI = (form) => {
+  
+  const requestURL =`${PRE_URL}/students-management/study`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'PUT',
+            headers : {
+                "Content-Type": "application/json",
+                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body: JSON.stringify(form)
+        }).then(res => res.json());
+        
+        console.log(result);
+        if(result.status === 200) {
+            dispatch(putStudyStudents(result));
+        }
+    }
+}
+
