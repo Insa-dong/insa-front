@@ -131,7 +131,7 @@ export const callInsertStudyInfo = ({form, day}) => {
 				studyInfoStartDate: form.studyInfoStartDate,
 				studyInfoEndDate: form.studyInfoEndDate,
 				teacher: {
-					empCode: form.empCode,
+					empCode: form.empCode
 				}
 			})
 		}).then(res => res.json());
