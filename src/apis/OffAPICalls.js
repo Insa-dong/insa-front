@@ -1,4 +1,4 @@
-import { postApply } from "../modules/OffModule";
+import { postApply, getComingupOff } from "../modules/OffModule";
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -24,3 +24,24 @@ export const callApplyAPI = (formData) => {
         }
     }
   };
+
+  /* 예정 연차 조회 API */
+  export const callComingupOffListAPI = ({ currentPage = 1}) => {
+
+    const requestURL = `${PRE_URL}/my-comingUp-off?page=${currentPage}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
+
+        if(result.status === 200) {
+            dispatch(getComingupOff(result));
+        }
+    }
+  }
