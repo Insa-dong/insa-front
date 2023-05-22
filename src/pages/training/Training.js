@@ -1,7 +1,12 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {callSearchTrainingList, callTrainingDeleteAPI, callTrainingList} from "../../apis/TrainingAPICalls";
+import {
+	callResetTraining,
+	callSearchTrainingList,
+	callTrainingDeleteAPI,
+	callTrainingList
+} from "../../apis/TrainingAPICalls";
 import Header from "../../component/common/Header";
 import PagingBar from "../../component/common/PagingBar";
 import TrainingList from "../../component/lists/TrainingList";
@@ -15,6 +20,7 @@ function Training() {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [checkValue, setCheckValue] = useState("1");
 	const [searchParams] = useSearchParams();
+	const [insert, setInsert] = useState(false);
 	const searchValue = searchParams.get('value');
 	const training = useSelector(state => state.trainingReducer);
 	const {modify} = useSelector(state => state.trainingReducer);
@@ -28,9 +34,12 @@ function Training() {
 			if (modify?.status === 200) {
 				alert('삭제가 완료되었습니다. 메인 페이지로 이동합니다.');
 				navigate('/training', {replace: true});
+				if (insert === false) {
+					dispatch(callResetTraining());
+				}
 			}
 		},
-		[modify, navigate]
+		[modify, navigate, insert, dispatch]
 	)
 
 	useEffect(
