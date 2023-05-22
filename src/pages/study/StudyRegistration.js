@@ -12,7 +12,10 @@ function StudyRegistration() {
 
 	const title = '강의';
 	const subTitle = '강의 등록';
-	const [form, setForm] = useState({});
+	const [form, setForm] = useState({
+		empCode: '1001',
+		trainingCode: '1000'
+	});
 	const [day, setDay] = useState([]);
 	const trainingList = useSelector(state => state.trainingReducer);
 	const {teacher} = useSelector(state => state.empReducer);
@@ -78,7 +81,7 @@ function StudyRegistration() {
 						<th>담당 강사, 회차, 정원</th>
 						<td colSpan = {1} className = {CSS.MiddleBodyDiv}>
 							<select onChange = {onChangeHandler} className = {CSS.selectBox}
-							        name = 'empCode'
+							        name = 'empCode' defaultValue = {teacher && teacher[0].empCode}
 							>
 								{teacher && teacher.map(name =>
 									<option
