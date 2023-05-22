@@ -1,17 +1,8 @@
-import { useEffect, useState } from "react";
-import { callModifyEmpAPI } from "../../apis/EmpAPICalls";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-
 import './EmpModal.css';
 
 function EmpModal({emp, setEmpModal }) {
 
     console.log(emp);
-
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const onClickOutsideModal = (e) => {
         if (e.target === e.currentTarget) {
