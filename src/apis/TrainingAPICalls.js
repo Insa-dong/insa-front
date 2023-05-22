@@ -1,4 +1,11 @@
-import {getTraining, getTraininglist, postTraining, putTraining} from "../modules/TrainingModule";
+import {
+	deleteTraining,
+	getTraining,
+	getTraininglist,
+	initTraining,
+	postTraining,
+	putTraining
+} from "../modules/TrainingModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -37,20 +44,6 @@ export const callSearchTrainingList = ({searchValue, currentPage}) => {
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL).then(res => res.json());
 
-		if (result.status === 200) {
-			dispatch(getTraininglist(result));
-		}
-	};
-}
-
-export const callSearchTrainingCount = ({searchValue, currentPage}) => {
-
-	const requestURL = `${PRE_URL}/trainingList/searchCount?searchCount=${searchValue}&page=${currentPage}`;
-	console.log('searchvalue : ', searchValue);
-	return async (dispatch, getState) => {
-		const result = await fetch(requestURL).then(res => res.json());
-
-		console.log('searchvalue : ', result);
 		if (result.status === 200) {
 			dispatch(getTraininglist(result));
 		}
@@ -105,29 +98,25 @@ export const callTrainingRegisterAPI = (form) => {
 			body: JSON.stringify(form)
 		}).then(res => res.json())
 
-		console.log(result);
 		if (result.status === 200) {
 			dispatch(postTraining(result));
 		}
 	}
 }
 
-export const callTrainingDeleteAPI = (trainingCode) => {
+export const callTrainingRemoveAPI = (trainingCode) => {
 
 	console.log(trainingCode);
 	const requestURL = `${PRE_URL}/training/delete/${trainingCode}`;
 
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
-			method: 'PUT',
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
-			}
+			method: 'DELETE'
 		}).then(res => res.json());
 
+		console.log(result);
 		if (result.status === 200) {
-			dispatch(putTraining(result));
+			dispatch(deleteTraining(result));
 		}
 	}
 }
@@ -140,7 +129,7 @@ export const callResetTraining = () => {
 		const result = await fetch(requestURL).then(res => res.json());
 
 		if (result.status === 200) {
-			dispatch(getTraininglist(result));
+			dispatch(initTraining(result));
 		}
 	};
 }

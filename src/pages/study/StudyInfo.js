@@ -76,7 +76,7 @@ function StudyInfo() {
 							<option
 								value = {studyInfo.study.training.trainingCode}>{studyInfo.study.training.trainingTitle}
 							</option>
-							{trainingList && trainingList.map(training =>
+							{trainingList.length > 0 && trainingList.map(training =>
 								studyInfo.study.training.trainingCode !== training.trainingCode &&
 								<option
 									value = {training.trainingCode}

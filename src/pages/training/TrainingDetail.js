@@ -111,7 +111,7 @@ function TrainingDetail() {
 							<textarea
 								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
 								name = 'trainingCount'
-								defaultValue = {!modifyMode ? data.studyCount || "" : form.studyCount}
+								defaultValue = {!modifyMode ? data.studyCount || '수업 진행 전입니다.' : data.studyCount}
 								onChange = {onChangeHandler}
 								readOnly = {!modifyMode}/>
 						</td>

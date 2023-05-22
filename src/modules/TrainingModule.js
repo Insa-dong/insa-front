@@ -8,13 +8,24 @@ const GET_TRAINING = 'training/GET_TRAINING';
 const GET_TRAINING_LIST = 'training/GET_TRAININGLIST';
 const PUT_TRAINING = 'training/PUT_TRAINING';
 const POST_TRAINING = 'training/POST_TRAINING';
+const DELETE_TRAINING = 'training/DELETE_TRAINING';
 const INIT_TRAINING = 'training/INIT_TRAINING';
 
-export const {training: {getTraining, getTraininglist, putTraining, postTraining, initTraining}} = createActions({
+export const {
+	training: {
+		getTraining,
+		getTraininglist,
+		putTraining,
+		postTraining,
+		deleteTraining,
+		initTraining
+	}
+} = createActions({
 	[GET_TRAINING]: res => res.data,
 	[GET_TRAINING_LIST]: res => res.data,
 	[PUT_TRAINING]: res => res,
 	[POST_TRAINING]: res => res,
+	[DELETE_TRAINING]: res => res,
 	[INIT_TRAINING]: () => {
 	}
 })
@@ -25,6 +36,7 @@ const trainingReducer = handleActions(
 		[GET_TRAINING_LIST]: (state, {payload}) => payload,
 		[PUT_TRAINING]: (state, {payload}) => ({modify: payload}),
 		[POST_TRAINING]: (state, {payload}) => ({regist: payload}),
+		[DELETE_TRAINING]: (state, {payload}) => ({remove: payload}),
 		[INIT_TRAINING]: () => initialState
 	}, initialState
 )
