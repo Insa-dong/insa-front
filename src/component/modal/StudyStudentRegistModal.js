@@ -2,13 +2,19 @@ import { useDispatch, useSelector } from "react-redux";
 import CSS from "./StudyStudentRegistModal.module.css";
 import { useEffect, useState } from "react";
 import { callStudyStuRegistAdminAPI, callStudyStuTrainingTitleListAPI } from "../../apis/StudyStuAPICalls";
+import { useNavigate } from "react-router-dom";
 
-function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModal , stuCode }) {
-    const [form, setForm] = useState({});
+function StudyStudentRegistModal({ setStudyStudentRegistModal, stuCode }) {
+    
+    const [form, setForm] = useState({
+      studyEnrollDate: "",
+      studyState: "수강 중",
+    });
+    
     const dispatch = useDispatch();
     const { trainingList } = useSelector(state => state.studyStudentReducer);
-
-    
+    const { registStudyStudent } = useSelector(state => state.studyStudentReducer);
+    const navigate = useNavigate();
 
     const onClickHandler = () => {
         setStudyStudentRegistModal(false);
@@ -22,15 +28,16 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
 
     useEffect(() => {
         dispatch(callStudyStuTrainingTitleListAPI());
-    }, []);
+    }, [dispatch]);
 
-    console.log(trainingList);
+    console.log(registStudyStudent);
 
     useEffect(() => {
-        if (trainingList?.status === 200) {
-            alert('과정 등록이 완료되었습니다');
+        if (registStudyStudent?.status === 200) {
+            alert('강의 등록이 완료되었습니다');
+            navigate('/student');
         }
-    }, [trainingList]);
+    }, [registStudyStudent]);
 
     const onChangeHandler = (e) => {
         setForm({
@@ -39,9 +46,11 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
         });
     };
 
+
     const onClickStudyStuRegistHandler = () => {
-        dispatch(callStudyStuRegistAdminAPI(form));
+        dispatch(callStudyStuRegistAdminAPI({ ...form, stuCode }));
     };
+    
 
     return (
         <div className={CSS.modal} onClick={onClickOutsideModal} >
@@ -59,24 +68,13 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
                                     <td>
                                         <select className={CSS.selectBox} name="studyCode" onChange={onChangeHandler}>
                                             {trainingList && Array.isArray(trainingList) && trainingList.map((training, index) => (
-                                                <option key={index} value={training.studyCode}>
-                                                    {training.trainingTitle} 
+                                                <option key={index} value={training.study.studyCode}>
+                                                {training.studyTitle}
                                                 </option>
                                             ))}
                                         </select>
                                     </td>
                                 </tr>
-                                {/* <tr>
-                                    <th>회차</th>
-                                    <td>                  
-                                        <input
-                                            type="number"
-                                            name="trainingCount"
-                                            placeholder={trainingList && trainingList.trainingCount}
-                                            onChange={onChangeHandler}
-                                        />
-                                    </td> 
-                                </tr> */}
                                 <tr>
                                     <th>수강 등록</th>
                                     <td>
@@ -93,8 +91,8 @@ function StudyStudentRegistModal({ studyStudentRegist, setStudyStudentRegistModa
                                         <select 
                                             name = "studyState"
                                             onChange = { onChangeHandler }>
-                                            <option>수강 중</option>
-                                            <option>수강 취소</option>
+                                            <option value="수강 중">수강 중</option>
+                                            <option value="수강 취소">수강 취소</option>
                                         </select>
                                     </td>
                                 </tr>
