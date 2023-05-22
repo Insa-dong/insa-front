@@ -71,6 +71,7 @@ function Board() {
   useEffect(
     () => {
       dispatch(callBoardListAPI({ currentPage }));
+      console.log(callBoardListAPI)
     },
     [currentPage]
   );
@@ -113,8 +114,8 @@ function Board() {
             onClick={() => openModal(p)}
           >
             <ul style={{ display: 'flex' }}>
-              <li id={CSS.prof}>{p.noticeWriter.empName}</li>
-              <li>
+                <li id={CSS.deptCode} className={`${CSS[`deptCode-${p.noticeWriter.dept.deptCode}`]}`}>{p.noticeWriter.empName.slice(-2)}</li>
+                <li>
                 <ul>
                   <ul style={{ display: 'flex' }}>
                     <li>

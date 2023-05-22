@@ -5,7 +5,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { isAdmin } from '../../utils/TokenUtils';
 
 
-function EmpItem({ emp: { empCode, empName, dept, job } }) {
+function EmpItem({ emp }) {
+
   const dispatch = useDispatch();
 
   const [empModal, setEmpModal] = useState(false);
@@ -27,14 +28,14 @@ function EmpItem({ emp: { empCode, empName, dept, job } }) {
 
   return (
     <>
-      <tr onClick={() => onClickEmpHandler(empCode)} style={{ cursor: 'pointer' }}>
-        <th>{empName}</th>
-        <th>{dept.deptName}</th>
-        <th>{job.jobName}</th>
+      <tr onClick={() => onClickEmpHandler(emp.empCode)} style={{ cursor: 'pointer' }}>
+        <th>{emp.empName}</th>
+        <th>{emp.dept.deptName}</th>
+        <th>{emp.job.jobName}</th>
       </tr>
 
       {/* {!isAdmin() && empModal && <EmpModal empCode={empCode} />} */}
-      {empModal && <EmpModal empCode={empCode} setEmpModal={setEmpModal} />}
+      {empModal && <EmpModal emp={emp} setEmpModal={setEmpModal} />}
     </>
   );
 }

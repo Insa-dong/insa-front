@@ -17,7 +17,6 @@ function StudyInfo() {
 	const navigate = useNavigate();
 	const [modifyMode, setModifyMode] = useState(false);
 	const [form, setForm] = useState({});
-	const [studyDate, setStudyDate] = useState();
 	const studyInfo = useSelector(state => state.studyInfoReducer);
 	const trainingList = useSelector(state => state.trainingReducer);
 	const {teacher} = useSelector(state => state.empReducer);
@@ -70,8 +69,7 @@ function StudyInfo() {
 							onChange = {onChangeHandler}
 							readOnly = {!modifyMode}/>
 						: <select onChange = {onChangeHandler} className = {CSS.selectBox}
-						          name = 'trainingCode'
-						>
+						          name = 'trainingCode'>
 							<option
 								value = {studyInfo.study.training.trainingCode}>{studyInfo.study.training.trainingTitle}
 							</option>

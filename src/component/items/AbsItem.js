@@ -67,6 +67,8 @@ const calculateTotalWorkTime = (start, end) => {
     setAbsModifyModal(true);
   };
 
+  console.log('offDiv:', abs.offDiv);
+
   return (
     <>
       <tr>
@@ -76,7 +78,9 @@ const calculateTotalWorkTime = (start, end) => {
         <td>{abs.empCode.empName}</td>
         <td>{formatTime(abs.absStart)}</td>
         <td>{formatTime(abs.absEnd)}</td>
+        
         <td>{calculateTotalWorkTime(abs.absStart, abs.absEnd)}</td>
+        <td>{abs.offDiv}</td>
         <td>
           <button
             className="abs-modify-btn"
