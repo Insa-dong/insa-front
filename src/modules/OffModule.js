@@ -1,0 +1,31 @@
+import { createActions, handleActions } from "redux-actions";
+
+
+/* 초기값 */
+const initialState = [];
+
+/* 연차 신청 */
+
+const POST_APPLY = 'off/POST_APPLY';
+
+
+
+export const { off : { postApply} } = createActions({
+   
+    [POST_APPLY] : (res) => res
+    
+   
+}); 
+
+/* 리듀서 : 최종적으로 state를 관리한다 */
+const offReducer = handleActions(
+    {
+      
+      [POST_APPLY]: (state, { payload }) => payload
+      
+    },
+    initialState
+);
+  
+
+export default offReducer;
