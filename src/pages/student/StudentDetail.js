@@ -62,7 +62,7 @@ function StudentDetail() {
     const [updateModalVisible, setUpdateModalVisible] = useState(false);
     const [studyStudentUpdate, setStudyStudentUpdate] = useState("");
 
-    
+
     const okAdviceConfirm = () => {
         dispatch(callAdviceDeleteForAdminAPI(stuCode));
     };
@@ -117,16 +117,17 @@ function StudentDetail() {
         setEvaReviewModalVisible(true);
     }
 
-    const onClickRegistHandler = (studyStudentRegist, stuCode) => {
+    const onClickRegistHandler = (studyStudentRegist) => {
         setSelectedRegistStudy(studyStudentRegist);
         console.log(stuCode);
         setRegistModalVisible(true);
     }
 
-    const onClickUpdateStudyStuHandler =(studyStudentUpdate) => {
-        setStudyStudentUpdate(studyStudentUpdate);
+    
+    const onClickUpdateStudyStuHandler = (study) => {
+        setSelectedUpdateStudy(study);
         setUpdateModalVisible(true);
-    }
+    };
 
 
     useEffect(
@@ -149,8 +150,8 @@ function StudentDetail() {
                     icon: 'warning',
                     showCancelButton: true,
                     customClass: {
-                      confirmButton: 'custom-confirm-button',
-                      cancelButton: 'custom-cancel-button'
+                        confirmButton: 'custom-confirm-button',
+                        cancelButton: 'custom-cancel-button'
                     },
                     confirmButtonColor: '#8CBAFF',
                     cancelButtonColor: '#DADADA',
@@ -158,33 +159,30 @@ function StudentDetail() {
                     cancelButtonText: '취소',
                     reverseButtons: true,
                     buttonsStyling: false,
-                  }).then((result) => {
+                }).then((result) => {
                     if (result.isConfirmed) {
-                      Swal.fire({
-                        title: '수정이 완료 되었습니다.',
-                        icon: 'success',
-                        buttonsStyling: false,
-                        customClass: {
-                          confirmButton: 'custom-success-button'
-                        }
-                      })
-                    //   .then(() => {
-                    //     navigate('/login', { replace: true });
-                    //   })
-                      .catch((error) => {
-                        Swal.fire(
-                          '저장 실패',
-                          '다시 시도하세요.',
-                          'error'
-                        );
-                      });
+                        Swal.fire({
+                            title: '수정이 완료 되었습니다.',
+                            icon: 'success',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'custom-success-button'
+                            }
+                        }).then(() => {
+                            navigate('/student');
+                        }).catch((error) => {
+                            Swal.fire(
+                                '저장 실패',
+                                '다시 시도하세요.',
+                                'error'
+                            );
+                        });
                     }
-                  });
-                };
+                });
+            };
         },
         [modify]
     );
-
 
     /* 수정 모드 변경 */
     const onClickmodifyModeHandler = () => {
@@ -204,15 +202,15 @@ function StudentDetail() {
 
         const formData = new FormData();
 
-        formData.append("stuCode", form.stuCode);
-        formData.append("stuName", form.stuName);
-        formData.append("stuEngName", form.stuEngName);
-        formData.append("stuBirth", form.stuBirth);
-        formData.append("stuEndSchool", form.stuEndSchool);
-        formData.append("stuEmail", form.stuEmail);
-        formData.append("stuPhone", form.stuPhone);
+        formData.append("stuCode", form.stuCode || "");
+        formData.append("stuName", form.stuName|| "");
+        formData.append("stuEngName", form.stuEngName || "");
+        formData.append("stuBirth", form.stuBirth || "");
+        formData.append("stuEndSchool", form.stuEndSchool || "");
+        formData.append("stuEmail", form.stuEmail || "");
+        formData.append("stuPhone", form.stuPhone || "");
 
-        dispatch(callStudentUpdateAPI(formData));
+        dispatch(callStudentUpdateAPI(form));
     }
 
     return (
@@ -323,16 +321,16 @@ function StudentDetail() {
                 )}
 
                 <div className="studyHeaderContainer">
-                    <h2 className="studyHeader">과정 내역</h2>
-                    {/* <button className="registrationButton" onClick={ onClickRegistHandler }>등록</button> */}
-                    <button className="registrationButton" onClick={() => onClickRegistHandler(studyStudentRegist, stuCode)}>등록</button>
+                    <h2 className="studyHeader">강의 내역</h2>
+                    <button className="registrationButton" onClick={() => onClickRegistHandler(studyStudentRegist)}>등록</button>
 
                 </div>
 
                 {updateModalVisible && (
                     <StudyStudentUpdateModal
-                    studyStudentUpdate = { selectedUpdateStudy }
-                    setStudyStudentUpdateModal = { setUpdateModalVisible }
+                        studyStudentUpdate={selectedUpdateStudy}
+                        setStudyStudentUpdateModal={setUpdateModalVisible}
+                        stuCode={stuCode}
                     />
                 )}
 
@@ -340,7 +338,7 @@ function StudentDetail() {
                     <thead>
                         <tr>
                             <th>과정 이름</th>
-                            <th>회차</th>
+                            <th>총시간</th>
                             <th>수정/삭제</th>
                         </tr>
                     </thead>
@@ -349,9 +347,9 @@ function StudentDetail() {
                             studyList.map((study) => (
                                 <tr key={study}>
                                     <td>{study.trainingTitle}</td>
-                                    <td>{study.trainingCount}</td>
+                                    <td>{study.trainingTime}</td>
                                     <td>
-                                        <button className="studyStuUpdateBtn" onClick={() => onClickUpdateStudyStuHandler(study) }>수정</button>
+                                        <button className="studyStuUpdateBtn" onClick={() => onClickUpdateStudyStuHandler(study)}>수정</button>
                                         <button className="studyStuDeleteBtn" onClick={studyStuDelete}>삭제</button>
                                     </td>
                                 </tr>

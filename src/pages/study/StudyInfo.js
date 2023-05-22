@@ -22,6 +22,9 @@ function StudyInfo() {
 	const {teacher} = useSelector(state => state.empReducer);
 	const [day, setDay] = useState([]);
 
+	console.log(trainingList);
+	console.log(studyInfo);
+
 	useEffect(
 		() => {
 			dispatch(callPetiteStudyInfoAPI(studyInfoCode));
@@ -73,7 +76,7 @@ function StudyInfo() {
 							<option
 								value = {studyInfo.study.training.trainingCode}>{studyInfo.study.training.trainingTitle}
 							</option>
-							{trainingList && trainingList.map(training =>
+							{trainingList.length > 0 && trainingList.map(training =>
 								studyInfo.study.training.trainingCode !== training.trainingCode &&
 								<option
 									value = {training.trainingCode}

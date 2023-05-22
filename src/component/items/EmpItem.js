@@ -13,17 +13,17 @@ function EmpItem({ emp }) {
   const navigate = useNavigate();
 
   const onClickEmpHandler = (empCode) => {
-    // if (isAdmin()) {
-    //   navigate(`/emp/empdetail/${empCode}`);
-    // } else {
-    //   setEmpModal(true);
-    // }
-
     if (isAdmin()) {
-      setEmpModal(true);
-    } else {
       navigate(`/emp/empdetail/${empCode}`);
+    } else {
+      setEmpModal(true);
     }
+
+    // if (isAdmin()) {
+    //   setEmpModal(true);
+    // } else {
+    //   navigate(`/emp/empdetail/${empCode}`);
+    // }
   };
 
   return (
@@ -34,7 +34,7 @@ function EmpItem({ emp }) {
         <th>{emp.job.jobName}</th>
       </tr>
 
-      {/* {!isAdmin() && empModal && <EmpModal empCode={empCode} />} */}
+      {/* {!isAdmin() && empModal && <EmpModal emp={emp} />} */}
       {empModal && <EmpModal emp={emp} setEmpModal={setEmpModal} />}
     </>
   );

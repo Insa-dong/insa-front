@@ -1,10 +1,12 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {callSearchTrainingList, callTrainingDeleteAPI, callTrainingList} from "../../apis/TrainingAPICalls";
+import {callSearchTrainingList, callTrainingList} from "../../apis/TrainingAPICalls";
 import Header from "../../component/common/Header";
 import PagingBar from "../../component/common/PagingBar";
 import TrainingList from "../../component/lists/TrainingList";
+import TrainingDeleteModal from "../../component/modal/TrainingDeleteModal";
+import TrainingRegistModal from "../../component/modal/TrainingRegistModal";
 import CSS from "./Training.module.css";
 
 function Training() {
@@ -15,22 +17,23 @@ function Training() {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [checkValue, setCheckValue] = useState("1");
 	const [searchParams] = useSearchParams();
+	const [insert, setInsert] = useState(false);
+	const [isRegistModalOpen, setIsRegistModalOpen] = useState(false);
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const searchValue = searchParams.get('value');
 	const training = useSelector(state => state.trainingReducer);
-	const {modify} = useSelector(state => state.trainingReducer);
+	const {remove} = useSelector(state => state.trainingReducer);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	console.log(training);
-
 	useEffect(
 		() => {
-			if (modify?.status === 200) {
-				alert('삭제가 완료되었습니다. 메인 페이지로 이동합니다.');
-				navigate('/training', {replace: true});
+			if (insert) {
+				dispatch(callTrainingList({currentPage}));
+				setInsert(false);
 			}
 		},
-		[modify, navigate]
+		[insert, dispatch, currentPage]
 	)
 
 	useEffect(
@@ -59,15 +62,6 @@ function Training() {
 		navigate(`/search?value=${search}`);
 	}
 
-	const onClickDeleteHandler = () => {
-		console.log(checkValue)
-		if (window.confirm(`${checkValue}번 과정을 삭제하시겠습니까?`)) {
-			dispatch(callTrainingDeleteAPI(checkValue));
-		} else {
-			alert('안하기')
-		}
-	}
-
 	return (
 		<>
 			<Header title = {title} subTitle = {subTitle}/>
@@ -94,11 +88,22 @@ function Training() {
 					              checkValue = {checkValue}
 					              setCheckValue = {setCheckValue}/>
 				}
-				<button className = {CSS.ButtonStyle2} onClick = {() => navigate('/training/registration')}>등록하기
+				<button className = {CSS.ButtonStyle2} onClick = {() => setIsRegistModalOpen(true)}>등록하기</button>
+				<button className = {CSS.ButtonStyle3} onClick = {() => {
+					setIsDeleteModalOpen(true)
+				}}>삭제하기
 				</button>
-				<button className = {CSS.ButtonStyle3} onClick = {onClickDeleteHandler}>삭제하기</button>
 				{training.pageInfo && <PagingBar pageInfo = {training.pageInfo} setCurrentPage = {setCurrentPage}/>}
 			</div>
+			{isRegistModalOpen && (
+				<TrainingRegistModal isRegistOpen = {isRegistModalOpen} setIsRegistOpen = {setIsRegistModalOpen}
+				                     setInsert = {setInsert}/>
+			)}
+			{isDeleteModalOpen && (
+				<TrainingDeleteModal isDeleteModalOpen = {isDeleteModalOpen}
+				                     setIsDeleteModalOpen = {setIsDeleteModalOpen}
+				                     setInsert = {setInsert} checkValue = {checkValue}/>
+			)}
 		</>
 	)
 }
