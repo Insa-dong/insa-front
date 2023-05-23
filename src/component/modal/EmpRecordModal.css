@@ -11,8 +11,6 @@
       z-index: 100;
   }
   
-  
-  
   .EmpModalContainer{
     position: absolute;
   }
@@ -51,30 +49,30 @@
     margin: 3vw auto;
   }
 
-  .offDay1 {
-    display: flex;
-    justify-content: space-between; /* 요소들 사이에 공간 배분 */
-    align-items: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
+
+
+.EmpRecordWrap{
+  width: 350px; 
+  /* height: 200px; */
+  border-collapse: collapse;
+  text-align: center;
 }
 
-.offDay1 p {
-    margin-right: 10px;
+.EmpRecordWrap th,
+.EmpRecordWrap td{
+   border: 1px solid #ddd;
+    width: 33%;
+    height: 4vh;
+    color: #333;
 }
 
-.offDay2 {
-    display: flex;
-    justify-content: space-between; /* 요소들 사이에 공간 배분 */
-    align-items: center;
-    margin-bottom: 33px;
+.EmpRecordPaging{
+  margin-top: -6vw;
 }
 
-.offDay2 p {
-    margin-right: 10px;
-}
-  
-  
+
+
+
   
   
   
