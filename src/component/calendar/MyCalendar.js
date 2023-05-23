@@ -42,7 +42,7 @@ function MyCalendar() {
 				weekends = {true}
 				selectMirror = {true}
 				dayMaxEvents = {3}
-				displayEventTime = {false} // 12a 보이지 않도록 하는 속성
+				displayEventTime = {false}
 			/>
 		</div>
 	);
