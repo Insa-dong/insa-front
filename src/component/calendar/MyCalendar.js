@@ -1,13 +1,10 @@
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 import FullCalendar from '@fullcalendar/react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useEffect} from 'react';
-import Button from "react-bootstrap/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {callMyCalListAPI} from "../../apis/CalendarAPICalls";
 import './MyCalendar.css';
-import CSS from './MyCalendar.module.css';
 
 function MyCalendar() {
 
@@ -29,7 +26,6 @@ function MyCalendar() {
 
 	return (
 		<div>
-			<Button variant = "primary" className = {CSS.rightEnd} onClick = {onButtonClickHandler}>등록</Button>
 			<FullCalendar
 				initialView = "dayGridMonth"
 				plugins = {[dayGridPlugin, interactionPlugin]}
