@@ -15,9 +15,9 @@ function EmpDetail() {
     const { empDetail } = useSelector(state => state.empReducer);
     const params = useParams();
     const empCode = params.empCode;
-    const [ empRecordModal, setEmpRecordModal] = useState(false);
-    const [ empDeptModal, setEmpDeptModal] = useState(false);
-    const [ empJobModal, setEmpJobModal] = useState(false);
+    const [empRecordModal, setEmpRecordModal] = useState(false);
+    const [empDeptModal, setEmpDeptModal] = useState(false);
+    const [empJobModal, setEmpJobModal] = useState(false);
     console.log('empCode : ', empCode);
     console.log('empDetail:', { empDetail });
 
@@ -97,7 +97,7 @@ function EmpDetail() {
                                 </button>
                             </div>
 
-                            {empRecordModal && <EmpRecordModal empCode={empCode} setEmpRecordModal={setEmpRecordModal}/> }
+                            {empRecordModal && <EmpRecordModal empCode={empCode} setEmpRecordModal={setEmpRecordModal} />}
 
 
                             <ul style={{ display: 'flex' }}>
@@ -116,7 +116,7 @@ function EmpDetail() {
                                 </button>
                             </ul>
 
-                            {empDeptModal && <EmpJobModal empCode={empCode} setEmpJobModal={setEmpJobModal}/>}
+                            {empDeptModal && <EmpDeptModal empCode={empCode} setEmpDeptModal={setEmpDeptModal} />}
 
                             <ul style={{ display: 'flex' }}>
                                 <li className={CSS.email}>직책</li>
@@ -125,11 +125,11 @@ function EmpDetail() {
                                     className={CSS.jobBtn}
                                     onClick={onClickJobHandler}
                                 >
-                                    직책변동
+                                    직책변경
                                 </button>
                             </ul>
 
-                            {empJobModal && <EmpDeptModal empCode={empCode} setEmpDeptModal={setEmpDeptModal}/>}
+                            {empJobModal && <EmpJobModal empCode={empCode} setEmpJobModal={setEmpJobModal} />}
 
                             <ul style={{ display: 'flex' }}>
                                 <li className={CSS.email}>입사일</li>
@@ -138,8 +138,7 @@ function EmpDetail() {
                         </div>
 
                         <div className={CSS.btnWrap}>
-                            <button className={CSS.pwdBtn}>비밀번호변경</button>
-                            <button className={CSS.infoBtn}>개인정보변경</button>
+                            <button className={CSS.pwdBtn}>삭제하기</button>
                         </div>
                     </>}
             </div>
