@@ -28,17 +28,13 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
     );
   };
 
-  const getDisplayedFileNames = () => {
-    if (selectedFiles.length > 3) {
-      return `파일 ${selectedFiles.length}개`;
-    } else {
-      return selectedFiles.map((file) => (
-        <span key={file.name}>
-          {file.name}
-          <button onClick={() => handleClearFile(file.name)}>X</button>
-        </span>
-      ));
-    }
+  const renderFiles = () => {
+    return selectedFiles.map((file) => (
+      <div key={file.name}>
+        {file.name}
+        <button onClick={() => handleClearFile(file.name)}>X</button>
+      </div>
+    ));
   };
 
   return (
@@ -73,7 +69,7 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
               <li className={CSS.boardContent}>공지내용</li>
             </ul>
             <input className={CSS.content} name="noticeContent"></input>
-            <div>
+            <div style={{ display: "flex" }}>
               <img
                 src="/images/파일첨부.png"
                 className={CSS.fileImgg}
@@ -89,7 +85,7 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
                 style={{ display: "none" }}
                 onChange={handleFileChange}
               ></input>
-              <p className={CSS.selectedFileNames}>{getDisplayedFileNames()}</p>
+              <div className={CSS.selectedFileNames}>{renderFiles()}</div>
             </div>
             <button className={CSS.ButtonStyle2}>등록하기</button>
           </div>

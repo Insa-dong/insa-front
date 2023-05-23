@@ -62,6 +62,10 @@
     resize: none;
 }
 
+.file {
+  margin-top: 7vh;
+}
+
 
 .fileImgg {
   width: 1vw;
