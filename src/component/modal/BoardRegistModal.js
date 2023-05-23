@@ -1,9 +1,13 @@
 import React, { useRef, useState } from "react";
 import CSS from "./BoardRegistModal.module.css";
+import { useDispatch } from "react-redux";
+import { callBoardRegistAPI } from "../../apis/BoardAPICall";
 
 function BoardRegistModal({ isRegistOpen, onRegistClose }) {
   const fileInputRef = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [form, setForm] = useState({});
+  const dispatch = useDispatch();
 
   const handleBackgroundClick = () => {
     onRegistClose();
@@ -17,10 +21,10 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
     fileInputRef.current.click();
   };
 
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    setSelectedFiles(files);
-  };
+  // const handleFileChange = (e) => {
+  //   const files = Array.from(e.target.files);
+  //   setSelectedFiles(files);
+  // };
 
   const handleClearFile = (fileName) => {
     setSelectedFiles((prevFiles) =>
@@ -36,6 +40,46 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
       </div>
     ));
   };
+
+  const onChangeHandler = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+  }
+
+
+
+
+  /* 공지 등록하기 버튼 클릭 이벤트 */
+  const handleFile = (e) => {
+    const files = Array.from(e.target.files);
+    setSelectedFiles(files);
+  }
+
+  const onClickBoardRegistrationHandler = () => {
+    const formData = new FormData();
+    /* 서버로 전달할 FormData 형태의 객체 설정 */
+    formData.append("noticeTitle", form.noticeTitle);
+    formData.append("noticeContent", form.noticeContent);
+    formData.append("noticeWriteDate", new Date());
+    // FormData에 파일 추가
+    selectedFiles.forEach((file, index) => {
+      formData.append(`noticeFile[${index}]`, file);
+    });
+
+    console.log(formData);
+
+
+    dispatch(callBoardRegistAPI(formData));
+  }
+
+  // const handleFileChangeAndFile = (e) => {
+  //   //handleFile(e);
+  //   //handleFileChange(e);
+  // };
+
+
 
   return (
     isRegistOpen && (
@@ -56,7 +100,11 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
               </li>
               <li className={CSS.boardContent}>제목</li>
             </ul>
-            <input className={CSS.title} name="noticeTitle"></input>
+            <input
+              className={CSS.title}
+              name="noticeTitle"
+              onChange={onChangeHandler}
+            ></input>
             <ul style={{ display: "flex" }}>
               <li className={CSS.boardContentImg}>
                 <img
@@ -68,26 +116,35 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
               </li>
               <li className={CSS.boardContent}>공지내용</li>
             </ul>
-            <textarea className={CSS.content} name="noticeContent"></textarea>
-            <div>
+            <textarea
+              className={CSS.content}
+              name="noticeContent"
+              onChange={onChangeHandler}
+            ></textarea>
+            <div className={CSS.fileContainer} style={{ display: "flex" }} onClick={handleImageClick}>
               <img
                 src="/images/파일첨부.png"
                 className={CSS.fileImgg}
                 alt="파일첨부이미지"
-                onClick={handleImageClick}
               />
-              <input
-                ref={fileInputRef}
-                className={CSS.file}
-                multiple="multiple"
-                type="file"
-                name="noticeFile"
-                style={{ display: "none" }}
-                onChange={handleFileChange}
-              ></input>
-              <div className={CSS.selectedFileNames}>{renderFiles()}</div>
+              <div className={CSS.fileattach}>파일첨부</div>
             </div>
-            <button className={CSS.ButtonStyle2}>등록하기</button>
+            <input
+              ref={fileInputRef}
+              className={CSS.file}
+              multiple="multiple"
+              type="file"
+              name="noticeFile"
+              style={{ display: "none" }}
+              onChange={handleFile}
+            ></input>
+            <div className={CSS.selectedFileNames}>{renderFiles()}</div>
+            <button
+              className={CSS.ButtonStyle2}
+              onClick={onClickBoardRegistrationHandler}
+            >
+              등록하기
+            </button>
           </div>
         </div>
       </div>

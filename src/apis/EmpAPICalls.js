@@ -1,11 +1,11 @@
-import {getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail} from "../modules/EmpModule";
+import { getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord } from "../modules/EmpModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
 const PRE_URL = `http://${RESTAPI_SERVER_IP}:${RESTAPI_SERVER_PORT}/insa/v1`;
 
 /* 구성원 전체 조회 */
-export const callEmpListAPI = ({currentPage = 1}) => {
+export const callEmpListAPI = ({ currentPage = 1 }) => {
 
 	const requestURL = `${PRE_URL}/emp?page=${currentPage}`
 	return async (dispatch, getState) => {
@@ -20,7 +20,7 @@ export const callEmpListAPI = ({currentPage = 1}) => {
 }
 
 /* 구성원 부서별 조회 */
-export const empListDeptAPI = ({deptCode, currentPage = 1}) => {
+export const empListDeptAPI = ({ deptCode, currentPage = 1 }) => {
 
 	const requestURL = `${PRE_URL}/emp/dept/${deptCode}?page=${currentPage}`;
 	return async (dispatch, getState) => {
@@ -36,7 +36,7 @@ export const empListDeptAPI = ({deptCode, currentPage = 1}) => {
 }
 
 /* 구성원 검색*/
-export const empListSearchAPI = ({searchOption, searchKeyword, currentPage = 1}) => {
+export const empListSearchAPI = ({ searchOption, searchKeyword, currentPage = 1 }) => {
 
 	const requestURL = `${PRE_URL}/empsearch?page=${currentPage}&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
 	return async (dispatch, getState) => {
@@ -70,28 +70,28 @@ export const empDeptJobListAPI = () => {
 /* 구성원 등록 */
 export const callEmpRegistAPI = (form) => {
 
-	const requestURL =`${PRE_URL}/emp/empregist`;
-	form = ({ ...form, dept : { deptCode : form.deptCode}, job : { jobCode : form.jobCode }});
+	const requestURL = `${PRE_URL}/emp/empregist`;
+	form = ({ ...form, dept: { deptCode: form.deptCode }, job: { jobCode: form.jobCode } });
 	console.log(form);
 
 
-    return async (dispatch, getState) => {
+	return async (dispatch, getState) => {
 
-        const result = await fetch(requestURL, {
-            method : 'POST',
-            headers : {
-                "Content-Type": "application/json",
-                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
-            },
-            body: JSON.stringify(form)
-        }).then(res => res.json());
-        
-        console.log(result);
-		
-        if(result.status === 200) {
-            dispatch(postEmpRegist(result));
-        }
-    }
+		const result = await fetch(requestURL, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+				// "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+			},
+			body: JSON.stringify(form)
+		}).then(res => res.json());
+
+		console.log(result);
+
+		if (result.status === 200) {
+			dispatch(postEmpRegist(result));
+		}
+	}
 }
 
 /* 구성원 상세 조회 */
@@ -108,6 +108,21 @@ export const callEmpDetailAPI = ({ empCode }) => {
 		}
 	}
 }
+
+/* 인사이력 조회 */
+export const callEmpRecordAPI = ({empCode, currentPage}) => {
+	const requestURL = `${PRE_URL}/emp/emprecord/${empCode}?page=${currentPage}`;
+	return async (dispatch, getState) => {
+		const response = await fetch(requestURL);
+		const result = await response.json();
+
+		if (response.status === 200) {
+			console.log('[callEmpRecordAPI] : callEmpRecordAPI result : ', result);
+			dispatch(getEmpRecord(result));
+		}
+	};
+};
+
 
 
 

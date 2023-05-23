@@ -7,6 +7,7 @@ import { callBoardListAPI, callBoardSearchAPI } from "../../apis/BoardAPICall";
 import boardReducer from "../../modules/BoardModule";
 import BoardDetailModal from "../../component/modal/BoardDetailModal";
 import BoardRegistModal from "../../component/modal/BoardRegistModal";
+import { useNavigate } from "react-router-dom";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -18,6 +19,7 @@ function Board() {
 
   const title = '공지사항';
   const dispatch = useDispatch();
+  const navigae = useNavigate();
   const board = useSelector(state => state.boardReducer);
   const { data } = useSelector(state => state.boardReducer);
   const [currentPage, setCurrentPage] = useState(1);
@@ -144,7 +146,7 @@ function Board() {
         <button 
               className={CSS.boardBtn} 
               type="button"
-              onClick={() => openRegistModal()}
+              onClick={() => openRegistModal()}      
             >
               + 공지 등록하기
             </button>

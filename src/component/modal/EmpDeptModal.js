@@ -1,6 +1,6 @@
 import React from 'react'
 
-function EmpDeptModal() {
+function EmpDeptModal({ setEmpDeptModal }) {
   return (
     <div>EmpDeptModal</div>
   )
