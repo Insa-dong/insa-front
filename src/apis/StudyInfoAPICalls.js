@@ -1,4 +1,4 @@
-import {getStudyinfo, getStudyinfolist, putStudyinfo} from "../modules/StudyInfoModule";
+import {getMyStudy, getStudyinfo, getStudyinfolist, putStudyinfo} from "../modules/StudyInfoModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -88,4 +88,19 @@ export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 			dispatch(putStudyinfo(result));
 		}
 	};
+}
+
+export const callSelectStudyForTeacherAPI = ({ empCode , currentPage = 1 }) => {
+
+		const requestURL = `${PRE_URL}/emp/teacherStudyList/${empCode}?page=${currentPage}`;
+	
+		return async (dispatch, getState) => {
+			
+			const result = await fetch(requestURL).then(res => res.json());
+			console.log(result);
+			if(result.status === 200) {
+				dispatch(getMyStudy(result));
+	
+			}
+		};
 }

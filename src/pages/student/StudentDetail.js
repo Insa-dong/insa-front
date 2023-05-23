@@ -321,7 +321,7 @@ function StudentDetail() {
                 )}
 
                 <div className="studyHeaderContainer">
-                    <h2 className="studyHeader">강의 내역</h2>
+                    <h2 className="studyHeader">과정 내역</h2>
                     <button className="registrationButton" onClick={() => onClickRegistHandler(studyStudentRegist)}>등록</button>
 
                 </div>
@@ -338,7 +338,7 @@ function StudentDetail() {
                     <thead>
                         <tr>
                             <th>과정 이름</th>
-                            <th>총시간</th>
+                            <th>회차</th>
                             <th>수정/삭제</th>
                         </tr>
                     </thead>
@@ -347,7 +347,7 @@ function StudentDetail() {
                             studyList.map((study) => (
                                 <tr key={study}>
                                     <td>{study.trainingTitle}</td>
-                                    <td>{study.trainingTime}</td>
+                                    <td>{study.studyCount}</td>
                                     <td>
                                         <button className="studyStuUpdateBtn" onClick={() => onClickUpdateStudyStuHandler(study)}>수정</button>
                                         <button className="studyStuDeleteBtn" onClick={studyStuDelete}>삭제</button>
