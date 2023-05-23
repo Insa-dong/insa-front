@@ -68,8 +68,8 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
               </li>
               <li className={CSS.boardContent}>공지내용</li>
             </ul>
-            <input className={CSS.content} name="noticeContent"></input>
-            <div style={{ display: "flex" }}>
+            <textarea className={CSS.content} name="noticeContent"></textarea>
+            <div>
               <img
                 src="/images/파일첨부.png"
                 className={CSS.fileImgg}
@@ -81,7 +81,7 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
                 className={CSS.file}
                 multiple="multiple"
                 type="file"
-                name="files"
+                name="noticeFile"
                 style={{ display: "none" }}
                 onChange={handleFileChange}
               ></input>
