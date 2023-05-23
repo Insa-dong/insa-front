@@ -8,7 +8,7 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	console.log('모달창 왜안뜸?');
+	
 	const onClickOutsideModal = (e) => {
 		if (e.target === e.currentTarget) {
 			setIsDeleteModalOpen(false);
