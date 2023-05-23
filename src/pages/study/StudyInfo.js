@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
+import Swal from "sweetalert2";
 import {callTeacherList} from "../../apis/EmpAPICalls";
 import {callModifyStudyInfo, callPetiteStudyInfoAPI} from "../../apis/StudyInfoAPICalls";
 import {callTrainingTitle} from "../../apis/TrainingAPICalls";
@@ -39,7 +40,46 @@ function StudyInfo() {
 			dispatch(callTrainingTitle());
 			dispatch(callTeacherList());
 		} else if (e.target.innerText === '저장하기') {
-			dispatch(callModifyStudyInfo({form, day, studyInfoCode}));
+			Swal.fire({
+				text: '이대로 수정할까요 ?',
+				icon: 'warning',
+				showCancelButton: true,
+				customClass: {
+					confirmButton: 'custom-confirm-button',
+					cancelButton: 'custom-cancel-button'
+				},
+				confirmButtonColor: '#8CBAFF',
+				cancelButtonColor: '#DADADA',
+				confirmButtonText: '확인',
+				cancelButtonText: '취소',
+				reverseButtons: true,
+				buttonsStyling: false,
+			}).then((result) => {
+				if (result.isConfirmed) {
+					setModifyMode(false);
+					dispatch(callModifyStudyInfo({form, day, studyInfoCode}))
+						.then(() => {
+							Swal.fire({
+								title: '수정 완료',
+								text: '수정 완료. 메인 페이지로 이동합니다.',
+								icon: 'success',
+								buttonsStyling: false,
+								customClass: {
+									confirmButton: 'custom-success-button'
+								}
+							}).then(() => {
+								navigate('/study', {replace: true});
+							});
+						})
+						.catch((error) => {
+							Swal.fire(
+								'저장 실패',
+								'다시 시도하세요.',
+								'error'
+							);
+						});
+				}
+			});
 		}
 	}
 
@@ -55,37 +95,47 @@ function StudyInfo() {
 			<Header title = {title} subTitle = {subTitle}/>
 			<div className = {CSS.HeaderDiv}>
 				<h1>강의 정보</h1>
-				<div className = {CSS.TopDiv}>
-					<h2>강의 명</h2>
-					<textarea
-						className = {!modifyMode ? CSS.textInput : CSS.textInput2}
-						name = 'studyTitle'
-						defaultValue = {!modifyMode ? studyInfo && studyInfo.studyTitle : form.studyTitle}
-						onChange = {onChangeHandler}
-						readOnly = {!modifyMode}/>
-					<h3>과정 명</h3>
-					{!modifyMode ?
-						<textarea
-							className = {CSS.textInput}
-							name = 'study.training.trainingTitle'
-							defaultValue = {studyInfo.study && studyInfo.study.training.trainingTitle}
-							onChange = {onChangeHandler}
-							readOnly = {!modifyMode}/>
-						: <select onChange = {onChangeHandler} className = {CSS.selectBox}
-						          name = 'trainingCode'>
-							<option
-								value = {studyInfo.study.training.trainingCode}>{studyInfo.study.training.trainingTitle}
-							</option>
-							{trainingList.length > 0 && trainingList.map(training =>
-								studyInfo.study.training.trainingCode !== training.trainingCode &&
-								<option
-									value = {training.trainingCode}
-									key = {training.trainingCode}
-								>{training.trainingTitle}
-								</option>)}
-						</select>
-					}
-				</div>
+				<table className = {CSS.MiddleBody}>
+					<tbody>
+					<tr>
+						<th className = {CSS.ThTag}>강의 명</th>
+						<td className = {CSS.MiddleBodyDiv}>
+							<input
+								className = {!modifyMode ? CSS.textInput3 : CSS.textInput2}
+								name = 'studyTitle'
+								defaultValue = {!modifyMode ? studyInfo && studyInfo.studyTitle : form.studyTitle}
+								onChange = {onChangeHandler}
+								readOnly = {!modifyMode}/>
+						</td>
+					</tr>
+					<tr>
+						<th>과정 명</th>
+						<td className = {CSS.MiddleBodyDiv}>
+							{!modifyMode ?
+								<textarea
+									className = {CSS.textInput}
+									name = 'study.training.trainingTitle'
+									defaultValue = {studyInfo.study && studyInfo.study.training.trainingTitle}
+									onChange = {onChangeHandler}
+									readOnly = {!modifyMode}/>
+								: <select onChange = {onChangeHandler} className = {CSS.selectBox}
+								          name = 'trainingCode'>
+									{studyInfo.study && <option
+										value = {studyInfo.study.training.trainingCode}>{studyInfo.study.training.trainingTitle}
+									</option>}
+									{trainingList.length > 0 && trainingList.map(training =>
+										studyInfo.study.training.trainingCode !== training.trainingCode &&
+										<option
+											value = {training.trainingCode}
+											key = {training.trainingCode}
+										>{training.trainingTitle}
+										</option>)}
+								</select>
+							}
+						</td>
+					</tr>
+					</tbody>
+				</table>
 				<h1>상세 정보</h1>
 				<table className = {CSS.MiddleBody}>
 					<tbody>
@@ -106,7 +156,7 @@ function StudyInfo() {
 						<td colSpan = {1} className = {CSS.MiddleBodyDiv}>
 							{!modifyMode ?
 								<textarea
-									className = {!modifyMode ? CSS.textInput3 : CSS.textInput4}
+									className = {CSS.textInput3}
 									name = 'empCode'
 									defaultValue = {studyInfo.teacher && studyInfo.teacher.empName}
 									onChange = {onChangeHandler}
@@ -158,7 +208,8 @@ function StudyInfo() {
 						<th className = {CSS.MiddleTh}>시작일</th>
 						<td className = {CSS.MiddleTd}>
 							{!modifyMode ?
-								<textarea
+								<input
+									type = "text"
 									className = {CSS.textInput5}
 									name = 'studyStartDate'
 									defaultValue = {studyInfo.study && studyInfo.studyInfoStartDate}
@@ -179,7 +230,8 @@ function StudyInfo() {
 						<th className = {CSS.MiddleTh}>종료일</th>
 						<td className = {CSS.MiddleTd}>
 							{!modifyMode ?
-								<textarea
+								<input
+									type = "text"
 									className = {CSS.textInput5}
 									name = 'studyEndDate'
 									defaultValue = {studyInfo.study && studyInfo.studyInfoEndDate}

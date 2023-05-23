@@ -29,9 +29,10 @@ function TrainingDetail() {
 		() => {
 			if (modify?.status === 200) {
 				if (window.confirm('수정이 완료되었습니다. 메인 페이지로 이동합니다.')) {
-					navigate('/', {replace: true});
+					navigate('/training', {replace: true});
 				} else {
-					alert(`${modify}`);
+					alert('가야함');
+					navigate('/training', {replace: true});
 				}
 			}
 		},
