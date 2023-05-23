@@ -135,7 +135,7 @@ a {
     cursor: pointer;
 }
 
-.moreThanus{
+.moreThanus {
     padding-top: 2.5vh;
     width: 12vw;
 }
@@ -192,8 +192,8 @@ a {
     margin-left: 1vw;
 }
 
-.custom-confirm-button{
-    background-color: #8CBAFF!important;
+.custom-confirm-button {
+    background-color: #8CBAFF !important;
     color: white;
     margin-top: 45px;
     margin-bottom: 5px;
@@ -203,8 +203,9 @@ a {
     border: 1px solid #8CBAFF;
     margin-left: 30px
 }
+
 .custom-cancel-button {
-    background-color: #DADADA!important;
+    background-color: #DADADA !important;
     color: white;
     margin-top: 45px;
     margin-bottom: 5px;
@@ -213,8 +214,9 @@ a {
     border-radius: 5px;
     border: 1px solid #DADADA;
 }
+
 .custom-success-button {
-    background-color: #8CBAFF!important;
+    background-color: #8CBAFF !important;
     color: white;
     margin-top: 45px;
     margin-bottom: 5px;
