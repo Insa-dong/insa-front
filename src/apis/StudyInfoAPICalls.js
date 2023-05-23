@@ -102,7 +102,7 @@ export const callSelectStudyForTeacherAPI = ({ empCode , currentPage = 1 }) => {
 			}
 		}
 	};
-  
+
 export const callInsertStudyInfo = ({form, day}) => {
 
 	console.log(form);
@@ -156,3 +156,4 @@ export const callInsertStudyInfo = ({form, day}) => {
 		}
 	};
 }
+
