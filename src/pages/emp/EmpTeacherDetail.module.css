@@ -1,0 +1,15 @@
+.StuWrapper {
+    width: 74vw;
+    height: 78vh;
+    margin-left : 20vw;
+    margin-bottom: 10vh;
+}
+
+
+.StuPaging {
+    /* border: 1px solid rgb(82, 82, 82); */
+    width: 20vw;
+    height: 2vw;
+    margin: 0 auto;
+    margin-top: 3vh;
+} 

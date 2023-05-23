@@ -10,11 +10,11 @@ function EmpTeacherItem({ item, studyCode }) {
     };
 
     return(
-        <tr key ={item.empCode}>
-            <th onClick = {onClickStudentListHandler}>{item.study.studyCode}</th>
-            <th onClick = {onClickStudentListHandler}>{item.study.training.trainingTitle}</th>
-            <th onClick = {onClickStudentListHandler}>{item.studyTitle}</th>
-            <th onClick = {onClickStudentListHandler}>{item.teacher.empName}</th>
+        <tr key ={item.empCode} onClick = {onClickStudentListHandler}>
+            <th>{item.study.studyCode}</th>
+            <th>{item.study.training.trainingTitle}</th>
+            <th>{item.studyTitle}</th>
+            <th>{item.teacher.empName}</th>
         </tr>
     );
 }
