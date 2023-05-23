@@ -14,7 +14,7 @@ function OffComingItem({ off: { offDiv, offStart, offEnd, offDay, signStatus } }
             statusColor = "#AAAAAA";
             break;
         case "반려":
-            statusColor = "#F37742";
+            statusColor = "#FFA9B0";
             break;
         case "승인":
             statusColor = "#8CBAFF";
@@ -22,8 +22,8 @@ function OffComingItem({ off: { offDiv, offStart, offEnd, offDay, signStatus } }
     }
 
     return (
-        <div className='comingOffDiv'>
-        <tr>
+       
+        <tr className="comingOffDiv">
             <td className="td-img">
                 <img className="offDivImg" alt="offDivImg" src={imgSrc}/>
             </td>
@@ -34,7 +34,7 @@ function OffComingItem({ off: { offDiv, offStart, offEnd, offDay, signStatus } }
             <td className="td-signStatus" style={{backgroundColor: statusColor}}>{signStatus}</td>
             <td className="td-cancel"><button className='offcancel'>신청취소</button></td>
         </tr>
-        </div>
+       
     )
 }
 
