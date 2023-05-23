@@ -56,12 +56,12 @@ function StudentItem({ item }) {
   }, [stuCode]); // stuCode가 변경될 때마다 호출
 
   return (
-    <tr key={item.stuCode}>
-      <th onClick={onClickStudentHandler}>{item.stuCode}</th>
-      <th onClick={onClickStudentHandler}>{item.stuName}</th>
-      <th onClick={onClickStudentHandler}>{item.stuPhone}</th>
-      <th onClick={onClickStudentHandler}>{item.stuEmail}</th>
-      <th onClick={onClickStudentHandler}>{item.stuEndSchool}</th>
+    <tr key={item.stuCode} onClick={onClickStudentHandler}>
+      <th>{item.stuCode}</th>
+      <th>{item.stuName}</th>
+      <th>{item.stuPhone}</th>
+      <th>{item.stuEmail}</th>
+      <th>{item.stuEndSchool}</th>
       <th>
         <div className = "stu-btns">
         <button className ="stu-delete-btn" onClick={studentDelete}>삭제</button>

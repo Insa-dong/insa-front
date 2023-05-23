@@ -9,6 +9,8 @@ function EmpTeacherItem({ item, studyCode }) {
         navigate(`/empteacher/${studyCode}`);
     };
 
+    console.log('studyCode : ', studyCode);
+
     return(
         <tr key ={item.empCode} onClick = {onClickStudentListHandler}>
             <th>{item.study.studyCode}</th>
