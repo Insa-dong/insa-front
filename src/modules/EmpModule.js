@@ -28,7 +28,7 @@ export const { emp: { getEmp, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmp
 const empReducer = handleActions(
 	{
 		[GET_EMP]: (state, {payload}) => payload,
-		[GET_EMP_DEPT_JOB]: (state, {payload}) => payload,
+		[GET_EMP_DEPT_JOB]: (state, {payload}) =>({ ...state, empDeptJob : payload}) ,
 		[POST_EMP_REGIST]: (state, {payload}) => ({ empRegist : payload}),
 		[GET_EMP_DETAIL]: (state, {payload}) => ({ empDetail : payload}),
 		[GET_EMP_RECORD]: (state, {payload}) => ({ ...state, empRecord : payload}),

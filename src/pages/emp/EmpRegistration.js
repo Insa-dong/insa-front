@@ -10,7 +10,7 @@ function EmpRegistration() {
   const title = '구성원';
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const empDeptJob = useSelector(state => state.empReducer);
+  const {empDeptJob} = useSelector(state => state.empReducer);
   const {empRegist} = useSelector(state => state.empReducer);
   const [form, setForm] = useState({
     empGender:"여",
