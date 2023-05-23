@@ -19,6 +19,7 @@ function StudyRegistration() {
 	const [day, setDay] = useState([]);
 	const trainingList = useSelector(state => state.trainingReducer);
 	const {teacher} = useSelector(state => state.empReducer);
+	const {regist} = useSelector(state => state.studyInfoReducer);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 

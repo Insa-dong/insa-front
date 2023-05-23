@@ -30,6 +30,8 @@ import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
 
 
+
+
 function App() {
 	return (
 		<div className = "body">
@@ -62,7 +64,6 @@ function App() {
 						<Route path = "off/adminOff" element = {<AdminOff/>}/>
 						<Route path = "off/adminOff/offNow" element = {<OffNow/>}/>
 						<Route path = "student/registration" element = {<StudentRegistration/>}/>
-
 					</Route>
 					<Route path = "idsearch" element = {<IdSearch/>}/>
 					<Route path = "idsearchsuccess" element = {<IdSearchSuccess/>}/>

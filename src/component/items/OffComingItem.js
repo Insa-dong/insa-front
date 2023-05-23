@@ -11,13 +11,13 @@ function OffComingItem({ off: { offDiv, offStart, offEnd, offDay, signStatus } }
     let statusColor;
     switch (signStatus) {
         case "대기":
-            statusColor = "gray";
+            statusColor = "#AAAAAA";
             break;
         case "반려":
-            statusColor = "#E6162D";
+            statusColor = "#F37742";
             break;
         case "승인":
-            statusColor = "black";
+            statusColor = "#8CBAFF";
             break;
     }
 

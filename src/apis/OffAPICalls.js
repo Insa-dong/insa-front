@@ -5,8 +5,9 @@ const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
 const PRE_URL = `http://${SERVER_IP}:${SERVER_PORT}/off`;
 
 /* 연차 신청 API */
-export const callApplyAPI = (formData) => {
+export const callApplyAPI = (form) => {
     const requestURL = `${PRE_URL}/apply`;
+    console.log(form);
   
     return async (dispatch, getState) => {
 
@@ -15,11 +16,10 @@ export const callApplyAPI = (formData) => {
             headers : {
                 "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
             },
-            body : formData
+            body : JSON.stringify(form)
         }).then(response => response.json());
 
         if(result.status === 200) {
-            console.log('[OffAPICalls] : callApplyAPI result : ', result);
             dispatch(postApply(result));
         }
     }
@@ -29,7 +29,7 @@ export const callApplyAPI = (formData) => {
   export const callComingupOffListAPI = () => {
 
     const requestURL = `${PRE_URL}/my-comingUp-off`;
-    
+
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
             method: 'GET',
