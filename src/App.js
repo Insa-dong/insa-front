@@ -32,6 +32,8 @@ import EmpTeacherDetail from './pages/emp/EmpTeacherDetail';
 import EmpTeacher from './pages/emp/EmpTeacher';
 
 
+
+
 function App() {
 	return (
 		<div className = "body">

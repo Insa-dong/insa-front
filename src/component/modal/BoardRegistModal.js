@@ -22,11 +22,22 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
     setSelectedFiles(files);
   };
 
+  const handleClearFile = (fileName) => {
+    setSelectedFiles((prevFiles) =>
+      prevFiles.filter((file) => file.name !== fileName)
+    );
+  };
+
   const getDisplayedFileNames = () => {
     if (selectedFiles.length > 3) {
       return `파일 ${selectedFiles.length}개`;
     } else {
-      return selectedFiles.map((file) => file.name).join(", ");
+      return selectedFiles.map((file) => (
+        <span key={file.name}>
+          {file.name}
+          <button onClick={() => handleClearFile(file.name)}>X</button>
+        </span>
+      ));
     }
   };
 
@@ -78,9 +89,7 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
                 style={{ display: "none" }}
                 onChange={handleFileChange}
               ></input>
-              <p className={CSS.selectedFileNames}>
-                {getDisplayedFileNames()}
-              </p>
+              <p className={CSS.selectedFileNames}>{getDisplayedFileNames()}</p>
             </div>
             <button className={CSS.ButtonStyle2}>등록하기</button>
           </div>
