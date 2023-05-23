@@ -111,32 +111,16 @@ function EmpTeacherDetail() {
                             <th>이름</th>
                             <th>날짜</th>
                             <th>출결</th>
-                            <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {studyStudentState.data && studyStudentState.data.length > 0 ? (
+                        {studyStudentState.data && studyStudentState.data.length > 0 ? (
                             studyStudentState.data.map((item) => (
                                 <tr key={item.stuCode}>
                                     <td>{item.student.stuCode}</td>
                                     <td>{item.student.stuName}</td>
-                                    {attendData.data && attendData.data.length > 0 ? (
-                                        attendData.data.map((attend) => (
-                                            <React.Fragment key={attend.id}>
-                                                <td>{attend.attendDate}</td>
-                                                <td>{attend.attendStatus}</td>
-                                            </React.Fragment>
-                                        ))
-                                    ) : (
-                                        <>
-                                            <td colSpan="2">-</td>
-                                        </>
-                                    )}
                                     <td>
-                                        <button onClick={() => onClickRegistAttend(item, item.student.stuCode)}>
-                                            등록
-                                        </button>
+                                        <button onClick={() => onClickRegistAttend(item, item.student.stuCode)}>등록</button>
                                     </td>
                                     <td>
                                         <button onClick={onClickUpdateAttend}>수정</button>
@@ -146,9 +130,10 @@ function EmpTeacherDetail() {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="6">등록된 수강생이 없습니다.</td>
+                                <td colSpan="4">등록된 수강생이 없습니다.</td>
                             </tr>
-                        )} */}
+                        )}
+
                     </tbody>
                 </table>
                 <div className={CSS.StuPaging}>
