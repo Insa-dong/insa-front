@@ -28,10 +28,6 @@ import StudyInfo from "./pages/study/StudyInfo";
 import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
-import TrainingRegistration from "./pages/training/TrainingRegistration";
-import EmpTeacher from './pages/emp/EmpTeacher';
-import EmpTeacherDetail from './pages/emp/EmpTeacherDetail';
-
 
 
 function App() {
