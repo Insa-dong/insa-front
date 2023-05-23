@@ -1,14 +1,14 @@
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
-import {callTrainingRemoveAPI} from "../../apis/TrainingAPICalls";
+import {callStudyRemoveAPI} from "../../apis/StudyInfoAPICalls";
 import CSS from "./TrainingRegistModal.module.css";
 
 function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert, checkValue}) {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	
+
 	const onClickOutsideModal = (e) => {
 		if (e.target === e.currentTarget) {
 			setIsDeleteModalOpen(false);
@@ -32,7 +32,7 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 			buttonsStyling: false,
 		}).then((result) => {
 			if (result.isConfirmed) {
-				dispatch(callTrainingRemoveAPI(checkValue))
+				dispatch(callStudyRemoveAPI(checkValue))
 					.then(() => {
 						Swal.fire({
 							title: '삭제 완료',
@@ -43,7 +43,7 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 								confirmButton: 'custom-success-button'
 							}
 						}).then(() => {
-							navigate('/training', {replace: true});
+							navigate('/study', {replace: true});
 							setIsDeleteModalOpen(false);
 							setInsert(true);
 						});

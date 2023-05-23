@@ -1,4 +1,11 @@
-import {getMyStudy, getStudyinfo, getStudyinfolist, postStudyinfo, putStudyinfo} from "../modules/StudyInfoModule";
+import {
+	deleteStudyinfo,
+	getMyStudy,
+	getStudyinfo,
+	getStudyinfolist,
+	postStudyinfo,
+	putStudyinfo
+} from "../modules/StudyInfoModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -156,5 +163,21 @@ export const callInsertStudyInfo = ({form, day}) => {
 			dispatch(postStudyinfo(result));
 		}
 	};
+}
+
+export const callStudyRemoveAPI = (studyCode) => {
+
+	const requestURL = `${PRE_URL}/studyInfo/${studyCode}`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL, {
+			method: 'DELETE'
+		}).then(res => res.json());
+
+		console.log(result);
+		if (result.status === 200) {
+			dispatch(deleteStudyinfo(result));
+		}
+	}
 }
 
