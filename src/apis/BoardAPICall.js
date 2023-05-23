@@ -1,4 +1,4 @@
-import { getBoardlist } from "../modules/BoardModule";
+import { getBoardlist, postBoard } from "../modules/BoardModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -36,4 +36,26 @@ export const callBoardSearchAPI = ({ searchOption, searchKeyword, currentPage = 
 		}
 
 	}
+}
+
+export const callBoardRegistAPI = (formData) => {
+	
+	const requestURL = `${PRE_URL}/noticeregist`;
+	
+	return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'POST',
+            headers : {
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : formData
+        }).then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[BoardAPICalls] : callBoardRegistAPI result : ', result);
+            dispatch(postBoard(result));
+        }
+    }
+
 }

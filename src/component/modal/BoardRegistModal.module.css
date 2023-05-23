@@ -67,11 +67,19 @@
   resize: none;
 }
 
+.fileContainer {
+  width: 5vw;
+  cursor: pointer;
+}
+
+.fileattach {
+  padding-top: 0.7vh;
+}
+
 .fileImgg {
   width: 1vw;
   margin-top: 0.3vh;
   margin-right: 0.5vw;
-  cursor: pointer;
 }
 
 .fileImgg-container {
