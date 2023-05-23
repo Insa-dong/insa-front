@@ -28,7 +28,7 @@ function StudyRegistration() {
 			dispatch(callTrainingTitle());
 			dispatch(callTeacherList());
 		},
-		[dispatch]
+		[]
 	)
 
 	const onChangeHandler = (e) => {
@@ -40,6 +40,10 @@ function StudyRegistration() {
 
 	const onClickInsertHandler = () => {
 		dispatch(callInsertStudyInfo({form, day}));
+		if (regist?.status === 200) {
+			alert('등록이 완료되었습니다. 목록으로 이동합니다.');
+			navigate('/study', {replace: true})
+		}
 	}
 
 	return (
@@ -57,7 +61,7 @@ function StudyRegistration() {
 					<h3>과정 명</h3>
 					<select onChange = {onChangeHandler} className = {CSS.selectBox}
 					        name = 'trainingCode'>
-						{trainingList && trainingList.map(training =>
+						{trainingList.length > 0 && trainingList.map(training =>
 							<option
 								value = {training.trainingCode}
 								key = {training.trainingCode}
