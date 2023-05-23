@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
 import TeacherNavbar from "../../component/common/TeacherNavbar";
 import { callSelectStudentForStudyAPI } from "../../apis/StudyStuAPICalls";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CSS from './EmpTeacherDetail.module.css';
 import PagingBar from "../../component/common/PagingBar";
@@ -43,7 +42,7 @@ function EmpTeacherDetail() {
     const [selectedAttendUpdate, setSelectedAttendUpdate] = useState(null);
     const [attendUpdateModalVisible, setAttendUpdateModalVisible] = useState(false);
 
-    const attendData = useSelector(state => state.attendReducer);
+    const { attend } = useSelector(state => state.attendReducer);
 
     console.log(studyCode);
 
@@ -117,23 +116,39 @@ function EmpTeacherDetail() {
                         </tr>
                     </thead>
                     <tbody>
-                        {studyStudentState.data && studyStudentState.data.length > 0 ? (
-                            studyStudentState.data.map(item => (
+                        {/* {studyStudentState.data && studyStudentState.data.length > 0 ? (
+                            studyStudentState.data.map((item) => (
                                 <tr key={item.stuCode}>
                                     <td>{item.student.stuCode}</td>
                                     <td>{item.student.stuName}</td>
-                                    <td>{item.attendDate}</td>
-                                    <td>{item.attendStatus}</td>
-                                    <td><button onClick={() => onClickRegistAttend(item, item.student.stuCode)}>등록</button></td>
-                                    <td><button onClick={onClickUpdateAttend} >수정</button>
-                                        <button onClick={attendDelete}>삭제</button></td>
+                                    {attendData.data && attendData.data.length > 0 ? (
+                                        attendData.data.map((attend) => (
+                                            <React.Fragment key={attend.id}>
+                                                <td>{attend.attendDate}</td>
+                                                <td>{attend.attendStatus}</td>
+                                            </React.Fragment>
+                                        ))
+                                    ) : (
+                                        <>
+                                            <td colSpan="2">-</td>
+                                        </>
+                                    )}
+                                    <td>
+                                        <button onClick={() => onClickRegistAttend(item, item.student.stuCode)}>
+                                            등록
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button onClick={onClickUpdateAttend}>수정</button>
+                                        <button onClick={attendDelete}>삭제</button>
+                                    </td>
                                 </tr>
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="4">등록된 수강생이 없습니다.</td>
+                                <td colSpan="6">등록된 수강생이 없습니다.</td>
                             </tr>
-                        )}
+                        )} */}
                     </tbody>
                 </table>
                 <div className={CSS.StuPaging}>
