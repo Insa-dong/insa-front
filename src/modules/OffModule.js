@@ -14,7 +14,7 @@ const GET_COMINGUP_OFF = 'off/GET_COMINGUP_OFF'
 
 export const { off : { postApply, getComingupOff } } = createActions({
    
-    [POST_APPLY] : (res) => res,
+    [POST_APPLY] : (res) => res.data,
     [GET_COMINGUP_OFF] : (res) => res,
     
    
