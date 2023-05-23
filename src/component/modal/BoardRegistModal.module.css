@@ -1,73 +1,106 @@
 .modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-  }
-  
-  .modalContainer {
-    width: 30vw;
-    height: 70vh;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    border-radius: 10px;
-    background-color: white;
-  }
-  
-  .edgeContainer {
-      margin-top: 1vh;
-      margin-left: 3vw;
-  }
-
-  .close {
-    width: 1vw;
-    margin-top: 3vh;
-    margin-left: auto;
-    margin-right: 3vw;
-    cursor: pointer;
-  }
-
-  .boardContentImg {
-    margin-top: 1vh;
-    margin-right: 1vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
 }
 
-.boardContent{
-    margin-top: 0.8vh;
+.modalContainer {
+  position: relative;
+  width: 30vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.edgeContainer {
+  margin-top: 1vh;
+  margin-left: 3vw;
+}
+
+.close {
+  width: 1vw;
+  margin-top: 3vh;
+  margin-left: auto;
+  margin-right: 3vw;
+  cursor: pointer;
+}
+
+.boardContentImg {
+  margin-top: 1vh;
+  margin-right: 1vh;
+}
+
+.boardContent {
+  margin-top: 0.8vh;
 }
 
 .title {
-    margin-top: 1.5vh;
-    margin-bottom: 2.5vh;
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 24vw;
+  margin-top: 1.5vh;
+  margin-bottom: 2.5vh;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 24vw;
+}
+
+.title:focus {
+  border: 2px solid black;
 }
 
 .content {
-    margin-top: 1.5vh;
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 24vw;
-    height: 25vh;
-    max-width: 24vw;
-    max-height: 25vh;
-    resize: none;
+  margin-top: 1.5vh;
+  margin-bottom: 2vh;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 24vw;
+  height: 25vh;
+  max-width: 24vw;
+  max-height: 25vh;
+  resize: none;
 }
-
 
 .fileImgg {
   width: 1vw;
-  margin-top: 0.5vh;
-  padding-top: 2vh;
+  margin-top: 0.3vh;
   margin-right: 0.5vw;
+  cursor: pointer;
+}
+
+.fileImgg-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.file {
+  display: none;
+}
+
+.selectedFileNames {
+  margin-top: 1vh;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.selectedFileNames > span {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 0.25rem 0.5rem;
+}
+
+.selectedFileNames > span > button {
+  margin-left: 0.5rem;
   cursor: pointer;
 }
 
@@ -79,7 +112,7 @@
   color: #FFFFFF;
   border: 1px solid #8CBAFF;
   cursor: pointer;
-  margin-top: 9vh;
+  margin-top: 20vh;
   margin-left: 9vw;
+  margin-right: 3vw;
 }
-

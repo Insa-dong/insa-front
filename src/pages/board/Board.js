@@ -21,7 +21,7 @@ function Board() {
   const board = useSelector(state => state.boardReducer);
   const { data } = useSelector(state => state.boardReducer);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchOption, setSearchOption] = useState('all');
+  const [searchOption, setSearchOption] = useState('title');
   const [searchKeyword, setSearchKeyword] = useState('');
 
   /* 공지사항 모달창 */
