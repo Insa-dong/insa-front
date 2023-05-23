@@ -8,8 +8,8 @@ import './OffApplyModal.css';
 function OffApplyModal({ setOffApplyModal }) {
 
     const [form, setForm] = useState({});
-
     const dispatch = useDispatch();
+    const off = useSelector(state => state.offReducer);
 
     const onChangeHandler = (e) => {
         setForm({
@@ -19,15 +19,50 @@ function OffApplyModal({ setOffApplyModal }) {
     };
 
     const onClickOffApplyHandler = () => {
-        dispatch(callApplyAPI(form));
+        Swal.fire({
+          text: '해당 내용으로 연차를 신청 하시겠습니까?',
+          icon: 'warning',
+          showCancelButton: true,
+          customClass: {
+            confirmButton: 'custom-confirm-button',
+            cancelButton: 'custom-cancel-button',
+          },
+          confirmButtonColor: '#8CBAFF',
+          cancelButtonColor: '#DADADA',
+          confirmButtonText: '신청',
+          cancelButtonText: '취소',
+          reverseButtons: true,
+          buttonsStyling: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            dispatch(callApplyAPI(form))
+              .then(() => {
+                Swal.fire({
+                  title: '신청 완료',
+                  text: '신청 내역을 확인하세요.',
+                  icon: 'success',
+                  buttonsStyling: false,
+                  customClass: {
+                    confirmButton: 'custom-success-button',
+                  },
+                }).then(() => {
+                  setOffApplyModal(false); // 완료 후 모달 닫기
+                });
+              })
+              .catch((error) => {
+                Swal.fire('신청 실패', '다시 시도하세요.', 'error');
+              });
+          }
+        });
     };
+
+
 
     const onClickOutsideModal = (e) => {
         if (e.target === e.currentTarget) {
             setOffApplyModal(false);
         }
     };
-
     return (
         <div className="OffApplyModal" onClick={onClickOutsideModal}>
             <div className="OffApplyModalContainer">
@@ -76,7 +111,7 @@ function OffApplyModal({ setOffApplyModal }) {
                     <textarea
                         className="offReasonBox"
                         placeholder="신청 사유 작성"
-                        name="offReason"
+                        name="signReason"
                         onChange={onChangeHandler}
                     ></textarea>
                     
