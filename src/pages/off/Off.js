@@ -4,21 +4,31 @@ import Header from "../../component/common/Header";
 import './Off.css';
 import OffApplyModal from '../../component/modal/OffApplyModal';
 import OffComingList from '../../component/lists/OffComingList';
-//import PagingBar from '../../component/common/PagingBar';
-import { callComingupOffListAPI } from '../../apis/OffAPICalls';
+import OffPastList from '../../component/lists/OffPastList';
+import { callComingupOffListAPI, callPastOffListAPI } from '../../apis/OffAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Off() {
 
-   // const [currentPage, setCurrentPage] = useState(1)
     const [offApplyModal, setOffApplyModal] = useState(false);
     const dispatch = useDispatch();
-    const off = useSelector(state => state.offReducer);
-    const offComingList = off.data || [];
-    
+    const { comingUpOffList, pastOffList } = useSelector(state => state.offReducer);
+    const offComingList = comingUpOffList.data || [];
+    const offPastList = pastOffList.data || [];
+
     useEffect(() => {
-        dispatch(callComingupOffListAPI());
-    }, []);
+        const fetchOffData = async () => {
+          try {
+            await dispatch(callComingupOffListAPI());
+            await dispatch(callPastOffListAPI());
+          } catch (error) {
+            console.error('API 호출 에러:', error);
+            // 에러 처리를 원하는 대로 수행
+          }
+        };
+      
+        fetchOffData();
+      }, []);
 
 
     const onClickOffApplyHandler = () => {
@@ -72,10 +82,16 @@ function Off() {
                 </div>
                 <p className='comingup-title'> 예정 연차 </p>
                 <div className="my-off-request">
-                <div>
-                    {offComingList && <OffComingList offComingList={offComingList} />}
+                    <div>
+                        {offComingList && <OffComingList offComingList={offComingList} />}
+                    </div>
                 </div>
 
+                <p className='comingup-title'> 사용 기록 </p>
+                <div className="my-off-request">
+                    <div>
+                        {offPastList && <OffPastList offPastList={offPastList} />}
+                    </div>
                 </div>
 
             </div>
