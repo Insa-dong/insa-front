@@ -28,17 +28,6 @@ import StudyInfo from "./pages/study/StudyInfo";
 import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
-import TrainingRegistration from "./pages/training/TrainingRegistration";
-import BoardDetail from './pages/board/BoardDetail';
-import EmpRegistration from './pages/emp/EmpRegistration';
-import EmpDetail from './pages/emp/EmpDetail';
-import Off from './pages/off/Off';
-import AdminOff from './pages/off/AdminOff';
-import OffNow from './pages/off/OffNow';
-import Mypage from './pages/mpg/Mypage';
-import EmpTeacher from './pages/emp/EmpTeacher';
-import EmpTeacherDetail from './pages/emp/EmpTeacherDetail';
-
 
 
 function App() {
