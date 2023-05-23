@@ -5,6 +5,7 @@ import {callStudyInfoListAPI} from "../../apis/StudyInfoAPICalls";
 import Header from "../../component/common/Header";
 import PagingBar from "../../component/common/PagingBar";
 import StudyList from "../../component/lists/StudyList";
+import StudyDeleteModal from "../../component/modal/StudyDeleteModal";
 import CSS from "../training/Training.module.css";
 
 function Study() {
@@ -15,11 +16,23 @@ function Study() {
 	const [search, setSearch] = useState();
 	const [currentPage, setCurrentPage] = useState(1)
 	const [checkValue, setCheckValue] = useState("1");
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+	const [insert, setInsert] = useState(false);
 	const [searchParams] = useSearchParams();
 	const searchValue = searchParams.get('value');
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const study = useSelector(state => state.studyInfoReducer);
+
+	useEffect(
+		() => {
+			if (insert) {
+				dispatch(callStudyInfoListAPI({currentPage}));
+				setInsert(false);
+			}
+		},
+		[currentPage, dispatch, insert]
+	)
 
 	useEffect(
 		() => {
@@ -48,14 +61,6 @@ function Study() {
 
 	const onClickHandler = () => {
 		navigate(`/studySearch?value=${search}`);
-	}
-
-	const onClickDeleteHandler = () => {
-		if (window.confirm(`${checkValue}번 강의를 삭제하시겠습니까?`)) {
-			alert('삭제')
-		} else {
-			alert('안하기')
-		}
 	}
 
 	const selectOnChangeHandler = (e) => {
@@ -93,9 +98,17 @@ function Study() {
 					           currentPage = {currentPage}
 					/>
 				}
-				<button className = {CSS.ButtonStyle2} onClick = {() => navigate('/training/registration')}>등록하기
+				<button className = {CSS.ButtonStyle2} onClick = {() => navigate('/study/registration')}>등록하기
 				</button>
-				<button className = {CSS.ButtonStyle3} onClick = {onClickDeleteHandler}>삭제하기</button>
+				<button className = {CSS.ButtonStyle3} onClick = {() => {
+					setIsDeleteModalOpen(true)
+				}}>삭제하기
+				</button>
+				{isDeleteModalOpen && (
+					<StudyDeleteModal isDeleteModalOpen = {isDeleteModalOpen}
+					                  setIsDeleteModalOpen = {setIsDeleteModalOpen}
+					                  setInsert = {setInsert} checkValue = {checkValue}/>
+				)}
 				{study.pageInfo && <PagingBar pageInfo = {study.pageInfo} setCurrentPage = {setCurrentPage}/>}
 			</div>
 		</>

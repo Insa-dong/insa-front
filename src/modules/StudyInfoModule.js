@@ -5,15 +5,13 @@ const initialState = [];
 const GET_STUDYINFO = 'studyInfo/GET_STUDYINFO';
 const GET_STUDYINFO_LIST = 'studyInfo/GET_STUDYINFOLIST';
 const PUT_STUDYINFO = 'studyInfo/PUT_STUDYINFO';
-
-/* 사용자 강의 리스트 조회 */
+const POST_STUDYINFO = 'studyInfo/POST_STUDYINFO';
 const GET_MY_STUDY = 'studyInfo/GET_MY_STUDY';
 
 export const {studyInfo: {getStudyinfolist, getStudyinfo, putStudyinfo, getMyStudy}} = createActions({
 	[GET_STUDYINFO_LIST]: res => res.data,
 	[GET_STUDYINFO]: res => res.data,
 	[PUT_STUDYINFO]: res => res,
-	
 	[GET_MY_STUDY] : res => res.data
 })
 

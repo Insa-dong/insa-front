@@ -35,6 +35,7 @@ function OffApplyModal({ setOffApplyModal }) {
                     x
                 </div>
                 <div className="OffApplyModalDiv">
+                <h1 className="OffApplyModalDivTitle">연차 신청</h1>
                 <h1 >✈️ 연차정보</h1>
                     <div className="offInfoContainer">
                        
@@ -44,7 +45,7 @@ function OffApplyModal({ setOffApplyModal }) {
                     </div>
                     <h1>💡 사용 가능 연차</h1>
                     <div className="offCount">n일</div>
-                    <h1>📌 연차 종류</h1>
+                    <h1>📌 신청 연차 종류</h1>
                     <select
                         className="offDivBox"
                         name="offDiv"
@@ -54,7 +55,7 @@ function OffApplyModal({ setOffApplyModal }) {
                         <option value="오전반차">오전반차</option>
                         <option value="오후반차">오후반차</option>
                     </select>
-                    <h1 >📇 휴가 일정·신청 사유 입력</h1>
+                    <h1 >📇 신청 연차 일정·사유 입력</h1>
                     <div className="offDay1">
                         <p>연차 시작일</p>
                         <input

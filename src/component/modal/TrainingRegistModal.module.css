@@ -1,0 +1,137 @@
+.trainingModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.trainingModalContainer {
+    position: absolute;
+}
+
+.trainingModalClose {
+    color: #AAAAAA;
+    font-size: 30px;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+
+.trainingModalClose:hover,
+.trainingModalClose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.trainingModalDiv {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수평 정렬*/
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.trainingModalTitle {
+    margin-bottom: 50px;
+    font-size: 1.2rem;
+}
+
+.trainingField {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.trainingField h1 {
+    width: 100px;
+    text-align: left;
+}
+
+.trainingModalDiv input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 260px;
+    border-radius: 10px;
+    border: 1px solid #8CBAFF;
+    text-indent: 1.2em;
+    text-align: left;
+}
+
+
+.trainingModalDiv button {
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    background-color: #8CBAFF;
+    color: #fff;
+    border: solid 1.5px #8CBAFF;
+    cursor: pointer;
+}
+
+
+.custom-confirm-button {
+    background-color: #8CBAFF !important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    margin-left: 30px
+
+
+}
+
+.custom-cancel-button {
+    background-color: #DADADA !important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #DADADA;
+
+
+}
+
+.textInput {
+    width: 20vw;
+    height: 10vh;
+    max-width: 1075px;
+    max-height: 10vh;
+    resize: none;
+}
+
+.custom-success-button {
+
+
+    background-color: #8CBAFF !important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    outline: none;
+
+}
+
