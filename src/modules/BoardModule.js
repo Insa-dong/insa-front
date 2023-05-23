@@ -9,13 +9,13 @@ const POST_BOARD = 'board/POST_BOARD';
 
 export const { board : { getBoardlist, getBoardsearch, postBoard } } = createActions({
     [GET_BOARDLIST] : res => res.data,
-    [POST_BOARD] : res => res.data
+    [POST_BOARD] : res => res
 });
 
 /* 리듀서 */
 const boardReducer = handleActions({
     [GET_BOARDLIST] : (state, { payload }) => payload,
-    [POST_BOARD] : (state, { payload }) => payload
+    [POST_BOARD] : (state, { payload }) => ({ regist : payload })
 }, initialState);
 
 export default boardReducer;
