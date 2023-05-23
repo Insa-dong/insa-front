@@ -9,7 +9,7 @@ export const callStudyInfoListAPI = ({currentPage}) => {
 	const requestURL = `${PRE_URL}/studyInfoList?page=${currentPage}`;
 
 	return async (dispatch, getState) => {
-		const result = await fetch(requestURL).then(res => res.json());z
+		const result = await fetch(requestURL).then(res => res.json());
 
 		if (result.status === 200) {
 			dispatch(getStudyinfolist(result));
