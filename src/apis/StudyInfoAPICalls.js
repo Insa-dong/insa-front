@@ -89,6 +89,20 @@ export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 	};
 }
 
+export const callSelectStudyForTeacherAPI = ({ empCode , currentPage = 1 }) => {
+
+		const requestURL = `${PRE_URL}/emp/teacherStudyList/${empCode}?page=${currentPage}`;
+	
+		return async (dispatch, getState) => {
+			
+			const result = await fetch(requestURL).then(res => res.json());
+			console.log(result);
+			if(result.status === 200) {
+				dispatch(getMyStudy(result));
+	
+			}
+		};
+  
 export const callInsertStudyInfo = ({form, day}) => {
 
 	console.log(form);

@@ -11,13 +11,17 @@ const POST_STUDY_STUDENTS = 'studystu/POST_STUDY_STUDENTS';
 const GET_STUDY_STUDENTS = 'studystu/GET_STUDY_STUDENTS';
 const PUT_STUDY_STUDENTS = 'studystu/PUT_STUDY_STUDENTS';
 
-export const { studystu: { getStudyStudent, deleteStudyStudents, postStudyStudents,  getStudyStudents, putStudyStudents} } = createActions({
+/* 사용자 - 수강생 조회 */
+const GET_STUDY_STUDENT_LIST = 'studystu/GET_STUDY_STUDENT_LIST';
+
+export const { studystu: { getStudyStudent, deleteStudyStudents, postStudyStudents,  getStudyStudents, putStudyStudents, getStudyStudentList } } = createActions({
 
     [GET_STUDY_STUDENT]: res => res.data,
     [DELETE_STUDY_STUDENTS] : res => res,
     [POST_STUDY_STUDENTS] : res => res,
     [GET_STUDY_STUDENTS] : res => res.data,
-    [PUT_STUDY_STUDENTS] : res => res
+    [PUT_STUDY_STUDENTS] : res => res,
+    [GET_STUDY_STUDENT_LIST] : res => res.data
 
 });
 
@@ -27,8 +31,8 @@ const studyStudentReducer = handleActions(
         [DELETE_STUDY_STUDENTS] : (state, { payload }) => payload,
         [POST_STUDY_STUDENTS] : (state, { payload }) => ({ registStudyStudent: payload }),
         [GET_STUDY_STUDENTS] : (state, { payload }) =>  ({ trainingList: payload }),
-        [PUT_STUDY_STUDENTS] : (state, { payload }) => ({ modify : payload })
-
+        [PUT_STUDY_STUDENTS] : (state, { payload }) => ({ modify : payload }),
+        [GET_STUDY_STUDENT_LIST] : (state, { payload }) => payload
     },
     initialState
 );

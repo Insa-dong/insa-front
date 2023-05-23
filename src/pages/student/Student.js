@@ -11,7 +11,7 @@ function Student() {
 
     const title = '수강생';
     const dispatch = useDispatch();
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1);
     const student = useSelector(state => state.studentReducer);
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
