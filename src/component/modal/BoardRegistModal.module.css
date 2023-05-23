@@ -57,14 +57,18 @@
     border-radius: 10px;
     width: 24vw;
     height: 25vh;
+    max-width: 24vw;
+    max-height: 25vh;
+    resize: none;
 }
 
 
 .fileImgg {
   width: 1vw;
-  margin-top: 2vh;
+  margin-top: 0.5vh;
   padding-top: 2vh;
   margin-right: 0.5vw;
+  cursor: pointer;
 }
 
 .ButtonStyle2 {
@@ -75,7 +79,7 @@
   color: #FFFFFF;
   border: 1px solid #8CBAFF;
   cursor: pointer;
-  margin-top: 6vh;
+  margin-top: 9vh;
   margin-left: 9vw;
 }
 
