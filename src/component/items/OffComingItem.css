@@ -1,9 +1,6 @@
-
-.comingOffDiv {
-    padding-left: 10vw;
-    margin-top: 1vw;
-    width: 75vw;
-
+.offComingDiv {
+    border-collapse: separate;
+  border-spacing: 0 1vw;
 }
 
 .td-img {
@@ -43,7 +40,8 @@
 }
 
 .offcancel {
-    border: 0.1vw solid black;
+    color : #222222;
+    border: 0.1vw solid #222222;
     border-radius: 5px;
     background-color: white;
     padding: 0.2vw;

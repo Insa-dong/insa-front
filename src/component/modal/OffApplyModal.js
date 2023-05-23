@@ -2,23 +2,27 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { callApplyAPI } from "../../apis/OffAPICalls";
 import './OffApplyModal.css';
 
 function OffApplyModal({ setOffApplyModal }) {
 
-    const [form, setForm] = useState({});
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const off = useSelector(state => state.offReducer);
+    const offApply = useSelector(state => state.offReducer);
+    const [form, setForm] = useState({}); //초기값으로 빈 객체 {}를 사용
 
-    const onChangeHandler = (e) => {
+
+
+      const onChangeHandler = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value,
         });
     };
 
-    const onClickOffApplyHandler = () => {
+    const onClickOffApplyHandler = async () => {
         Swal.fire({
           text: '해당 내용으로 연차를 신청 하시겠습니까?',
           icon: 'warning',
@@ -33,28 +37,40 @@ function OffApplyModal({ setOffApplyModal }) {
           cancelButtonText: '취소',
           reverseButtons: true,
           buttonsStyling: false,
-        }).then((result) => {
+        }).then(async (result) => {
           if (result.isConfirmed) {
-            dispatch(callApplyAPI(form))
-              .then(() => {
+            try {
+                await dispatch(callApplyAPI({
+                    offStart: form.offStart,    
+                    offEnd: form.offEnd,         
+                    signReason: form.signReason, 
+                    offDiv: form.offDiv          
+                  }));
+              Swal.fire({
+                title: '신청 완료',
+                text: '신청 내역을 확인하세요.',
+                icon: 'success',
+                buttonsStyling: false,
+                customClass: {
+                  confirmButton: 'custom-success-button',
+                },
+              });
+              setOffApplyModal(false); // 완료 후 모달 닫기
+            } catch (error) {
+                console.error('API 호출 에러:', error);
                 Swal.fire({
-                  title: '신청 완료',
-                  text: '신청 내역을 확인하세요.',
-                  icon: 'success',
+                  title: '신청 실패',
+                  text: '다시 시도하세요.',
+                  icon: 'error',
                   buttonsStyling: false,
                   customClass: {
-                    confirmButton: 'custom-success-button',
+                    confirmButton: 'custom-error-button',
                   },
-                }).then(() => {
-                  setOffApplyModal(false); // 완료 후 모달 닫기
                 });
-              })
-              .catch((error) => {
-                Swal.fire('신청 실패', '다시 시도하세요.', 'error');
-              });
+              }
           }
         });
-    };
+      };
 
 
 
