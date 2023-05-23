@@ -26,6 +26,10 @@ function MyCalendar() {
 
 	return (
 		<div>
+			<input
+				type = "button"
+				onClick = {onButtonClickHandler}
+			/>
 			<FullCalendar
 				initialView = "dayGridMonth"
 				plugins = {[dayGridPlugin, interactionPlugin]}
