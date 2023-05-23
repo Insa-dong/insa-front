@@ -4,21 +4,21 @@ import Header from "../../component/common/Header";
 import './Off.css';
 import OffApplyModal from '../../component/modal/OffApplyModal';
 import OffComingList from '../../component/lists/OffComingList';
-import PagingBar from '../../component/common/PagingBar';
+//import PagingBar from '../../component/common/PagingBar';
 import { callComingupOffListAPI } from '../../apis/OffAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Off() {
 
-    const [currentPage, setCurrentPage] = useState(1)
+   // const [currentPage, setCurrentPage] = useState(1)
     const [offApplyModal, setOffApplyModal] = useState(false);
     const dispatch = useDispatch();
     const off = useSelector(state => state.offReducer);
     const offComingList = off.data || [];
     
     useEffect(() => {
-        dispatch(callComingupOffListAPI({ currentPage }));
-    }, [dispatch, currentPage]);
+        dispatch(callComingupOffListAPI());
+    }, []);
 
     const onClickOffApplyHandler = () => {
         setOffApplyModal(true);
@@ -73,9 +73,6 @@ function Off() {
                 <div className="my-off-request">
                 <div>
                     {offComingList && <OffComingList offComingList={offComingList} />}
-                </div>
-                <div>
-                    {off.pageInfo && <PagingBar pageInfo={off.pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
 
                 </div>

@@ -53,7 +53,6 @@ function StudentItem({ item }) {
 
   useEffect(() => {
     // 비동기 처리 완료 시 동작
-    console.log("삭제 완료");
   }, [stuCode]); // stuCode가 변경될 때마다 호출
 
   return (
