@@ -1,4 +1,4 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from "../../component/common/Header";
 import './Off.css';
@@ -12,9 +12,11 @@ function Off() {
 
     const [offApplyModal, setOffApplyModal] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { comingUpOffList, pastOffList } = useSelector(state => state.offReducer);
     const offComingList = comingUpOffList.data || [];
     const offPastList = pastOffList.data || [];
+    const [searchYear, setSearchYear] = useState('');
 
     useEffect(() => {
         const fetchOffData = async () => {
@@ -30,9 +32,23 @@ function Off() {
         fetchOffData();
       }, []);
 
+      const handleReloadPage = () => {
+        navigate('/off', { replace: true });
+        window.location.reload();
+    };
 
     const onClickOffApplyHandler = () => {
         setOffApplyModal(true);
+    };
+
+    const handleYearChange = (event) => {
+        setSearchYear(event.target.value);
+    };
+
+    const handleSearchYear = () => {
+        if (searchYear) {
+            dispatch(callPastOffListAPI(searchYear));
+        }
     };
 
     return (
@@ -87,8 +103,20 @@ function Off() {
                     </div>
                 </div>
 
-                <p className='comingup-title'> 사용 기록 </p>
+                <p className='comingup-title' onClick={handleReloadPage}> 사용 기록 </p>
                 <div className="my-off-request">
+                <div className="off-search-container">
+                    <input className="off-searchYear"
+                        type="text"
+                        name="searchYear"
+                        value={searchYear}
+                        placeholder='2023'
+                        onChange={handleYearChange}
+                    />
+                    <button className="off-SearchBtn" onClick={handleSearchYear}>
+                        <img src="/images/search.png" alt="검색" />
+                    </button>
+                </div>
                     <div>
                         {offPastList && <OffPastList offPastList={offPastList} />}
                     </div>

@@ -56,4 +56,40 @@
     margin-left: 3vw;
     margin-top: 5vw;
     margin-bottom: 2vw;
+    cursor: pointer;
+}
+
+/* 날짜 검색창 */
+
+
+.off-search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 2vw;
+}
+
+.off-searchYear {
+    margin-right: 1vw;
+    border: 2px solid #8CBAFF !important;
+    border-radius: 5px;
+    width: 7vw;
+    height: 2vw;
+    text-align: center;
+    color: #424242;
+}
+
+.off-SearchBtn {
+    width: 2vw;
+    height: 2vw;
+    background-color: #8CBAFF;
+    padding-left: 0.2vw;
+    border-radius: 5px;
+    border: 3px solid #8CBAFF !important;
+    cursor: pointer;
+}
+
+.off-SearchBtn > img {
+    width: 1.5vw;
+    height: 1.5vw;
 }
