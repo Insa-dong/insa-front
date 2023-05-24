@@ -1,0 +1,12 @@
+.modifyButton {
+    width: 10vh;
+    height: 5vh;
+    background-color: #8CBAFF;
+    border-radius: 5px;
+    color: #FFFFFF;
+    border: 1px solid #8CBAFF;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 2%;
+    margin-left: 78.4%;
+}
