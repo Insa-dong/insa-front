@@ -123,6 +123,32 @@ export const callEmpRecordAPI = ({empCode, currentPage}) => {
 	};
 };
 
+/* 구성원 부서dept 이동 */
+export const callUpdateDeptAPI = (form) => {
+
+	// const requestURL = `${PRE_URL}/emp/empregist`;
+	// form = ({ ...form, dept: { deptCode: form.deptCode }, job: { jobCode: form.jobCode } });
+	// console.log(form);
+
+
+	// return async (dispatch, getState) => {
+
+	// 	const result = await fetch(requestURL, {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			"Content-Type": "application/json",
+	// 			// "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+	// 		},
+	// 		body: JSON.stringify(form)
+	// 	}).then(res => res.json());
+
+	// 	console.log(result);
+
+	// 	if (result.status === 200) {
+	// 		dispatch(postEmpRegist(result));
+	// 	}
+	// }
+}
 
 
 
