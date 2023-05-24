@@ -20,11 +20,11 @@ function BoardDetailModal({ isOpen, onClose, selectedItem }) {
         e.stopPropagation();
     };
 
-    useEffect(
-        () => {
-            dispatch()
-    },[]
-    )
+    // useEffect(
+    //     () => {
+    //         dispatch()
+    // },[]
+    // )
 
     return (
         isOpen && selectedItem && (
