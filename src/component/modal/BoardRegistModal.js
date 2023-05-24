@@ -61,7 +61,6 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
     /* 서버로 전달할 FormData 형태의 객체 설정 */
     formData.append("noticeTitle", form.noticeTitle);
     formData.append("noticeContent", form.noticeContent);
-    formData.append("noticeWriteDate", new Date());
     // FormData에 파일 추가
     selectedFiles.forEach((file, index) => {
       formData.append(`noticeFile[${index}]`, file);

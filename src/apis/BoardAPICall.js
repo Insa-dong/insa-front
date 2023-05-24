@@ -59,3 +59,23 @@ export const callBoardRegistAPI = (formData) => {
     }
 
 }
+
+export const callBoardDetailAPI = ({ noticeCode }) => {
+
+    const requestURL = `${PRE_URL}/notice/${noticeCode}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'GET',
+            headers : {
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
+
+        if(result.status === 200) {
+            console.log("[BoardAPICalls] callBoardDetailAPI result : ", result);
+            // dispatch(getProduct(result));
+        }
+    }
+}
