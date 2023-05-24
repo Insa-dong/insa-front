@@ -41,7 +41,7 @@ function StudentDetail() {
     const navigate = useNavigate();
     const [modifyMode, setModifyMode] = useState(false);
     const [form, setForm] = useState({});
-    const data = useSelector(state => state.studentReducer);
+    const { detail } = useSelector(state => state.studentReducer);
     const { modify } = useSelector(state => state.studentReducer);
     const [currentPage, setCurrentPage] = useState();
     const [adviceReviewModal, setAdviceReviewModal] = useState(false);
@@ -52,12 +52,9 @@ function StudentDetail() {
     const { studyList } = useSelector(state => state.studyStudentReducer);
     const { adviceList } = useSelector(state => state.adviceReducer);
     const { evaList } = useSelector(state => state.evaReducer);
-
     const [selectedRegistStudy, setSelectedRegistStudy] = useState(null);
     const [registModalVisible, setRegistModalVisible] = useState(false);
-
     const [studyStudentRegist, setStudyStudentRegist] = useState("");
-
     const [selectedUpdateStudy, setSelectedUpdateStudy] = useState(null);
     const [updateModalVisible, setUpdateModalVisible] = useState(false);
     const [studyStudentUpdate, setStudyStudentUpdate] = useState("");
@@ -187,7 +184,7 @@ function StudentDetail() {
     /* 수정 모드 변경 */
     const onClickmodifyModeHandler = () => {
         setModifyMode(true);
-        setForm({ ...data });
+        setForm({ ...detail });
     }
 
     const onChangeHandler = (e) => {
@@ -217,7 +214,7 @@ function StudentDetail() {
         <>
             <Header title={title} />
             <div className="allWrapper">
-                {data && (
+                {detail && (
                     <>
                         <table>
                             <tbody>
@@ -228,7 +225,7 @@ function StudentDetail() {
                                             name='stuName'
                                             type='text'
                                             onChange={onChangeHandler}
-                                            value={!modifyMode ? (data.stuName || "") : form.stuName}
+                                            value={!modifyMode ? (detail.stuName || "") : form.stuName}
                                             readOnly={!modifyMode}
                                         />
                                     </td>
@@ -240,7 +237,7 @@ function StudentDetail() {
                                             name='stuEngName'
                                             type='text'
                                             onChange={onChangeHandler}
-                                            value={!modifyMode ? (data.stuEngName || "") : form.stuEngName}
+                                            value={!modifyMode ? (detail.stuEngName || "") : form.stuEngName}
                                             readOnly={!modifyMode}
                                         />
                                     </td>
@@ -252,7 +249,7 @@ function StudentDetail() {
                                             name='stuBirth'
                                             type='date'
                                             onChange={onChangeHandler}
-                                            value={!modifyMode ? (data.stuBirth || "") : form.stuBirth}
+                                            value={!modifyMode ? (detail.stuBirth || "") : form.stuBirth}
                                             readOnly={!modifyMode}
                                         />
                                     </td>
@@ -264,7 +261,7 @@ function StudentDetail() {
                                             name='stuEndSchool'
                                             type='text'
                                             onChange={onChangeHandler}
-                                            value={!modifyMode ? (data.stuEndSchool || "") : form.stuEndSchool}
+                                            value={!modifyMode ? (detail.stuEndSchool || "") : form.stuEndSchool}
                                             readOnly={!modifyMode}
                                         />
                                     </td>
@@ -276,7 +273,7 @@ function StudentDetail() {
                                             name='stuEmail'
                                             type='text'
                                             onChange={onChangeHandler}
-                                            value={!modifyMode ? (data.stuEmail || "") : form.stuEmail}
+                                            value={!modifyMode ? (detail.stuEmail || "") : form.stuEmail}
                                             readOnly={!modifyMode}
                                         />
                                     </td>
@@ -288,7 +285,7 @@ function StudentDetail() {
                                             name='stuPhone'
                                             type='text'
                                             onChange={onChangeHandler}
-                                            value={!modifyMode ? (data.stuPhone || "") : form.stuPhone}
+                                            value={!modifyMode ? (detail.stuPhone || "") : form.stuPhone}
                                             readOnly={!modifyMode}
                                         />
                                     </td>

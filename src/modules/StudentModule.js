@@ -23,7 +23,7 @@ const studentReducer = handleActions(
   {
     [GET_STUDENTS]: (state, { payload }) => payload,
     [POST_STUDENT]: (state, { payload }) => ({ regist: payload }),
-    [GET_STUDENT]: (state, { payload }) => payload,
+    [GET_STUDENT]: (state, { payload }) => ({ detail : payload }),
     [PUT_STUDENT]: (state, { payload }) => ({ modify: payload }),
     [DELETE_STUDENT]: (state, { payload }) => payload,
     [GET_STUDENT_SEARCH]: (state, { payload }) => payload

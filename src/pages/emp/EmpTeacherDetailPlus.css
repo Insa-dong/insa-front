@@ -1,0 +1,227 @@
+.allWrapper {
+    width: 74vw;
+    height: 78vh;
+    margin-left : 20vw;
+    margin-bottom: 80vh;
+  }
+  
+  .studyHeaderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .studyHeader {
+    margin: 0;
+  }
+  
+  .registrationButton {
+    width: 4.5vw;
+      height: 1.8vw;
+      background-color: #8CBAFF;
+      border : none;
+      border-radius: 5px;
+      font-size: 1.0rem;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 2vh;
+  
+    
+  }
+  
+  .stuDetail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .stuDetailBox {
+      width: 19rem;
+      height: 2.5rem;
+      font-size: 13pt;
+      padding-left: 15px;
+      margin-left : 100px;
+      text-align: left;
+      display: flex;
+      margin-bottom: 5px;
+  }
+  
+  .stuDetailUpdateBtn {
+      width: 4.5vw;
+      height: 1.8vw;
+      background-color: #8CBAFF;
+      border : none;
+      border-radius: 5px;
+      font-size: 1.0rem;
+      color: white;
+      cursor: pointer;
+      margin-left: 9vw;
+  }
+  
+    .studyHeader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px lightgray solid;
+      width: 75vw;
+      font-size: 20px;
+      height: 5vh;
+      margin-bottom: 6vh;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-top: 3vw;
+    }
+    
+    .stuDetailDiv {
+      width: 74vw;
+      border-collapse: collapse;
+      text-align: center;
+      margin-top: 5vw;
+      margin: 0 auto;
+      
+    }
+    
+    .stuDetailDiv th,
+    .stuDetailDiv td {
+      border: 1px solid #ddd;
+      font-weight: 400;
+      padding: 8px;
+      height: 5vh;
+    }
+  
+    .stubeforeBtn {
+      width: 4.5vw;
+      height: 4vh;
+      border: 2px solid #8CBAFF;
+      border-radius: 10px;
+      background: white;
+      text-decoration-line: none;
+      box-sizing: border-box;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      margin-top: 9vh;
+  
+    } 
+    
+  .studyStuUpdateBtn {
+    width: 4vw;
+    height: 1.8vw;
+    background-color: #8CBAFF;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .studyStuDeleteBtn {
+    width: 4vw;
+    height: 4vh;
+    border: 2px solid #8CBAFF;
+    border-radius: 10px;
+    background: white;
+    text-decoration-line: none;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .studyStuRegistBtn {
+    width: 4vw;
+    height: 1.8vw;
+    background-color: #8CBAFF;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .evaSelectBtn {
+    width: 4vw;
+    height: 1.8vw;
+    background-color: #8CBAFF;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .evaDeleteBtn {
+    width: 4vw;
+    height: 4vh;
+    border: 2px solid #8CBAFF;
+    border-radius: 10px;
+    background: white;
+    text-decoration-line: none;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .adviceSelectBtn {
+    width: 4vw;
+    height: 1.8vw;
+    background-color: #8CBAFF;
+    border : none;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .adviceDeleteBtn {
+    width: 4vw;
+    height: 4vh;
+    border: 2px solid #8CBAFF;
+    border-radius: 10px;
+    background: white;
+    text-decoration-line: none;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .custom-confirm-button{
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    margin-left: 30px
+  }
+  .custom-cancel-button {
+    background-color: #DADADA!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #DADADA;
+  }
+  .custom-success-button {
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    outline: none;
+  }
+  

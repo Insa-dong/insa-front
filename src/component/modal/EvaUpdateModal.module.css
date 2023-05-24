@@ -1,0 +1,85 @@
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.title{
+    margin-bottom: 2vw;
+}
+
+ .modalContainer{
+    position: relative;
+   
+}  
+
+.adviceReviewModalDiv{    
+    width: 400px;
+    height: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수평 정렬*/
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.adviceReviewModalDiv input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 90%;
+    border-radius: 5px;
+    text-indent: 1.2em;
+    border: solid 1.5px #8CBAFF;
+}
+
+.adviceReviewModalDiv textarea {
+    width: 90%;
+    height: 250px;
+    resize: none;
+    border-radius: 5px;
+    text-indent: 1em;
+    border: solid 1.5px #8CBAFF;
+}
+
+.adviceReviewModalDiv button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #8CBAFF;
+    color : #fff;
+    border: solid 1.5px #8CBAFF;
+}
+
+.btn {
+    margin-top: 2vw;
+}
+
+.close {
+    color: #AAAAAA;
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    top: 23px;
+    right: 23px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
