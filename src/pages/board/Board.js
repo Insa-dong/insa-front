@@ -26,8 +26,9 @@ function Board() {
   const [searchOption, setSearchOption] = useState('title');
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  const onClickBoardDetail = (boardCode) => {
-      navigate(`/board/${boardCode}`);
+  const onClickBoardDetail = (noticeCode) => {
+      console.log(noticeCode);
+      navigate(`/board/${noticeCode}`);
   }
 
   /* 공지사항 모달창 */

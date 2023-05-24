@@ -45,7 +45,7 @@ function App() {
 						<Route index element = {<Main/>}/>
 						<Route path = "mypage" element = {<Mypage/>}/>
 						<Route path = "board" element = {<Board/>}/>
-						<Route path = "board/:boardCode" element = {<BoardDetail/>}/>
+						<Route path = "board/:noticeCode" element = {<BoardDetail/>}/>
 						<Route path = "training"
 						       element = {<ProtectedRoute authCheck = {true}><Training/></ProtectedRoute>}/>
 						<Route path = "search"

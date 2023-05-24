@@ -1,4 +1,4 @@
-import { getBoardlist, postBoard } from "../modules/BoardModule";
+import { getBoard, getBoardlist, postBoard } from "../modules/BoardModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -75,7 +75,7 @@ export const callBoardDetailAPI = ({ noticeCode }) => {
 
         if(result.status === 200) {
             console.log("[BoardAPICalls] callBoardDetailAPI result : ", result);
-            // dispatch(getProduct(result));
+            dispatch(getBoard(result));
         }
     }
 }
