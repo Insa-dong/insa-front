@@ -28,16 +28,13 @@ export const callMyCalListAPI = () => {
 export const callUpdateScheduleAPI = (form) => {
 
 	const requestURL = `${PRE_URL}/myScheduleUpdate`
-	console.log('form : ', form);
-
 
 	return async (dispatch, getState) => {
 
 		const result = await fetch(requestURL, {
 			method: "PUT",
 			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${accessToken}`
+				"Content-Type": "application/json"
 			},
 			body: JSON.stringify(form)
 		}).then(response => response.json());

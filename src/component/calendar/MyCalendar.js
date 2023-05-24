@@ -8,20 +8,29 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import {callMyCalListAPI, callUpdateScheduleAPI} from "../../apis/CalendarAPICalls";
+import {modifiedCalList} from "../../modules/ButtonModule";
 import './MyCalendar.css';
 
 
-function MyCalendar({isRegistOpen, setIsRegistOpen}) {
+function MyCalendar({isRegistOpen, setIsRegistOpen, buttonClick}) {
 
-	const [form, setForm] = useState([]);
+	const {calList} = useSelector(state => state.calendarReducer);
+	const {modify} = useSelector(state => state.calendarReducer);
 	const [update, setUpdate] = useState(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const calList = useSelector(state => state.calendarReducer);
-	const {modify} = useSelector(state => state.calendarReducer);
+
+	let form = [];
 
 	console.log(calList);
-	console.log(form)
+
+	useEffect(
+		() => {
+			if (buttonClick)
+				onClickScheduleSaveHandler()
+		},
+		[buttonClick]
+	)
 
 	useEffect(
 		() => {
@@ -42,22 +51,26 @@ function MyCalendar({isRegistOpen, setIsRegistOpen}) {
 
 	const myschedule = () => {
 
-		return calList.map(schedule => ({
-			title: schedule.calTitle,
-			id: schedule.calCode,
-			start: dayjs(schedule.calStartDate).format('YYYY-MM-DD'),
-			end: dayjs(schedule.calEndDate).add(1, 'day').format('YYYY-MM-DD')
-		}))
+		if (calList.length > 0)
+			return calList.map(schedule => ({
+				title: schedule.calTitle,
+				id: schedule.calCode,
+				content: schedule.calContent,
+				start: dayjs(schedule.calStartDate).format('YYYY-MM-DD'),
+				end: dayjs(schedule.calEndDate).add(1, 'day').format('YYYY-MM-DD')
+			}));
 	}
 
 	const setMySchedule = (e) => {
 
-		calList.map(sche => {
-			if ((sche.calCode).toString() === e._def.publicId) {
-				sche.calStartDate = dayjs(e.start).format('YYYY-MM-DD')
-				sche.calEndDate = dayjs(e.end).subtract(1, 'day').format('YYYY-MM-DD')
-			}
+		form.push({
+			calCode: e._def.publicId,
+			calTitle: e._def.title,
+			calContent: e._def.extendedProps.content,
+			calStartDate: dayjs(e.start).format('YYYY-MM-DD'),
+			calEndDate: dayjs(e.end).subtract(1, 'day').format('YYYY-MM-DD')
 		})
+		dispatch(modifiedCalList(form));
 	}
 
 	const onClickScheduleSaveHandler = () => {
@@ -78,7 +91,7 @@ function MyCalendar({isRegistOpen, setIsRegistOpen}) {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				setUpdate(true);
-				dispatch(callUpdateScheduleAPI(calList))
+				dispatch(callUpdateScheduleAPI(form))
 					.then(() => {
 						Swal.fire({
 							title: '수정 완료',
@@ -109,19 +122,17 @@ function MyCalendar({isRegistOpen, setIsRegistOpen}) {
 			<FullCalendar
 				initialView = "dayGridMonth"
 				plugins = {[dayGridPlugin, interactionPlugin]}
-				events = {calList && !update && myschedule()}
+				events = {calList && myschedule()}
 				selectable = {true}
 				height = {'75vh'}
 				weekends = {true}
 				editable = {true}
+				expandRows = {true}
 				selectMirror = {true}
 				dayMaxEvents = {5}
 				displayEventTime = {false}
 				eventChange = {(e) => setMySchedule(e.event)}
 			/>
-			{form && <button
-				onClick = {onClickScheduleSaveHandler}
-			>변경사항 저장하기</button>}
 		</div>
 	);
 }
