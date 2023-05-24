@@ -66,9 +66,11 @@ function EmpDetail() {
                                     </ul>
                                 </li>
                                 <li className={CSS.state}>
-                                    <span>● </span>
+                                    <span className={empDetail.empState === '재직중' ? CSS.empOn : CSS.empRest}>● </span>
                                     {empDetail.empState}
                                 </li>
+
+
                             </ul>
                         </div>
                         <div className={CSS.privacyContainer}>

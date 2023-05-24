@@ -46,9 +46,14 @@
     border: 1px solid #ccc;
 }
 
-.state span{
+.empOn {
     color: #6cc667;
 }
+
+.empRest {
+    color: rgb(200, 54, 54);
+}
+
 
 .privacyContainer ul , .hrContainer ul{
     margin: 1.5vw 0;

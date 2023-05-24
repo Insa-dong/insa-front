@@ -52,17 +52,7 @@ function EmpRecordModal({ empCode, setEmpRecordModal }) {
                                 <th>내역</th>
                             </tr>
                         </thead>
-                        {/* <tbody>
-                            { empRecord?.data ? (
-                                empRecord?.data?.map((emp) => (
-                                    <EmpRecordItem key={empCode} emp={emp}/>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan="4">데이터가 없습니다.</td>
-                                </tr>
-                            )}
-                        </tbody> */}
+
                         <tbody>
                             {empRecord?.data && empRecord.data.length > 0 ? (
                                 empRecord.data.map((emp) => (
@@ -70,7 +60,7 @@ function EmpRecordModal({ empCode, setEmpRecordModal }) {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="4">데이터가 없습니다.</td>
+                                    <td colSpan="4">인사이력이 없습니다.</td>
                                 </tr>
                             )}
                         </tbody>
