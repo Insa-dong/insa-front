@@ -15,6 +15,7 @@ function EmpTeacherDetailPlus() {
   const dispatch = useDispatch();
 
   console.log('plusStuCode : ', stuCode);
+  console.log('data : ', data);
 
   useEffect(() => {
     dispatch(callStudentDetailForAdminAPI({ stuCode }));
@@ -25,32 +26,35 @@ function EmpTeacherDetailPlus() {
       <TeacherNavbar />
       <Header title={title}/>
       <div className = {CSS.StuWrapper}>
-      {/* {data && ( */}
+      {data && (
         <>
           <table>
             <tbody>
               <tr>
-                <td>이름ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</td>
-                <td>
-                </td>
+                <td>이름</td>
+                <td>{data.stuName}</td>
               </tr>
               <tr>
                 <td>영문이름</td>
+                <td>{data.stuEngName}</td>
               </tr>
               <tr>
                 <td>생년월일</td>
+                <td>{data.stuBirth}</td>
               </tr>
               <tr>
                 <td>이메일</td>
+                <td>{data.stuEmail}</td>
               </tr>
               <tr>
                 <td>전화번호</td>
+                <td>{data.stuPhone}</td>
               </tr>
             </tbody>
           </table>
           
         </>
-      {/* )} */}
+         )} 
       </div>
     </>
   );
