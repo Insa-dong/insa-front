@@ -1,0 +1,32 @@
+
+.td-img2 {
+    
+    width: 3vw;
+}
+
+.td-div2 {
+    width: 6vw;
+}
+
+
+.td-end2 {
+    width: 6vw;
+}
+
+.td-day2 {
+    width:  18vw;
+    color: #828282;
+}
+
+.offDivImg2 {
+    width: 1vw;
+    
+}
+
+.td-signStatus2 {
+    border: 1px solid ;
+    border-radius: 5px;
+    color: white;
+    padding: 0.4vw;
+    font-size: 0.9rem;
+}
