@@ -1,0 +1,95 @@
+.EmpDeptModal {
+    position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+  }
+  
+  
+  
+  .EmpDeptModalContainer{
+    position: absolute;
+  }
+  
+  .EmpDeptModalClose {
+    color: #AAAAAA;
+    font-size: 30px;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+  }
+  .EmpDeptModalClose:hover,
+  .EmpDeptModalClose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .EmpDeptModalDiv{    
+    width: 500px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    border-radius: 25px;    
+  }
+
+  
+  .EmpRecordModalTitle {
+    margin-bottom:7vh;
+    font-size: 1.2rem;
+    margin: 3vw auto;
+  }
+.EmpDeptModalWrap{
+    width: 360px;
+}
+
+.EmpDeptModalWrap p{
+    margin: 1vw 0;
+
+}
+
+
+  .EmpDeptModalWrap input, 
+  .EmpDeptModalWrap select{
+    border: 1px solid #8CBAFF;
+    border-radius: 5px;
+    width: 200px;
+    color: #222222 !important;
+    margin: 1vw 0;
+  }
+
+  .EmpDeptModalDivWrap, .EmpDeptModalOption{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+
+  .EmpDeptModalSavebutton {
+    width: 90px;
+    height: 40px;
+    background-color: #8CBAFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+  
+  
+  
+  
+  
