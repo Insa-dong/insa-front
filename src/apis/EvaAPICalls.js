@@ -1,4 +1,4 @@
-import { deleteEvas } from "../modules/EvaModule";
+import { deleteEvas, postEva, putEva } from "../modules/EvaModule";
 import { getEvas } from "../modules/EvaModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -36,5 +36,50 @@ export const callEvaDeleteForAdminAPI = (stuCode) => {
       if (result.status === 200) {
         dispatch(deleteEvas(result));
       }
+    }
+  };
+
+  
+  export const callEvaRegistAPI = (form) => {
+
+    const requestURL =`${PRE_URL}/students/eva`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'POST',
+            headers : {
+                "Content-Type": "application/json",
+                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body: JSON.stringify(form)
+        }).then(res => res.json());
+        
+        console.log(result);
+        if(result.status === 200) {
+            dispatch(postEva(result));
+        }
+    }
+  };
+
+  export const callEvaUpdateAPI = (form) => {
+
+    const requestURL = `${PRE_URL}/students/eva`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'PUT',
+            headers : {
+                "Content-Type": "application/json",
+                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body: JSON.stringify(form)
+        }).then(res => res.json());
+        
+        console.log(result);
+        if(result.status === 200) {
+            dispatch(putEva(result));
+        }
     }
   };
