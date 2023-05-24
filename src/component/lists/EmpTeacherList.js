@@ -3,7 +3,7 @@ import './StudentList.css';
 
 function EmpTeacherList({ teacher }) {
 
-console.log(teacher);
+console.log('teacher : ', teacher);
 
     return(
         <table className = "stuDiv">

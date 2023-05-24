@@ -10,7 +10,7 @@ function EmpRecordModal({ empCode, setEmpRecordModal }) {
     const dispatch = useDispatch();
     const { empRecord } = useSelector(state => state.empReducer);
     const [currentPage, setCurrentPage] = useState(1);
-    
+
     console.log('empRecord', empRecord);
     console.log('=================');
     const pageInfo = empRecord?.pageInfo;
@@ -52,7 +52,7 @@ function EmpRecordModal({ empCode, setEmpRecordModal }) {
                                 <th>내역</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        {/* <tbody>
                             { empRecord?.data ? (
                                 empRecord?.data?.map((emp) => (
                                     <EmpRecordItem key={empCode} emp={emp}/>
@@ -62,12 +62,23 @@ function EmpRecordModal({ empCode, setEmpRecordModal }) {
                                     <td colSpan="4">데이터가 없습니다.</td>
                                 </tr>
                             )}
+                        </tbody> */}
+                        <tbody>
+                            {empRecord?.data && empRecord.data.length > 0 ? (
+                                empRecord.data.map((emp) => (
+                                    <EmpRecordItem key={emp.empCode} emp={emp} />
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="4">데이터가 없습니다.</td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>
-                    <div className="EmpRecordPaging">
+                <div className="EmpRecordPaging">
                     {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
-                  </div>
+                </div>
             </div>
         </div>
     )

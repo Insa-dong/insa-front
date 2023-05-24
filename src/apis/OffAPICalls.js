@@ -1,4 +1,4 @@
-import { postApply, getComingupOff } from "../modules/OffModule";
+import { postApply, getComingupOff, getPastOff } from "../modules/OffModule";
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -61,6 +61,32 @@ export const callApplyAPI = ({offStart, offEnd, signReason, offDiv}) => {
 
         if(result.status === 200) {
             dispatch(getComingupOff(result));
+        }
+    }
+};
+
+  /* 연차 사용 기록 조회 API */
+  export const callPastOffListAPI = (year) => {
+
+    let requestURL = `${PRE_URL}/my-past-off`;
+
+    if (year) {
+      requestURL += `?year=${year}`;
+    }
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
+
+        console.log('Server response:', result);  // 서버 응답 출력
+
+        if(result.status === 200) {
+            dispatch(getPastOff(result));
         }
     }
 };

@@ -3,12 +3,13 @@ import Header from "../../component/common/Header";
 import TeacherNavbar from "../../component/common/TeacherNavbar";
 import { callSelectStudentForStudyAPI } from "../../apis/StudyStuAPICalls";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CSS from './EmpTeacherDetail.module.css';
 import PagingBar from "../../component/common/PagingBar";
 import StudentAttendRegistModal from "../../component/modal/StudentAttendRegistModal";
 import { callStudentAttendAPI, callStudentAttendDeleteAPI } from "../../apis/AttendAPICalls";
 import StudentAttendUpdateModal from "../../component/modal/StudentAttendUpdateModal";
+
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -38,13 +39,15 @@ function EmpTeacherDetail() {
     const { studyCode } = useParams();
     const [selectedAttendReview, setSelectedAttendReview] = useState(null);
     const [attendReviewModalVisible, setAttendReviewModalVisible] = useState(false);
-    const [selectedStuCode, setSelectedStuCode] = useState(null);
     const [selectedAttendUpdate, setSelectedAttendUpdate] = useState(null);
     const [attendUpdateModalVisible, setAttendUpdateModalVisible] = useState(false);
-
     const { attend } = useSelector(state => state.attendReducer);
+    const navigate = useNavigate();
+    const [stuCode, setStuCode] = useState(); 
 
-    console.log(studyCode);
+    console.log('studyCode : ', studyCode);
+    console.log('stuCode : ', stuCode);
+    console.log('attend : ', attend);
 
     useEffect(
         () => {
@@ -56,13 +59,13 @@ function EmpTeacherDetail() {
 
 
     const onClickRegistAttend = (attendReview, stuCode) => {
-        setSelectedAttendReview({ ...attendReview, studyCode });
+        setSelectedAttendReview({ ...attendReview, stuCode });
+        setStuCode(stuCode);
         setAttendReviewModalVisible(true);
-        console.log(stuCode);
-    }
+      };
 
-    const onClickUpdateAttend = (attendUpdate) => {
-        setSelectedAttendUpdate(attendUpdate);
+    const onClickUpdateAttend = (attendUpdate , stuCode) => {
+        setSelectedAttendUpdate({ ...attendUpdate, stuCode });
         setAttendUpdateModalVisible(true);
     }
 
@@ -81,8 +84,10 @@ function EmpTeacherDetail() {
     );
 
 
-
-
+    const onClickStudentHandler = (stuCode) => {
+        navigate(`/empTeacher/${studyCode}/${stuCode}`);
+      };
+      
     return (
         <>
             <TeacherNavbar />
@@ -93,6 +98,7 @@ function EmpTeacherDetail() {
                     studentAttendRegist={selectedAttendReview}
                     setStudentAttendRegistModal={setAttendReviewModalVisible}
                     studyCode={studyCode}
+                    stuCode = {stuCode}
                 />
             )}
 
@@ -100,6 +106,8 @@ function EmpTeacherDetail() {
                 <StudentAttendUpdateModal
                     studentAttendUpdate={selectedAttendUpdate}
                     setStudentAttendUpdateModal={setAttendUpdateModalVisible}
+                    studyCode={studyCode}
+                    stuCode = {stuCode}
                 />
             )}
 
@@ -117,13 +125,13 @@ function EmpTeacherDetail() {
                         {studyStudentState.data && studyStudentState.data.length > 0 ? (
                             studyStudentState.data.map((item) => (
                                 <tr key={item.stuCode}>
-                                    <td>{item.student.stuCode}</td>
-                                    <td>{item.student.stuName}</td>
+                                    <td onClick={() => onClickStudentHandler(item.student.stuCode)}>{item.student.stuCode}</td>
+                                    <td onClick={() => onClickStudentHandler(item.student.stuCode)}>{item.student.stuName}</td>
                                     <td>
                                         <button onClick={() => onClickRegistAttend(item, item.student.stuCode)}>등록</button>
                                     </td>
                                     <td>
-                                        <button onClick={onClickUpdateAttend}>수정</button>
+                                        <button onClick={() => onClickUpdateAttend(item.student.stuCode)}>수정</button>
                                         <button onClick={attendDelete}>삭제</button>
                                     </td>
                                 </tr>
@@ -133,7 +141,6 @@ function EmpTeacherDetail() {
                                 <td colSpan="4">등록된 수강생이 없습니다.</td>
                             </tr>
                         )}
-
                     </tbody>
                 </table>
                 <div className={CSS.StuPaging}>
