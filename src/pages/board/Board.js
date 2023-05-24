@@ -19,7 +19,7 @@ function Board() {
 
   const title = '공지사항';
   const dispatch = useDispatch();
-  const navigae = useNavigate();
+  const navigate = useNavigate();
   const board = useSelector(state => state.boardReducer);
   const { data } = useSelector(state => state.boardReducer);
   const [currentPage, setCurrentPage] = useState(1);
@@ -113,7 +113,7 @@ function Board() {
           <div
             key={p.noticeCode}
             className={CSS.mainContent}
-            onClick={() => openModal(p)}
+            onClick={() => navigate("/board/:boardCode")}
           >
             <ul style={{ display: 'flex' }}>
                 <li id={CSS.deptCode} className={`${CSS[`deptCode-${p.noticeWriter.dept.deptCode}`]}`}>{p.noticeWriter.empName.slice(-2)}</li>
