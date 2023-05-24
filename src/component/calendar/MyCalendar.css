@@ -5,3 +5,8 @@
 .fc-day-sat a {
     color: blue;
 }
+
+.calendar {
+    width: 70%;
+    margin: 5% auto 0 auto;
+}
