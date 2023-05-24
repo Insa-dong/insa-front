@@ -1,4 +1,4 @@
-import { deleteStudyStudents, getStudyStudent, postStudyStudents, getStudyStudents, putStudyStudents, getStudyStudentList } from "../modules/StudyStudentModule";
+import { deleteStudyStudents, getStudyStudent, postStudyStudents, getStudyStudents, putStudyStudents, getStudyStudentList, getStudyStudentAttend } from "../modules/StudyStudentModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -41,6 +41,7 @@ export const callStudyStuDeleteAdminAPI = (stuCode) => {
 
   export const callStudyStuRegistAdminAPI = (form) => {
 
+    console.log(form);
     const requestURL =`${PRE_URL}/students-management/study`;
 
     return async (dispatch, getState) => {
@@ -111,6 +112,21 @@ export const callSelectStudentForStudyAPI = ({ studyCode , currentPage = 1 }) =>
         console.log(result);
         if(result.status === 200) {
             dispatch(getStudyStudentList(result));
+
+        }
+    };
+}
+
+export const callSelectStudentAndAttendAPI = ({ studyCode, currentPage = 1}) => {
+
+    const requestURL = `${PRE_URL}/studyAndAttend/${studyCode}?page=${currentPage}`;
+
+    return async (dispatch, getState) => {
+        
+        const result = await fetch(requestURL).then(res => res.json());
+        console.log(result);
+        if(result.status === 200) {
+            dispatch(getStudyStudentAttend(result));
 
         }
     };

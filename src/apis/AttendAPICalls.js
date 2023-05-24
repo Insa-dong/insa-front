@@ -19,7 +19,7 @@ export const callStudentAttendAPI = ({ studyCode, currentPage = 1 }) => {
     };
 }
 
-export const callStudnetAttendRegistAPI = (form) => {
+export const callStudentAttendRegistAPI = (form) => {
     const requestURL =`${PRE_URL}/students/attend`;
 
     return async (dispatch, getState) => {

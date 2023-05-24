@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
 import TeacherNavbar from "../../component/common/TeacherNavbar";
-import { callSelectStudentForStudyAPI } from "../../apis/StudyStuAPICalls";
+import { callSelectStudentAndAttendAPI, callSelectStudentForStudyAPI } from "../../apis/StudyStuAPICalls";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import CSS from './EmpTeacherDetail.module.css';
@@ -41,18 +41,19 @@ function EmpTeacherDetail() {
     const [attendReviewModalVisible, setAttendReviewModalVisible] = useState(false);
     const [selectedAttendUpdate, setSelectedAttendUpdate] = useState(null);
     const [attendUpdateModalVisible, setAttendUpdateModalVisible] = useState(false);
-    const { attend } = useSelector(state => state.attendReducer);
     const navigate = useNavigate();
-    const [stuCode, setStuCode] = useState(); 
-
+    const [stuCode, setStuCode] = useState();
+    const [attendCode, setAttendCode] = useState();
+   
     console.log('studyCode : ', studyCode);
     console.log('stuCode : ', stuCode);
-    console.log('attend : ', attend);
+    console.log('attendCode : ', attendCode);
+   
 
     useEffect(
         () => {
-            dispatch(callSelectStudentForStudyAPI({ studyCode, currentPage }));
-            dispatch(callStudentAttendAPI({ studyCode, currentPage }))
+            /* 강의 별 수강생, 수강생 출결 */
+            dispatch(callSelectStudentAndAttendAPI({ studyCode, currentPage }));
         },
         [currentPage, studyCode]
     );
@@ -62,9 +63,9 @@ function EmpTeacherDetail() {
         setSelectedAttendReview({ ...attendReview, stuCode });
         setStuCode(stuCode);
         setAttendReviewModalVisible(true);
-      };
+    };
 
-    const onClickUpdateAttend = (attendUpdate , stuCode) => {
+    const onClickUpdateAttend = (attendUpdate, stuCode) => {
         setSelectedAttendUpdate({ ...attendUpdate, stuCode });
         setAttendUpdateModalVisible(true);
     }
@@ -85,9 +86,11 @@ function EmpTeacherDetail() {
 
 
     const onClickStudentHandler = (stuCode) => {
-        navigate(`/empTeacher/${studyCode}/${stuCode}`);
-      };
-      
+        setStuCode(stuCode);
+        navigate(`/empTeacher/detail/${studyCode}/${stuCode}`);
+    };
+
+
     return (
         <>
             <TeacherNavbar />
@@ -98,7 +101,7 @@ function EmpTeacherDetail() {
                     studentAttendRegist={selectedAttendReview}
                     setStudentAttendRegistModal={setAttendReviewModalVisible}
                     studyCode={studyCode}
-                    stuCode = {stuCode}
+                    stuCode={stuCode}
                 />
             )}
 
@@ -107,7 +110,8 @@ function EmpTeacherDetail() {
                     studentAttendUpdate={selectedAttendUpdate}
                     setStudentAttendUpdateModal={setAttendUpdateModalVisible}
                     studyCode={studyCode}
-                    stuCode = {stuCode}
+                    stuCode={stuCode}
+                    attendCode = {attendCode}
                 />
             )}
 
@@ -118,15 +122,29 @@ function EmpTeacherDetail() {
                             <th>학생 코드</th>
                             <th>이름</th>
                             <th>날짜</th>
-                            <th>출결</th>
+                            <th>출결상태</th>
+                            <th>출결등록</th>
+                            <th>수정/삭제</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {studyStudentState.data && studyStudentState.data.length > 0 ? (
-                            studyStudentState.data.map((item) => (
-                                <tr key={item.stuCode}>
+                        {studyStudentState.data && studyStudentState.data.studentList && studyStudentState.data.studentList.length > 0 ? (
+                            studyStudentState.data.studentList.map((item) => (
+                                <tr key={item.student.stuCode}>
                                     <td onClick={() => onClickStudentHandler(item.student.stuCode)}>{item.student.stuCode}</td>
                                     <td onClick={() => onClickStudentHandler(item.student.stuCode)}>{item.student.stuName}</td>
+                                    <td></td>
+                                    <td>
+                                        {item.attendList && item.attendList.length > 0 ? (
+                                            item.attendList.map((attend) => (
+                                                <div key={attend.attendCode}>
+                                                    {attend.attendStatus} - {attend.attendDate}
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div>출결 정보가 없습니다.</div>
+                                        )}
+                                    </td>
                                     <td>
                                         <button onClick={() => onClickRegistAttend(item, item.student.stuCode)}>등록</button>
                                     </td>
@@ -138,7 +156,7 @@ function EmpTeacherDetail() {
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="4">등록된 수강생이 없습니다.</td>
+                                <td colSpan="6">데이터가 없습니다.</td>
                             </tr>
                         )}
                     </tbody>
