@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import CSS from "./BoardDetailModal.module.css";
+import { useDispatch } from "react-redux";
 
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -8,6 +10,8 @@ function formatDate(dateString) {
 
 function BoardDetailModal({ isOpen, onClose, selectedItem }) {
 
+    const dispatch = useDispatch();
+
     const handleBackgroundClick = () => {
         onClose();
     };
@@ -15,6 +19,12 @@ function BoardDetailModal({ isOpen, onClose, selectedItem }) {
     const handleModalClick = (e) => {
         e.stopPropagation();
     };
+
+    useEffect(
+        () => {
+            dispatch()
+    },[]
+    )
 
     return (
         isOpen && selectedItem && (
@@ -38,12 +48,12 @@ function BoardDetailModal({ isOpen, onClose, selectedItem }) {
                             </ul>
                         </ul>
                         <input className={CSS.title}></input>
-                        <div><img src="/images/파일첨부.png" className={CSS.fileImg} alt="파일첨부이미지" /></div>
                         <ul style={{ display: 'flex' }}>
                             <li className={CSS.boardContentImg}><img src="/images/공지내용.png" className={CSS.fileImg} alt="공지내용이미지" /></li>
                             <li className={CSS.boardContent}>공지내용</li>
                         </ul>
                         <input className={CSS.content}></input>
+                        <div><img src="/images/파일첨부.png" className={CSS.fileImg} alt="파일첨부이미지" /></div>
                     </div>
                 </div>
 
