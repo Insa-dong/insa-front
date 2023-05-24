@@ -26,6 +26,10 @@ function Board() {
   const [searchOption, setSearchOption] = useState('title');
   const [searchKeyword, setSearchKeyword] = useState('');
 
+  const onClickBoardDetail = (boardCode) => {
+      navigate(`/board/${boardCode}`);
+  }
+
   /* 공지사항 모달창 */
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -113,7 +117,7 @@ function Board() {
           <div
             key={p.noticeCode}
             className={CSS.mainContent}
-            onClick={() => navigate("/board/:boardCode")}
+            onClick={() => onClickBoardDetail(p.noticeCode)}
           >
             <ul style={{ display: 'flex' }}>
                 <li id={CSS.deptCode} className={`${CSS[`deptCode-${p.noticeWriter.dept.deptCode}`]}`}>{p.noticeWriter.empName.slice(-2)}</li>

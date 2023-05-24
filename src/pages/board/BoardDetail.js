@@ -1,9 +1,22 @@
+import { useEffect } from "react";
 import Header from "../../component/common/Header";
 import CSS from "./BoardDetail.module.css";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { callBoardDetailAPI } from "../../apis/BoardAPICall";
 
 function BoardDetail() {
 
     const title = '공지사항';
+    const { noticeCode } = useParams();
+    const dispatch = useDispatch();
+    
+    useEffect(
+        () => {
+            dispatch(callBoardDetailAPI({ noticeCode }));
+        },
+        []
+    )
 
     return (
         <>
