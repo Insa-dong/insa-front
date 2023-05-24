@@ -45,31 +45,35 @@ function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, studyC
                             <tbody>
                                 <tr>
                                     <th>날짜</th>
-                                    <input
-                                        type="date"
-                                        name="attendDate"
-                                        onChange={ onChangeHandler }
-                                    />
+                                    <td>
+                                        <input
+                                            type="date"
+                                            name="attendDate"
+                                            onChange={ onChangeHandler }
+                                        />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>출석</th>
-                                    <select
-                                        name="attendStatus"
-                                        onChange={ onChangeHandler }>
-                                        <option>선택</option>
-                                        <option>출결</option>
-                                        <option>결석</option>
-                                        <option>지각</option>
-                                        <option>조퇴</option>
-                                    </select>
+                                    <td>
+                                        <select
+                                            name="attendStatus"
+                                            onChange={ onChangeHandler }>
+                                            <option>선택</option>
+                                            <option>출결</option>
+                                            <option>결석</option>
+                                            <option>지각</option>
+                                            <option>조퇴</option>
+                                        </select>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                         <button onClick={ onUpdateHandler }>수정하기</button>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
     );
 }
 
