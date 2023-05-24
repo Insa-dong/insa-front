@@ -108,17 +108,18 @@ function EmpDetail() {
                             </ul>
                             <ul style={{ display: 'flex' }}>
                                 <li className={CSS.email}>부서</li>
-                                <li className={CSS.emailinfo} style={{ width: '100px', marginLeft: '80px' }}>{empDetail.dept.deptName}</li>
+                                <li className={CSS.emailinfo}> {empDetail.job.jobName}</li>
+                                {/* <li className={CSS.emailinfo} style={{ width: '100px', marginLeft: '80px' }}>{empDetail.dept.deptName}</li> */}
                                 <button
                                     className={CSS.deptBtn}
-                                    style={{ width: '150px', marginRight: '10px', marginLeft: '1050px' }}
+                                    // style={{ width: '150px', marginRight: '10px', marginLeft: '1050px' }}
                                     onClick={onClickDeptHandler}
                                 >
                                     부서이동
                                 </button>
                             </ul>
 
-                            {empDeptModal && <EmpDeptModal empCode={empCode} setEmpDeptModal={setEmpDeptModal} />}
+                            {empDeptModal && <EmpDeptModal empDetail={empDetail} empCode={empCode} setEmpDeptModal={setEmpDeptModal} />}
 
                             <ul style={{ display: 'flex' }}>
                                 <li className={CSS.email}>직책</li>
@@ -131,7 +132,7 @@ function EmpDetail() {
                                 </button>
                             </ul>
 
-                            {empJobModal && <EmpJobModal empCode={empCode} setEmpJobModal={setEmpJobModal} />}
+                            {empJobModal && <EmpJobModal empDetail={empDetail} empCode={empCode} setEmpJobModal={setEmpJobModal} />}
 
                             <ul style={{ display: 'flex' }}>
                                 <li className={CSS.email}>입사일</li>
