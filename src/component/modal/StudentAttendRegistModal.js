@@ -5,14 +5,16 @@ import { useState } from "react";
 import CSS from "./StudentAttendRegistModal.module.css";
 import { callStudentAttendAPI, callStudnetAttendRegistAPI } from "../../apis/AttendAPICalls";
 
-function StudentAttendRegistModal({ stuCode , studyCode, setStudentAttendRegistModal }) {
+function StudentAttendRegistModal({ stuCode , studyCode, setStudentAttendRegistModal, studentAttendRegist }) {
 
     const [form, setForm] = useState();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState();
 
-    console.log(studyCode);
+    console.log('modalStudyCode : ', studyCode);
+    console.log('modalStuCode : ', stuCode);
+    console.log(form);
     
     const onClickHandler = () => {
         setStudentAttendRegistModal(false);
@@ -25,8 +27,16 @@ function StudentAttendRegistModal({ stuCode , studyCode, setStudentAttendRegistM
         });
     };
 
+    // const onClickStudentAttendRegistHandler = () => {
+    //     dispatch(callStudnetAttendRegistAPI({ ...form, studyCode, stuCode})); 
+    // };
+
     const onClickStudentAttendRegistHandler = () => {
-        dispatch(callStudnetAttendRegistAPI({ ...form, studyCode, stuCode})); 
+        if (form && form.attendDate && form.attendStatus) {
+            dispatch(callStudnetAttendRegistAPI({ ...form, studyCode, stuCode }));
+        } else {
+            console.log('날짜와 출결 상태를 선택해주세요.');
+        }
     };
 
     useEffect(
