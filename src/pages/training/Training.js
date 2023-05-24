@@ -22,7 +22,6 @@ function Training() {
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const searchValue = searchParams.get('value');
 	const training = useSelector(state => state.trainingReducer);
-	const {remove} = useSelector(state => state.trainingReducer);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 

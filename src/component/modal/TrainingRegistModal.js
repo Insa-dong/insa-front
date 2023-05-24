@@ -39,7 +39,6 @@ function TrainingRegistModal({isRegistOpen, setIsRegistOpen, setInsert}) {
 			cancelButtonText: '취소',
 			reverseButtons: true,
 			buttonsStyling: false,
-
 		}).then((result) => {
 			if (result.isConfirmed) {
 				dispatch(callTrainingRegisterAPI(form)).then(() => {
