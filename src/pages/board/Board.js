@@ -146,7 +146,7 @@ function Board() {
         <button 
               className={CSS.boardBtn} 
               type="button"
-              onClick={() => openRegistModal()}      
+              onClick={() => openRegistModal()}
             >
               + 공지 등록하기
             </button>

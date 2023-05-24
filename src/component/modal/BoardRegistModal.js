@@ -2,12 +2,15 @@ import React, { useRef, useState } from "react";
 import CSS from "./BoardRegistModal.module.css";
 import { useDispatch } from "react-redux";
 import { callBoardRegistAPI } from "../../apis/BoardAPICall";
+import { useNavigate } from "react-router";
+
 
 function BoardRegistModal({ isRegistOpen, onRegistClose }) {
   const fileInputRef = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [form, setForm] = useState({});
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleBackgroundClick = () => {
     onRegistClose();
@@ -21,10 +24,6 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
     fileInputRef.current.click();
   };
 
-  // const handleFileChange = (e) => {
-  //   const files = Array.from(e.target.files);
-  //   setSelectedFiles(files);
-  // };
 
   const handleClearFile = (fileName) => {
     setSelectedFiles((prevFiles) =>
@@ -72,12 +71,15 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
 
 
     dispatch(callBoardRegistAPI(formData));
+
+    // 모달 닫기
+    onRegistClose(); 
+
+    // 페이지 새로고침
+    window.location.reload();
   }
 
-  // const handleFileChangeAndFile = (e) => {
-  //   //handleFile(e);
-  //   //handleFileChange(e);
-  // };
+
 
 
 
@@ -142,6 +144,7 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
             <button
               className={CSS.ButtonStyle2}
               onClick={onClickBoardRegistrationHandler}
+              
             >
               등록하기
             </button>
