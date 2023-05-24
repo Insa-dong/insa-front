@@ -1,7 +1,9 @@
 import {combineReducers} from "redux";
 import absReducer from "./AbsModule";
 import adviceReducer from "./AdviceModule";
+import attendReducer from "./AttendModule";
 import boardReducer from "./BoardModule";
+import buttonReducer from "./ButtonModule";
 import calendarReducer from "./CalendarModule";
 import empReducer from "./EmpModule";
 import evaReducer from "./EvaModule";
@@ -12,7 +14,6 @@ import studyInfoReducer from "./StudyInfoModule";
 import studyReducer from "./StudyModule";
 import studyStudentReducer from "./StudyStudentModule";
 import trainingReducer from "./TrainingModule";
-import attendReducer from "./AttendModule";
 
 const rootReducer = combineReducers({
 	trainingReducer,
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
 	boardReducer,
 	offReducer,
 	calendarReducer,
-	attendReducer
+	attendReducer,
+	buttonReducer
 })
 export default rootReducer;
