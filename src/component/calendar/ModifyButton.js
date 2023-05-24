@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import {callMyCalListAPI, callUpdateScheduleAPI} from "../../apis/CalendarAPICalls";
+import {initCalList} from "../../modules/ButtonModule";
 
 function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 
@@ -15,7 +16,11 @@ function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 	useEffect(
 		() => {
 			dispatch(callUpdateScheduleAPI(scheduleList));
-		}, [dispatch, scheduleList]
+			if (isRegistOpen) {
+				dispatch(initCalList());
+				setIsRegistOpen(false)
+			}
+		}, [dispatch, isRegistOpen, scheduleList]
 	)
 
 	const onClickScheduleSaveHandler = () => {
@@ -47,7 +52,7 @@ function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 							}
 						}).then(() => {
 							navigate('/', {replace: true});
-							setIsRegistOpen(false);
+							setIsRegistOpen(true);
 						});
 					})
 					.catch((error) => {

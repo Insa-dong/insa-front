@@ -3,9 +3,13 @@ import {createActions, handleActions} from "redux-actions";
 const initialState = [];
 
 const MODIFIED_CAL_LIST = 'button/MODIFIED_CAL_LIST';
+const INIT_CAL_LIST = 'button/INIT_CAL_LIST';
 
-export const {button: {modifiedCalList}} = createActions({
-	[MODIFIED_CAL_LIST]: res => res
+
+export const {button: {modifiedCalList, initCalList}} = createActions({
+	[MODIFIED_CAL_LIST]: res => res,
+	[INIT_CAL_LIST]: () => {
+	}
 })
 
 const buttonReducer = handleActions(
@@ -25,7 +29,8 @@ const buttonReducer = handleActions(
 				copy.push(payload);
 			}
 			return (copy)
-		}
+		},
+		[INIT_CAL_LIST]: () => initialState
 	}, initialState
 )
 

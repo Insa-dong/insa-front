@@ -13,7 +13,8 @@ function Main() {
 			<div className = {CSS.mainContainer}>
 				<div className = {CSS.Calendar}>
 					<MyCalendar/>
-					<ModifyButton isRegistOpen = {isRegistOpen} setIsRegistOpen = {setIsRegistOpen}></ModifyButton>
+					<ModifyButton className = {CSS.modifyButton} isRegistOpen = {isRegistOpen}
+					              setIsRegistOpen = {setIsRegistOpen}></ModifyButton>
 				</div>
 			</div>
 		</>
