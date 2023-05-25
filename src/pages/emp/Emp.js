@@ -79,7 +79,24 @@ function Emp() {
   return (
     <>
       <Header title={title} />
+
       <div className="EmpWrapper">
+
+        <div className="abs-menu-bar">
+          <NavLink to="/emp">
+          <div className="abs-menu"
+          // onClick={handleReloadPage}
+          >
+            조직도
+          </div>
+          </NavLink>
+
+          <NavLink to="/emp/emprest">
+          <div className="abs-menu" style={{ color: 'gray' }}>
+            휴직내역
+          </div>
+          </NavLink>
+        </div>
 
         <div className="EmpSearchBox">
           <select
@@ -94,14 +111,14 @@ function Emp() {
 
           <input
             type="text"
-            id="search"
+            id="EmpMainsearch"
             placeholder="  검색어를 입력하세요"
             onChange={onSearchChangeHandler}
             onKeyUp={onEnterKeyHandler}
           />
 
           <button
-            className="EmpSearchBtn"
+            className="abs-SearchBtn"
             onClick={onSearchBtnHandler}
 
           >
@@ -143,23 +160,23 @@ function Emp() {
                     {empList && <EmpList empList={empList} />}
                   </li>
                 </ul>
-                
-                  <div className="EmpPaging">
-                    {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
-                  </div>
-              
+
+                <div className="EmpPaging">
+                  {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
+                </div>
+
               </li>
             ) : null}
           </ul>
-         
-            <button 
-              className="EmpEntBtn" 
-              type="button"
-              onClick = {() => navigate('/emp/empregistration')}
-            >
-              + 구성원 등록하기
-              </button>
-    
+
+          <button
+            className="EmpEntBtn"
+            type="button"
+            onClick={() => navigate('/emp/empregistration')}
+          >
+            + 구성원 등록하기
+          </button>
+
         </div>
 
 

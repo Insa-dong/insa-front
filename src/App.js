@@ -8,6 +8,7 @@ import AdminAbs from './pages/abs/AdminAbs';
 import Board from './pages/board/Board';
 import BoardDetail from './pages/board/BoardDetail';
 import Emp from "./pages/emp/Emp";
+import EmpRest from './pages/emp/EmpRest';
 import EmpDetail from './pages/emp/EmpDetail';
 import EmpRegistration from './pages/emp/EmpRegistration';
 import Error from "./pages/error/Error"
@@ -59,6 +60,7 @@ function App() {
 						<Route path = "study/registration" element = {<StudyRegistration/>}/>
 						<Route path = "studyInfo/:studyInfoCode" element = {<StudyInfo/>}/>
 						<Route path = "emp" element = {<Emp/>}/>
+						<Route path = "emp/emprest" element = {<EmpRest/>}/>
 						<Route path = "emp/empregistration" element = {<EmpRegistration/>}/>
 						<Route path = "emp/empdetail/:empCode" element = {<EmpDetail/>}/>
 						<Route path="/empTeacher" element={<EmpTeacher />} />

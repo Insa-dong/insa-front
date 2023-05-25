@@ -4,19 +4,20 @@
     margin-left: 20vw;
 }
 
+
 /*검색영역*/
 .EmpSearchBox {
     display: flex;
     justify-content: flex-end;
 }
 
-input {
+/* input {
     border: none;
-}
+} */
 
 .EmpSearchBox > * {
-    margin-right: 1vw;
-    border: 2px solid #C5DCFF !important;
+    /* margin-right: 1vw; */
+    border: 2px solid #8CBAFF !important;
     border-radius: 7px;
 }
 
@@ -25,6 +26,11 @@ input {
     width: 5vw;
     text-align: center;
     color: #424242;
+    margin-right: 20px;
+}
+
+#EmpMainsearch{
+    margin-right: 20px;
 }
 
 /*검색버튼*/
