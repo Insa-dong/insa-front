@@ -5,14 +5,30 @@
 }
 
 
-.title{
-    margin-left: 1.7vw;
-    width: 65vw;
+.title {
+    margin-left: 1vw;
+    width: 50vw;
     font-size: 17pt;
 }
 
-.date{
+.date {
     font-size: 13pt;
+    margin-left: 10vw;
+}
+
+.maintext {
+    margin-top: 1vh;
+    padding-left: 1vw;
+}
+
+.file {
+    margin-top: 0.7vh;
+}
+
+.fileImgg {
+    width: 1vw;
+    margin-top: 0.3vh;
+    margin-right: 0.5vw;
 }
 
 
@@ -24,6 +40,73 @@
     padding-bottom: 40vh;
 }
 
+.job{
+    padding-top: 0.2vh;
+    font-size: 10pt;
+    color: gray;
+}
 .btn {
-    margin-left: 28vw;;
+    margin-left: 28vw;
+}
+
+#deptCode {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    margin: auto 0.4vw;
+    margin-right: 1.3vw;
+    box-sizing: border-box;
+    padding-top: 1.5vh;
+    font-size: 12pt;
+}
+
+.deptCode-DE0001 {
+    background-color: #D8C5E2;
+}
+
+.deptCode-DE0002 {
+    background-color: #FFA9B0;
+}
+
+.deptCode-DE0003 {
+    background-color: #FFDDA6;
+}
+
+.deptCode-DE0004 {
+    background-color: #C3C95E;
+}
+
+.deptCode-DE0005 {
+    background-color: #D9B89A;
+}
+
+.updateBtn {
+    border-radius: 0.5rem;
+    border: 1px solid  #8CBAFF;
+    width: 7rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    margin-right: 1vw;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.deleteBtn {
+    border-radius: 0.5rem;
+    border: 1px solid  #8CBAFF;
+    width: 7rem;
+    height: 3rem;
+    font-weight: bold;
+    font-size: 13pt;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
 }
