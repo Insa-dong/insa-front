@@ -1,14 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import CSS from "./AdviceUpdateModal.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { callEvaUpdateAPI } from "../../apis/EvaAPICalls";
 import { useState } from "react";
 
-function EvaUpdateModal({ stuCode, setEvaUpdateModal }) {
+function EvaUpdateModal({ stuCode, setEvaUpdateModal, studyInfoCode, empCode, evaCode }) {
 
     const [form, setForm] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { evaModify } = useSelector(state => state.evaReducer);
+
+    console.log('ED_stuCode : ', stuCode);
+    console.log('ED_studyInfoCode : ', studyInfoCode);
+    console.log('ED_empCode : ', empCode);
+    console.log('ED_evaCode : ', evaCode);
 
     const onBackClickHandler = () => {
         setEvaUpdateModal(false);
@@ -22,7 +28,7 @@ function EvaUpdateModal({ stuCode, setEvaUpdateModal }) {
     };
 
     const onSaveHandler = () => {
-        dispatch(callEvaUpdateAPI({ ...form, stuCode }));
+        dispatch(callEvaUpdateAPI({ ...form, stuCode, studyInfoCode, empCode, evaCode }));
     }
 
     return(
@@ -42,6 +48,7 @@ function EvaUpdateModal({ stuCode, setEvaUpdateModal }) {
                                         <input
                                             type="text"
                                             name="evaWriteContent"
+                                            //value={evaUpdate.evaWriteContent}
                                             onChange={ onChangeHandler } 
                                         />
                                     </td>
@@ -52,6 +59,7 @@ function EvaUpdateModal({ stuCode, setEvaUpdateModal }) {
                                         <input
                                             type="date"
                                             name="evaWriteDate"
+                                            //value={evaUpdate.evaWirteDate}
                                             onChange={ onChangeHandler } 
                                         />
                                     </td>
@@ -62,6 +70,7 @@ function EvaUpdateModal({ stuCode, setEvaUpdateModal }) {
                                         <input 
                                             type="date"
                                             name="evaUpdateTime"
+                                            //value={evaUpdate.evaUpdateTime}
                                             onChange={ onChangeHandler } 
                                         />
                                     </td>

@@ -5,13 +5,15 @@ import CSS from "./EvaRegistModal.module.css";
 import { callEvaRegistAPI } from "../../apis/EvaAPICalls";
 import { useState } from "react";
 
-function EvaRegistModal({ stuCode, setEvaRegistModal }) {
+function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) {
 
     const [form, setForm] = useState();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     console.log('EV_stuCode : ', stuCode);
+    console.log('EV_studyInfoCode : ', studyInfoCode);
+    console.log('EV_empCode : ', empCode);
 
     const onClickHandler = () => {
         setEvaRegistModal(false);
@@ -25,7 +27,7 @@ function EvaRegistModal({ stuCode, setEvaRegistModal }) {
     );
 
     const onClickRegist = () => {
-        dispatch(callEvaRegistAPI({...form, stuCode}));
+        dispatch(callEvaRegistAPI({...form, stuCode, studyInfoCode, empCode}));
     };
 
     const onChangeHandler = (e) => {

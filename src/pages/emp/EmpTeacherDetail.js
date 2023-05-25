@@ -3,13 +3,12 @@ import Header from "../../component/common/Header";
 import TeacherNavbar from "../../component/common/TeacherNavbar";
 import { callSelectStudentAndAttendAPI, callSelectStudentForStudyAPI } from "../../apis/StudyStuAPICalls";
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CSS from './EmpTeacherDetail.module.css';
 import PagingBar from "../../component/common/PagingBar";
 import StudentAttendRegistModal from "../../component/modal/StudentAttendRegistModal";
 import { callStudentAttendAPI, callStudentAttendDeleteAPI } from "../../apis/AttendAPICalls";
 import StudentAttendUpdateModal from "../../component/modal/StudentAttendUpdateModal";
-
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -44,12 +43,13 @@ function EmpTeacherDetail() {
     const navigate = useNavigate();
     const [stuCode, setStuCode] = useState();
     const [attendCode, setAttendCode] = useState();
+    const location = useLocation();
+    const { item } = location.state;
    
     console.log('studyCode : ', studyCode);
     console.log('stuCode : ', stuCode);
     console.log('attendCode : ', attendCode);
-   
-
+    
     useEffect(
         () => {
             /* 강의 별 수강생, 수강생 출결 */
@@ -87,7 +87,7 @@ function EmpTeacherDetail() {
 
     const onClickStudentHandler = (stuCode) => {
         setStuCode(stuCode);
-        navigate(`/empTeacher/detail/${studyCode}/${stuCode}`);
+        navigate(`/empTeacher/detail/${studyCode}/${stuCode}`, { state: { item }});
     };
 
 

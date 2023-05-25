@@ -6,13 +6,11 @@ function EmpTeacherItem({ item, studyCode }) {
 
     const onClickStudentListHandler = () => {
         
-        navigate(`/empteacher/${studyCode}`);
+        navigate(`/empteacher/${studyCode}`,{ state: { item }});
     };
 
-    console.log('studyCode : ', studyCode);
-
     return(
-        <tr key ={item.empCode} onClick = {onClickStudentListHandler}>
+        <tr key ={item.empCode} onClick = {onClickStudentListHandler} >
             <th>{item.study.studyCode}</th>
             <th>{item.study.training.trainingTitle}</th>
             <th>{item.studyTitle}</th>
