@@ -10,17 +10,17 @@ function EmpDeptModal({ empCode, setEmpDeptModal }) {
 
 
   const dispatch = useDispatch();
-  const [form, setForm] = useState({
-    empCode,
-    dept: {deptCode: "DE0001"}
-  })
-
   const { empDeptJob } = useSelector(state => state.empReducer);
-
+  
   useEffect(() => {
     dispatch(empDeptJobListAPI());
     console.log('empDeptJobListAPI 호출됨');
   }, []);
+
+  const [form, setForm] = useState({
+    empCode,
+    dept: {deptCode: "DE0001"}
+  })
 
   const onChangeHandler = (e) => {
     setForm({
@@ -33,9 +33,6 @@ function EmpDeptModal({ empCode, setEmpDeptModal }) {
 
   /* 저장하기 */
   const onClickUpdateDeptHandler = () => {
-
-   
-
     console.log('onClickEmpRegistrationHandler called');
     Swal.fire({
       text: '부서를 이동하시겠습니까?',
@@ -75,8 +72,6 @@ function EmpDeptModal({ empCode, setEmpDeptModal }) {
           });
       }
     });
-
-
   }
 
   /* 닫기 */
