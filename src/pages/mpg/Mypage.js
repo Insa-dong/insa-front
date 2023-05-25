@@ -1,9 +1,20 @@
+import { useEffect } from "react";
 import Header from "../../component/common/Header";
 import CSS from "./Mypage.module.css";
+import { useDispatch } from "react-redux";
+import { callMypageAPI } from "../../apis/MpgAPICalls";
 
 function Mypage() {
 
     const title = '내정보';
+    const dispatch = useDispatch();
+
+    useEffect(
+        () => {
+            dispatch(callMypageAPI());
+        },
+        []
+    )
 
     return (
         <>
