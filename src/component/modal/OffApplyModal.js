@@ -12,9 +12,11 @@ function OffApplyModal({ setOffApplyModal }) {
     const navigate = useNavigate();
     const {offApply} = useSelector(state => state.offReducer);
     const [form, setForm] = useState({
-        offDiv: "연차" 
-    }); //초기값으로 빈 객체 {}를 사용
-
+        offDiv: "연차",
+        offStart: "",
+        offEnd: "",
+        signReason: ""
+    }); //초기값 설정
   
     useEffect(() => {
       if (offApply?.status === 200) {
@@ -32,6 +34,17 @@ function OffApplyModal({ setOffApplyModal }) {
 
 
     const onClickOffApplyHandler = async () => {
+        if (form.offStart === "" || form.offEnd === "" || form.signReason === "") {
+            Swal.fire({
+              text: '모든 필드를 입력해주세요.',
+              icon: 'error',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-error-button'
+              }
+            });
+            return;
+          }
       Swal.fire({
         text: '해당 내용으로 연차를 신청 하시겠습니까?',
         icon: 'warning',
