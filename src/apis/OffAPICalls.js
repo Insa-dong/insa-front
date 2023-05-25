@@ -1,4 +1,4 @@
-import { postApply, getOffNow, getComingupOff, getPastOff } from "../modules/OffModule";
+import { postApply, getOffNow, getComingupOff, getPastOff, deleteOff, getSignOff } from "../modules/OffModule";
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -26,6 +26,8 @@ export const callApplyAPI = (form) => {
 		if (result.status === 200) {
 			dispatch(postApply(result));
             dispatch(callComingupOffListAPI());
+            dispatch(callPastOffListAPI());
+            dispatch(callOffNowAPI());
 		}
 	}
 }
@@ -98,6 +100,53 @@ export const callApplyAPI = (form) => {
 
         if(result.status === 200) {
             dispatch(getPastOff(result));
+        }
+    }
+};
+
+/* 연차 신청 취소(삭제) API */
+export const callCencelOffAPI = ({signCode}) => {
+
+    const requestURL = `${PRE_URL}/cancelOff/${signCode}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
+
+        console.log('Server response:', result);  // 서버 응답 출력
+
+        if(result.status === 200) {
+            dispatch(deleteOff(result));
+            dispatch(callComingupOffListAPI());
+            dispatch(callComingupOffListAPI());
+            dispatch(callOffNowAPI());
+        }
+    }
+};
+
+/* 연차 신청 내용 API */
+export const callSignOffListAPI = ({ currentPage = 1 }) => {
+    const requestURL = `${PRE_URL}/mySignOff?page=${currentPage}`;
+
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
+
+        console.log('Server response:', result);  // 서버 응답 출력
+
+        if(result.status === 200) {
+            dispatch(getSignOff(result));
         }
     }
 };
