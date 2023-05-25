@@ -195,3 +195,15 @@ textarea {
     outline: none;
 
 }
+
+.custom-error-button{
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    outline: none;
+}

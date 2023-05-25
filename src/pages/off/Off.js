@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import Header from "../../component/common/Header";
 import './Off.css';
 import OffApplyModal from '../../component/modal/OffApplyModal';
+import OffNowItem from '../../component/items/OffNowItem';
 import OffComingList from '../../component/lists/OffComingList';
 import OffPastList from '../../component/lists/OffPastList';
-import { callComingupOffListAPI, callPastOffListAPI } from '../../apis/OffAPICalls';
+import { callOffNowAPI, callComingupOffListAPI, callPastOffListAPI } from '../../apis/OffAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Off() {
@@ -13,14 +14,16 @@ function Off() {
     const [offApplyModal, setOffApplyModal] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { comingUpOffList, pastOffList } = useSelector(state => state.offReducer);
-    const offComingList = comingUpOffList.data || [];
-    const offPastList = pastOffList.data || [];
+    const { offNow, comingUpOffList, pastOffList } = useSelector(state => state.offReducer);
+    const offNowItem = offNow;
+    const offComingList = comingUpOffList || [];
+    const offPastList = pastOffList || [];
     const [searchYear, setSearchYear] = useState('');
 
     useEffect(() => {
         const fetchOffData = async () => {
           try {
+            await dispatch(callOffNowAPI());
             await dispatch(callComingupOffListAPI());
             await dispatch(callPastOffListAPI());
           } catch (error) {
@@ -83,19 +86,9 @@ function Off() {
                 )}
 
                 <div className="my-off-now">
-                    <div className="offNowList">
-                        <div>15</div>
-                        <p>총 연차</p>
-                    </div>
-                    <div className="offNowList">
-                        <div>3</div>
-                        <p>사용 연차</p>
-                    </div>
-                    <div className="offNowList">
-                        <div>12</div>
-                        <p>잔여 연차</p>
-                    </div>
+                {offNowItem && <OffNowItem key={offNowItem.empCode} off = {offNowItem}/>}
                 </div>
+
                 <p className='comingup-title'> 예정 연차 </p>
                 <div className="my-off-request">
                     <div>
