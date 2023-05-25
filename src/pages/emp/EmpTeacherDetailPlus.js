@@ -83,20 +83,19 @@ function EmpTeacherDetailPlus() {
     dispatch(callStudentAttendDetailAPI({ stuCode, currentPage }));
   }, [stuCode, currentPage]);
 
-  const evaDelete = useConfirm(
-    "평가 내역을 삭제하시겠습니까?",
-    okEvaConfirm,
-    cancelEvaConfirm
-  );
+  const okEvaConfirm = () => {
+    dispatch(callEvaDeleteForAdminAPI(evaCode));
+  };
 
   const cancelEvaConfirm = () => {
     console.log("평가 삭제가 취소되었습니다.");
   };
 
-  const okEvaConfirm = () => {
-    dispatch(callEvaDeleteForAdminAPI(evaCode));
-  };
-
+  const evaDelete = useConfirm(
+    "평가 내역을 삭제하시겠습니까?",
+    okEvaConfirm,
+    cancelEvaConfirm
+  );
 
   const onClickRegistHandler = (adviceRegist) => {
     setSelectedRegistAdvice(adviceRegist);
