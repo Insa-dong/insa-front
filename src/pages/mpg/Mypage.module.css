@@ -39,11 +39,33 @@
     /* border: 1px solid blue;     */
 }
 
+.restWrap{
+    /* display: flex; */
+    /* display: inline-block; */
+    width: 50vw;
+    height: 10px;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+
 .state{
-    width: 5.4vw;
+   
+    width: 100px;
     text-align: center;
     border-radius: 10px;
     border: 1px solid #ccc;
+}
+
+.restBtn{
+    width: 100px;
+height: 3.2vh;
+background-color: #FFFFFF;
+border-radius: 5px;
+color: #8CBAFF;
+border: 1px solid #8CBAFF;
+cursor: pointer;
+/* margin-top: -100vw; */
+margin-left: 56vw;
 }
 
 .state span{
@@ -102,6 +124,8 @@
     cursor: pointer;
    
 }
+
+
 
 
 

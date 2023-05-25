@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { empDeptJobListAPI } from '../../apis/EmpAPICalls';
+import { empDeptJobListAPI, callUpdateJobAPI } from '../../apis/EmpAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import './EmpJobModal.css'
+import Swal from "sweetalert2";
 
-function EmpJobModal({ setEmpJobModal }) {
+function EmpJobModal({empCode, setEmpJobModal }) {
+
+  console.log("empCode : ", empCode);
 
   const dispatch = useDispatch();
   const { empDeptJob } = useSelector(state => state.empReducer);
@@ -14,6 +17,63 @@ function EmpJobModal({ setEmpJobModal }) {
 
   }, []);
 
+  const [form, setForm] = useState({
+    empCode,
+    job: {jobCode: "JB0001"}
+  })
+
+  const onChangeHandler = (e) => {
+    setForm({
+      ...form,
+      job:{[e.target.name]: e.target.value}
+    })
+  }
+
+  /* 저장하기 */
+  const onClickUpdateJobHandler = () => {
+    console.log('onClickUpdateJobHandler called');
+    Swal.fire({
+      text: '직책을 변경하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      customClass: {
+        confirmButton: 'custom-confirm-button',
+        cancelButton: 'custom-cancel-button'
+      },
+      confirmButtonColor: '#8CBAFF',
+      cancelButtonColor: '#DADADA',
+      confirmButtonText: '저장',
+      cancelButtonText: '취소',
+      reverseButtons: true,
+      buttonsStyling: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(callUpdateJobAPI(form))
+          .then(() => {
+            Swal.fire({
+              title: '부서이동 완료',
+              text: '변경 사항을 확인하세요.',
+              icon: 'success',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-success-button'
+              }
+            });
+            setEmpJobModal(false);
+          })
+          .catch((error) => {
+            Swal.fire(
+              '저장 실패',
+              '다시 시도하세요.',
+              'error'
+            );
+          });
+      }
+    });
+  }
+
+
+  /* 닫기 */
   const onClickOutsideModal = (e) => {
     if (e.target === e.currentTarget) {
       setEmpJobModal(false);
@@ -49,7 +109,7 @@ function EmpJobModal({ setEmpJobModal }) {
                 <p>직책</p>
                 <select
                   name="jobCode"
-                // onChange={onChangeHandler}
+                onChange={onChangeHandler}
                 >
                   {empDeptJob && Array.isArray(empDeptJob.jobList) && empDeptJob.jobList.map(empDeptJob => (
                     <option key={empDeptJob.jobCode} value={empDeptJob.jobCode}>{empDeptJob.jobName}</option>
@@ -58,7 +118,7 @@ function EmpJobModal({ setEmpJobModal }) {
               </div>
             </div>
             <button className="EmpJobModalSavebutton"
-            // onClick={onClickOffApplyHandler}
+            onClick={onClickUpdateJobHandler}
             >
               저장하기
             </button>
