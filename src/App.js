@@ -19,7 +19,7 @@ import PwSearchSuccess from './pages/login/PwSearchSuccess';
 import Mypage from './pages/mpg/Mypage';
 import AdminOff from './pages/off/AdminOff';
 import Off from './pages/off/Off';
-import OffNow from './pages/off/OffNow';
+import OffSign from './pages/off/OffSign';
 import Student from './pages/student/Student';
 import StudentDetail from './pages/student/StudentDetail';
 import StudentRegistration from './pages/student/StudentRegistration';
@@ -68,7 +68,7 @@ function App() {
 						<Route path = "student/:stuCode" element = {<StudentDetail/>}/>
 						<Route path = "off" element = {<Off/>}/>
 						<Route path = "off/adminOff" element = {<AdminOff/>}/>
-						<Route path = "off/adminOff/offNow" element = {<OffNow/>}/>
+						<Route path = "off/adminOff/offSign" element = {<OffSign/>}/>
 						<Route path = "student/registration" element = {<StudentRegistration/>}/>
 					</Route>
 					<Route path = "idsearch" element = {<IdSearch/>}/>

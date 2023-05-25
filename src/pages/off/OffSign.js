@@ -1,7 +1,7 @@
 import { NavLink, useParams } from 'react-router-dom';
 import Header from "../../component/common/Header";
 
-function OffNow() {
+function OffSign() {
 
     return (
         <>
@@ -24,13 +24,13 @@ function OffNow() {
             <div className="adminOff-menu-bar" >
                 <NavLink to="/off/adminOff" activeClassName="active-link" style={{ color: 'gray' }}>
                     <div className="admin-off-menu">
-                        연차 신청내역
+                        연차 현황
                     </div>
                 </NavLink>
 
-                <NavLink to="/off/adminOff/offNow" activeClassName="active-link">
+                <NavLink to="/off/adminOff/offSign" activeClassName="active-link">
                     <div className="admin-off-menu">
-                        연차 현황
+                        연차 신청내역
                     </div>
                 </NavLink>
             </div>
@@ -45,4 +45,4 @@ function OffNow() {
 
 }
 
-export default OffNow;
+export default OffSign;

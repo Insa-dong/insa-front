@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Tsukimi+Rounded:wght@700&display=swap');
 
 .offNowDiv {
     width: 60vw;
@@ -9,6 +10,7 @@
     width: 10vw;
     /*border: 1px solid blue;*/
     text-align: center;
+    
 }
 
 .offNowDiv tr {
@@ -23,4 +25,6 @@
   .td-offNow {
     font-size: 2.5rem;
     padding-bottom: 2vw;
+    font-family: 'Tsukimi Rounded', sans-serif;
+
   }

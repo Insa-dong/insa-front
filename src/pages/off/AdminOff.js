@@ -25,13 +25,13 @@ function AdminOff() {
                 <div className="adminOff-menu-bar" >
                     <NavLink to="/off/adminOff" activeClassName="active-link">
                         <div className="admin-off-menu"  >
-                            연차 신청내역
+                            연차 현황
                         </div>
                     </NavLink>
 
-                    <NavLink to="/off/adminOff/offNow" activeClassName="active-link" style={{ color: 'gray' }}>
+                    <NavLink to="/off/adminOff/offSign" activeClassName="active-link" style={{ color: 'gray' }}>
                         <div className="admin-off-menu" >
-                            연차 현황
+                            연차 신청내역
                         </div>
                     </NavLink>
                 </div>
