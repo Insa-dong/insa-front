@@ -37,6 +37,9 @@ export const callStudentAttendDetailAPI = ({ stuCode, currentPage = 1 }) => {
 export const callStudentAttendRegistAPI = (form) => {
     const requestURL =`${PRE_URL}/students/attend`;
 
+    form=({...form,study:{studyCode:form.studyCode}, student:{stuCode:form.stuCode}});
+    console.log(form);
+
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
@@ -58,6 +61,9 @@ export const callStudentAttendRegistAPI = (form) => {
  export const callStudentAttendUpdateAPI = (form) => {
     
     const requestURL = `${PRE_URL}/students/attend`;
+    
+    form=({...form,study:{studyCode:form.studyCode}, student:{stuCode:form.stuCode}});
+    console.log(form);
 
     return async (dispatch, getState) => {
 

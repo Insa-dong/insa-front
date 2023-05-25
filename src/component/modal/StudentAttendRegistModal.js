@@ -6,7 +6,10 @@ import { callStudentAttendRegistAPI } from "../../apis/AttendAPICalls";
 
 function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistModal }) {
 
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    study:{studyCode},
+    student:{stuCode}
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
 import TeacherNavbar from "../../component/common/TeacherNavbar";
-import { callSelectStudentAndAttendAPI, callSelectStudentForStudyAPI } from "../../apis/StudyStuAPICalls";
+import { callSelectStudentAndAttendAPI } from "../../apis/StudyStuAPICalls";
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import CSS from './EmpTeacherDetail.module.css';
 import PagingBar from "../../component/common/PagingBar";
 import StudentAttendRegistModal from "../../component/modal/StudentAttendRegistModal";
-import { callStudentAttendAPI, callStudentAttendDeleteAPI } from "../../apis/AttendAPICalls";
+import { callStudentAttendDeleteAPI } from "../../apis/AttendAPICalls";
 import StudentAttendUpdateModal from "../../component/modal/StudentAttendUpdateModal";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {

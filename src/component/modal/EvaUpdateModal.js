@@ -6,10 +6,14 @@ import { useState } from "react";
 
 function EvaUpdateModal({ stuCode, setEvaUpdateModal, studyInfoCode, empCode, evaCode }) {
 
-    const [form, setForm] = useState();
+    const [form, setForm] = useState(
+        {
+            studyInfo:{studyInfoCode},
+            student:{stuCode}
+        }
+    );
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { evaModify } = useSelector(state => state.evaReducer);
 
     console.log('ED_stuCode : ', stuCode);
     console.log('ED_studyInfoCode : ', studyInfoCode);
