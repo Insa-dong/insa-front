@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
-import {callUpdateScheduleAPI} from "../../apis/CalendarAPICalls";
+import {callUpdateScheduleInfoAPI} from "../../apis/CalendarAPICalls";
 import CSS from "./TrainingRegistModal.module.css";
 
 function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
@@ -11,13 +11,13 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	console.log('info', info);
-
 	const onChangeHandler = (e) => {
 		setForm({
 			...form,
+			calCode: info.calCode,
 			[e.target.name]: e.target.value
 		})
+		console.log(form);
 	}
 
 	const onClickOutsideModal = (e) => {
@@ -43,7 +43,7 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 			buttonsStyling: false,
 		}).then((result) => {
 			if (result.isConfirmed) {
-				dispatch(callUpdateScheduleAPI(form))
+				dispatch(callUpdateScheduleInfoAPI(form))
 					.then(() => {
 						Swal.fire({
 							title: '수정 완료',
@@ -75,45 +75,47 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 					<div className = {CSS.trainingModalClose} onClick = {() => setModalOpen(false)}>X</div>
 					<div className = {CSS.trainingModalDiv}>
 
-						<h1 className = {CSS.trainingModalTitle}>과정 등록</h1>
+						<h1 className = {CSS.trainingModalTitle}>일정 조회</h1>
 
 						<div className = {CSS.trainingField}>
-							<h1>과정 명</h1>
+							<h1>일정 명</h1>
 							<input
 								type = "text"
 								className = {CSS.textInput}
-								name = 'trainingTitle'
+								name = 'calTitle'
 								onChange = {onChangeHandler}
+								defaultValue = {info.calTitle}
 							/>
 						</div>
 						<div className = {CSS.trainingField}>
-							<h1>필요자격</h1>
+							<h1>시작일</h1>
+							<input
+								type = "date"
+								className = {CSS.textInput}
+								name = 'calStartDate'
+								onChange = {onChangeHandler}
+								defaultValue = {info.calStartDate}
+							/>
+						</div>
+
+						<div className = {CSS.trainingField}>
+							<h1>종료일</h1>
+							<input
+								type = "date"
+								className = {CSS.textInput}
+								name = 'calEndDate'
+								onChange = {onChangeHandler}
+								defaultValue = {info.calEndDate}
+							/>
+						</div>
+						<div className = {CSS.trainingField}>
+							<h1>상세 내용</h1>
 							<input
 								type = "text"
 								className = {CSS.textInput}
-								name = 'trainingQual'
+								name = 'calContent'
 								onChange = {onChangeHandler}
-							/>
-						</div>
-
-						<div className = {CSS.trainingField}>
-							<h1>선수지식</h1>
-							<input
-								type = "text"
-								className = {CSS.textInput}
-								name = 'trainingKnow'
-								onChange = {onChangeHandler}
-							/>
-						</div>
-
-
-						<div className = {CSS.trainingField}>
-							<h1>과정 시간</h1>
-							<input
-								type = "number"
-								className = {CSS.textInput}
-								name = 'trainingTime'
-								onChange = {onChangeHandler}
+								defaultValue = {info.calContent}
 							/>
 						</div>
 
