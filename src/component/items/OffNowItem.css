@@ -1,0 +1,26 @@
+
+.offNowDiv {
+    width: 60vw;
+    margin: 0 auto;
+   /*border: 1px solid red;*/
+}
+
+.div-offNow {
+    width: 10vw;
+    /*border: 1px solid blue;*/
+    text-align: center;
+}
+
+.offNowDiv tr {
+    display: flex;
+    justify-content: space-around; 
+  }
+  
+  .offNowDiv td {
+    flex: 1;  /* td 요소들이 공간을 동등하게 차지하도록 설정 */
+  }
+
+  .td-offNow {
+    font-size: 2.5rem;
+    padding-bottom: 2vw;
+  }

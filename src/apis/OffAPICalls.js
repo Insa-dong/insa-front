@@ -1,4 +1,4 @@
-import { postApply, getComingupOff, getPastOff } from "../modules/OffModule";
+import { postApply, getOffNow, getComingupOff, getPastOff } from "../modules/OffModule";
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -40,6 +40,27 @@ export const callApplyAPI = ({offStart, offEnd, signReason, offDiv}) => {
       };
     };
   
+  /* 연차 현황 API */
+  export const callOffNowAPI = () => {
+
+    const requestURL = `${PRE_URL}/myOff`;
+
+    return async (dispatch, getState) => {
+      const result = await fetch(requestURL, {
+          method: 'GET',
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+          }
+      }).then(response => response.json());
+
+      console.log('Server response:', result); 
+
+      if(result.status === 200) {
+          dispatch(getOffNow(result));
+      }
+  }
+};
   
   
 
