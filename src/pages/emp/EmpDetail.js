@@ -13,6 +13,7 @@ function EmpDetail() {
     const title = "구성원";
     const dispatch = useDispatch();
     const { empDetail } = useSelector(state => state.empReducer);
+    const { result } = useSelector(state => state.empReducer);
     const params = useParams();
     const empCode = params.empCode;
     const [empRecordModal, setEmpRecordModal] = useState(false);
@@ -21,12 +22,19 @@ function EmpDetail() {
     console.log('empCode : ', empCode);
     console.log('empDetail:', { empDetail });
 
-
     useEffect(
         () => {
             dispatch(callEmpDetailAPI({ empCode }));
         },
         []
+    );
+
+    useEffect(
+        () => {
+            if(result?.status === 200)
+                dispatch(callEmpDetailAPI({ empCode }));
+        },
+        [result]
     );
 
     const onClickRecordHandler = () => {
@@ -119,7 +127,7 @@ function EmpDetail() {
                                 </button>
                             </ul>
 
-                            {empDeptModal && <EmpDeptModal empDetail={empDetail} empCode={empCode} setEmpDeptModal={setEmpDeptModal} />}
+                            {empDeptModal && <EmpDeptModal empCode={empCode} setEmpDeptModal={setEmpDeptModal} />}
 
                             <ul style={{ display: 'flex' }}>
                                 <li className={CSS.email}>직책</li>

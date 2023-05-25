@@ -40,7 +40,7 @@ function EmpRegistration() {
   };
 
   const onClickEmpRegistrationHandler = () => {
-    console.log('onClickAbsModifyHandler called');
+    console.log('onClickEmpRegistrationHandler called');
     Swal.fire({
         text: '구성원을 등록하시겠습니까?',
         icon: 'warning',
