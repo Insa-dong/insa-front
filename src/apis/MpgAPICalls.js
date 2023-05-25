@@ -1,3 +1,4 @@
+import { getMypage } from "../modules/MpgModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -21,7 +22,7 @@ export const callMypageAPI = () => {
         console.log('[MpgAPICalls] callMypageAPI result : ', result);
 
         if(result.status === 200) {
-            // dispatch(getMember(result));
+            dispatch(getMypage(result));
         }
     }
 }
