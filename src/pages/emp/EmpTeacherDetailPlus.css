@@ -40,6 +40,7 @@
   .stuDetailBox {
       width: 19rem;
       height: 2.5rem;
+      line-height: 2.5rem;
       font-size: 13pt;
       padding-left: 15px;
       margin-left : 100px;
@@ -225,3 +226,4 @@
     outline: none;
   }
   
+ 

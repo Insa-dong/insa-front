@@ -85,23 +85,23 @@ function EmpTeacherDetailPlus() {
             <table>
               <tbody>
                 <tr>
-                  <td>이름</td>
+                  <th>이름</th>
                   <td className="stuDetailBox">{detail.stuName}</td>
                 </tr>
                 <tr>
-                  <td>영문이름</td>
+                  <th>영문이름</th>
                   <td className="stuDetailBox">{detail.stuEngName}</td>
                 </tr>
                 <tr>
-                  <td>생년월일</td>
+                  <th>생년월일</th>
                   <td className="stuDetailBox">{detail.stuBirth}</td>
                 </tr>
                 <tr>
-                  <td>이메일</td>
+                  <th>이메일</th>
                   <td className="stuDetailBox">{detail.stuEmail}</td>
                 </tr>
                 <tr>
-                  <td>전화번호</td>
+                  <th>전화번호</th>
                   <td className="stuDetailBox">{detail.stuPhone}</td>
                 </tr>
               </tbody>
