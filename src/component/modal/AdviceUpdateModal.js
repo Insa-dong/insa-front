@@ -4,13 +4,20 @@ import { useDispatch } from "react-redux";
 import { callAdviceUpdateAPI } from "../../apis/AdviceAPICalls";
 import { useState } from "react";
 
-function AdviceUpdateModal({ adviceUpdate, setAdviceUpdateModal, stuCode }) {
+function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empCode }) {
 
-    const [form, setForm] = useState();
+    const [form, setForm] = useState(
+        {
+            student:{stuCode},
+            writer:{empCode}
+        }
+    );
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     console.log('AU_stuCode : ', stuCode);
+    console.log('AU_adviceLogCode : ', adviceLogCode);
+    console.log('AU_empCode :', empCode);
     
     const onBackClickHandler = () => {
         setAdviceUpdateModal(false);
@@ -25,7 +32,7 @@ function AdviceUpdateModal({ adviceUpdate, setAdviceUpdateModal, stuCode }) {
     };
 
     const onSaveHandler = () => {
-        dispatch(callAdviceUpdateAPI({...form, stuCode}));
+        dispatch(callAdviceUpdateAPI({...form, stuCode, adviceLogCode , empCode }));
     }
 
     return(

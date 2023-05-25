@@ -7,7 +7,10 @@ import { useState } from "react";
 
 function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
 
-    const [form, setForm] = useState();
+    const [form, setForm] = useState({
+        student:{stuCode},
+        writer:{empCode}
+    });
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

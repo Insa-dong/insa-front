@@ -47,12 +47,10 @@ function EmpTeacherDetailPlus() {
   const { evaList } = useSelector((state) => state.evaReducer);
   const { adviceList } = useSelector((state) => state.adviceReducer);
   const { attendDetail } = useSelector((state) => state.attendReducer);
-  const [adviceUpdate, setAdviceUpdate] = useState("");
   const [adviceRegist, setAdviceRegist] = useState("");
   const [evaRegist, setEvaRegist] = useState("");
   const [selectedRegistAdvice, setSelectedRegistAdvice] = useState(null);
   const [adviceRegistModalVisible, setAdviceRegistModalVisible] = useState(false);
-  const [evaUpdate, setEvaUpdate] = useState("");
   const [selectedUpdateAdvice, setSelectedUpdateAdvice] = useState(null);
   const [adviceUpdateModalVisible, setAdviceUpdateModalVisible] = useState(false);
   const [selectedUpdateEva, setSelectedUpdateEva] = useState(null);
@@ -66,16 +64,15 @@ function EmpTeacherDetailPlus() {
   const location = useLocation();
   const { item } = location.state;
   const { studyInfoCode, teacher: { empCode } } = item;
-  const [evaCode, setEvaCode] = useState();
-
   const navigate = useNavigate();
+
 
   console.log('plusStuCode : ', stuCode);
   console.log('detail : ', detail);
   console.log('attendDetail : ', attendDetail);
   console.log('studyInfoCode : ', studyInfoCode);
   console.log('empCode : ', empCode);
-  
+
   useEffect(() => {
     dispatch(callStudentDetailForAdminAPI({ stuCode }));
     dispatch(callStudentEvaListAPI({ stuCode, currentPage }));
@@ -83,19 +80,26 @@ function EmpTeacherDetailPlus() {
     dispatch(callStudentAttendDetailAPI({ stuCode, currentPage }));
   }, [stuCode, currentPage]);
 
-  const okEvaConfirm = () => {
-    dispatch(callEvaDeleteForAdminAPI(evaCode));
+ 
+  const evaDelete = (evaCode) => {
+    const confirmed = window.confirm("평가 내역을 삭제하시겠습니까?");
+    if (confirmed) {
+      console.log('evaCode : ', evaCode);
+      dispatch(callEvaDeleteForAdminAPI({ evaCode }));
+    } else {
+      console.log("평가 삭제가 취소되었습니다.");
+    }
   };
 
-  const cancelEvaConfirm = () => {
-    console.log("평가 삭제가 취소되었습니다.");
+  const adviceDelete = (adviceLogCode) => {
+    const confirmed = window.confirm("상담 내역을 삭제하시겠습니까?");
+    if (confirmed) {
+      console.log('adviceLogCode : ', adviceLogCode);
+      dispatch(callAdviceDeleteForAdminAPI({ adviceLogCode }));
+    } else {
+      console.log("상담 삭제가 취소되었습니다.");
+    }
   };
-
-  const evaDelete = useConfirm(
-    "평가 내역을 삭제하시겠습니까?",
-    okEvaConfirm,
-    cancelEvaConfirm
-  );
 
   const onClickRegistHandler = (adviceRegist) => {
     setSelectedRegistAdvice(adviceRegist);
@@ -107,6 +111,12 @@ function EmpTeacherDetailPlus() {
     setSelectedRegistEva(evaRegist);
     console.log(stuCode);
     setEvaRegistModalVisible(true);
+  }
+
+  const onClickAdviceUpdateHandler = (adviceLogCode) => {
+    setSelectedUpdateAdvice(adviceLogCode);
+    console.log('adviceLogCode : ', adviceLogCode);
+    setAdviceUpdateModalVisible(true);
   }
 
   const onClickEvaUpdateHandler = (evaCode) => {
@@ -121,10 +131,12 @@ function EmpTeacherDetailPlus() {
     setEvaReviewModalVisible(true);
   }
 
+
   const onClickAdviceReviewHandler = (adviceReview) => {
     setSelectedAdviceReview(adviceReview);
     setAdviceReviewModalVisible(true);
   };
+
 
   return (
     <>
@@ -232,13 +244,13 @@ function EmpTeacherDetailPlus() {
           <tbody>
             {Array.isArray(evaList) && evaList.length > 0 ? (
               evaList.map((eva) => (
-                <tr key={eva}>
-                  <td onClick={() => onClickEvaReviewHandler(eva)}>{eva.evaCode}</td>
+                <tr key={eva.evaCode}>
+                  <td onClick={() => onClickEvaReviewHandler(eva.evaCode)}>{eva.evaCode}</td>
                   <td onClick={() => onClickEvaReviewHandler(eva)}>{eva.studyInfo.studyTitle}</td>
                   <td onClick={() => onClickEvaReviewHandler(eva)}>{eva.studyInfo.teacher.empName}</td>
                   <td>
                     <button className="evaSelectBtn" onClick={() => onClickEvaUpdateHandler(eva.evaCode)}>수정</button>
-                    <button className="evaDeleteBtn" onClick={ evaDelete }>삭제</button>
+                    <button className="evaDeleteBtn" onClick={() => evaDelete(eva.evaCode)}>삭제</button>
                   </td>
                 </tr>
               ))
@@ -263,7 +275,7 @@ function EmpTeacherDetailPlus() {
 
         {adviceUpdateModalVisible && (
           <AdviceUpdateModal
-            adviceUpdate={selectedUpdateAdvice}
+            adviceLogCode={selectedUpdateAdvice}
             setAdviceUpdateModal={setAdviceUpdateModalVisible}
             stuCode={stuCode}
             studyInfoCode={studyInfoCode}
@@ -298,8 +310,8 @@ function EmpTeacherDetailPlus() {
                   <td onClick={() => onClickAdviceReviewHandler(advice)}>{advice.writer.empName}</td>
                   <td onClick={() => onClickAdviceReviewHandler(advice)}>{advice.adviceLogDate}</td>
                   <td>
-                    <button className="studyStuUpdateBtn">수정</button>
-                    <button className="studyStuDeleteBtn">삭제</button>
+                    <button className="studyStuUpdateBtn" onClick={() => onClickAdviceUpdateHandler(advice.adviceLogCode)}>수정</button>
+                    <button className="studyStuDeleteBtn" onClick={() => adviceDelete(advice.adviceLogCode)}>삭제</button>
                   </td>
                 </tr>
               ))

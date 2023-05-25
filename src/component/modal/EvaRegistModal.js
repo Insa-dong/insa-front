@@ -7,7 +7,12 @@ import { useState } from "react";
 
 function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) {
 
-    const [form, setForm] = useState();
+    const [form, setForm] = useState(
+        {
+            studyInfo:{studyInfoCode},
+            student:{stuCode}
+        }
+    );
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

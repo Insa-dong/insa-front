@@ -25,7 +25,7 @@ export const callStudentAdviceListAPI = ({ stuCode , currentPage = 1 }) => {
 
 }
  
-export const callAdviceDeleteForAdminAPI = (adviceLogCode) => {
+export const callAdviceDeleteForAdminAPI = ({ adviceLogCode }) => {
 
   const requestURL = `${PRE_URL}/students-management/advice/${adviceLogCode}`;
   
@@ -48,12 +48,15 @@ export const callAdviceDeleteForAdminAPI = (adviceLogCode) => {
     
     const requestURL = `${PRE_URL}/students/advice`;
 
+    form=({...form,student:{stuCode:form.stuCode}, writer:{empCode:form.empCode}});
+    console.log(form);
+
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // Authorization: "Bearer " + window.localStorage.getItem("accessToken"),
+            "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
           },
           body: JSON.stringify(form),
         }).then((response) => response.json());
@@ -69,13 +72,16 @@ export const callAdviceUpdateAPI = (form) => {
 
   const requestURL =`${PRE_URL}/students/advice`;
 
+  form=({...form,student:{stuCode:form.stuCode}, writer:{empCode:form.empCode}});
+  console.log(form);
+
   return async (dispatch, getState) => {
 
       const result = await fetch(requestURL, {
           method : 'PUT',
           headers : {
               "Content-Type": "application/json",
-              // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+              "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
           },
           body: JSON.stringify(form)
       }).then(res => res.json());
