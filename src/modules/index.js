@@ -14,6 +14,7 @@ import studyInfoReducer from "./StudyInfoModule";
 import studyReducer from "./StudyModule";
 import studyStudentReducer from "./StudyStudentModule";
 import trainingReducer from "./TrainingModule";
+import mypageReducer from "./MpgModule";
 
 const rootReducer = combineReducers({
 	trainingReducer,
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
 	offReducer,
 	calendarReducer,
 	attendReducer,
-	buttonReducer
+	buttonReducer,
+	mypageReducer
 })
 export default rootReducer;
