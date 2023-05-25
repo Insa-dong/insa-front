@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import Header from "../../component/common/Header";
 import CSS from "./BoardDetail.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { callBoardDetailAPI } from "../../apis/BoardAPICall";
+import { useNavigate, useParams } from "react-router-dom";
+import { callBoardDetailAPI, fileDownloadAPI } from "../../apis/BoardAPICall";
 
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -16,7 +16,9 @@ function BoardDetail() {
     const title = '공지사항';
     const { noticeCode } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { detail } = useSelector(state => state.boardReducer);
+
 
     useEffect(
         () => {
@@ -60,7 +62,7 @@ function BoardDetail() {
                             detail.fileList.map((file, index) => (
                                 <ul className={CSS.file} style={{ display: 'flex' }} key={file.fileCode}>
                                     {index > 0 && <li>,&nbsp;</li>}
-                                    <li>{file.originFileName}</li>
+                                    <a href={`http://localhost:8001/insa/v1/download/${file.saveFileName}/${file.originFileName}`}><li>{file.originFileName}</li></a>
                                 </ul>
                             ))
                         ) : (
