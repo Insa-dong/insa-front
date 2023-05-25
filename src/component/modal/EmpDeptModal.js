@@ -1,18 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { empDeptJobListAPI } from '../../apis/EmpAPICalls';
+import { empDeptJobListAPI, callUpdateDeptAPI } from '../../apis/EmpAPICalls';
 import { useDispatch, useSelector } from 'react-redux';
 import './EmpDeptModal.css';
 
-function EmpDeptModal({ setEmpDeptModal }) {
+function EmpDeptModal({ empDetail, setEmpDeptModal }) {
+  
+  console.log(empDetail);
 
   const dispatch = useDispatch();
+  const[form, setForm] = useState({
+    deptCode:"DE0001"
+  })
+  // const[dept, setDept] = useState({
+  //   deptCode:"DE0001"
+  // })
   const {empDeptJob} = useSelector(state => state.empReducer);
 
   useEffect(() => {
     dispatch(empDeptJobListAPI());
     console.log('empDeptJobListAPI 호출됨');
-
   }, []);
+
+  const onChangeHandler = (e) => {
+    setForm({
+      [e.target.name] : e.target.value
+    })
+  }
+
+  const onClickUpdateDeptHandler = () => {
+
+    const formData = new FormData();
+
+    formData.append("empCode", empDetail.empCode);
+    formData.append("dept.deptCode", form.deptCode);
+
+    dispatch(callUpdateDeptAPI(formData));
+}
+
+
 
   const onClickOutsideModal = (e) => {
     if (e.target === e.currentTarget) {
@@ -33,8 +58,8 @@ function EmpDeptModal({ setEmpDeptModal }) {
           </div>
           <div className="EmpDeptModalDiv">
             <h1 className="EmpRecordModalTitle">🚀 부서이동</h1>
-
             <div className="EmpDeptModalWrap">
+
               <div className="EmpDeptModalDivWrap">
                 <p>구분</p>
                 <input
@@ -45,19 +70,22 @@ function EmpDeptModal({ setEmpDeptModal }) {
                   placeholder="부서이동"
                 />
               </div>
+
               <div className="EmpDeptModalOption">
                 <p>부서</p>
                 <select
                   name="deptCode"
-                // onChange={onChangeHandler}
+                  value={form.deptCode}
+                onChange={onChangeHandler}
                 >{empDeptJob && Array.isArray(empDeptJob.deptList) && empDeptJob.deptList.map(empDeptJob => (
                   <option key={empDeptJob.deptCode} value={empDeptJob.deptCode}>{empDeptJob.deptName}</option>
                 ))}
                 </select>
               </div>
+
             </div>
             <button className="EmpDeptModalSavebutton"
-            // onClick={onClickOffApplyHandler}
+            onClick={onClickUpdateDeptHandler}
             >
               저장하기
             </button>

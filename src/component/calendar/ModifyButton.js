@@ -2,8 +2,9 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
-import {callMyCalListAPI, callUpdateScheduleAPI} from "../../apis/CalendarAPICalls";
+import {callUpdateScheduleAPI} from "../../apis/CalendarAPICalls";
 import {initCalList} from "../../modules/ButtonModule";
+import CSS from "./ModifyButton.module.css";
 
 function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 
@@ -15,12 +16,11 @@ function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 
 	useEffect(
 		() => {
-			dispatch(callUpdateScheduleAPI(scheduleList));
 			if (isRegistOpen) {
 				dispatch(initCalList());
 				setIsRegistOpen(false)
 			}
-		}, [dispatch, isRegistOpen, scheduleList]
+		}, [dispatch, isRegistOpen, scheduleList, setIsRegistOpen]
 	)
 
 	const onClickScheduleSaveHandler = () => {
@@ -40,7 +40,7 @@ function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 			buttonsStyling: false,
 		}).then((result) => {
 			if (result.isConfirmed) {
-				dispatch(callMyCalListAPI())
+				dispatch(callUpdateScheduleAPI(scheduleList))
 					.then(() => {
 						Swal.fire({
 							title: '수정 완료',
@@ -69,7 +69,7 @@ function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 	return (
 		<>
 			{scheduleList && scheduleList.length > 0 &&
-				<button onClick = {onClickScheduleSaveHandler}>변경사항 저장하기</button>}
+				<button className = {CSS.modifyButton} onClick = {onClickScheduleSaveHandler}>저장하기</button>}
 		</>
 	)
 }
