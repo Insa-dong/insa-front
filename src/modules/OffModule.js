@@ -16,16 +16,19 @@ const GET_COMINGUP_OFF = 'off/GET_COMINGUP_OFF'
 const GET_PAST_OFF = 'off/GET_PAST_OFF'
 /* 연차 신청 취소(삭제) */
 const DELETE_OFF = 'off/DELETE_OFF'
+/* 연차 신청 내역 조회 */
+const GET_SIGN_OFF = 'off/GET_SIGN_OFF'
 
 
 
-export const { off : { postApply, getOffNow, getComingupOff, getPastOff, deleteOff } } = createActions({
+export const { off : { postApply, getOffNow, getComingupOff, getPastOff, deleteOff, getSignOff } } = createActions({
    
     [POST_APPLY] : (res) => res,
     [GET_OFF_NOW] : (res) => res.data,
     [GET_COMINGUP_OFF] : (res) => res.data,
     [GET_PAST_OFF] : (res) => res.data,
     [DELETE_OFF] : (res) => res,
+    [GET_SIGN_OFF] :  (res) => res.data,
     
    
 }); 
@@ -43,6 +46,7 @@ const offReducer = handleActions(
         newState.comingUpOffList = newState.comingUpOffList.filter(off => off.signCode !== payload.signCode);  // 신청취소한 연차 제거
         return newState;  // 새로운 상태 반환
       },
+      [GET_SIGN_OFF]: (state, { payload }) => ({ ...state, signOff: payload }),
       
     },
     initialState
