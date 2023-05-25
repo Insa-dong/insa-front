@@ -15,9 +15,9 @@ function Off() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { offNow, comingUpOffList, pastOffList } = useSelector(state => state.offReducer);
-    const offNowItem = offNow.data;
-    const offComingList = comingUpOffList.data || [];
-    const offPastList = pastOffList.data || [];
+    const offNowItem = offNow;
+    const offComingList = comingUpOffList || [];
+    const offPastList = pastOffList || [];
     const [searchYear, setSearchYear] = useState('');
 
     useEffect(() => {
