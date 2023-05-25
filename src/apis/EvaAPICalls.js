@@ -20,9 +20,9 @@ export const callStudentEvaListAPI = ({ stuCode , currentPage = 1 }) => {
 
 }
 
-export const callEvaDeleteForAdminAPI = (stuCode) => {
+export const callEvaDeleteForAdminAPI = (evaCode) => {
 
-    const requestURL = `${PRE_URL}/students-management/eva/${stuCode}`;
+    const requestURL = `${PRE_URL}/students-management/eva/${evaCode}`;
   
     return async (dispatch, getState) => {
       const result = await fetch(requestURL, {
@@ -43,6 +43,9 @@ export const callEvaDeleteForAdminAPI = (stuCode) => {
   export const callEvaRegistAPI = (form) => {
 
     const requestURL =`${PRE_URL}/students/eva`;
+    
+    // form=({...form,studyInfo:{studyInfoCode:form.studyInfoCode}, student:{stuCode:form.stuCode}});
+    // console.log(form);
 
     return async (dispatch, getState) => {
 

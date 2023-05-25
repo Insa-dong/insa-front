@@ -7,7 +7,6 @@ import PagingBar from "../../component/common/PagingBar";
 import EmpTeacherList from "../../component/lists/EmpTeacherList";
 import CSS from "../emp/EmpTeacher.module.css";
 
-
 function EmpTeacher() {
 
     const title = '강의';
@@ -15,7 +14,7 @@ function EmpTeacher() {
     const dispatch = useDispatch();
     const teacher = useSelector(state => state.studyInfoReducer);
     const empCode = 1001;
-
+   
     useEffect(() => {
         dispatch(callSelectStudyForTeacherAPI({ empCode, currentPage }));
       }, [currentPage, dispatch, empCode]);

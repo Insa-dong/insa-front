@@ -18,7 +18,7 @@ console.log('teacher : ', teacher);
             <tbody>
                 { teacher.data &&
                     teacher.data.map(item => (
-                        <EmpTeacherItem item = { item } key = { item.empCode } studyCode={item.study.studyCode}/>
+                        <EmpTeacherItem item = { item } key = { item.empCode } studyCode={item.study.studyCode} />
                     ))}
             </tbody>
         </table>

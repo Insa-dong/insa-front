@@ -31,7 +31,7 @@ const adviceReducer = handleActions(
         [DELETE_ADVICE]: (state, { payload }) => payload,
 
         [GET_ADVICES]: (state, { payload }) => ({ adviceList: payload }),
-        [DELETE_ADVICES]: (state, { payload }) => payload
+        [DELETE_ADVICES]: (state, { payload }) => ({ deleteAdvice : payload })
     },
     initialState
 );

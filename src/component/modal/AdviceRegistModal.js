@@ -5,13 +5,14 @@ import CSS from "./AdviceRegistModal.module.css";
 import { callAdviceWriteAPI } from "../../apis/AdviceAPICalls";
 import { useState } from "react";
 
-function AdviceRegistModal({ stuCode, setAdviceRegistModal }) {
+function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
 
     const [form, setForm] = useState();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     console.log('AR_stuCode : ', stuCode);
+    console.log('AR_empCode : ', empCode); 
 
     const onClickHandler = () => {
         setAdviceRegistModal(false);
@@ -31,7 +32,7 @@ function AdviceRegistModal({ stuCode, setAdviceRegistModal }) {
     };
 
     const onClickAdviceRegistHandler = () => {
-        dispatch(callAdviceWriteAPI({ ...form, stuCode }));
+        dispatch(callAdviceWriteAPI({ ...form, stuCode, empCode }));
     };
 
     return(

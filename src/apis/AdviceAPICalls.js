@@ -25,9 +25,9 @@ export const callStudentAdviceListAPI = ({ stuCode , currentPage = 1 }) => {
 
 }
  
-export const callAdviceDeleteForAdminAPI = (stuCode) => {
+export const callAdviceDeleteForAdminAPI = (adviceLogCode) => {
 
-  const requestURL = `${PRE_URL}/students-management/advice/${stuCode}`;
+  const requestURL = `${PRE_URL}/students-management/advice/${adviceLogCode}`;
   
     return async (dispatch, getState) => {
       const result = await fetch(requestURL, {

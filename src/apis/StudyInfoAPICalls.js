@@ -102,14 +102,21 @@ export const callSelectStudyForTeacherAPI = ({empCode, currentPage = 1}) => {
 
 	return async (dispatch, getState) => {
 
-		const result = await fetch(requestURL).then(res => res.json());
+		const result = await fetch(requestURL, {
+			method : 'GET',
+			headers : {
+				"Content-Type": "application/json",
+				//"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+			},
+		}).then(res => res.json());
+		
 		console.log(result);
-		if (result.status === 200) {
+		if(result.status === 200) {
 			dispatch(getMyStudy(result));
-
 		}
-	};
+	}
 }
+
 
 export const callInsertStudyInfo = ({form, day}) => {
 
