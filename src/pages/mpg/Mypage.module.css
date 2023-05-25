@@ -9,11 +9,10 @@
     margin-bottom: 3vw;
 }
 
-.prof {
+#prof {
     width: 120px;
     height: 120px;
     border-radius: 15px;
-    background-color: #FFA9B0;
     color: white;
     text-align: center;
     font-weight: bold;
@@ -44,7 +43,7 @@
     /* display: inline-block; */
     width: 50vw;
     height: 10px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     /* border: 1px solid red; */
 }
 
@@ -59,6 +58,7 @@
 .restBtn{
     width: 100px;
 height: 3.2vh;
+margin-bottom: 10vh;
 background-color: #FFFFFF;
 border-radius: 5px;
 color: #8CBAFF;
@@ -123,6 +123,26 @@ margin-left: 56vw;
     border: 1px solid #8CBAFF;
     cursor: pointer;
    
+}
+
+.deptCode-DE0001 {
+    background-color: #D8C5E2;
+}
+
+.deptCode-DE0002 {
+    background-color: #FFA9B0;
+}
+
+.deptCode-DE0003 {
+    background-color: #FFDDA6;
+}
+
+.deptCode-DE0004 {
+    background-color: #C3C95E;
+}
+
+.deptCode-DE0005 {
+    background-color: #D9B89A;
 }
 
 

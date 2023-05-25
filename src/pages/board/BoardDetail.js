@@ -62,7 +62,7 @@ function BoardDetail() {
                             detail.fileList.map((file, index) => (
                                 <ul className={CSS.file} style={{ display: 'flex' }} key={file.fileCode}>
                                     {index > 0 && <li>,&nbsp;</li>}
-                                    <a href={`http://localhost:8001/insa/v1/download/${file.saveFileName}/${file.originFileName}`}><li>{file.originFileName}</li></a>
+                                    <a href={`http://localhost:8001/insa/v1/download/${file.saveFileName}`}><li>{file.originFileName}</li></a>
                                 </ul>
                             ))
                         ) : (

@@ -7,12 +7,12 @@ const initialState = {};
 const GET_MYPAGE = 'mypage/GET_MYPAGE';
 
 export const { mypage : {  getMypage } } = createActions({
-    [GET_MYPAGE] : res => res
+    [GET_MYPAGE] : res => res.data
 });
 
 /* 리듀서 */
 const mypageReducer = handleActions({
-    [GET_MYPAGE] : (state, { payload }) => ({ mypage : payload })
+    [GET_MYPAGE] : (state, { payload }) => ({ info : payload })
 }, initialState);
 
 export default mypageReducer;
