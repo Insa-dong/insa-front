@@ -10,7 +10,7 @@ function OffSign() {
 
     const [currentPage, setCurrentPage] = useState(1)
     const { signOff } = useSelector(state => state.offReducer);
-    const signOffList = signOff.data;
+    const signOffList = signOff?.data || [];
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -54,7 +54,7 @@ function OffSign() {
                     {signOffList && <SignOffList signOffList={signOffList} />}
                 </div>
                 <div>
-                    {signOff.pageInfo && <PagingBar pageInfo={signOff.pageInfo} setCurrentPage={setCurrentPage} />}
+                    {signOff && signOff.pageInfo && <PagingBar pageInfo={signOff.pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
 
             </div>

@@ -24,7 +24,9 @@ function SignOffItem({off: { signRequester, offDiv, offStart, offEnd, offDay, si
             <td className="td-start3">{offStart}</td>
             <td className="td-end3">{offEnd}</td>
             <td className="td-day3">{offDay}일</td>
-            <td className="td-signStatus3" style={{backgroundColor: statusColor}}>{signStatus}</td>
+            <td className="td-signStatus3" >
+                <button className="btn-signStatus3" style={{backgroundColor: statusColor}}>{signStatus}</button>
+            </td>
         </tr>
        
     )

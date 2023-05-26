@@ -1,11 +1,11 @@
 import SignOffItem from "../items/SignOffItem";
-//import './SignOffList.css';
+import './SignOffList.css';
 
 function SignOffList({ signOffList }) {
     return (
         <table className="signOffDiv">
             <thead>
-                <tr>
+                <tr className="signOffTr">
                     <th>직급명</th>
                     <th>이름</th>
                     <th>연차 종류</th>
