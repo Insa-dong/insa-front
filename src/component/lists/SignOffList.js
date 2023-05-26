@@ -3,7 +3,7 @@ import './SignOffList.css';
 
 function SignOffList({ signOffList }) {
     return (
-        <table className="signOffDiv">
+        <table className="signOffListDiv">
             <thead>
                 <tr className="signOffTr">
                     <th>직급명</th>
@@ -16,15 +16,15 @@ function SignOffList({ signOffList }) {
                 </tr>
             </thead>
 
-            <tbody>
-                {Array.isArray(signOffList) && signOffList.length > 0 ? (
-                    signOffList.map((off) => <SignOffItem key={off.signCode} off={off} />)
-                ) : (
-                    <tr>
-                        <td colSpan="8"> 신청한 연차가 없습니다. </td>
-                    </tr>
-                )}
-            </tbody>
+
+            {Array.isArray(signOffList) && signOffList.length > 0 ? (
+                signOffList.map((off) => <SignOffItem key={off.signCode} off={off} />)
+            ) : (
+                <tr>
+                    <td colSpan="8"> 신청한 연차가 없습니다. </td>
+                </tr>
+            )}
+
         </table>
 
     );

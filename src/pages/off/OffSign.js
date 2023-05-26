@@ -1,10 +1,11 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
 import SignOffList from '../../component/lists/SignOffList';
 import PagingBar from '../../component/common/PagingBar';
 import { callSignOffListAPI } from '../../apis/OffAPICalls';
+import './OffSign.css';
 
 function OffSign() {
 
@@ -37,13 +38,13 @@ function OffSign() {
                     </NavLink>
                 </div>
                 <div className="adminOff-menu-bar" >
-                    <NavLink to="/off/adminOff" activeClassName="active-link" style={{ color: 'gray' }}>
+                    <NavLink to="/off/adminOff" className="active-link" style={{ color: 'gray' }}>
                         <div className="admin-off-menu">
                             연차 현황
                         </div>
                     </NavLink>
 
-                    <NavLink to="/off/adminOff/offSign" activeClassName="active-link">
+                    <NavLink to="/off/adminOff/offSign" className="active-link">
                         <div className="admin-off-menu">
                             연차 신청내역
                         </div>
@@ -53,7 +54,7 @@ function OffSign() {
                 <div>
                     {signOffList && <SignOffList signOffList={signOffList} />}
                 </div>
-                <div>
+                <div className="offSignPageDiv">
                     {signOff && signOff.pageInfo && <PagingBar pageInfo={signOff.pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
 
