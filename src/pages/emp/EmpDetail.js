@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import CSS from "./EmpDetail.module.css";
 import Header from "../../component/common/Header";
-import { callEmpDetailAPI } from '../../apis/EmpAPICalls';
+import { callEmpDetailAPI,callEmpDelAPI } from '../../apis/EmpAPICalls';
 import EmpRecordModal from './../../component/modal/EmpRecordModal';
 import EmpDeptModal from '../../component/modal/EmpDeptModal';
 import EmpJobModal from '../../component/modal/EmpJobModal';
+import Swal from "sweetalert2";
 
 function EmpDetail() {
 
     const title = "구성원";
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { empDetail } = useSelector(state => state.empReducer);
     const { result } = useSelector(state => state.empReducer);
@@ -30,7 +32,7 @@ function EmpDetail() {
 
     useEffect(
         () => {
-            if(result?.status === 200)
+            if (result?.status === 200)
                 dispatch(callEmpDetailAPI({ empCode }));
         },
         [result]
@@ -47,6 +49,50 @@ function EmpDetail() {
     const onClickJobHandler = () => {
         setEmpJobModal(true);
     }
+
+    const onClickEmpDel = () => {
+        console.log('onClickEmpDel called');
+    Swal.fire({
+        text: '구성원을 삭제하시겠습니까?',
+        icon: 'warning',
+        showCancelButton: true,
+        customClass: {
+            confirmButton: 'custom-confirm-button',
+            cancelButton: 'custom-cancel-button'
+        },
+        confirmButtonColor: '#8CBAFF',
+        cancelButtonColor: '#DADADA',
+        confirmButtonText: '저장',
+        cancelButtonText: '취소',
+        reverseButtons: true,
+        buttonsStyling: false,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            dispatch(callEmpDelAPI({ empCode }))
+            .then(() => {
+                Swal.fire({
+                    title: '저장 완료',
+                    text: '등록 사항을 확인하세요.',
+                    icon: 'success',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'custom-success-button'
+                    }
+                });
+                navigate('/emp');
+            })
+                .catch((error) => {
+                    Swal.fire(
+                        '저장 실패',
+                        '다시 시도하세요.',
+                        'error'
+                    );
+                });
+        }
+    });
+
+    }
+
 
     return (
         <>
@@ -146,7 +192,11 @@ function EmpDetail() {
                         </div>
 
                         <div className={CSS.btnWrap}>
-                            <button className={CSS.pwdBtn}>삭제하기</button>
+                            <button className={CSS.pwdBtn}
+                                onClick={onClickEmpDel}
+                            >
+                                삭제하기
+                            </button>
                         </div>
                     </>}
             </div>
