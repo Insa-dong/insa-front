@@ -49,7 +49,7 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
                                 <tr>
                                     <th>상담 일지</th>
                                     <td>
-                                        <input
+                                        <textarea
                                             type="text"
                                             name="adviceLogContent"
                                             onChange = { onChangeHandler }
@@ -71,7 +71,7 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
                                     <td>
                                         <input 
                                             type="date"
-                                            name="adviceLogDate"
+                                            name="adviceLogUpdate"
                                             onChange = { onChangeHandler }
                                         />
                                     </td>

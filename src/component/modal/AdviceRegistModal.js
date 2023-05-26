@@ -52,7 +52,7 @@ function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
                                 <tr>
                                     <th>상담 일지</th>
                                     <td>
-                                        <input
+                                        <textarea
                                             type="text"
                                             name="adviceLogContent"
                                             onChange={  onChangeHandler }

@@ -49,7 +49,7 @@ function EvaUpdateModal({ stuCode, setEvaUpdateModal, studyInfoCode, empCode, ev
                                 <tr>
                                     <th>평가</th>
                                     <td>
-                                        <input
+                                        <textarea
                                             type="text"
                                             name="evaWriteContent"
                                             //value={evaUpdate.evaWriteContent}

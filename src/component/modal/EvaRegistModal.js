@@ -56,7 +56,7 @@ function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) 
                                 <tr>
                                     <th>평가</th>
                                     <td>
-                                        <input
+                                        <textarea
                                             type="text"
                                             name="evaWriteContent"
                                             onChange={  onChangeHandler }
