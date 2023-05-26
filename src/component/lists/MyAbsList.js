@@ -18,7 +18,7 @@ function MyAbsList({ myAbsList }) {
                     myAbsList.map(abs => <MyAbsItem key={abs.absCode} abs={abs} />)
                 ) : (
                     <tr>
-                        <td colSpan="8">데이터가 없습니다.</td>
+                        <td colSpan="5">데이터가 없습니다.</td>
                     </tr>
                 )}
             </tbody>
