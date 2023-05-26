@@ -1,14 +1,19 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 import Header from "../../component/common/Header";
 import CSS from "./Mypage.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { callMypageAPI } from "../../apis/MpgAPICalls";
+import EmpRestApplyModal from "../../component/modal/EmpRestApplyModal";
+import Swal from "sweetalert2";
 
 function Mypage() {
 
     const title = '내정보';
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { info }  = useSelector(state => state.mypageReducer);
+    const [empRestApplyModal, setEmpRestModal] = useState(false);
 
     useEffect(
         () => {
@@ -16,6 +21,10 @@ function Mypage() {
         },
         []
     )
+
+    const onClickRestHandler = () => {
+        setEmpRestModal(true);
+    }
 
     return (
         <>
@@ -45,12 +54,14 @@ function Mypage() {
                                 <li>
                                     <button
                                         className={CSS.restBtn}
-                                    // onClick={onClickJobHandler}
+                                    onClick={onClickRestHandler}
                                     >
                                         휴직신청
                                     </button>
                                 </li>
                             </ul>
+
+                            {empRestApplyModal && <EmpRestApplyModal empCode={info.empCode} setEmpRestModal={setEmpRestModal}/>}
                         </ul>
                     </div>
                     <div className={CSS.privacyContainer}>

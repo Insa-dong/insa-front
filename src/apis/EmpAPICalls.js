@@ -1,4 +1,4 @@
-import { getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob } from "../modules/EmpModule";
+import { getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob, putEmpDel } from "../modules/EmpModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -167,6 +167,26 @@ export const callUpdateJobAPI = (form) => {
             dispatch(putEmpJob(result));
         }
 	}
+}
+
+/* 구성원 퇴사 */
+export const callEmpDelAPI = ({empCode}) => {
+	const requestURL = `${PRE_URL}/emp/empdelete/${empCode}`;
+
+	return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }).then(res => res.json());
+
+        console.log(result);  
+
+        if(result.status === 200) {
+            dispatch(putEmpDel(result));
+        }
+    }
 }
 
 

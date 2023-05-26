@@ -12,10 +12,11 @@
 #prof {
     width: 120px;
     height: 120px;
+    line-height: 120px;
+    font-size: 1.5rem;
     border-radius: 15px;
     color: white;
     text-align: center;
-    font-weight: bold;
     margin: auto 0.4vw;
     box-sizing: border-box;
 }

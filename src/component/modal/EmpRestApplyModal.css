@@ -1,0 +1,181 @@
+.RestApplyModal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+
+.RestApplyModalContainer{
+    position: absolute;
+}
+
+.RestApplyModalClose {
+    color: #AAAAAA;
+    font-size: 30px;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+.RestApplyModalClose:hover,
+.RestApplyModalClose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.RestApplyModalDiv{    
+    width: 520px;
+    height: 650px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수평 정렬*/
+    margin: 0;
+    padding: 80px 60px 50px 60px;
+    
+    background-color: white;
+    border-radius: 25px;    
+}
+
+.RestApplyModalDivTitle {
+    font-size: 1.5rem;
+    margin: 0 auto;
+    margin-bottom: 35px;
+}
+
+
+
+.RestCount {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.RestInfoContainer input,
+textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.RestDivBox {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #8CBAFF;
+    border-radius: 5px;
+
+}
+
+.RestDay1 {
+    display: flex;
+    justify-content: space-between; /* 요소들 사이에 공간 배분 */
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.RestDay1 p {
+    margin-right: 10px;
+}
+
+.RestDay2 {
+    display: flex;
+    justify-content: space-between; /* 요소들 사이에 공간 배분 */
+    align-items: center;
+    margin-bottom: 33px;
+}
+
+.RestDay2 p {
+    margin-right: 10px;
+}
+
+.RestDay1 input, .RestDay2 input {
+    border: 1px solid #8CBAFF;
+    border-radius: 5px;
+    width: 200px;
+    color: #222222 !important;
+}
+
+.RestReasonBox {
+    height: 100px;
+    resize: none;
+    border: 1px solid #8CBAFF;
+    border-radius: 5px;
+    margin-top: 30px;
+    color: #222222 !important;
+    padding: 5px;
+}
+
+.RestApplybutton {
+    width: 80px;
+    height: 40px;
+    background-color: #8CBAFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+
+/* 알러트 창 */
+.custom-confirm-button{
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    margin-left: 30px
+
+
+}
+
+.custom-cancel-button {
+    background-color: #DADADA!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #DADADA;
+    
+    
+}
+
+.custom-success-button {
+
+
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    outline: none;
+
+}
+
+.custom-error-button{
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    outline: none;
+}
