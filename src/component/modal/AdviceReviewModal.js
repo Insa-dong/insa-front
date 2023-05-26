@@ -16,6 +16,16 @@ function AdviceReviewModal({ adviceReview, setAdviceReviewModal }) {
                     <div className={CSS.title}>
                         <h1>상담일지</h1>
                     </div>
+
+                    <h1>수정 일</h1>
+                    
+                    <input
+                        type="text"
+                        name="adviceLogUpdate"
+                        readOnly={true}
+                        value={adviceReview.adviceLogUpdate}
+                        />
+
                     <textarea
                         placeholder="상담 일지 본문"
                         name="adviceLogContent"
