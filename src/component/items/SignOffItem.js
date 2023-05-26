@@ -1,9 +1,7 @@
 import './SignOffItem.css';
-import { useState } from 'react';
-import OffSignModal from '../modal/OffSignModal';
 
-function SignOffItem({ off }) {
-  const [offSignModal, setOffSignModal] = useState(false);
+function SignOffItem({ off, onClick}) {
+  
 
   let statusColor;
   switch (off.signStatus) {
@@ -18,14 +16,12 @@ function SignOffItem({ off }) {
       break;
   }
 
-  const onClickOffSignModalHandler = () => {
-    setOffSignModal(true);
-  };
+  
 
   return (
     <>
-    <tbody className="signOffItemtbody">
-      <tr className="signOffDiv" onClick={onClickOffSignModalHandler}>
+    
+      <tr className="signOffDiv" onClick={() => onClick(off)}>
         <td className='td-job'>{off.signRequester.job.jobName}</td>
         <td className="td-name">{off.signRequester.empName}</td>
         <td className="td-div3">{off.offDiv}</td>
@@ -36,14 +32,9 @@ function SignOffItem({ off }) {
           <button className="btn-signStatus3" style={{ backgroundColor: statusColor }}>{off.signStatus}</button>
         </td>
       </tr>
-      </tbody>
+      
      
-      {offSignModal && (
-        <OffSignModal
-          off={off}
-          setOffSignModal={setOffSignModal}
-        />
-      )}
+
       
     </>
   );

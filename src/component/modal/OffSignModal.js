@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { callSignApplyAPI } from "../../apis/OffAPICalls";
+import { callSignApplyAPI, callSignOffListAPI } from "../../apis/OffAPICalls";
 import './OffSignModal.css';
 import Swal from "sweetalert2";
 
-function OffSignModal({ off, setOffSignModal }) {
+function OffSignModal({ off, setOffSignModal, currentPage }) {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const {signApply} = useSelector(state => state.offReducer);
     const [form, setForm] = useState({
         ...off,
@@ -16,12 +15,6 @@ function OffSignModal({ off, setOffSignModal }) {
         returnReason: ""
     }); //초기값 설정
   
-   /* useEffect(() => {
-      if (signApply?.status === 200) {
-        navigate('/off/adminOff/offSign');
-      }
-  
-    }, [signApply]);*/
 
       const onChangeHandler = (e) => {
         setForm({
@@ -84,12 +77,18 @@ function OffSignModal({ off, setOffSignModal }) {
     });
 };
 
+useEffect(() => {
+    if (signApply?.status === 200) {
+        dispatch(callSignOffListAPI(currentPage)); // 처리 완료 후 목록 갱신
+    }
+}, [signApply, dispatch, currentPage]);
 
     const onClickOutsideModal = (e) => {
         if (e.target === e.currentTarget) {
             setOffSignModal(false);
         }
     };
+
     return (
         <div className="OffSignModal" onClick={onClickOutsideModal}>
             <div className="OffSignModallContainer">
@@ -97,11 +96,11 @@ function OffSignModal({ off, setOffSignModal }) {
                     x
                 </div>
                 <div className="OffSignModalDiv">
-                <h1 className="OffSignModalDivTitle">연차 신청 승인</h1>
-                <h1 >📌 {off.signRequester.empName}님의 연차 신청</h1>
+                    <h1 className="OffSignModalDivTitle"> {off.signRequester.empName}님의 연차 신청 승인</h1>
+                 
+                    <h1 className="text-left">📇 신청 연차 일정·사유 </h1>
                     
-                    <h1 >📇 신청 연차 일정·사유 </h1>
-                    <div className="offDiv">
+                    <div className="offSignDiv">
                         <p>연차 종류</p>
                         <input
                             type="text"
@@ -110,7 +109,8 @@ function OffSignModal({ off, setOffSignModal }) {
                             readOnly={true}
                         />
                     </div>
-                    <div className="offDay1">
+
+                    <div className="offSignDay1">
                         <p>연차 시작일</p>
                         <input
                             type="text"
@@ -119,7 +119,8 @@ function OffSignModal({ off, setOffSignModal }) {
                             readOnly={true}
                         />
                     </div>
-                    <div className="offDay2">
+
+                    <div className="offSignDay2">
                         <p>연차 종료일</p>
                         <input
                             type="text"
@@ -128,7 +129,8 @@ function OffSignModal({ off, setOffSignModal }) {
                             readOnly={true}
                         />
                     </div>
-                    <div className="offDay2">
+
+                    <div className="offSignDay2">
                         <p>연차 일수</p>
                         <input
                             type="text"
@@ -137,15 +139,19 @@ function OffSignModal({ off, setOffSignModal }) {
                             readOnly={true}
                         />
                     </div>
-                    <p>연차 신청 사유 </p>
+                    
+                    <p className="text-left">연차 신청 사유 </p>
                     <textarea
                         className="offReasonBox"
-                        placeholder="신청 사유 작성"
                         name="signReason"
                         value={off.signReason}
                         readOnly={true}
                     ></textarea>
-                    <h1>📌 승인 처리</h1>
+
+                    {/* 추가 */}
+
+                    <h1 className="text-left">📌 승인 처리</h1>
+                    
                     <select
                         className="offStatusBox"
                         name="signStatus"
@@ -154,7 +160,10 @@ function OffSignModal({ off, setOffSignModal }) {
                         <option value="승인">승인</option>
                         <option value="반려">반려</option>
                     </select>
-                    <p>반려 사유 </p>
+
+                    
+                    <p className="text-left">반려 사유 </p>
+
                     <textarea
                         className="returnReasonBox"
                         placeholder="반려 시 사유 작성"
