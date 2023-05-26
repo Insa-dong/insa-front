@@ -52,7 +52,7 @@ function OffSign() {
                 </div>
 
                 <div>
-                    {signOffList && <SignOffList signOffList={signOffList} />}
+                    {signOffList && <SignOffList signOffList={signOffList} currentPage={currentPage}/>}
                 </div>
                 <div className="offSignPageDiv">
                     {signOff && signOff.pageInfo && <PagingBar pageInfo={signOff.pageInfo} setCurrentPage={setCurrentPage} />}

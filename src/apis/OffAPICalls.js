@@ -131,7 +131,8 @@ export const callCencelOffAPI = ({signCode}) => {
 };
 
 /* 연차 신청 내용 API */
-export const callSignOffListAPI = ({ currentPage = 1 }) => {
+export const callSignOffListAPI = (params) => {
+    const currentPage = params && params.currentPage ? params.currentPage : 1;
     const requestURL = `${PRE_URL}/mySignOff?page=${currentPage}`;
 
 
@@ -164,14 +165,13 @@ export const callSignApplyAPI = (form, signCode) => {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
             },
-            body: JSON.stringify(form)  // form 데이터를 JSON 형태로 변환하여 보냅니다.
+            body: JSON.stringify(form)  
         }).then(response => response.json());
 
-        console.log('Server response:', result);  // 서버 응답 출력
+        console.log('Server response:', result);  
 
         if(result.status === 200) {
             dispatch(putSignOff(result));
-            dispatch(callSignOffListAPI());
 
         }
     }
