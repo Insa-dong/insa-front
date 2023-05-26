@@ -40,10 +40,8 @@ function StudyRegistration() {
 
 	const onClickInsertHandler = () => {
 		dispatch(callInsertStudyInfo({form, day}));
-		if (regist?.status === 200) {
-			alert('등록이 완료되었습니다. 목록으로 이동합니다.');
-			navigate('/study', {replace: true})
-		}
+		alert('등록이 완료되었습니다. 목록으로 이동합니다.');
+		navigate('/study', {replace: true})
 	}
 
 	return (

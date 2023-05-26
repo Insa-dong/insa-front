@@ -11,13 +11,13 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	console.log(info);
+
 	const onChangeHandler = (e) => {
 		setForm({
-			...form,
-			calCode: info.calCode,
+			...info,
 			[e.target.name]: e.target.value
 		})
-		console.log(form);
 	}
 
 	const onClickOutsideModal = (e) => {
@@ -54,7 +54,7 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 								confirmButton: 'custom-success-button'
 							}
 						}).then(() => {
-							navigate('/', {replace: true});
+							setModalOpen(false);
 						});
 					})
 					.catch((error) => {
@@ -116,6 +116,14 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 								name = 'calContent'
 								onChange = {onChangeHandler}
 								defaultValue = {info.calContent}
+							/>
+						</div>
+						<div className = {CSS.trainingField}>
+							<h1>색 지정하기</h1>
+							<input
+								type = "color"
+								className = {CSS.textInput}
+								defaultValue = {info.calColor}
 							/>
 						</div>
 

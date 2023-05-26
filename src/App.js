@@ -7,10 +7,14 @@ import Abs from "./pages/abs/Abs";
 import AdminAbs from './pages/abs/AdminAbs';
 import Board from './pages/board/Board';
 import BoardDetail from './pages/board/BoardDetail';
+import Calendar from "./pages/calendar/Calendar";
 import Emp from "./pages/emp/Emp";
-import EmpRest from './pages/emp/EmpRest';
 import EmpDetail from './pages/emp/EmpDetail';
 import EmpRegistration from './pages/emp/EmpRegistration';
+import EmpRest from './pages/emp/EmpRest';
+import EmpTeacher from './pages/emp/EmpTeacher';
+import EmpTeacherDetail from './pages/emp/EmpTeacherDetail';
+import EmpTeacherDetailPlus from "./pages/emp/EmpTeacherDetailPlus";
 import Error from "./pages/error/Error"
 import IdSearch from './pages/login/IdSearch';
 import IdSearchSuccess from './pages/login/IdSearchSuccess';
@@ -29,11 +33,6 @@ import StudyInfo from "./pages/study/StudyInfo";
 import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
-import EmpTeacherDetail from './pages/emp/EmpTeacherDetail';
-import EmpTeacher from './pages/emp/EmpTeacher';
-import EmpTeacherDetailPlus from "./pages/emp/EmpTeacherDetailPlus";
-
-
 
 
 function App() {
@@ -44,6 +43,7 @@ function App() {
 					<Route path = "/login" element = {<ProtectedRoute loginCheck = {false}><Login/></ProtectedRoute>}/>
 					<Route path = "/" element = {<ProtectedRoute loginCheck = {true}><Layout/></ProtectedRoute>}>
 						<Route index element = {<Main/>}/>
+						<Route path = "cal" element = {< Calendar/>}/>
 						<Route path = "mypage" element = {<Mypage/>}/>
 						<Route path = "board" element = {<Board/>}/>
 						<Route path = "board/:noticeCode" element = {<BoardDetail/>}/>
@@ -63,9 +63,9 @@ function App() {
 						<Route path = "emp/emprest" element = {<EmpRest/>}/>
 						<Route path = "emp/empregistration" element = {<EmpRegistration/>}/>
 						<Route path = "emp/empdetail/:empCode" element = {<EmpDetail/>}/>
-						<Route path="/empTeacher" element={<EmpTeacher />} />
-						<Route path="/empTeacher/:studyCode" element={<EmpTeacherDetail />} />
-						<Route path="/empTeacher/detail/:studyCode/:stuCode" element={<EmpTeacherDetailPlus />} />
+						<Route path = "/empTeacher" element = {<EmpTeacher/>}/>
+						<Route path = "/empTeacher/:studyCode" element = {<EmpTeacherDetail/>}/>
+						<Route path = "/empTeacher/detail/:studyCode/:stuCode" element = {<EmpTeacherDetailPlus/>}/>
 						<Route path = "student" element = {<Student/>}/>
 						<Route path = "student/:stuCode" element = {<StudentDetail/>}/>
 						<Route path = "off" element = {<Off/>}/>

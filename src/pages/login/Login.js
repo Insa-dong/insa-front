@@ -1,16 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {callLoginAPI} from "../../apis/LoginAPICalls";
+import {resetLogin} from "../../modules/LoginModule";
 import './Login.css';
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { callLoginAPI } from "../../apis/LoginAPICalls";
-import { resetLogin } from "../../modules/LoginModule";
 
 
 function Login() {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const { login } = useSelector(state => state.memberReducer);
+	const {login} = useSelector(state => state.memberReducer);
 
 	const [form, setForm] = useState({
 		empId: '',
@@ -37,8 +37,8 @@ function Login() {
 	useEffect(
 		() => {
 			if (login?.status === 200) {
-				navigate("/", { replace: true })
-				dispatch(resetLogin());
+				navigate("/", {replace: true})
+				// dispatch(resetLogin());
 			} else if (login?.state === 400) {
 				alert(login.message);
 				dispatch(resetLogin());
@@ -49,45 +49,45 @@ function Login() {
 
 
 	return (
-		<div className="inner">
+		<div className = "inner">
 			<div>
-				<img className="main-Img" src="/images/메인로고.png" alt="메인로고"></img>
+				<img className = "main-Img" src = "/images/메인로고.png" alt = "메인로고"></img>
 			</div>
-			<div className="borderID" id="borderID">
-				<img className="id-Img" src="/images/아이디로고.png" alt="아이디로고"></img>
-				<input className="inputBox"
-					type="text"
-					name="empId"
-					placeholder="아이디"
-					autoComplete='off'
-					onChange={onChangeHandler}
+			<div className = "borderID" id = "borderID">
+				<img className = "id-Img" src = "/images/아이디로고.png" alt = "아이디로고"></img>
+				<input className = "inputBox"
+				       type = "text"
+				       name = "empId"
+				       placeholder = "아이디"
+				       autoComplete = 'off'
+				       onChange = {onChangeHandler}
 				/>
 			</div>
-			<div className="boderPW" id="borderPW">
-				<img className="password-Img" src="/images/비밀번호로고.png" alt="비밀번호로고"></img>
-				<input className="inputBox"
-					type="password"
-					name="empPwd"
-					placeholder="비밀번호"
-					autoComplete='off'
-					onChange={onChangeHandler}
-					onKeyDown={handleEnter}
+			<div className = "boderPW" id = "borderPW">
+				<img className = "password-Img" src = "/images/비밀번호로고.png" alt = "비밀번호로고"></img>
+				<input className = "inputBox"
+				       type = "password"
+				       name = "empPwd"
+				       placeholder = "비밀번호"
+				       autoComplete = 'off'
+				       onChange = {onChangeHandler}
+				       onKeyDown = {handleEnter}
 				/>
 			</div>
-			<button id="loginButton"
-				onClick={onClickHandler}
+			<button id = "loginButton"
+			        onClick = {onClickHandler}
 			>
 				로그인
 			</button>
 			<div>
-				<button id="idsearch" className="searchButton"
-					onClick={() => navigate("/idsearch")}
+				<button id = "idsearch" className = "searchButton"
+				        onClick = {() => navigate("/idsearch")}
 				>
 					아이디찾기
 				</button>
 
-				<button id="pwsearch" className="searchButton"
-					onClick={() => navigate("/pwsearch")}
+				<button id = "pwsearch" className = "searchButton"
+				        onClick = {() => navigate("/pwsearch")}
 				>
 					비밀번호찾기
 				</button>
