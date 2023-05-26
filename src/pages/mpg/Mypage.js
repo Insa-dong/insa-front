@@ -61,7 +61,7 @@ function Mypage() {
                                 </li>
                             </ul>
 
-                            {empRestApplyModal && <EmpRestApplyModal empCode={info.empCode} setEmpRestModal={setEmpRestModal}/>}
+                            {empRestApplyModal && <EmpRestApplyModal info={info} setEmpRestModal={setEmpRestModal}/>}
                         </ul>
                     </div>
                     <div className={CSS.privacyContainer}>
