@@ -1,4 +1,4 @@
-import { getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob, putEmpDel } from "../modules/EmpModule";
+import { getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob, putEmpDel,postEmpRestRegist } from "../modules/EmpModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -189,6 +189,30 @@ export const callEmpDelAPI = ({empCode}) => {
     }
 }
 
+/* 구성원 휴직 신청 */
+export const callEmpRestRegistAPI = (form) => {
+
+	const requestURL = `${PRE_URL}/emp/emprestregist`;
+	// form = ({ ...form, empCode: { deptCode: form.deptCode }, job: { jobCode: form.jobCode } });
+	console.log(form);
+
+	return async (dispatch, getState) => {
+
+		const result = await fetch(requestURL, {
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(form)
+		}).then(res => res.json());
+
+		console.log(result);
+
+		if (result.status === 200) {
+			dispatch(postEmpRestRegist(result));
+		}
+	}
+}
 
 
 
