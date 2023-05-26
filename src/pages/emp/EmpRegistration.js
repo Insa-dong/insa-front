@@ -13,11 +13,15 @@ function EmpRegistration() {
   const {empDeptJob} = useSelector(state => state.empReducer);
   const {empRegist} = useSelector(state => state.empReducer);
   const [form, setForm] = useState({
+    empName: "",
+    empId: "",
+    empPhone: "",
+    empEmail: "",
+    hireDate: "",
     empGender:"여",
     deptCode:"DE0001",
     jobCode:"JB0001"
-
-  });
+});
 
   useEffect(() => {
     dispatch(empDeptJobListAPI());
@@ -39,8 +43,25 @@ function EmpRegistration() {
     });
   };
 
-  const onClickEmpRegistrationHandler = () => {
+  const onClickEmpRegistrationHandler = async () => {
     console.log('onClickEmpRegistrationHandler called');
+    if (
+      form.empName === "" ||
+      form.empId === "" ||
+      form.empPhone === "" ||
+      form.empEmail === "" ||
+      form.hireDate === "" 
+    ) {
+      Swal.fire({
+        text: '모든 필드를 입력해주세요.',
+        icon: 'error',
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'custom-error-button'
+        }
+      });
+      return;
+    }
     Swal.fire({
         text: '구성원을 등록하시겠습니까?',
         icon: 'warning',

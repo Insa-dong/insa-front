@@ -9,14 +9,14 @@
     margin-bottom: 3vw;
 }
 
-.prof {
+#prof {
     width: 120px;
     height: 120px;
+    line-height: 120px;
+    font-size: 1.5rem;
     border-radius: 15px;
-    background-color: #FFA9B0;
     color: white;
     text-align: center;
-    font-weight: bold;
     margin: auto 0.4vw;
     box-sizing: border-box;
 }
@@ -144,6 +144,24 @@
     margin-left: 56vw;
 }
 
+.deptCode-DE0001 {
+    background-color: #D8C5E2;
+}
 
+.deptCode-DE0002 {
+    background-color: #FFA9B0;
+}
+
+.deptCode-DE0003 {
+    background-color: #FFDDA6;
+}
+
+.deptCode-DE0004 {
+    background-color: #C3C95E;
+}
+
+.deptCode-DE0005 {
+    background-color: #D9B89A;
+}
 
 

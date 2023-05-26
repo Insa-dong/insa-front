@@ -101,7 +101,7 @@ function EmpDetail() {
                 {empDetail &&
                     <>
                         <div className={CSS.profContainer}>
-                            <div className={CSS.prof} />
+                            <div id={CSS.prof} className={`${CSS[`deptCode-${empDetail.dept.deptCode}`]}`}>{empDetail.empName.slice(-2)}</div>
                             <ul className={CSS.info}>
 
 
