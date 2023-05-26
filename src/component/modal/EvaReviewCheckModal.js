@@ -20,18 +20,18 @@ function EvaReviewCheckModal({ evaReview, setEvaReviewModal }) {
           </div>
           <h1>수정 일</h1>
 
-          <input 
+          <input
             type="text"
             name="evaUpdateTime"
             readOnly={true}
-            value={evaReview.evaUpdateTime}
+            value={evaReview.evaUpdateTime || ""}
           />
-        
+
           <textarea
             placeholder="평가 내역 본문"
             name="evaWriteContent"
             readOnly={true}
-            value={evaReview.evaWriteContent}
+            value={evaReview.evaWriteContent || ""}
           ></textarea>
         </div>
       </div>

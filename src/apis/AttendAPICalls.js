@@ -83,9 +83,9 @@ export const callStudentAttendRegistAPI = (form) => {
     }
  }
 
- export const callStudentAttendDeleteAPI = (stuCode) => {
+ export const callStudentAttendDeleteAPI = ({ attendCode }) => {
 
-    const requestURL = `${PRE_URL}/students/attend/${stuCode}`;
+    const requestURL = `${PRE_URL}/students/attend/${attendCode}`;
    
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {
