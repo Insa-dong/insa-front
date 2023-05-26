@@ -45,7 +45,7 @@ function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
                     X
                 </div>
                 <div className={CSS.adviceReviewModalDiv}>
-                    <div clasName={CSS.title}>
+                    <div className={CSS.title}>
                         <h1>상담 등록</h1>
                         <table>
                             <tbody>

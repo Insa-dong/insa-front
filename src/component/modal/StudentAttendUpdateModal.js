@@ -4,15 +4,16 @@ import CSS from "./StudentAttendUpdateModal.module.css";
 import { useState } from "react";
 import { callStudentAttendUpdateAPI } from "../../apis/AttendAPICalls";
 
-function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, studyCode }) {
+function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, attendCode }) {
 
     const [form, setForm] = useState();
     const { update } = useSelector(state => state.attendReducer);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     
-    console.log('updateModalStudyCode :', studyCode );
     console.log('updateModalStuCode :', stuCode );
+    console.log('updateModalAttendCode :', attendCode );
+    
 
     console.log('form :', form);
     
@@ -29,7 +30,7 @@ function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, studyC
     
 
     const onUpdateHandler = () => {
-        dispatch(callStudentAttendUpdateAPI(form));
+        dispatch(callStudentAttendUpdateAPI({...form, attendCode, stuCode}));
     };
    
     return(

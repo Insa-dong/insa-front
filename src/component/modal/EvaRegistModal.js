@@ -49,7 +49,7 @@ function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) 
                     X
                 </div>
                 <div className={CSS.adviceReviewModalDiv}>
-                    <div clasName={CSS.title}>
+                    <div className={CSS.title}>
                         <h1>평가 등록</h1>
                         <table>
                             <tbody>

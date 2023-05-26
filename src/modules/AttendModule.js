@@ -31,7 +31,7 @@ const attendReducer = handleActions(
     [GET_ATTEND] : (state, { payload } ) => ({ attend : payload }),
     [POST_ATTEND] : (state, { payload } ) => ({ regist : payload }),
     [PUT_ATTEND] : (state, { payload }) => ({ update : payload }),
-    [DELETE_ATTEND] : (state, { payload }) => ({ delete : payload }),
+    [DELETE_ATTEND] : (state, { payload }) => ({ deleteAttend : payload }),
     [GET_ATTENDS] : (state, { payload }) => ({ attendDetail : payload}),
     [GET_ATTEND_DATE] : (state, { payload }) => payload
 
