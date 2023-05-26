@@ -1,0 +1,209 @@
+.OffSignModal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+
+.OffSignModallContainer{
+    position: absolute;
+}
+
+.OffSignModalClose {
+    color: #AAAAAA;
+    font-size: 30px;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+.OffSignModalClose:hover,
+.OffSignModalClose:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.OffSignModalDiv{    
+    width: 520px;
+    height: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; /*수평 정렬*/
+    margin: 0;
+    padding: 80px 60px 50px 60px;
+    
+    background-color: white;
+    border-radius: 25px;    
+}
+
+.OffSignModalDivTitle {
+    font-size: 1.5rem;
+    margin: 0 auto;
+    margin-bottom: 35px;
+}
+
+.offInfoContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.offInfo1 {
+    border : none;
+    border-radius: 3px;
+    padding: 2px;
+    background-color: pink;
+    color: #222222;
+}
+.offInfo2 {
+    border : none;
+    border-radius: 3px;
+    padding: 2px;
+    margin-left: 8px;
+    background-color: #FFDDA6;
+    color: #222222;
+}
+.offInfo3 {
+    border : none;
+    border-radius: 3px;
+    padding: 2px;
+    margin-left: 8px;
+    background-color: #D8C5E2;
+    color: #222222;
+}
+
+.offCount {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.offInfoContainer input,
+textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.offDivBox {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border: 1px solid #8CBAFF;
+    border-radius: 5px;
+
+}
+
+.offDay1 {
+    display: flex;
+    justify-content: space-between; /* 요소들 사이에 공간 배분 */
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.offDay1 p {
+    margin-right: 10px;
+}
+
+.offDay2 {
+    display: flex;
+    justify-content: space-between; /* 요소들 사이에 공간 배분 */
+    align-items: center;
+    margin-bottom: 33px;
+}
+
+.offDay2 p {
+    margin-right: 10px;
+}
+
+.offDay1 input, .offDay2 input {
+    border: 1px solid #8CBAFF;
+    border-radius: 5px;
+    width: 200px;
+    color: #222222 !important;
+}
+
+.offReasonBox {
+    height: 100px;
+    resize: none;
+    border: 1px solid #8CBAFF;
+    border-radius: 5px;
+    margin-top: 30px;
+    color: #222222 !important;
+    padding: 5px;
+}
+
+.offApplybutton {
+    width: 80px;
+    height: 40px;
+    background-color: #8CBAFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+
+/* 알러트 창 */
+.custom-confirm-button{
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    margin-left: 30px
+
+
+}
+
+.custom-cancel-button {
+    background-color: #DADADA!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #DADADA;
+    
+    
+}
+
+.custom-success-button {
+
+
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    outline: none;
+
+}
+
+.custom-error-button{
+    background-color: #8CBAFF!important;
+    color: white;
+    margin-top: 45px;
+    margin-bottom: 5px;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    border: 1px solid #8CBAFF;
+    outline: none;
+}

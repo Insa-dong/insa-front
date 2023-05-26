@@ -1,4 +1,5 @@
-import { postApply, getOffNow, getComingupOff, getPastOff, deleteOff, getSignOff } from "../modules/OffModule";
+import { postApply, getOffNow, getComingupOff, getPastOff, 
+    deleteOff, getSignOff, putSignOff } from "../modules/OffModule";
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -150,3 +151,29 @@ export const callSignOffListAPI = ({ currentPage = 1 }) => {
         }
     }
 };
+
+/* 연차 승인 처리 API */
+export const callSignApplyAPI = (form, signCode) => {
+    const requestURL = `${PRE_URL}/mySignOff/${signCode}`;
+
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body: JSON.stringify(form)  // form 데이터를 JSON 형태로 변환하여 보냅니다.
+        }).then(response => response.json());
+
+        console.log('Server response:', result);  // 서버 응답 출력
+
+        if(result.status === 200) {
+            dispatch(putSignOff(result));
+            dispatch(callSignOffListAPI());
+
+        }
+    }
+};
+

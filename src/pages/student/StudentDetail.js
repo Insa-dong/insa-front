@@ -59,47 +59,37 @@ function StudentDetail() {
     const [updateModalVisible, setUpdateModalVisible] = useState(false);
     const [studyStudentUpdate, setStudyStudentUpdate] = useState("");
 
-    const okAdviceConfirm = (adviceLogCode) => {
-        dispatch(callAdviceDeleteForAdminAPI(adviceLogCode));
-    };
 
-    const cancelAdviceConfirm = () => {
-        console.log("상담 삭제가 취소되었습니다.");
-    };
-
-    const okEvaConfirm = (evaCode) => {
-        dispatch(callEvaDeleteForAdminAPI(evaCode));
-    };
-
-    const cancelEvaConfirm = () => {
-        console.log("평가 삭제가 취소되었습니다.");
-    };
-
-    const adviceDelete = useConfirm(
-        "상담 내역을 삭제하시겠습니까?",
-        okAdviceConfirm,
-        cancelAdviceConfirm
-    );
-
-    const evaDelete = useConfirm(
-        "평가 내역을 삭제하시겠습니까?",
-        okEvaConfirm,
-        cancelEvaConfirm
-    );
-
-    const okStudyStuConfirm = (studyCode) => {
-        dispatch(callStudyStuDeleteAdminAPI(studyCode));
+  const evaDelete = (evaCode) => {
+    const confirmed = window.confirm("평가 내역을 삭제하시겠습니까?");
+    if (confirmed) {
+      console.log('evaCode : ', evaCode);
+      dispatch(callEvaDeleteForAdminAPI({ evaCode }));
+    } else {
+      console.log("평가 삭제가 취소되었습니다.");
     }
+  };
 
-    const cancelStudyStuConfirm = () => {
-        console.log("수강생 강의 삭제가 취소되었습니다.");
-    };
+  const adviceDelete = (adviceLogCode) => {
+    const confirmed = window.confirm("상담 내역을 삭제하시겠습니까?");
+    if (confirmed) {
+      console.log('adviceLogCode : ', adviceLogCode);
+      dispatch(callAdviceDeleteForAdminAPI({ adviceLogCode }));
+    } else {
+      console.log("상담 삭제가 취소되었습니다.");
+    }
+  };
 
-    const studyStuDelete = useConfirm(
-        "수강생 강의를 삭제하시겠습니까?",
-        okStudyStuConfirm,
-        cancelStudyStuConfirm
-    );
+  const studyStuDelete = (studyCode) => {
+    const confirmed = window.confirm("강의 내역을 삭제하시겠습니까?");
+    if (confirmed) {
+      console.log('studyCode : ', studyCode);
+      dispatch(callStudyStuDeleteAdminAPI({ studyCode }));
+    } else {
+      console.log("강의 삭제가 취소되었습니다.");
+    }
+  };
+
 
 
     const onClickAdviceReviewHandler = (adviceReview) => {
@@ -341,12 +331,12 @@ function StudentDetail() {
                     <tbody>
                         {Array.isArray(studyList) && studyList.length > 0 ? (
                             studyList.map((study) => (
-                                <tr key={study}>
+                                <tr key={study.studyCode}>
                                     <td>{study.trainingTitle}</td>
                                     <td>{study.studyCount}</td>
                                     <td>
                                         <button className="studyStuUpdateBtn" onClick={() => onClickUpdateStudyStuHandler(study)}>수정</button>
-                                        <button className="studyStuDeleteBtn" onClick={() => studyStuDelete(study)}>삭제</button>
+                                        <button className="studyStuDeleteBtn" onClick={() => studyStuDelete(study.studyCode)}>삭제</button>
                                     </td>
                                 </tr>
                             ))
@@ -372,6 +362,7 @@ function StudentDetail() {
                             <th>평가 코드</th>
                             <th>강의 이름</th>
                             <th>강사명</th>
+                            <th>작성 일</th>
                             <th>조회/삭제</th>
                         </tr>
                     </thead>
@@ -382,15 +373,16 @@ function StudentDetail() {
                                     <td>{eva.evaCode}</td>
                                     <td>{eva.studyInfo.studyTitle}</td>
                                     <td>{eva.studyInfo.teacher.empName}</td>
+                                    <td>{eva.evaWriteDate}</td>
                                     <td>
                                         <button className="evaSelectBtn" onClick={() => onClickEvaReviewHandler(eva)}>조회</button>
-                                        <button className="evaDeleteBtn" onClick={evaDelete}>삭제</button>
+                                        <button className="evaDeleteBtn" onClick={() => evaDelete(eva.evaCode)}>삭제</button>
                                     </td>
                                 </tr>
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="4">평가 내역이 없습니다.</td>
+                                <td colSpan="5">평가 내역이 없습니다.</td>
                             </tr>
                         )}
                     </tbody>
@@ -422,7 +414,7 @@ function StudentDetail() {
                                     <td>{advice.adviceLogDate}</td>
                                     <td>
                                         <button className="adviceSelectBtn" onClick={() => onClickAdviceReviewHandler(advice)}>조회</button>
-                                        <button className="adviceDeleteBtn" onClick={adviceDelete}>삭제</button>
+                                        <button className="adviceDeleteBtn" onClick={() => adviceDelete(advice.adviceLogCode)}>삭제</button>
                                     </td>
                                 </tr>
                             ))

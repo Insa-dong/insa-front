@@ -60,7 +60,10 @@
     text-align: left;
 }
 
-.trainingModalDiv input {
+.colorInput {
+}
+
+.textInput {
     margin-top: 5px;
     margin-bottom: 5px;
     height: 30px;
@@ -70,7 +73,6 @@
     text-indent: 1.2em;
     text-align: left;
 }
-
 
 .trainingModalDiv button {
     margin-top: 45px;
@@ -95,8 +97,6 @@
     border-radius: 5px;
     border: 1px solid #8CBAFF;
     margin-left: 30px
-
-
 }
 
 .custom-cancel-button {
@@ -108,16 +108,6 @@
     width: 70px;
     border-radius: 5px;
     border: 1px solid #DADADA;
-
-
-}
-
-.textInput {
-    width: 20vw;
-    height: 10vh;
-    max-width: 1075px;
-    max-height: 10vh;
-    resize: none;
 }
 
 .custom-success-button {

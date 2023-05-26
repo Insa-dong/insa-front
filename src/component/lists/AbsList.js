@@ -22,7 +22,7 @@ function AbsList({ absList }) {
           absList.map((abs) => <AbsItem key={abs.absCode} abs={abs} />)
         ) : (
           <tr>
-            <td colSpan="8">데이터가 없습니다.</td>
+            <td colSpan="9">데이터가 없습니다.</td>
           </tr>
         )}
       </tbody>

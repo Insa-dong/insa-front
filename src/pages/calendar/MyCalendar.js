@@ -7,8 +7,8 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {callMyCalListAPI} from "../../apis/CalendarAPICalls";
+import ScheduleInfoModal from "../../component/modal/ScheduleInfoModal";
 import {modifiedCalList} from "../../modules/ButtonModule";
-import ScheduleInfoModal from "../modal/ScheduleInfoModal";
 import './MyCalendar.css';
 
 
@@ -32,9 +32,10 @@ function MyCalendar() {
 
 	useEffect(
 		() => {
-			dispatch(callMyCalListAPI());
+			if (!modalOpen)
+				dispatch(callMyCalListAPI());
 		},
-		[dispatch]
+		[dispatch, modalOpen]
 	)
 
 	const mySchedule = () => {
@@ -44,6 +45,7 @@ function MyCalendar() {
 				title: schedule.calTitle,
 				id: schedule.calCode,
 				content: schedule.calContent,
+				color: schedule.calColor,
 				start: dayjs(schedule.calStartDate).format('YYYY-MM-DD'),
 				end: dayjs(schedule.calEndDate).add(1, 'day').format('YYYY-MM-DD')
 			}));
@@ -63,10 +65,12 @@ function MyCalendar() {
 
 	const viewMySchedule = (e) => {
 
+		console.log(e.backgroundColor);
 		setInfo({
 			calCode: e._def.publicId,
 			calTitle: e._def.title,
 			calContent: e._def.extendedProps.content,
+			calColor: e.backgroundColor,
 			calStartDate: dayjs(e.start).format('YYYY-MM-DD'),
 			calEndDate: dayjs(e.end).subtract(1, 'day').format('YYYY-MM-DD')
 		})
@@ -81,7 +85,7 @@ function MyCalendar() {
 					plugins = {[dayGridPlugin, interactionPlugin]}
 					events = {calList && mySchedule()}
 					selectable = {true}
-					height = {'80vh'}
+					height = {'70vh'}
 					weekends = {true}
 					editable = {true}
 					expandRows = {true}

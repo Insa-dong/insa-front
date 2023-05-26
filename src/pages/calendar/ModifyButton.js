@@ -51,7 +51,7 @@ function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 								confirmButton: 'custom-success-button'
 							}
 						}).then(() => {
-							navigate('/', {replace: true});
+							navigate('/cal', {replace: true});
 							setIsRegistOpen(true);
 						});
 					})

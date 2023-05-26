@@ -18,10 +18,13 @@ const GET_PAST_OFF = 'off/GET_PAST_OFF'
 const DELETE_OFF = 'off/DELETE_OFF'
 /* 연차 신청 내역 조회 */
 const GET_SIGN_OFF = 'off/GET_SIGN_OFF'
+/* 연차 승인 처리  */
+const PUT_SIGN_OFF = 'off/PUT_SIGN_OFF'
 
 
 
-export const { off : { postApply, getOffNow, getComingupOff, getPastOff, deleteOff, getSignOff } } = createActions({
+export const { off : { postApply, getOffNow, getComingupOff, 
+              getPastOff, deleteOff, getSignOff, putSignOff } } = createActions({
    
     [POST_APPLY] : (res) => res,
     [GET_OFF_NOW] : (res) => res.data,
@@ -29,6 +32,7 @@ export const { off : { postApply, getOffNow, getComingupOff, getPastOff, deleteO
     [GET_PAST_OFF] : (res) => res.data,
     [DELETE_OFF] : (res) => res,
     [GET_SIGN_OFF] :  (res) => res.data,
+    [PUT_SIGN_OFF] : (res) => res,
     
    
 }); 
@@ -47,6 +51,7 @@ const offReducer = handleActions(
         return newState;  // 새로운 상태 반환
       },
       [GET_SIGN_OFF]: (state, { payload }) => ({ ...state, signOff: payload }),
+      [PUT_SIGN_OFF]: (state, { payload }) => ({ ...state, signApply: payload }),
       
     },
     initialState

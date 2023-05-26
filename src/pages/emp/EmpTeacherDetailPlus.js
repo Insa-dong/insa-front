@@ -196,7 +196,7 @@ function EmpTeacherDetailPlus() {
               ))
             ) : (
               <tr>
-                <td colSpan="3">출석 내역이 없습니다.</td>
+                <td colSpan="4">출석 내역이 없습니다.</td>
               </tr>
             )}
           </tbody>
@@ -239,6 +239,7 @@ function EmpTeacherDetailPlus() {
             <th>평가 코드</th>
             <th>강의 이름</th>
             <th>강사명</th>
+            <th>작성 일</th>
             <th>수정/삭제</th>
           </thead>
           <tbody>
@@ -248,6 +249,7 @@ function EmpTeacherDetailPlus() {
                   <td onClick={() => onClickEvaReviewHandler(eva.evaCode)}>{eva.evaCode}</td>
                   <td onClick={() => onClickEvaReviewHandler(eva)}>{eva.studyInfo.studyTitle}</td>
                   <td onClick={() => onClickEvaReviewHandler(eva)}>{eva.studyInfo.teacher.empName}</td>
+                  <td onClick={() => onClickEvaReviewHandler(eva)}>{eva.evaWriteDate}</td>
                   <td>
                     <button className="evaSelectBtn" onClick={() => onClickEvaUpdateHandler(eva.evaCode)}>수정</button>
                     <button className="evaDeleteBtn" onClick={() => evaDelete(eva.evaCode)}>삭제</button>
@@ -256,7 +258,7 @@ function EmpTeacherDetailPlus() {
               ))
             ) : (
               <tr>
-                <td colSpan="4">평가 내역이 없습니다.</td>
+                <td colSpan="5">평가 내역이 없습니다.</td>
               </tr>
             )}
           </tbody>
