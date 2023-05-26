@@ -19,12 +19,9 @@
     transition: transform 250ms ease-in-out;
 }
 
-.admin-off-menu:hover:after {
-    transform: scaleX(1);
-}
-
-.active-link .admin-off-menu:after {
-    transform: scaleX(1);
+.admin-off-menu:hover:after,
+.admin-off-menu.active-link:after {
+  transform: scaleX(1);
 }
 
   
