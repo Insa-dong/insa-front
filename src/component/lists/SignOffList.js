@@ -20,7 +20,7 @@ function SignOffList({ signOffList }) {
             <table className="signOffListDiv">
                 <thead>
                     <tr className="signOffTr">
-                        <th>직급명</th>
+                        <th>직책</th>
                         <th>이름</th>
                         <th>연차 종류</th>
                         <th>연차 시작일</th>
