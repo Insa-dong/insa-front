@@ -23,14 +23,14 @@ function AdviceReviewModal({ adviceReview, setAdviceReviewModal }) {
                         type="text"
                         name="adviceLogUpdate"
                         readOnly={true}
-                        value={adviceReview.adviceLogUpdate}
+                        value={adviceReview.adviceLogUpdate  || ""}
                         />
 
                     <textarea
                         placeholder="상담 일지 본문"
                         name="adviceLogContent"
                         readOnly={true}
-                        value={adviceReview.adviceLogContent}
+                        value={adviceReview.adviceLogContent  || ""}
                     ></textarea>
                 </div>
             </div>
