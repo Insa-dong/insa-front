@@ -3,11 +3,11 @@ import './SignOffList.css';
 import { useState } from 'react';
 import OffSignModal from '../modal/OffSignModal';
 
-function SignOffList({ signOffList }) {
+function SignOffList({ signOffList, currentPage, searchOption, searchKeyword }) {
 
     const [offSignModal, setOffSignModal] = useState(false);
     const [selectedOff, setSelectedOff] = useState();
-    const [currentPage] = useState();
+    // const [currentPage] = useState();
 
     const onClickOffSignModalHandler = (off) => {
         setSelectedOff(off);
@@ -46,6 +46,8 @@ function SignOffList({ signOffList }) {
                     off={selectedOff}
                     setOffSignModal={setOffSignModal}
                     currentPage={currentPage}
+                    searchOption={searchOption}
+                    searchKeyword={searchKeyword}
                 />
             )}
         </>

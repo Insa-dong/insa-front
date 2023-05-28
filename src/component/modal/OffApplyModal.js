@@ -84,6 +84,8 @@ function OffApplyModal({ setOffApplyModal }) {
                 if (result.isConfirmed) {
                     dispatch(callApplyAPI(form))
                         .then(() => {
+                            // 신청 완료 후 offNow 상태 업데이트
+                            dispatch(callOffNowAPI());
                             setOffApplyModal(false); // 완료 확인 후 모달 닫기
                             Swal.fire({
                                 title: '신청 완료',

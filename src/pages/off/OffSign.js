@@ -18,17 +18,16 @@ function OffSign() {
 
 
     const fetchData = () => {
-        dispatch(callSignOffListAPI({ params: { currentPage }, searchOption, searchKeyword }));
+        dispatch(callSignOffListAPI({ currentPage, searchOption, searchKeyword }));
     };
 
     useEffect(() => {
         fetchData();
-    }, [currentPage]); // 초기 로딩 시에만 실행하도록 빈 배열로 설정
+    }, [currentPage, searchOption, searchKeyword]); // 초기 로딩 시에만 실행하도록 빈 배열로 설정
 
     /* 검색 옵션 상태 저장 */
     const onSearchOptionChangeHandler = (e) => {
         setSearchOption(e.target.value);
-        console.log('searchOption : ', searchOption)
     }
 
     /* 검색어 입력값 상태 저장*/
@@ -36,28 +35,32 @@ function OffSign() {
         setSearchKeyword(e.target.value);
     }
 
-    /* 검색  이벤트 */
-    const onSearchBtnHandler = (e) => {
+    /* 검색 이벤트 */
+    const handleSearch = () => {
+        let updatedSearchOption = searchOption;
+        let updatedSearchKeyword = searchKeyword;
+      
         if (searchOption === 'empName' && searchKeyword.trim() === '') {
-            dispatch(callSignOffListAPI({ params: { currentPage: 1 }, searchOption: 'empName', searchKeyword: '' }));
+          updatedSearchOption = '';
+          updatedSearchKeyword = '';
         } else if (searchOption === 'signStatus' && searchKeyword === '전체') {
-            dispatch(callSignOffListAPI({ params: { currentPage: 1 }, searchOption: 'empName', searchKeyword: '' }));
-        } else {
-            dispatch(callSignOffListAPI({ params: { currentPage: 1 }, searchOption, searchKeyword }));
+          updatedSearchOption = '';
+          updatedSearchKeyword = '';
         }
-    };
-    
-    const onEnterKeyHandler = (e) => {
+      
+        dispatch(callSignOffListAPI({ currentPage, searchOption: updatedSearchOption, searchKeyword: updatedSearchKeyword }));
+        setCurrentPage(1); // 검색 시 첫 페이지로 이동
+      };
+      
+      const onSearchBtnHandler = () => {
+        handleSearch();
+      };
+      
+      const onEnterKeyHandler = (e) => {
         if (e.key === 'Enter') {
-            if (searchOption === 'empName' && searchKeyword.trim() === '') {
-                dispatch(callSignOffListAPI({ params: { currentPage: 1 }, searchOption: 'empName', searchKeyword: '' }));
-            } else if (searchOption === 'signStatus' && searchKeyword === '전체') {
-                dispatch(callSignOffListAPI({ params: { currentPage: 1 }, searchOption: 'empName', searchKeyword: '' }));
-            } else {
-                dispatch(callSignOffListAPI({ params: { currentPage: 1 }, searchOption, searchKeyword }));
-            }
+          handleSearch();
         }
-    };
+      };
 
 
     return (
@@ -135,7 +138,14 @@ function OffSign() {
                 </div>
 
                 <div>
-                    {signOffList && <SignOffList signOffList={signOffList} currentPage={currentPage} />}
+                    {signOffList && (
+                        <SignOffList
+                            signOffList={signOffList}
+                            currentPage={currentPage}
+                            searchOption={searchOption}
+                            searchKeyword={searchKeyword}
+                        />
+                    )}
                 </div>
                 <div className="offSignPageDiv">
                     {signOff && signOff.pageInfo && <PagingBar pageInfo={signOff.pageInfo} setCurrentPage={setCurrentPage} />}
