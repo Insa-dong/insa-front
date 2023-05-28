@@ -131,9 +131,9 @@ export const callCencelOffAPI = ({signCode}) => {
 };
 
 /* 연차 신청 내용 API */
-export const callSignOffListAPI = (params) => {
-    const currentPage = params && params.currentPage ? params.currentPage : 1;
-    const requestURL = `${PRE_URL}/mySignOff?page=${currentPage}`;
+export const callSignOffListAPI = ({ currentPage, searchOption, searchKeyword }) => {
+    //const currentPage = params && params.currentPage ? params.currentPage : 1;
+    const requestURL = `${PRE_URL}/mySignOff?page=${currentPage}&searchOption=${searchOption}&searchKeyword=${searchKeyword || ''}`;
 
 
     return async (dispatch, getState) => {
@@ -145,7 +145,7 @@ export const callSignOffListAPI = (params) => {
             }
         }).then(response => response.json());
 
-        console.log('Server response:', result);  // 서버 응답 출력
+        console.log('Server response:', result);  
 
         if(result.status === 200) {
             dispatch(getSignOff(result));
@@ -154,7 +154,7 @@ export const callSignOffListAPI = (params) => {
 };
 
 /* 연차 승인 처리 API */
-export const callSignApplyAPI = (form, signCode) => {
+export const callSignApplyAPI = ( form, signCode) => {
     const requestURL = `${PRE_URL}/mySignOff/${signCode}`;
 
 
