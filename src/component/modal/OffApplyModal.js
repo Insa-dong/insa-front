@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { callApplyAPI } from "../../apis/OffAPICalls";
+import { callApplyAPI, callOffNowAPI } from "../../apis/OffAPICalls";
 import './OffApplyModal.css';
 import Swal from "sweetalert2";
 
@@ -11,12 +11,19 @@ function OffApplyModal({ setOffApplyModal }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { offApply } = useSelector(state => state.offReducer);
+    const { offNow } = useSelector(state => state.offReducer);
+    const remainingOff = offNow?.remainingOff;
     const [form, setForm] = useState({
         offDiv: "연차",
         offStart: "",
         offEnd: "",
         signReason: ""
     }); //초기값 설정
+
+    // 리덕스 스토어에 남은 연차 정보 저장
+    useEffect(() => {
+        dispatch(callOffNowAPI());
+    }, [dispatch]);
 
     useEffect(() => {
         if (offApply?.status === 200) {
@@ -45,47 +52,61 @@ function OffApplyModal({ setOffApplyModal }) {
             });
             return;
         }
-        Swal.fire({
-            text: '해당 내용으로 연차를 신청 하시겠습니까?',
-            icon: 'warning',
-            showCancelButton: true,
-            customClass: {
-                confirmButton: 'custom-confirm-button',
-                cancelButton: 'custom-cancel-button',
-            },
-            confirmButtonColor: '#8CBAFF',
-            cancelButtonColor: '#DADADA',
-            confirmButtonText: '신청',
-            cancelButtonText: '취소',
-            reverseButtons: true,
-            buttonsStyling: false,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                dispatch(callApplyAPI(form))
-                    .then(() => {
-                        setOffApplyModal(false); // 완료 확인 후 모달 닫기
-                        Swal.fire({
-                            title: '신청 완료',
-                            text: '신청 사항을 확인하세요.',
-                            icon: 'success',
-                            buttonsStyling: false,
-                            customClass: {
-                                confirmButton: 'custom-success-button'
-                            }
-                        });
-                    })
-                    .catch((error) => {
-                        Swal.fire(
-                            '신청 실패',
-                            '다시 시도하세요.',
-                            'error'
-                        );
-                    });
+
+        if (form.offStart && form.offEnd) {
+            const offDays = Math.ceil((new Date(form.offEnd) - new Date(form.offStart)) / (1000 * 60 * 60 * 24)) + 1;
+            if (offDays > remainingOff) {
+                Swal.fire({
+                    text: '남은 연차가 부족합니다.',
+                    icon: 'error',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'custom-error-button'
+                    }
+                });
+                return;
             }
-        });
-    };
+            Swal.fire({
+                text: '해당 내용으로 연차를 신청 하시겠습니까?',
+                icon: 'warning',
+                showCancelButton: true,
+                customClass: {
+                    confirmButton: 'custom-confirm-button',
+                    cancelButton: 'custom-cancel-button',
+                },
+                confirmButtonColor: '#8CBAFF',
+                cancelButtonColor: '#DADADA',
+                confirmButtonText: '신청',
+                cancelButtonText: '취소',
+                reverseButtons: true,
+                buttonsStyling: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(callApplyAPI(form))
+                        .then(() => {
+                            setOffApplyModal(false); // 완료 확인 후 모달 닫기
+                            Swal.fire({
+                                title: '신청 완료',
+                                text: '신청 사항을 확인하세요.',
+                                icon: 'success',
+                                buttonsStyling: false,
+                                customClass: {
+                                    confirmButton: 'custom-success-button'
+                                }
+                            });
+                        })
+                        .catch((error) => {
+                            Swal.fire(
+                                '신청 실패',
+                                '다시 시도하세요.',
+                                'error'
+                            );
+                        });
+                }
+            });
+        };
 
-
+    }
     const onClickOutsideModal = (e) => {
         if (e.target === e.currentTarget) {
             setOffApplyModal(false);
@@ -151,6 +172,7 @@ function OffApplyModal({ setOffApplyModal }) {
             </div>
         </div>
     )
+
 }
 
 export default OffApplyModal;
