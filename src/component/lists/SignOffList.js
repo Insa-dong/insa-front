@@ -20,6 +20,7 @@ function SignOffList({ signOffList, currentPage, searchOption, searchKeyword }) 
             <table className="signOffListDiv">
                 <thead>
                     <tr className="signOffTr">
+                        <th>신청일</th>
                         <th>직책</th>
                         <th>이름</th>
                         <th>연차 종류</th>

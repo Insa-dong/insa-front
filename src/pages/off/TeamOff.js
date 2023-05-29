@@ -1,8 +1,8 @@
 import { NavLink, useParams } from 'react-router-dom';
 import Header from "../../component/common/Header";
-import './AdminOff.css';
+import './TeamOff.css';
 
-function AdminOff() {
+function TeamOff() {
 
     return (
         <>
@@ -16,21 +16,21 @@ function AdminOff() {
                         </div>
                     </NavLink>
 
-                    <NavLink to="/off/adminOff">
+                    <NavLink to="/off/teamOff">
                         <div className="off-menu" >
                             구성원 연차
                         </div>
                     </NavLink>
                 </div>
-                <div className="adminOff-menu-bar" >
-                    <NavLink to="/off/adminOff" className="active-link">
-                        <div className="admin-off-menu"  >
+                <div className="teamOff-menu-bar" >
+                    <NavLink to="/off/teamOff" className="active-link">
+                        <div className="team-off-menu"  >
                             연차 현황
                         </div>
                     </NavLink>
 
-                    <NavLink to="/off/adminOff/offSign" className="active-link" style={{ color: 'gray' }}>
-                        <div className="admin-off-menu" >
+                    <NavLink to="/off/teamOff/offSign" className="active-link" style={{ color: 'gray' }}>
+                        <div className="team-off-menu" >
                             연차 신청내역
                         </div>
                     </NavLink>
@@ -42,4 +42,4 @@ function AdminOff() {
 
 };
 
-export default AdminOff;
+export default TeamOff;

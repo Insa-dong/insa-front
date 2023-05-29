@@ -66,7 +66,7 @@ function Off() {
                         </div>
                     </NavLink>
 
-                    <NavLink to="/off/adminOff">
+                    <NavLink to="/off/teamOff">
                         <div className="off-menu" style={{ color: 'gray' }}>
                             구성원 연차
                         </div>
@@ -96,7 +96,7 @@ function Off() {
                     </div>
                 </div>
 
-                <p className='comingup-title' onClick={handleReloadPage}> 사용 기록 </p>
+                <p className='comingup-title' onClick={handleReloadPage}> 신청 기록 </p>
                 <div className="my-off-request">
                 <div className="off-search-container">
                     <input className="off-searchYear"
