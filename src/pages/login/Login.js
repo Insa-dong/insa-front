@@ -25,6 +25,16 @@ function Login() {
 	}
 
 	const onClickHandler = () => {
+		if (
+			!form.empId ||
+			!form.empPwd
+			
+		  ) {
+			alert("정보를 모두 입력해주세요");
+			return;
+		  }
+	  
+
 		dispatch(callLoginAPI(form));
 	}
 
