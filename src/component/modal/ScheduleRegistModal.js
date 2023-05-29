@@ -1,15 +1,14 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import Swal from "sweetalert2";
-import {callUpdateScheduleInfoAPI} from "../../apis/CalendarAPICalls";
+import {callInsertScheduleAPI} from "../../apis/CalendarAPICalls";
 import CSS from "./TrainingRegistModal.module.css";
 
-function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
+function ScheduleRegistModal({registModalOpen, setRegistModalOpen}) {
 
-	const [form, setForm] = useState({...info});
+	const [form, setForm] = useState({});
 	const dispatch = useDispatch();
 
-	console.log('form : ', form);
 	const onChangeHandler = (e) => {
 		setForm({
 			...form,
@@ -19,13 +18,13 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 
 	const onClickOutsideModal = (e) => {
 		if (e.target === e.currentTarget) {
-			setModalOpen(false);
+			setRegistModalOpen(false);
 		}
 	};
 
 	const onClickScheduleSaveHandler = () => {
 		Swal.fire({
-			text: '일정을 수정합니다.',
+			text: '새 일정을 등록합니다.',
 			icon: 'warning',
 			showCancelButton: true,
 			customClass: {
@@ -34,45 +33,45 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 			},
 			confirmButtonColor: '#8CBAFF',
 			cancelButtonColor: '#DADADA',
-			confirmButtonText: '수정',
+			confirmButtonText: '저장',
 			cancelButtonText: '취소',
 			reverseButtons: true,
 			buttonsStyling: false,
 		}).then((result) => {
 			if (result.isConfirmed) {
-				dispatch(callUpdateScheduleInfoAPI(form))
+				dispatch(callInsertScheduleAPI(form))
 					.then(() => {
 						Swal.fire({
-							title: '수정 완료',
-							text: '수정 완료.',
+							title: '저장 완료',
+							text: '저장이 완료되었습니다 !',
 							icon: 'success',
 							buttonsStyling: false,
 							customClass: {
 								confirmButton: 'custom-success-button'
 							}
 						}).then(() => {
-							setModalOpen(false);
+							setRegistModalOpen(false);
 						});
 					})
 					.catch((error) => {
 						Swal.fire(
-							'수정 실패',
+							'저장 실패',
 							'다시 시도하세요.',
 							'error'
 						);
 					});
 			}
 		});
-	}
+	};
 
 	return (
-		modalOpen && (
+		registModalOpen && (
 			<div className = {CSS.trainingModal} onClick = {onClickOutsideModal}>
 				<div className = {CSS.trainingModalContainer}>
-					<div className = {CSS.trainingModalClose} onClick = {() => setModalOpen(false)}>X</div>
+					<div className = {CSS.trainingModalClose} onClick = {() => setRegistModalOpen(false)}>X</div>
 					<div className = {CSS.trainingModalDiv}>
 
-						<h1 className = {CSS.trainingModalTitle}>일정 수정</h1>
+						<h1 className = {CSS.trainingModalTitle}>일정 추가</h1>
 
 						<div className = {CSS.trainingField}>
 							<h1>일정 명</h1>
@@ -81,7 +80,6 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 								className = {CSS.textInput}
 								name = 'calTitle'
 								onChange = {onChangeHandler}
-								defaultValue = {info.calTitle}
 							/>
 						</div>
 						<div className = {CSS.trainingField}>
@@ -91,7 +89,6 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 								className = {CSS.textInput}
 								name = 'calStartDate'
 								onChange = {onChangeHandler}
-								defaultValue = {info.calStartDate}
 							/>
 						</div>
 
@@ -102,7 +99,6 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 								className = {CSS.textInput}
 								name = 'calEndDate'
 								onChange = {onChangeHandler}
-								defaultValue = {info.calEndDate}
 							/>
 						</div>
 						<div className = {CSS.trainingField}>
@@ -112,7 +108,6 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 								className = {CSS.textInput}
 								name = 'calContent'
 								onChange = {onChangeHandler}
-								defaultValue = {info.calContent}
 							/>
 						</div>
 						<div className = {CSS.trainingField}>
@@ -122,11 +117,9 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 								name = 'calColor'
 								className = {CSS.textInput}
 								onChange = {onChangeHandler}
-								defaultValue = {info.calColor}
 							/>
 						</div>
-						<button onClick = {onClickScheduleSaveHandler} className = {CSS.saveButton}><span>저장</span>
-						</button>
+						<button onClick = {onClickScheduleSaveHandler}>저장</button>
 					</div>
 				</div>
 			</div>
@@ -134,4 +127,5 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 	)
 }
 
-export default ScheduleInfoModal;
+
+export default ScheduleRegistModal;
