@@ -23,7 +23,15 @@ function OffSign() {
 
     useEffect(() => {
         fetchData();
-    }, [currentPage, searchOption, searchKeyword]); // 초기 로딩 시에만 실행하도록 빈 배열로 설정
+    }, [currentPage]); //유지되는 값
+
+    useEffect(() => {
+        if (searchOption === '' || (searchOption === 'signStatus' && searchKeyword === '전체')) {
+          setSearchOption('empName');
+          setSearchKeyword('');
+        }
+      }, [searchOption, searchKeyword]);
+
 
     /* 검색 옵션 상태 저장 */
     const onSearchOptionChangeHandler = (e) => {
@@ -47,6 +55,10 @@ function OffSign() {
           updatedSearchOption = '';
           updatedSearchKeyword = '';
         }
+
+          // 검색어 값 업데이트
+  setSearchOption(updatedSearchOption);
+  setSearchKeyword(updatedSearchKeyword);
       
         dispatch(callSignOffListAPI({ currentPage, searchOption: updatedSearchOption, searchKeyword: updatedSearchKeyword }));
         setCurrentPage(1); // 검색 시 첫 페이지로 이동
@@ -75,21 +87,21 @@ function OffSign() {
                         </div>
                     </NavLink>
 
-                    <NavLink to="/off/adminOff">
+                    <NavLink to="/off/teamOff">
                         <div className="off-menu" >
                             구성원 연차
                         </div>
                     </NavLink>
                 </div>
                 <div className="adminOff-menu-bar" >
-                    <NavLink to="/off/adminOff" className="active-link" style={{ color: 'gray' }}>
-                        <div className="admin-off-menu">
+                    <NavLink to="/off/teamOff" className="active-link" style={{ color: 'gray' }}>
+                        <div className="team-off-menu">
                             연차 현황
                         </div>
                     </NavLink>
 
-                    <NavLink to="/off/adminOff/offSign" className="active-link">
-                        <div className="admin-off-menu">
+                    <NavLink to="/off/teamOff/offSign" className="active-link">
+                        <div className="team-off-menu">
                             연차 신청내역
                         </div>
                     </NavLink>
