@@ -26,12 +26,10 @@
 .tableStyle th,
 .tableStyle tr {
     border: 1px solid #ddd;
-  padding: 8px;
- height: 5vh;
+    padding: 8px;
+    height: 5vh;
 }
-.tableStyle tr:hover{
+
+.BodyTrStyle tr:hover {
     background-color: #eeeeee;
 }
-
-
-

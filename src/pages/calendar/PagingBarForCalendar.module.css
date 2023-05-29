@@ -1,0 +1,22 @@
+.productDiv {
+    list-style-type: none;
+    display: flex;
+    justify-Content: center;
+    margin: 70vh auto 0 auto;
+}
+
+.pagingBtn {
+    color: #535353;
+    border: 0;
+    margin: 5px;
+    background-color: white;
+}
+
+.pagingBtn:hover {
+    cursor: pointer;
+    background-color: burlywood;
+}
+
+.productWrap {
+    display: flex;
+}
