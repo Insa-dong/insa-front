@@ -4,7 +4,6 @@ import './TeamOffList.css';
 function TeamOffList({ teamOffList, currentPage, searchOption, searchKeyword }) {
 
 
-
     return (
         <table className="absDiv">
           <thead>

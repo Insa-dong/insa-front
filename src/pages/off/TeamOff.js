@@ -16,30 +16,31 @@ function TeamOff() {
     const { teamOff } = useSelector(state => state.offReducer);
     const teamOffList = teamOff?.data || [];
 
-    const fetchData = () => {
-        dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
-    };
-
     useEffect(() => {
+        const fetchData = () => {
+            dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
+        };
+
         fetchData();
     }, [currentPage, searchOption, searchKeyword, dispatch]);
 
-    const handleSearch = () => {
-        setCurrentPage(1);
-    };
 
-    useEffect(() => {
-        fetchData();
-    }, [searchOption, searchKeyword]);
 
+    /* 검색 옵션 상태 저장 */
     const handleSearchOptionChange = (e) => {
         const selectedOption = e.target.value;
         setSearchOption(selectedOption);
     };
-
+    /* 검색어 입력값 상태 저장*/
     const handleSearchKeywordChange = (e) => {
         const keyword = e.target.value;
         setSearchKeyword(keyword);
+    };
+
+
+    /* 검색 이벤트 */
+    const handleSearch = () => {
+        setCurrentPage(1);
     };
 
     const handleEnterKey = (e) => {
@@ -47,6 +48,8 @@ function TeamOff() {
             handleSearch();
         }
     };
+
+
 
     return (
         <>
@@ -116,21 +119,21 @@ function TeamOff() {
                 </div>
 
                 <div>
-                {teamOffList.length > 0 ? ( // 검색 결과가 있을 때
-            <TeamOffList
-              teamOffList={teamOffList}
-              currentPage={currentPage}
-              searchOption={searchOption}
-              searchKeyword={searchKeyword}
-            />
-          ) : (
-            <TeamOffList // 검색 결과가 없을 때 전체 목록 출력
-              teamOffList={teamOffList}
-              currentPage={currentPage}
-              searchOption=""
-              searchKeyword=""
-            />
-          )}
+                    {teamOffList.length > 0 ? ( // 검색 결과가 있을 때
+                        <TeamOffList
+                            teamOffList={teamOffList}
+                            currentPage={currentPage}
+                            searchOption={searchOption}
+                            searchKeyword={searchKeyword}
+                        />
+                    ) : (
+                        <TeamOffList // 검색 결과가 없을 때 전체 목록 출력
+                            teamOffList={teamOffList}
+                            currentPage={currentPage}
+                            searchOption=""
+                            searchKeyword=""
+                        />
+                    )}
                 </div>
                 <div>
                     {teamOff && teamOff.pageInfo && <PagingBar pageInfo={teamOff.pageInfo} setCurrentPage={setCurrentPage} />}

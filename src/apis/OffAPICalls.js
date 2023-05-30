@@ -135,13 +135,14 @@ export const callCencelOffAPI = ({ signCode }) => {
 /* 팀원 연차 현황 조회 API */
 
 export const callTeamOffListAPI = ({ currentPage, searchOption, searchKeyword }) => {
-    //검색 옵션(searchOption)이 빈 문자열이거나, searchOption이 'remainingOff'이고 searchKeyword가 ''인 경우에 대한 처리
-    let requestURL = `${PRE_URL}/teamOff?page=${currentPage}`;
-    if (searchOption && searchKeyword) {
+   
+    let requestURL = `${PRE_URL}/teamOff?page=${currentPage}&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
+    
+    /*if (searchOption && searchKeyword) {
         requestURL += `&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
     } else if (searchOption === 'remainingOff' && searchKeyword === '') {
         requestURL += `&searchOption=&searchKeyword=`;
-    }
+    }*/
 
 
     return async (dispatch, getState) => {
