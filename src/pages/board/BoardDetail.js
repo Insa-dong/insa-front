@@ -23,7 +23,7 @@ function BoardDetail() {
     const { update } = useSelector(state => state.boardReducer);
     const { erase } = useSelector(state => state.boardReducer);
     const [form, setForm] = useState({});
-    const [deleteFile , SetDeleteFile] = useState();
+    const [deleteFile , setDeleteFile] = useState([]);
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [beforeFiles, setBeforeFiles] = useState([]);
 
@@ -91,6 +91,7 @@ function BoardDetail() {
         setBeforeFiles((prevFiles) =>
             prevFiles.filter((file) => file !== fileName)
         );
+        setDeleteFile((prevFiles) => [...prevFiles, fileName.saveFileName]);
     };
 
     const handleImageClick = () => {
@@ -114,7 +115,6 @@ function BoardDetail() {
                     onClick={(e) => {
 
                         handleClearBeforeFile(fileName)
-                        SetDeleteFile(fileName.saveFileName);
                     }
                     }
                 >
