@@ -212,7 +212,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>이름</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuName'
                                             type='text'
                                             onChange={onChangeHandler}
@@ -224,7 +224,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>영문이름</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuEngName'
                                             type='text'
                                             onChange={onChangeHandler}
@@ -236,7 +236,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>생년월일</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuBirth'
                                             type='date'
                                             onChange={onChangeHandler}
@@ -248,7 +248,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>학력</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuEndSchool'
                                             type='text'
                                             onChange={onChangeHandler}
@@ -260,7 +260,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>이메일</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuEmail'
                                             type='text'
                                             onChange={onChangeHandler}
@@ -272,7 +272,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>전화번호</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuPhone'
                                             type='text'
                                             onChange={onChangeHandler}

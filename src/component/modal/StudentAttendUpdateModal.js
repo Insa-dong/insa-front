@@ -47,13 +47,14 @@ function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, attend
                 </div>
                 <div className={CSS.adviceReviewModalDiv}>
                     <div className={CSS.title}>
-                        <h1>수강생 출결 수정</h1>
+                        <h1>👩🏻‍🎓 수강생 출결 수정</h1>
+                        </div>
                         <table>
                             <tbody>
                                 {selectedAttend && (
                                     <>
                                         <tr key={selectedAttend.attendCode}>
-                                            <th>날짜</th>
+                                            <th className={CSS.tableTh}>날짜</th>
                                             <td>
                                                 <input
                                                     type="date"
@@ -64,7 +65,7 @@ function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, attend
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>출석</th>
+                                            <th className={CSS.tableTh} >출석</th>
                                             <td>
                                                 <select
                                                     name="attendStatus"
@@ -83,7 +84,6 @@ function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, attend
                             </tbody>
                         </table>
                         <button onClick={onUpdateHandler}>수정하기</button>
-                    </div>
                 </div>
             </div>
         </div>

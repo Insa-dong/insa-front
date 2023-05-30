@@ -15,27 +15,30 @@ function EvaReviewCheckModal({ evaReview, setEvaReviewModal }) {
           X
         </div>
         <div className={CSS.adviceReviewModalDiv}>
-          <div className={CSS.title}>
-            <h1>평가 내역</h1>
+        <div className={CSS.title}>
+            <h1>💌 평가 내역</h1>
           </div>
-          <h1>수정 일</h1>
-
+          <div className={CSS.evaUpdate1}>
+          <p>💾 수정일</p>
           <input
             type="text"
             name="evaUpdateTime"
             readOnly={true}
             value={evaReview.evaUpdateTime || ""}
           />
-
+          </div>
+          <div className={CSS.evaContent}>
+            <p>💡 평가 내용</p>
           <textarea
             placeholder="평가 내역 본문"
             name="evaWriteContent"
             readOnly={true}
             value={evaReview.evaWriteContent || ""}
           ></textarea>
+          </div>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
 
