@@ -1,16 +1,16 @@
-.admin-off-menu-bar {
+.team-off-menu-bar {
     margin-bottom: 3.5vw;
   }
   
   
-  .admin-off-menu {
+  .team-off-menu {
     display: inline-block;
     margin-left: 3vw;
     font-size: 1.2rem;
     position: relative;
   }
   
-  .admin-off-menu:after {
+  .team-off-menu:after {
     display: block;
     content: '';
     border-bottom: solid 0.3vw #8CBAFF;
@@ -19,8 +19,8 @@
     transition: transform 250ms ease-in-out;
 }
 
-.admin-off-menu:hover:after,
-.admin-off-menu.active-link:after {
+.team-off-menu:hover:after,
+.team-off-menu.active-link:after {
   transform: scaleX(1);
 }
 

@@ -6,7 +6,45 @@
     color: blue;
 }
 
-.calendar {
-    width: 50%;
-    margin: 0 auto 0 0;
+.fc-event {
+    height: 15px;
+    margin-bottom: 10px;
 }
+
+.fc-theme-standard td, .fc-theme-standard th {
+    background-color: #FFFFFF; /* 캘린더 색 지정 */
+}
+
+.fc-daygrid-day-frame {
+    height: 100px;
+}
+
+.fc-scroller::-webkit-scrollbar {
+    display: none;
+}
+
+.fc .fc-button {
+    background-color: #8CBAFF;
+    border: none;
+    cursor: pointer;
+}
+
+.fc .fc-button:hover {
+    background-color: rgb(162, 241, 178);
+}
+
+.fc-event.fc-event-draggable {
+    cursor: help;
+    font-size: 0;
+}
+
+.tooltip {
+    width: 200px;
+    z-index: 1;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+    background: #8CBAFF;
+    margin: 10px;
+}
+

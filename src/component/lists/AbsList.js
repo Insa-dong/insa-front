@@ -7,8 +7,8 @@ function AbsList({ absList }) {
       <thead>
         <tr>
           <th>출근일</th>
-          <th>부서명</th>
-          <th>직급명</th>
+          <th>부서</th>
+          <th>직책</th>
           <th>이름</th>
           <th>출근시간</th>
           <th>퇴근시간</th>
