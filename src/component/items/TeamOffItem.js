@@ -2,7 +2,6 @@
 
 function TeamOffItem({ off }) {
 
-    console.log("off : ", off);
 
     return (
         <tr>

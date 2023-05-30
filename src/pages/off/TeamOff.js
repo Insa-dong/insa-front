@@ -22,7 +22,7 @@ function TeamOff() {
         };
 
         fetchData();
-    }, [currentPage, searchOption, searchKeyword, dispatch]);
+    }, [currentPage]);
 
 
 
@@ -41,6 +41,7 @@ function TeamOff() {
     /* 검색 이벤트 */
     const handleSearch = () => {
         setCurrentPage(1);
+        dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
     };
 
     const handleEnterKey = (e) => {
@@ -48,8 +49,6 @@ function TeamOff() {
             handleSearch();
         }
     };
-
-
 
     return (
         <>
@@ -82,6 +81,7 @@ function TeamOff() {
                         </div>
                     </NavLink>
                 </div>
+                
                 <div className="TeamOffSearchBox">
                     <select
                         id="TeamOffSelect"
@@ -99,6 +99,7 @@ function TeamOff() {
                             value={searchKeyword}
                             placeholder='입력값 이상 목록을 조회합니다'
                             onChange={handleSearchKeywordChange}
+                            onKeyUp={handleEnterKey}
                         />
                     ) : (
                         <input

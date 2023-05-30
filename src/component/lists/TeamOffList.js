@@ -4,8 +4,6 @@ import './TeamOffList.css';
 
 function TeamOffList({ teamOffList, currentPage, searchOption, searchKeyword }) {
 
-  console.log("teamOffList : " , teamOffList);
-
     return (
         <table className="teamOffListDiv">
           <thead>
