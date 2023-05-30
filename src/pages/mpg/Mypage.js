@@ -6,14 +6,25 @@ import CSS from "./Mypage.module.css";
 import { callMypageAPI } from "../../apis/MpgAPICalls";
 import EmpRestApplyModal from "../../component/modal/EmpRestApplyModal";
 import Swal from "sweetalert2";
+import PwdModifyModal from '../../component/modal/PwdModifyModal';
 
 function Mypage() {
 
     const title = '내정보';
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { info }  = useSelector(state => state.mypageReducer);
+    const { info } = useSelector(state => state.mypageReducer);
     const [empRestApplyModal, setEmpRestModal] = useState(false);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
     useEffect(
         () => {
@@ -54,14 +65,14 @@ function Mypage() {
                                 <li>
                                     <button
                                         className={CSS.restBtn}
-                                    onClick={onClickRestHandler}
+                                        onClick={onClickRestHandler}
                                     >
                                         휴직신청
                                     </button>
                                 </li>
                             </ul>
 
-                            {empRestApplyModal && <EmpRestApplyModal info={info} setEmpRestModal={setEmpRestModal}/>}
+                            {empRestApplyModal && <EmpRestApplyModal info={info} setEmpRestModal={setEmpRestModal} />}
                         </ul>
                     </div>
                     <div className={CSS.privacyContainer}>
@@ -100,9 +111,10 @@ function Mypage() {
                     </div>
 
                     <div className={CSS.btnWrap}>
-                        <button className={CSS.pwdBtn}>비밀번호변경</button>
+                        <button className={CSS.pwdBtn} onClick={() => openModal()}>비밀번호변경</button>
                         <button className={CSS.infoBtn}>개인정보변경</button>
                     </div>
+                    <PwdModifyModal isOpen={isModalOpen} onClose={closeModal} />
                 </div>
             )}
         </>
