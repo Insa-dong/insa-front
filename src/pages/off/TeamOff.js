@@ -14,7 +14,7 @@ function TeamOff() {
     const [searchOption, setSearchOption] = useState('empName');
     const [searchKeyword, setSearchKeyword] = useState('');
     const { teamOff } = useSelector(state => state.offReducer);
-    const teamOffList = teamOff?.data || [];
+    const teamOffList = teamOff || [];
 
     useEffect(() => {
         const fetchData = () => {
@@ -82,9 +82,9 @@ function TeamOff() {
                         </div>
                     </NavLink>
                 </div>
-                <div className="OffSignSearchBox">
+                <div className="TeamOffSearchBox">
                     <select
-                        id="OffSignSelect"
+                        id="TeamOffSelect"
                         value={searchOption}
                         onChange={handleSearchOptionChange}
                     >
@@ -95,15 +95,15 @@ function TeamOff() {
 
                     {searchOption === 'remainingOff' ? (
                         <input
-                            id="SignStatusSelect"
+                            id="TeamOffRemainingOff"
                             value={searchKeyword}
-                            placeholder='입력값 이상 조회'
+                            placeholder='입력값 이상 목록을 조회합니다'
                             onChange={handleSearchKeywordChange}
                         />
                     ) : (
                         <input
                             type="text"
-                            id="OffSignsearch"
+                            id="TeamOffEmpName"
                             placeholder="검색어를 입력하세요"
                             onChange={handleSearchKeywordChange}
                             onKeyUp={handleEnterKey}
@@ -111,7 +111,7 @@ function TeamOff() {
                     )}
 
                     <button
-                        className="off-SearchBtn"
+                        className="Teamoff-SearchBtn"
                         onClick={handleSearch}
                     >
                         <img src="/images/search.png" alt="검색" />

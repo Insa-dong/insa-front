@@ -119,7 +119,7 @@ function OffSign() {
 
 
                     {searchOption === 'signStatus' && (
-                        <select
+                        <select className='SignStatusSelect'
                             id="SignStatusSelect"
                             value={searchKeyword}
                             onChange={onSearchChangeHandler}
@@ -132,7 +132,7 @@ function OffSign() {
                     )}
 
                     {searchOption !== 'signStatus' && (
-                        <input
+                        <input className='OffSignsearch'
                             type="text"
                             id="OffSignsearch"
                             placeholder="검색어를 입력하세요"

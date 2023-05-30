@@ -8,7 +8,9 @@
 }
 
 .abs-menu-bar {
+    margin-top: 3vw;
     margin-bottom: 3.5vw;
+
  }
 
 .abs-menu {
@@ -63,16 +65,16 @@
     margin-right: 1vw;
     border: 2px solid #8CBAFF !important;
     border-radius: 5px;
-    width: 11vw;
-    height: 2.4vw;
+    width: 8vw;
+    height: 2.0vw;
     padding-right: 1vw;
     text-align: center;
     color: #424242;
 }
 
 .abs-SearchBtn {
-    width: 2.4vw;
-    height: 2.4vw;
+    width: 2vw !important;
+    height: 2vw !important;
     background-color: #8CBAFF;
     padding-left: 0.2vw;
     border-radius: 5px;
@@ -81,8 +83,9 @@
 }
 
 .abs-SearchBtn > img {
-    width: 2vw;
-    height: 2vw;
+    width: 1.5vw !important;
+    height: 1.5vw !important;
+    padding-top: 0.1vw;
 }
 
 /* 알러트 창 */
