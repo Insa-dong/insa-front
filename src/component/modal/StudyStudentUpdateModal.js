@@ -12,7 +12,7 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
     studyEnrollDate: studyStudentUpdate?.studyEnrollDate?.split(" ")[0] || "",
   studyState: studyStudentUpdate?.studyState || "수강 중", 
   });
-  
+
   const { modify } = useSelector(state => state.studyStudentReducer);
   const navigate = useNavigate();
   
@@ -27,7 +27,7 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
   useEffect(() => {
     if (modify?.status === 200) {
         alert('강의 내용 수정이 완료되었습니다');
-        navigate('/student');
+        window.location.reload();
     }
 }, [modify]);
 

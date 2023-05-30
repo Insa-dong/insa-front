@@ -22,7 +22,7 @@
 
 .adviceReviewModalDiv{    
     width: 400px;
-    height: 450px;
+    height: 500px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column; /*수평 정렬*/

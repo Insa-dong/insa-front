@@ -60,7 +60,7 @@ function Student() {
                     {student.pageInfo && <PagingBar pageInfo={student.pageInfo} setCurrentPage={setCurrentPage} />}
                     </div>
                     <div>
-                    <button className="stuEntBtn" onClick={() => navigate('/student/registration')}>+ 수강생 추가</button>
+                    <button className="stuEntBtn" onClick={() => navigate('/student/registration')}>+ 수강생 등록하기</button>
                 </div>
             </div>
         </>

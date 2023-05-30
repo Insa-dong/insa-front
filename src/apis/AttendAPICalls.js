@@ -102,10 +102,10 @@ export const callStudentAttendRegistAPI = (form) => {
       }
  }
 
- export const callStudentAttendSearchAPI = ({ attendDate, currentPage= 1 }) => {
+ export const callStudentAttendSearchAPI = ({ studyCode, attendDate, currentPage= 1 }) => {
 
-    const requestURL = `${PRE_URL}/students-attends/${attendDate}?page=${currentPage}`;
-    
+    const requestURL = `${PRE_URL}/studyAndAttend/${studyCode}/student-attends/${attendDate}?page=${currentPage}`;
+
     return async (dispatch, getState) => {
         
         const result = await fetch(requestURL).then(res => res.json());

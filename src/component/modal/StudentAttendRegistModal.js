@@ -34,6 +34,7 @@ function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistMo
     } else {
       console.log('날짜와 출결 상태를 선택해주세요.');
     }
+    window.location.reload();
   };
 
   return (

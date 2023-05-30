@@ -33,6 +33,7 @@ function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) 
 
     const onClickRegist = () => {
         dispatch(callEvaRegistAPI({...form, stuCode, studyInfoCode, empCode}));
+        window.location.reload();
     };
 
     const onChangeHandler = (e) => {
