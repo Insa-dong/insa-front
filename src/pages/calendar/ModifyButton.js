@@ -6,21 +6,20 @@ import {callUpdateScheduleAPI} from "../../apis/CalendarAPICalls";
 import {initCalList} from "../../modules/ButtonModule";
 import CSS from "./ModifyButton.module.css";
 
-function ModifyButton({isRegistOpen, setIsRegistOpen}) {
+
+function ModifyButton({isModalOpen, setIsModalOpen}) {
 
 	const scheduleList = useSelector(state => state.buttonReducer);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	console.log(scheduleList)
-
 	useEffect(
 		() => {
-			if (isRegistOpen) {
+			if (isModalOpen) {
 				dispatch(initCalList());
-				setIsRegistOpen(false)
+				setIsModalOpen(false)
 			}
-		}, [dispatch, isRegistOpen, scheduleList, setIsRegistOpen]
+		}, [dispatch, isModalOpen, scheduleList, setIsModalOpen]
 	)
 
 	const onClickScheduleSaveHandler = () => {
@@ -52,7 +51,7 @@ function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 							}
 						}).then(() => {
 							navigate('/cal', {replace: true});
-							setIsRegistOpen(true);
+							setIsModalOpen(true);
 						});
 					})
 					.catch((error) => {
@@ -66,10 +65,13 @@ function ModifyButton({isRegistOpen, setIsRegistOpen}) {
 		});
 	}
 
+
 	return (
 		<>
 			{scheduleList && scheduleList.length > 0 &&
-				<button className = {CSS.modifyButton} onClick = {onClickScheduleSaveHandler}>저장하기</button>}
+				<button className = {CSS.modifyButton} onClick = {onClickScheduleSaveHandler}
+				><span>저장하기</span></button>
+			}
 		</>
 	)
 }
