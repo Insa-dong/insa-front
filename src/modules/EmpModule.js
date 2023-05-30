@@ -14,11 +14,12 @@ const PUT_EMP_DEPT = 'emp/PUT_EMP_DEPT';
 const PUT_EMP_JOB = 'emp/PUT_EMP_JOB';
 const PUT_EMP_DEL = 'emp/PUT_EMP_DEL';
 const POST_EMP_REST_REGIST = 'emp/POST_EMP_REST_REGIST';
-const GET_EMP_REST = 'emp/GET_EMP_REST'
+const GET_EMP_REST = 'emp/GET_EMP_REST';
+const PUT_REST_STATE = 'emp/PUT_REST_STATE';
 
 const GET_EMP_LIST = 'emp/GET_EMPLIST'
 
-export const { emp: { getEmp, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob, putEmpDel, postEmpRestRegist, getEmpRest, getEmplist } } = createActions({
+export const { emp: { getEmp, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob, putEmpDel, postEmpRestRegist, getEmpRest, putRestState, getEmplist } } = createActions({
 	[GET_EMP]: (res) => res.data,
 	[GET_EMP_DEPT_JOB]: (res) => res.data,
 	[POST_EMP_REGIST]: (res) => res,
@@ -29,6 +30,7 @@ export const { emp: { getEmp, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmp
 	[PUT_EMP_DEL]: (res) => res,
 	[POST_EMP_REST_REGIST]: (res) => res,
 	[GET_EMP_REST] : (res) => res.data,
+	[PUT_REST_STATE] : (res) => res,
 
 	[GET_EMP_LIST]: res => res.data
 	
@@ -47,6 +49,7 @@ const empReducer = handleActions(
 		[PUT_EMP_DEL]: (state, {payload}) => ({empDel : payload}),
 		[POST_EMP_REST_REGIST] : (state, {payload}) => ({empRest : payload}),
 		[GET_EMP_REST] : (state, {payload}) => ({rest : payload}),
+		[PUT_REST_STATE] : (state, {payload}) => ({...state, restState : payload}),
 
 		[GET_EMP_LIST]: (state, {payload}) => ({teacher: payload})
 	}

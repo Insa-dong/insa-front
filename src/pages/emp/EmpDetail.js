@@ -129,7 +129,7 @@ function EmpDetail() {
                         <div className={CSS.privacyContainer}>
                             <div className={CSS.privacy}>개인 정보</div>
                             <ul style={{ display: 'flex' }}>
-                                <li className={CSS.phone}>휴대전화</li>
+                                <li className={CSS.phone}>전화번호</li>
                                 <li className={CSS.phoneinfo}>{empDetail.empPhone}</li>
                             </ul>
                             <ul style={{ display: 'flex' }}>

@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { callUpdateRestStateAPI } from '../../apis/EmpAPICalls';
 import './RestItem.css';
+import Swal from "sweetalert2";
 
 function RestItem({ rest }) {
   console.log("rest : ", rest)
   console.log("hello")
   const dispatch = useDispatch();
+  const [ form, setForm ] = useState({
+    restCode: rest.restCode
+  }); 
 
   let statusColor;
   switch (rest.restState) {
@@ -22,6 +26,57 @@ function RestItem({ rest }) {
     default:
       statusColor = "#AAAAAA";
       break;
+  }
+
+  const onRegistChange = (e) => {
+    setForm({
+      ...form,
+      restState : {[e.target.name]: e.target.value}
+    })
+  }
+
+  const onRestApplyClickHandler = () => {
+    console.log("휴직 상태")
+
+    console.log('onClickEmpRegistrationHandler called');
+    Swal.fire({
+      text: '처리하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      customClass: {
+        confirmButton: 'custom-confirm-button',
+        cancelButton: 'custom-cancel-button'
+      },
+      confirmButtonColor: '#8CBAFF',
+      cancelButtonColor: '#DADADA',
+      confirmButtonText: '저장',
+      cancelButtonText: '취소',
+      reverseButtons: true,
+      buttonsStyling: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(callUpdateRestStateAPI(form))
+          .then(() => {
+            Swal.fire({
+              title: '휴직처리 완료',
+              text: '변경 사항을 확인하세요.',
+              icon: 'success',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-success-button'
+              }
+            });
+          })
+          .catch((error) => {
+            Swal.fire(
+              '저장 실패',
+              '다시 시도하세요.',
+              'error'
+            );
+          });
+      }
+    });
+    
   }
 
 
@@ -41,8 +96,24 @@ function RestItem({ rest }) {
           </button>
         </td>
         <td>
-          <button  className="empRestSignStatusApply">승인하기</button>
-          <button  className="empRestSignStatusReturn">반려하기</button>
+          <button
+            className="empRestSignStatusApply"
+            name="restState"
+            value="승인"
+            onChange={onRegistChange}
+            onClick={onRestApplyClickHandler}
+          >
+            승인하기
+          </button>
+          <button
+            className="empRestSignStatusReturn"
+            name="restState"
+            value="반려"
+            onChange={onRegistChange}
+            onClick={onRestApplyClickHandler}
+          >
+            반려하기
+          </button>
         </td>
       </tr>
     </>
