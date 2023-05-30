@@ -1,8 +1,55 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
 import './TeamOff.css';
+import TeamOffList from '../../component/lists/TeamOffList';
+import PagingBar from '../../component/common/PagingBar';
+import { callTeamOffListAPI } from '../../apis/OffAPICalls';
 
 function TeamOff() {
+
+    const dispatch = useDispatch();
+    const [currentPage, setCurrentPage] = useState(1)
+    const [searchOption, setSearchOption] = useState('empName');
+    const [searchKeyword, setSearchKeyword] = useState('');
+    const { teamOff } = useSelector(state => state.offReducer);
+    const teamOffList = teamOff?.data || [];
+
+    useEffect(() => {
+        const fetchData = () => {
+            dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
+        };
+
+        fetchData();
+    }, [currentPage, searchOption, searchKeyword, dispatch]);
+
+
+
+    /* 검색 옵션 상태 저장 */
+    const handleSearchOptionChange = (e) => {
+        const selectedOption = e.target.value;
+        setSearchOption(selectedOption);
+    };
+    /* 검색어 입력값 상태 저장*/
+    const handleSearchKeywordChange = (e) => {
+        const keyword = e.target.value;
+        setSearchKeyword(keyword);
+    };
+
+
+    /* 검색 이벤트 */
+    const handleSearch = () => {
+        setCurrentPage(1);
+    };
+
+    const handleEnterKey = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
+
 
     return (
         <>
@@ -35,8 +82,66 @@ function TeamOff() {
                         </div>
                     </NavLink>
                 </div>
+                <div className="OffSignSearchBox">
+                    <select
+                        id="OffSignSelect"
+                        value={searchOption}
+                        onChange={handleSearchOptionChange}
+                    >
+                        <option value="empName">이름</option>
+                        <option value="remainingOff">잔여연차</option>
+                    </select>
+
+
+                    {searchOption === 'remainingOff' ? (
+                        <input
+                            id="SignStatusSelect"
+                            value={searchKeyword}
+                            placeholder='입력값 이상 조회'
+                            onChange={handleSearchKeywordChange}
+                        />
+                    ) : (
+                        <input
+                            type="text"
+                            id="OffSignsearch"
+                            placeholder="검색어를 입력하세요"
+                            onChange={handleSearchKeywordChange}
+                            onKeyUp={handleEnterKey}
+                        />
+                    )}
+
+                    <button
+                        className="off-SearchBtn"
+                        onClick={handleSearch}
+                    >
+                        <img src="/images/search.png" alt="검색" />
+                    </button >
+                </div>
+
+                <div>
+                    {teamOffList.length > 0 ? ( // 검색 결과가 있을 때
+                        <TeamOffList
+                            teamOffList={teamOffList}
+                            currentPage={currentPage}
+                            searchOption={searchOption}
+                            searchKeyword={searchKeyword}
+                        />
+                    ) : (
+                        <TeamOffList // 검색 결과가 없을 때 전체 목록 출력
+                            teamOffList={teamOffList}
+                            currentPage={currentPage}
+                            searchOption=""
+                            searchKeyword=""
+                        />
+                    )}
+                </div>
+                <div>
+                    {teamOff && teamOff.pageInfo && <PagingBar pageInfo={teamOff.pageInfo} setCurrentPage={setCurrentPage} />}
+                </div>
 
             </div>
+
+
         </>
     )
 

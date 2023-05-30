@@ -1,11 +1,10 @@
 
 
 .signOffListDiv {
-    width: 90%;
+    width: 100%;
     text-align: center;
     margin-top: 3vw;
     margin-bottom: 2vw;
-    margin-left: 3vw;
     border-collapse: separate;
     border-spacing: 0 1vw;
     border-bottom: 1px solid #ccc;

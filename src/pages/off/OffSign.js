@@ -17,20 +17,20 @@ function OffSign() {
     const signOffList = signOff?.data || [];
 
 
-    const fetchData = () => {
-        dispatch(callSignOffListAPI({ currentPage, searchOption, searchKeyword }));
-    };
-
     useEffect(() => {
+        const fetchData = () => {
+            dispatch(callSignOffListAPI({ currentPage, searchOption, searchKeyword }));
+        };
+    
         fetchData();
-    }, [currentPage]); //유지되는 값
+    }, [currentPage, searchOption, searchKeyword, dispatch]);
 
     useEffect(() => {
         if (searchOption === '' || (searchOption === 'signStatus' && searchKeyword === '전체')) {
-          setSearchOption('empName');
-          setSearchKeyword('');
+            setSearchOption('empName');
+            setSearchKeyword('');
         }
-      }, [searchOption, searchKeyword]);
+    }, [searchOption, searchKeyword]);
 
 
     /* 검색 옵션 상태 저장 */
@@ -47,32 +47,32 @@ function OffSign() {
     const handleSearch = () => {
         let updatedSearchOption = searchOption;
         let updatedSearchKeyword = searchKeyword;
-      
+
         if (searchOption === 'empName' && searchKeyword.trim() === '') {
-          updatedSearchOption = '';
-          updatedSearchKeyword = '';
+            updatedSearchOption = '';
+            updatedSearchKeyword = '';
         } else if (searchOption === 'signStatus' && searchKeyword === '전체') {
-          updatedSearchOption = '';
-          updatedSearchKeyword = '';
+            updatedSearchOption = '';
+            updatedSearchKeyword = '';
         }
 
-          // 검색어 값 업데이트
-  setSearchOption(updatedSearchOption);
-  setSearchKeyword(updatedSearchKeyword);
-      
+        // 검색어 값 업데이트
+        setSearchOption(updatedSearchOption);
+        setSearchKeyword(updatedSearchKeyword);
+
         dispatch(callSignOffListAPI({ currentPage, searchOption: updatedSearchOption, searchKeyword: updatedSearchKeyword }));
         setCurrentPage(1); // 검색 시 첫 페이지로 이동
-      };
-      
-      const onSearchBtnHandler = () => {
+    };
+
+    const onSearchBtnHandler = () => {
         handleSearch();
-      };
-      
-      const onEnterKeyHandler = (e) => {
+    };
+
+    const onEnterKeyHandler = (e) => {
         if (e.key === 'Enter') {
-          handleSearch();
+            handleSearch();
         }
-      };
+    };
 
 
     return (

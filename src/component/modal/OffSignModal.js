@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
 import { callSignApplyAPI, callSignOffListAPI } from "../../apis/OffAPICalls";
 import './OffSignModal.css';
 import Swal from "sweetalert2";

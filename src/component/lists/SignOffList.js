@@ -7,13 +7,11 @@ function SignOffList({ signOffList, currentPage, searchOption, searchKeyword }) 
 
     const [offSignModal, setOffSignModal] = useState(false);
     const [selectedOff, setSelectedOff] = useState();
-    // const [currentPage] = useState();
 
     const onClickOffSignModalHandler = (off) => {
         setSelectedOff(off);
         setOffSignModal(true);
     };
-
 
     return (
         <>

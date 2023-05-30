@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import { callModifyAbsAPI } from "../../apis/AbsAPICalls";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import './AbsModifyModal.css';
 
 function AbsModifyModal({ abs, setAbsModifyModal }) {
