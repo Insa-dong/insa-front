@@ -1,20 +1,22 @@
 import RestItem from '../items/RestItem';
+import './RestList.css';
 
 function RestList({ restList }) {
     console.log("hell: ", restList);
 
     return (
-        <table>
+        <table className="signOffListDiv">
             <thead>
                 <tr>
-                    <th>부서</th>
-                    <th>직책</th>
-                    <th>이름</th>
-                    <th>휴직 시작일</th>
-                    <th>휴직 종료일</th>
-                    <th>신청사유</th>
-                    <th>승인상태</th>
-                    <th>휴직처리</th>
+                    <th className="empRestTable">부서</th>
+                    <th className="empRestTable">직책</th>
+                    <th className="empRestTable">이름</th>
+                    <th className="empRestTableWrap">휴직 시작일</th>
+                    <th className="empRestTableWrap">휴직 종료일</th>
+                    <th className="empRestTableWrap">신청사유</th>
+                    <th className="empRestTableWrap">승인상태</th>
+                    <th style={{ width: '260px'}}>휴직처리</th>
+                    {/* <th  colSpan="2">휴직처리</th> */}
                 </tr>
             </thead>
             <tbody>
