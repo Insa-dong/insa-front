@@ -1,4 +1,4 @@
-import { getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob, putEmpDel,postEmpRestRegist } from "../modules/EmpModule";
+import { getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob, putEmpDel,postEmpRestRegist, getEmpRest } from "../modules/EmpModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -213,6 +213,21 @@ export const callEmpRestRegistAPI = (form) => {
 		}
 	}
 }
+
+/* 휴직 내역 */
+export const callEmpRestList = ({ currentPage = 1 }) => {
+	const requestURL = `${PRE_URL}/emp/emprestlist?page=${currentPage}`; // 현재 페이지를 URL에 포함시킴
+  
+	return async (dispatch, getState) => {
+	  const result = await fetch(requestURL).then(response => response.json());
+  
+	  if (result.status === 200) {
+		console.log('[callEmpRestList] : callEmpRestList result : ', result);
+		dispatch(getEmpRest(result));
+	  }
+	}
+  }
+  
 
 
 
