@@ -2,7 +2,9 @@
     list-style-type: none;
     display: flex;
     justify-Content: center;
-    margin: 70vh auto 0 auto;
+    margin: 29% 33% 0 14%;
+    height: 50px;
+    position: absolute;
 }
 
 .pagingBtn {
@@ -19,4 +21,5 @@
 
 .productWrap {
     display: flex;
+    align-items: center;
 }

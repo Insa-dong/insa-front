@@ -15,18 +15,23 @@ function Calendar() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [registModalOpen, setRegistModalOpen] = useState(false);
 	const [currentPage, setCurrentPage] = useState(1);
+	const [sort, setSort] = useState(0);
 	const {page} = useSelector(state => state.calendarPagingReducer);
 	const dispatch = useDispatch();
 	const title = '일정';
 
-	console.log(page);
-
 	useEffect(
 		() => {
-			dispatch(callMyPagingCalListAPI());
+			dispatch(callMyPagingCalListAPI({currentPage, sort}));
 		},
-		[dispatch]
+		[dispatch, currentPage, sort]
 	)
+
+	const onClickHandler = (e) => {
+
+		console.log(e.target);
+		console.log(e.target.innerHTML);
+	}
 
 	return (
 		<>
@@ -44,6 +49,15 @@ function Calendar() {
 				                                         setRegistModalOpen = {setRegistModalOpen}/>}
 			</div>
 			<div className = {CSS.subContainer}>
+				<button className = {sort < 1 ? CSS.sortButton1 : CSS.sortButton} onClick = {onClickHandler}>
+					최근 등록 순
+				</button>
+				<button className = {sort === 2 ? CSS.sortButton1 : CSS.sortButton} onClick = {onClickHandler}>
+					시작일 순
+				</button>
+				<button className = {sort === 3 ? CSS.sortButton1 : CSS.sortButton} onClick = {onClickHandler}>
+					종료일 순
+				</button>
 				{page &&
 					<table className = {CSS.calendarTable}>
 						<thead className = {CSS.calendarThead}>
@@ -54,15 +68,15 @@ function Calendar() {
 						<tbody className = {CSS.calendarTbody}>
 						{page.data && page.data.map(item =>
 							<tr className = {CSS.calendarTr} key = {item.calCode}>
-								<td colSpan = {2}>{`${item.calStartDate} ~ ${item.calEndDate}`}</td>
+								<td>{`${item.calStartDate} ~ ${item.calEndDate}`}</td>
 								<td>{item.calContent}</td>
 							</tr>
 						)
 						}
 						</tbody>
 					</table>}
-				{page && page.pageInfo && <PagingBarForCalendar pageInfo = {page.pageInfo}
-				                                                setCurrentPage = {setCurrentPage}/>}
+				{page && page.pageInfo &&
+					<PagingBarForCalendar pageInfo = {page.pageInfo} setCurrentPage = {setCurrentPage}/>}
 			</div>
 		</>
 	);
