@@ -6,16 +6,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { callEmpListAPI, empListDeptAPI, empListSearchAPI } from '../../apis/EmpAPICalls';
 import EmpList from '../../component/lists/EmpList';
 import PagingBar from './../../component/common/PagingBar';
+import RestList from '../../component/lists/RestList';
 
 function Emp() {
 
   const title = "구성원";
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const emp = useSelector(state => state.empReducer);
-  console.log('emp : ', emp);
-  const empList = emp.data;
-  const pageInfo = emp.pageInfo;
+  const {emp} = useSelector(state => state.empReducer);
+  console.log('emp : ', {emp});
+  // const empList = emp.data;
+  // const pageInfo = emp.pageInfo;
   const [searchOption, setSearchOption] = useState('name');
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -157,12 +158,12 @@ function Emp() {
               <li>
                 <ul className="EmpContRight">
                   <li>
-                    {empList && <EmpList empList={empList} />}
+                    {emp.data && <EmpList empList={emp.data} />}
                   </li>
                 </ul>
 
                 <div className="EmpPaging">
-                  {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
+                  {emp.pageInfo && <PagingBar pageInfo={emp.pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
 
               </li>
