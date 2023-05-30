@@ -1,4 +1,4 @@
-import { getBoard, getBoardlist, postBoard } from "../modules/BoardModule";
+import { getBoard, getBoardlist, postBoard, putBoard } from "../modules/BoardModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -79,4 +79,64 @@ export const callBoardDetailAPI = ({ noticeCode }) => {
         }
     }
 }
+
+export const callBoardUpdateAPI = (formData) => {
+    
+    const requestURL = `${PRE_URL}/notice`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'PUT',
+            headers : {
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : formData
+        }).then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[BoardAPICalls] callBoardUpdateAPI result :', result);
+            dispatch(putBoard(result));
+        }
+    }
+
+}
+
+export const callDeleteFileAPI = (fileName) => {
+
+	console.log(fileName);
+	const requestURL = `${PRE_URL}/delete/${fileName}`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL, {
+			method: 'DELETE'
+		}).then(res => res.json());
+
+		console.log(result);
+		if (result.status === 200) {
+			// dispatch(deleteTraining(result));
+		}
+	}
+}
+
+export const callBoardDeleteAPI = (noticeCode) => {
+
+	console.log(noticeCode);
+	const requestURL = `${PRE_URL}/notice/${noticeCode}`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL, {
+			method: 'DELETE',
+            headers : {
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+		}).then(res => res.json());
+
+		console.log(result);
+		if (result.status === 200) {
+			// dispatch(deleteTraining(result));
+		}
+	}
+}
+
 

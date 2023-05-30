@@ -1,6 +1,66 @@
 .mainContainer {
-    width: 74vw;
+    width: 50%;
     height: 78vh;
     margin-left: 20vw;
+    float: left;
+    display: inline;
 }
 
+.subContainer {
+    float: right;
+    margin-right: 2.4%;
+    border-collapse: separate;
+    border-spacing: 1vh;
+    width: 56vh;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.insertButton {
+    width: 10vh;
+    height: 5vh;
+    background-color: #8CBAFF;
+    border-radius: 5px;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 2%;
+    margin-left: 90%;
+}
+
+.insertButton:hover {
+    background-color: rgb(162, 241, 178);
+}
+
+.calendarTable {
+    margin-left: 18%;
+    border: 1px solid black;
+    border-collapse: separate;
+    border-spacing: 1vh;
+    width: 20vh;
+    text-align: center;
+}
+
+.calendarThead {
+    line-height: 7vh;
+    font-size: 1.75rem;
+}
+
+.calendarTbody {
+    white-space: nowrap;
+}
+
+.calendarTr {
+    height: 7vh;
+}
+
+.calendarTr td {
+    width: 25vh;
+    max-width: 25vh;
+    max-height: 5vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+}
