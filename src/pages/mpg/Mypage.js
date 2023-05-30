@@ -15,8 +15,27 @@ function Mypage() {
     const dispatch = useDispatch();
     const { info } = useSelector(state => state.mypageReducer);
     const [empRestApplyModal, setEmpRestModal] = useState(false);
+    const [form, setForm] = useState({});
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    /* 읽기모드와 수정모드를 구분 */
+    const [modifyMode, setModifyMode] = useState(false);
+
+    /* 수정 모드 변경 이벤트 */
+    const onClickModifyModeHandler = () => {
+        setModifyMode(true);
+        setForm({ ...info });
+    }
+
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    }
+
+
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -79,15 +98,45 @@ function Mypage() {
                         <div className={CSS.privacy}>개인 정보</div>
                         <ul style={{ display: 'flex' }}>
                             <li className={CSS.phone}>휴대전화</li>
-                            <li className={CSS.phoneinfo}>{info.empPhone}</li>
+                            <input
+                                name="empPhone"
+                                placeholder='휴대전화'
+                                className={!modifyMode ? CSS.phoneinfo : CSS.phoneinfoModify}
+                                value={!modifyMode ? info.empPhone : form.empPhone}
+                                readOnly={!modifyMode}
+                                autoComplete='off'
+                                onChange={onChangeHandler}
+                            />
                         </ul>
                         <ul style={{ display: 'flex' }}>
                             <li className={CSS.email}>이메일</li>
-                            <li className={CSS.emailinfo}>{info.empEmail}</li>
+                            <input
+                                name="empEmail"
+                                placeholder='이메일'
+                                className={!modifyMode ? CSS.emailinfo : CSS.emailinfoModify}
+                                value={!modifyMode ? info.empEmail : form.empEmail}
+                                readOnly={!modifyMode}
+                                autoComplete='off'
+                                onChange={onChangeHandler}
+                            />
                         </ul>
                         <ul style={{ display: 'flex' }}>
                             <li className={CSS.gender}>성별</li>
-                            <li className={CSS.genderinfo}>{info.empGender}</li>
+                            {!modifyMode &&
+                                <li className={CSS.genderinfo}>{info.empGender}</li>
+
+                            }
+                            {modifyMode &&
+                                <select
+                                    className="EmpRegistBox"
+                                    name="empGender"
+                                    onChange={onChangeHandler}
+                                >
+                                    <option value="여">여성</option>
+                                    <option value="남">남성</option>
+                                </select>
+
+                            }
                         </ul>
                     </div>
                     <div className={CSS.hrContainer}>
@@ -109,11 +158,19 @@ function Mypage() {
                             <li className={CSS.emailinfo}>{info.hireDate}</li>
                         </ul>
                     </div>
+                    {!modifyMode &&
+                        <div className={CSS.btnWrap}>
+                            <button className={CSS.pwdBtn} onClick={() => openModal()}>비밀번호변경</button>
+                            <button className={CSS.infoBtn} onClick={onClickModifyModeHandler}>개인정보변경</button>
+                        </div>
+                    }
 
-                    <div className={CSS.btnWrap}>
-                        <button className={CSS.pwdBtn} onClick={() => openModal()}>비밀번호변경</button>
-                        <button className={CSS.infoBtn}>개인정보변경</button>
-                    </div>
+                    {modifyMode &&
+                        <div className={CSS.btnWrap}>
+                            <button className={CSS.pwdBtn}>수정하기</button>
+                            <button className={CSS.infoBtn} onClick={() => { setModifyMode(false) }}>수정취소</button>
+                        </div>
+                    }
                     <PwdModifyModal isOpen={isModalOpen} onClose={closeModal} />
                 </div>
             )}
