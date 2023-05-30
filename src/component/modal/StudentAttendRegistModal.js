@@ -34,6 +34,7 @@ function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistMo
     } else {
       console.log('날짜와 출결 상태를 선택해주세요.');
     }
+    window.location.reload();
   };
 
   return (
@@ -44,11 +45,12 @@ function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistMo
         </div>
         <div className={CSS.adviceReviewModalDiv}>
           <div className={CSS.title}>
-            <h1>수강생 출결 등록</h1>
+            <h1>👨🏻‍🎓 수강생 출결 등록</h1>
+            </div>
             <table>
               <tbody>
                 <tr>
-                  <th>날짜</th>
+                  <th className={CSS.tableTh}>날짜</th>
                   <td>
                     <input
                       type="date"
@@ -58,7 +60,7 @@ function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistMo
                   </td>
                 </tr>
                 <tr>
-                  <th>출결</th>
+                  <th className={CSS.tableTh}>출결</th>
                   <td>
                     <select
                       name="attendStatus"
@@ -77,7 +79,6 @@ function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistMo
             <button onClick={onClickStudentAttendRegistHandler}>등록하기</button>
           </div>
         </div>
-      </div>
     </div>
   );
 }

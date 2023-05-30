@@ -12,7 +12,8 @@
 }
 
 .title{
-    margin-bottom: 2vw;
+    margin-bottom: 2.5vw;
+    font-size: 20px;
 }
 
  .modalContainer{
@@ -21,8 +22,8 @@
 }  
 
 .adviceReviewModalDiv{    
-    width: 400px;
-    height: 450px;
+    width: 500px;
+    height: 400px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column; /*수평 정렬*/
@@ -36,7 +37,7 @@
 
 .adviceReviewModalDiv input {
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 17px;
     height: 30px;
     width: 90%;
     border-radius: 5px;
@@ -44,17 +45,18 @@
     border: solid 1.5px #8CBAFF;
 }
 
-.adviceReviewModalDiv textarea {
+.adviceReviewModalDiv select {
+    margin-top: 5px;
+    margin-bottom: 17px;
+    height: 30px;
     width: 90%;
-    height: 250px;
-    resize: none;
     border-radius: 5px;
-    text-indent: 1em;
+    text-indent: 1.2em;
     border: solid 1.5px #8CBAFF;
 }
 
 .adviceReviewModalDiv button {
-    margin-top: 5px;
+    margin-top: 30px;
     margin-bottom: 5px;
     height: 30px;
     width: 100px;
@@ -82,4 +84,10 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.tableTh {
+    padding-left: 3vw;
+    width: 150px;
+    text-align: left;
 }

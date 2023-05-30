@@ -5,12 +5,12 @@ import { callStudyStuRegistAdminAPI, callStudyStuTrainingTitleListAPI } from "..
 import { useNavigate } from "react-router-dom";
 
 function StudyStudentRegistModal({ setStudyStudentRegistModal, stuCode }) {
-    
+
     const [form, setForm] = useState({
-      studyEnrollDate: "",
-      studyState: "수강 중",
+        studyEnrollDate: "",
+        studyState: "수강 중",
     });
-    
+
     const dispatch = useDispatch();
     const { trainingList } = useSelector(state => state.studyStudentReducer);
     const { registStudyStudent } = useSelector(state => state.studyStudentReducer);
@@ -50,7 +50,7 @@ function StudyStudentRegistModal({ setStudyStudentRegistModal, stuCode }) {
     const onClickStudyStuRegistHandler = () => {
         dispatch(callStudyStuRegistAdminAPI({ ...form, stuCode }));
     };
-    
+
 
     return (
         <div className={CSS.modal} onClick={onClickOutsideModal} >
@@ -60,46 +60,46 @@ function StudyStudentRegistModal({ setStudyStudentRegistModal, stuCode }) {
                 </div>
                 <div className={CSS.adviceReviewModalDiv}>
                     <div className={CSS.title}>
-                        <h1>과정 등록</h1>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>과정</th>
-                                    <td>
-                                        <select className={CSS.selectBox} name="studyCode" onChange={onChangeHandler}>
-                                            {trainingList && Array.isArray(trainingList) && trainingList.map((training, index) => (
-                                                <option key={index} value={training.study.studyCode}>
-                                                {training.studyTitle}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>수강 등록</th>
-                                    <td>
-                                        <input
-                                            type="date"
-                                            name="studyEnrollDate"
-                                            onChange={ onChangeHandler }
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>수강 상태</th>
-                                    <td>
-                                        <select 
-                                            name = "studyState"
-                                            onChange = { onChangeHandler }>
-                                            <option value="수강 중">수강 중</option>
-                                            <option value="수강 취소">수강 취소</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button onClick={onClickStudyStuRegistHandler}>등록하기</button>
+                        <h1>🖥️ 과정 등록</h1>
                     </div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th className={CSS.tableTh}>과정</th>
+                                <td>
+                                    <select className={CSS.selectBox} name="studyCode" onChange={onChangeHandler}>
+                                        {trainingList && Array.isArray(trainingList) && trainingList.map((training, index) => (
+                                            <option key={index} value={training.study.studyCode}>
+                                                {training.studyTitle}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th className={CSS.tableTh}>수강 등록</th>
+                                <td>
+                                    <input
+                                        type="date"
+                                        name="studyEnrollDate"
+                                        onChange={onChangeHandler}
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th className={CSS.tableTh}>수강 상태</th>
+                                <td>
+                                    <select
+                                        name="studyState"
+                                        onChange={onChangeHandler}>
+                                        <option value="수강 중">수강 중</option>
+                                        <option value="수강 취소">수강 취소</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button onClick={onClickStudyStuRegistHandler}>등록하기</button>
                 </div>
             </div>
         </div>

@@ -4,12 +4,16 @@ import { useDispatch } from "react-redux";
 import { callAdviceUpdateAPI } from "../../apis/AdviceAPICalls";
 import { useState } from "react";
 
-function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empCode }) {
+function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empCode, adviceList }) {
 
+    const selectedAdvice = adviceList && adviceList.find((advice) => advice.adviceLogCode === adviceLogCode);
     const [form, setForm] = useState(
         {
             student:{stuCode},
-            writer:{empCode}
+            writer:{empCode},
+            adviceLogContent: selectedAdvice ? selectedAdvice.adviceLogContent : "",
+            adviceLogDate: selectedAdvice ? selectedAdvice.adviceLogDate : "",
+            adviceLogUpdate: selectedAdvice ? selectedAdvice.adviceLogUpdate : ""
         }
     );
     const navigate = useNavigate();
@@ -33,6 +37,8 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
 
     const onSaveHandler = () => {
         dispatch(callAdviceUpdateAPI({...form, stuCode, adviceLogCode , empCode }));
+        setAdviceUpdateModal(false);
+        window.location.reload();
     }
 
     return(
@@ -46,12 +52,15 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
                         <h1>상담 일지 수정</h1>
                         <table>
                             <tbody>
+                            {selectedAdvice && (
+                                <>
                                 <tr>
                                     <th>상담 일지</th>
                                     <td>
                                         <textarea
                                             type="text"
                                             name="adviceLogContent"
+                                            value={form.adviceLogContent || selectedAdvice.adviceLogContent}
                                             onChange = { onChangeHandler }
                                         />
                                     </td>
@@ -62,6 +71,7 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
                                         <input
                                             type="date"
                                             name="adviceLogDate"
+                                            value={form.adviceLogDate || selectedAdvice.adviceLogDate}
                                             onChange = { onChangeHandler }
                                         />
                                     </td>
@@ -72,10 +82,13 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
                                         <input 
                                             type="date"
                                             name="adviceLogUpdate"
+                                            value={form.adviceLogUpdate || selectedAdvice.adviceLogUpdate}
                                             onChange = { onChangeHandler }
                                         />
                                     </td>
                                 </tr>
+                                </>
+                                )}
                             </tbody>
                         </table>
                         <button onClick = {onSaveHandler}>수정하기</button>

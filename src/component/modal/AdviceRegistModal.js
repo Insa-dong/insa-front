@@ -36,6 +36,7 @@ function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
 
     const onClickAdviceRegistHandler = () => {
         dispatch(callAdviceWriteAPI({ ...form, stuCode, empCode }));
+        window.location.reload();
     };
 
     return(

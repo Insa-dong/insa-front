@@ -91,6 +91,7 @@ function EmpTeacherDetailPlus() {
     if (confirmed) {
       console.log('evaCode : ', evaCode);
       dispatch(callEvaDeleteForAdminAPI({ evaCode }));
+      window.location.reload();
     } else {
       console.log("평가 삭제가 취소되었습니다.");
     }
@@ -101,6 +102,7 @@ function EmpTeacherDetailPlus() {
     if (confirmed) {
       console.log('adviceLogCode : ', adviceLogCode);
       dispatch(callAdviceDeleteForAdminAPI({ adviceLogCode }));
+      window.location.reload();
     } else {
       console.log("상담 삭제가 취소되었습니다.");
     }
@@ -111,6 +113,7 @@ function EmpTeacherDetailPlus() {
     if (confirmed) {
       console.log('DeleteAttendCode : ', attendCode);
       dispatch(callStudentAttendDeleteAPI({ attendCode }));
+      window.location.reload();
     } else {
       console.log("출결 삭제가 취소되었습니다.");
     }
@@ -199,6 +202,8 @@ function EmpTeacherDetailPlus() {
             attendCode={selectedAttendUpdate}
             setStudentAttendUpdateModal={setAttendUpdateModalVisible}
             stuCode={stuCode}
+            attendDetail={attendDetail}
+
           />
         )}
 
@@ -222,8 +227,8 @@ function EmpTeacherDetailPlus() {
                   <td>{attend.attendDate}</td>
                   <td>{attend.attendStatus}</td>
                   <td>
-                    <button className = "attendUpdateBtn" onClick={ () => onClickUpdateAttend(attend.attendCode)}>수정</button>
-                    <button className = "attendDeleteBtn" onClick={ () => attendDelete(attend.attendCode)}>삭제</button>
+                    <button className="attendUpdateBtn" onClick={() => onClickUpdateAttend(attend.attendCode)}>수정</button>
+                    <button className="attendDeleteBtn" onClick={() => attendDelete(attend.attendCode)}>삭제</button>
                   </td>
                 </tr>
               ))
@@ -253,6 +258,7 @@ function EmpTeacherDetailPlus() {
             stuCode={stuCode}
             studyInfoCode={studyInfoCode}
             empCode={empCode}
+            evaList={evaList}
           />
         )}
 
@@ -315,6 +321,7 @@ function EmpTeacherDetailPlus() {
             stuCode={stuCode}
             studyInfoCode={studyInfoCode}
             empCode={empCode}
+            adviceList={adviceList}
           />
         )}
 

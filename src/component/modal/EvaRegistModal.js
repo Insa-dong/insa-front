@@ -33,6 +33,7 @@ function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) 
 
     const onClickRegist = () => {
         dispatch(callEvaRegistAPI({...form, stuCode, studyInfoCode, empCode}));
+        window.location.reload();
     };
 
     const onChangeHandler = (e) => {
@@ -50,7 +51,8 @@ function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) 
                 </div>
                 <div className={CSS.adviceReviewModalDiv}>
                     <div className={CSS.title}>
-                        <h1>평가 등록</h1>
+                        <h1>💌 평가 등록</h1>
+                        </div>
                         <table>
                             <tbody>
                                 <tr>
@@ -64,19 +66,18 @@ function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>등록 일</th>
+                                    {/* <th>등록 일</th>
                                     <td>
                                         <input
                                             type="date"
                                             name="evaWriteDate"
                                             onChange={ onChangeHandler }
                                         />
-                                    </td>
+                                    </td> */}
                                 </tr>
                             </tbody>
                         </table>
                         <button onClick = { onClickRegist }>등록하기</button>
-                    </div>
                 </div>
             </div>
         </div>

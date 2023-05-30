@@ -65,6 +65,7 @@ function StudentDetail() {
     if (confirmed) {
       console.log('evaCode : ', evaCode);
       dispatch(callEvaDeleteForAdminAPI({ evaCode }));
+      window.location.reload();
     } else {
       console.log("평가 삭제가 취소되었습니다.");
     }
@@ -75,16 +76,17 @@ function StudentDetail() {
     if (confirmed) {
       console.log('adviceLogCode : ', adviceLogCode);
       dispatch(callAdviceDeleteForAdminAPI({ adviceLogCode }));
+      window.location.reload();
     } else {
       console.log("상담 삭제가 취소되었습니다.");
     }
   };
 
-  const studyStuDelete = (studyCode) => {
+  const studyStuDelete = (stuCode) => {
     const confirmed = window.confirm("강의 내역을 삭제하시겠습니까?");
     if (confirmed) {
-      console.log('studyCode : ', studyCode);
-      dispatch(callStudyStuDeleteAdminAPI({ studyCode }));
+      console.log('stuCode : ', stuCode);
+      dispatch(callStudyStuDeleteAdminAPI({ stuCode }));
     } else {
       console.log("강의 삭제가 취소되었습니다.");
     }
@@ -210,7 +212,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>이름</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuName'
                                             type='text'
                                             onChange={onChangeHandler}
@@ -222,7 +224,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>영문이름</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuEngName'
                                             type='text'
                                             onChange={onChangeHandler}
@@ -234,7 +236,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>생년월일</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuBirth'
                                             type='date'
                                             onChange={onChangeHandler}
@@ -246,7 +248,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>학력</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuEndSchool'
                                             type='text'
                                             onChange={onChangeHandler}
@@ -258,7 +260,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>이메일</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuEmail'
                                             type='text'
                                             onChange={onChangeHandler}
@@ -270,7 +272,7 @@ function StudentDetail() {
                                 <tr>
                                     <td>전화번호</td>
                                     <td>
-                                        <input className="stuDetailBox"
+                                        <input className={`stuDetailBox ${modifyMode ? 'modifyMode' : ''}`}
                                             name='stuPhone'
                                             type='text'
                                             onChange={onChangeHandler}

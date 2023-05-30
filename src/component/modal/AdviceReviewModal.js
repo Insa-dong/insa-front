@@ -14,10 +14,10 @@ function AdviceReviewModal({ adviceReview, setAdviceReviewModal }) {
                 </div>
                 <div className={CSS.adviceReviewModalDiv}>
                     <div className={CSS.title}>
-                        <h1>상담일지</h1>
+                        <h1>💌 상담일지</h1>
                     </div>
-
-                    <h1>수정 일</h1>
+                    <div className={CSS.evaUpdate1}>
+                    <p>💾 수정일</p>
                     
                     <input
                         type="text"
@@ -25,13 +25,16 @@ function AdviceReviewModal({ adviceReview, setAdviceReviewModal }) {
                         readOnly={true}
                         value={adviceReview.adviceLogUpdate  || ""}
                         />
-
+                    </div>
+                    <div className={CSS.evaContent}>
+                        <p>💡 상담 내용</p>
                     <textarea
                         placeholder="상담 일지 본문"
                         name="adviceLogContent"
                         readOnly={true}
                         value={adviceReview.adviceLogContent  || ""}
                     ></textarea>
+                    </div>
                 </div>
             </div>
         </div>

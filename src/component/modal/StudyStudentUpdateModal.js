@@ -12,7 +12,7 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
     studyEnrollDate: studyStudentUpdate?.studyEnrollDate?.split(" ")[0] || "",
   studyState: studyStudentUpdate?.studyState || "수강 중", 
   });
-  
+
   const { modify } = useSelector(state => state.studyStudentReducer);
   const navigate = useNavigate();
   
@@ -27,7 +27,7 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
   useEffect(() => {
     if (modify?.status === 200) {
         alert('강의 내용 수정이 완료되었습니다');
-        navigate('/student');
+        window.location.reload();
     }
 }, [modify]);
 
@@ -57,11 +57,12 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
         </div>
         <div className={CSS.adviceReviewModalDiv}>
           <div className={CSS.title}>
-            <h1>과정 정보 수정</h1>
+            <h1>🖥️ 과정 정보 수정</h1>
+            </div>
             <table>
               <tbody>
                 <tr>
-                  <th>과정명</th>
+                  <th className={CSS.tableTh}>과정명</th>
                   <td>
                     <input
                       type="text"
@@ -73,7 +74,7 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
                   </td>
                 </tr>
                 <tr>
-                  <th>등록일</th>
+                  <th className={CSS.tableTh}>등록일</th>
                   <td>
                     <input
                       type="date"
@@ -84,7 +85,7 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
                   </td>
                 </tr>
                 <tr>
-                  <th>수강 상태</th>
+                  <th className={CSS.tableTh}>수강 상태</th>
                   <td>
                     <select
                       name="studyState"
@@ -101,7 +102,6 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
             </table>
             <button onClick={onSaveHandler}>수정 하기</button>
           </div>
-        </div>
       </div>
     </div>
   );

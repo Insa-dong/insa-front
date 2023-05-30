@@ -13,6 +13,7 @@
 
 .title{
     margin-bottom: 2vw;
+    font-size: 20px;
 }
 
  .modalContainer{
@@ -51,6 +52,7 @@
 }
 
 .adviceReviewModalDiv textarea {
+    margin-top: 20px; 
     width: 90%;
     height: 250px;
     resize: none;

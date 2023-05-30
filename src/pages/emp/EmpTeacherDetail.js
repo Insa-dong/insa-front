@@ -30,10 +30,9 @@ const useConfirm = (message = null, onConfirm, onCancel) => {
 };
 
 function EmpTeacherDetail() {
-
     const title = '강의 별 수강생';
     const dispatch = useDispatch();
-    const [currentPage, setCurrentPage] = useState();
+    const [currentPage, setCurrentPage] = useState(1);
     const studyStudentState = useSelector(state => state.studyStudentReducer);
     const { studyCode } = useParams();
     const [selectedAttendReview, setSelectedAttendReview] = useState(null);
@@ -44,28 +43,32 @@ function EmpTeacherDetail() {
     const location = useLocation();
     const { item } = location.state;
     const [selectedDate, setSelectedDate] = useState('');
-    
+
     console.log('studyCode : ', studyCode);
     console.log('stuCode : ', stuCode);
     console.log('attendCode : ', attendCode);
 
-    useEffect(
-        () => {
-            /* 강의 별 수강생, 수강생 출결 */
-            dispatch(callSelectStudentAndAttendAPI({ studyCode, currentPage }));
-        },
-        [currentPage, studyCode]
-    );
+    useEffect(() => {
+        /* 강의 별 수강생, 수강생 출결 */
+        dispatch(callSelectStudentAndAttendAPI({ studyCode, currentPage }));
+    }, [currentPage, studyCode]);
+
+    useEffect(() => {
+        console.log('studyStudentState:', studyStudentState);
+    }, [studyStudentState]);
 
     const handleSearchDate = () => {
-        const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
-
-        if (selectedDate === today) {
-            dispatch(callStudentAttendSearchAPI({ attendDate: today, currentPage }));
-        } else if (selectedDate) {
-            dispatch(callStudentAttendSearchAPI({ attendDate: selectedDate, currentPage }));
+        if (selectedDate) {
+            dispatch(
+                callStudentAttendSearchAPI({
+                    attendDate: selectedDate,
+                    studyCode: studyCode,
+                    currentPage
+                })
+            );
         }
     };
+
 
     const handleDateChange = (event) => {
         setSelectedDate(event.target.value);
@@ -82,7 +85,6 @@ function EmpTeacherDetail() {
         navigate(`/empTeacher/detail/${studyCode}/${stuCode}`, { state: { item } });
     };
 
-
     return (
         <>
             <TeacherNavbar />
@@ -98,7 +100,8 @@ function EmpTeacherDetail() {
             )}
 
             <div className={CSS.attendSearchContainer}>
-                <input className={CSS.attendSearchDate}
+                <input
+                    className={CSS.attendSearchDate}
                     type="date"
                     name="selectDate"
                     value={selectedDate}
@@ -109,7 +112,7 @@ function EmpTeacherDetail() {
                 </button>
             </div>
 
-            <div className={CSS.StuWrapper} >
+            <div className={CSS.StuWrapper}>
                 <table className="stuDiv">
                     <thead className="stuHead">
                         <tr>
@@ -122,31 +125,31 @@ function EmpTeacherDetail() {
                         </tr>
                     </thead>
                     <tbody>
-                        {studyStudentState.data && studyStudentState.data.studentList && studyStudentState.data.studentList.length > 0 ? (
-                            studyStudentState.data.studentList.map((item) => {
-                                const studentAttendances = studyStudentState.data.attendList && studyStudentState.data.attendList.filter((attend) => attend.student.stuCode === item.student.stuCode);
-
-                                if (studentAttendances) {
-                                    studentAttendances.sort((a, b) => new Date(b.attendDate) - new Date(a.attendDate));
-                                }
+                        {studyStudentState.data &&
+                            studyStudentState.data.studentList &&
+                            studyStudentState.data.studentList.length > 0 ? (
+                            studyStudentState.data.studentList.map((studentItem) => {
+                                const studentAttendances = studyStudentState.data.attendList.filter((attendance) => attendance.student.stuCode === studentItem.student.stuCode);
+                                const sortedAttendances = studentAttendances.sort((a, b) => new Date(b.attendDate) - new Date(a.attendDate));
+                                const recentAttendance = sortedAttendances.length > 0 ? sortedAttendances[0] : null;
+                                const recentAttendStatus = recentAttendance ? recentAttendance.attendStatus : '출결 정보가 없습니다.';
+                                const recentAttendDate = recentAttendance ? recentAttendance.attendDate : '';
 
                                 return (
-                                    <tr key={item.student.stuCode}>
-                                        <td onClick={() => onClickStudentHandler(item.student.stuCode)}>{item.student.stuCode}</td>
-                                        <td onClick={() => onClickStudentHandler(item.student.stuCode)}>{item.student.stuName}</td>
-                                        <td onClick={() => onClickStudentHandler(item.student.stuCode)}>{item.studyCount}</td>
-                                        <td onClick={() => onClickStudentHandler(item.student.stuCode)}>{item.studyState}</td>
+                                    <tr key={studentItem.student.stuCode}>
+                                        <td onClick={() => onClickStudentHandler(studentItem.student.stuCode)}>{studentItem.student.stuCode}</td>
+                                        <td onClick={() => onClickStudentHandler(studentItem.student.stuCode)}>{studentItem.student.stuName}</td>
+                                        <td onClick={() => onClickStudentHandler(studentItem.student.stuCode)}>{studentItem.studyCount}</td>
+                                        <td onClick={() => onClickStudentHandler(studentItem.student.stuCode)}>{studentItem.studyState}</td>
                                         <td>
-                                            {studentAttendances && studentAttendances.length > 0 ? (
+                                            {recentAttendDate && (
                                                 <div>
-                                                    <p>{studentAttendances[0].attendDate} {studentAttendances[0].attendStatus}</p>
+                                                    <p>{recentAttendDate} {recentAttendStatus}</p>
                                                 </div>
-                                            ) : (
-                                                <p>출결 정보가 없습니다.</p>
                                             )}
                                         </td>
                                         <td>
-                                            <button className={CSS.attendRegistBtn} onClick={() => onClickRegistAttend(item, item.student.stuCode)}>등록</button>
+                                            <button className={CSS.attendRegistBtn} onClick={() => onClickRegistAttend(studentItem, studentItem.student.stuCode)}>등록</button>
                                         </td>
                                     </tr>
                                 );
