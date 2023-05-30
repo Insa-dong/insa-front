@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from "../../component/common/Header";
 import './Off.css';
@@ -33,7 +33,7 @@ function Off() {
         };
       
         fetchOffData();
-      }, []);
+      }, [dispatch]);
 
       const handleReloadPage = () => {
         navigate('/off', { replace: true });

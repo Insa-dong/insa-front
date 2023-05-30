@@ -14,7 +14,6 @@ function SignOffList({ signOffList, currentPage, searchOption, searchKeyword }) 
         setOffSignModal(true);
     };
 
-
     return (
         <>
             <table className="signOffListDiv">

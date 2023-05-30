@@ -91,10 +91,7 @@ const calculateTotalWorkTime = (start, end) => {
         </td>
       </tr>
       {absModifyModal && (
-        <AbsModifyModal
-          abs={abs}
-          setAbsModifyModal={setAbsModifyModal}
-        />
+        <AbsModifyModal abs={abs} setAbsModifyModal={setAbsModifyModal} />
       )}
     </>
   );

@@ -1,7 +1,7 @@
 import './SignOffItem.css';
 
-function SignOffItem({ off, onClick}) {
-  
+function SignOffItem({ off, onClick }) {
+
 
   let statusColor;
   switch (off.signStatus) {
@@ -14,6 +14,8 @@ function SignOffItem({ off, onClick}) {
     case "승인":
       statusColor = "#8CBAFF";
       break;
+    default:
+      statusColor = "";
   }
 
   /* 날짜 형식 변환 */
@@ -27,12 +29,12 @@ function SignOffItem({ off, onClick}) {
       timeZone: 'UTC'
     };
     return date.toLocaleDateString('ko-KR', options).replace(/. /g, '.');
-};
-  
+  };
+
 
   return (
     <>
-    
+
       <tr className="signOffDiv" onClick={() => onClick(off)}>
         <td className='td-requestDate'>{formatDate(off.requestDate)}</td>
         <td className='td-job'>{off.signRequester.job.jobName}</td>
@@ -45,10 +47,10 @@ function SignOffItem({ off, onClick}) {
           <button className="btn-signStatus3" style={{ backgroundColor: statusColor }}>{off.signStatus}</button>
         </td>
       </tr>
-      
-     
 
-      
+
+
+
     </>
   );
 }

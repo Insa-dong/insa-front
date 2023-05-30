@@ -1,6 +1,6 @@
 import {
     postApply, getOffNow, getComingupOff, getPastOff,
-    deleteOff, getSignOff, putSignOff
+    deleteOff, getTeamOff, getSignOff, putSignOff
 } from "../modules/OffModule";
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -131,6 +131,35 @@ export const callCencelOffAPI = ({ signCode }) => {
         }
     }
 };
+
+/* 팀원 연차 현황 조회 API */
+
+export const callTeamOffListAPI = ({ currentPage, searchOption, searchKeyword }) => {
+    //검색 옵션(searchOption)이 빈 문자열이거나, searchOption이 'remainingOff'이고 searchKeyword가 ''인 경우에 대한 처리
+    let requestURL = `${PRE_URL}/teamOff?page=${currentPage}`;
+    if (searchOption && searchKeyword) {
+        requestURL += `&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
+    } else if (searchOption === 'remainingOff' && searchKeyword === '') {
+        requestURL += `&searchOption=&searchKeyword=`;
+    }
+
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
+
+        console.log('Server response:', result);
+
+        if (result.status === 200) {
+            dispatch(getTeamOff(result));
+        }
+    }
+}
 
 /* 연차 신청 내용 API */
 export const callSignOffListAPI = ({ currentPage, searchOption, searchKeyword }) => {

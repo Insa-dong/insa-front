@@ -30,7 +30,7 @@ function OffApplyModal({ setOffApplyModal }) {
             navigate('/off');
         }
 
-    }, [offApply]);
+    }, [offApply, navigate]);
 
     const onChangeHandler = (e) => {
         setForm({
@@ -125,13 +125,20 @@ function OffApplyModal({ setOffApplyModal }) {
                     <h1 >✈️ 연차정보</h1>
                     <div className="offInfoContainer">
 
-                        <div className="offInfo1">1년당 15개 사용 가능</div>
+                        <div className="offInfo1">연간 15개 사용 가능</div>
                         <div className="offInfo2">유급</div>
                         <div className="offInfo3">연말만료</div>
                     </div>
+                    <h1 >🚥 반차정보</h1>
+                    <div className="offInfoContainer">
+
+                        <div className="offInfo1">연차 0.5개 차감</div>
+                        <div className="offInfo2">오전/오후</div>
+                        <div className="offInfo3">4시간</div>
+                    </div>
                     {/*<h1>💡 사용 가능 연차</h1>
                     <div className="offCount">n일</div>*/}
-                    <h1>📌 신청 연차 종류</h1>
+                    <h1 className="offDivH1">📌 신청 연차 종류</h1>
                     <select
                         className="offDivBox"
                         name="offDiv"
