@@ -20,9 +20,9 @@ export const callStudyStuListAPI = ({ stuCode , currentPage = 1 }) => {
 
 }
 
-export const callStudyStuDeleteAdminAPI = ({stuCode}) => {
+export const callStudyStuDeleteAdminAPI = ({studyCode}) => {
 
-   const requestURL = `${PRE_URL}/students-management/study/${stuCode}`;
+   const requestURL = `${PRE_URL}/students-management/study/${studyCode}`;
   
     return async (dispatch, getState) => {
       const result = await fetch(requestURL, {

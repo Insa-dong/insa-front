@@ -47,12 +47,12 @@ function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
                 </div>
                 <div className={CSS.adviceReviewModalDiv}>
                     <div className={CSS.title}>
-                        <h1>상담 등록</h1>
+                        <h1>📋 상담 등록</h1>
+                        </div>
                         <table>
                             <tbody>
-                                <tr>
-                                    <th>상담 일지</th>
-                                    <td>
+                                <tr style={{display: 'flex', flexDirection: 'column'}}>
+                                    <td style={{marginLeft: '2.5vw'}}>
                                         <textarea
                                             type="text"
                                             name="adviceLogContent"
@@ -61,20 +61,19 @@ function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>등록 일</th>
+                                    {/* <th>등록 일</th>
                                     <td>
                                         <input
                                             type="date"
                                             name="adviceLogDate"
                                             onChange={ onChangeHandler }
                                         />
-                                    </td>
+                                    </td> */}
                                 </tr>
                             </tbody>
                         </table>
                         <button onClick = { onClickAdviceRegistHandler } >등록하기</button>
                     </div>
-                </div>
             </div>
         </div>
     );

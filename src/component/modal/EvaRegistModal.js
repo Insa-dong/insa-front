@@ -55,25 +55,14 @@ function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) 
                         </div>
                         <table>
                             <tbody>
-                                <tr>
-                                    <th>평가</th>
-                                    <td>
+                                <tr style={{display: 'flex', flexDirection: 'column'}}>
+                                    <td style={{marginLeft: '2.5vw'}}>
                                         <textarea
                                             type="text"
                                             name="evaWriteContent"
                                             onChange={  onChangeHandler }
                                         />
                                     </td>
-                                </tr>
-                                <tr>
-                                    {/* <th>등록 일</th>
-                                    <td>
-                                        <input
-                                            type="date"
-                                            name="evaWriteDate"
-                                            onChange={ onChangeHandler }
-                                        />
-                                    </td> */}
                                 </tr>
                             </tbody>
                         </table>

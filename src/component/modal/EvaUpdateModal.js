@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import CSS from "./AdviceUpdateModal.module.css";
+import CSS from "./EvaUpdateModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { callEvaUpdateAPI } from "../../apis/EvaAPICalls";
 import { useState } from "react";
@@ -53,40 +53,18 @@ function EvaUpdateModal({ stuCode, setEvaUpdateModal, studyInfoCode, empCode, ev
                 </div>
                 <div className={CSS.adviceReviewModalDiv}>
                     <div className={CSS.title}>
-                        <h1>평가 수정</h1>
+                        <h1>💌 평가 수정</h1>
+                        </div>
                         <table>
                             <tbody>
                                 {selectedEvaluation && (
                                     <>
-                                        <tr key={selectedEvaluation.evaCode}>
-                                            <th>평가</th>
-                                            <td>
+                                        <tr key={selectedEvaluation.evaCode} style={{display: 'flex', flexDirection: 'column'}}>
+                                            <td style={{marginLeft: '2.5vw'}}>
                                                 <textarea
                                                     type="text"
                                                     name="evaWriteContent"
                                                     value={form.evaWriteContent || selectedEvaluation.evaWriteContent}
-                                                    onChange={onChangeHandler}
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>등록 일</th>
-                                            <td>
-                                                <input
-                                                    type="date"
-                                                    name="evaWriteDate"
-                                                    value={form.evaWriteDate || selectedEvaluation.evaWriteDate}
-                                                    onChange={onChangeHandler}
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>수정 일</th>
-                                            <td>
-                                                <input
-                                                    type="date"
-                                                    name="evaUpdateTime"
-                                                    value={form.evaUpdateTime || selectedEvaluation.evaUpdateTime}
                                                     onChange={onChangeHandler}
                                                 />
                                             </td>
@@ -96,7 +74,6 @@ function EvaUpdateModal({ stuCode, setEvaUpdateModal, studyInfoCode, empCode, ev
                             </tbody>
                         </table>
                         <button onClick={onSaveHandler}>수정하기</button>
-                    </div>
                 </div>
             </div>
         </div>
