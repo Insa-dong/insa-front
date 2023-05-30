@@ -1,5 +1,7 @@
-import { postApply, getOffNow, getComingupOff, getPastOff, 
-    deleteOff, getSignOff, putSignOff } from "../modules/OffModule";
+import {
+    postApply, getOffNow, getComingupOff, getPastOff,
+    deleteOff, getSignOff, putSignOff
+} from "../modules/OffModule";
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -7,58 +9,58 @@ const PRE_URL = `http://${SERVER_IP}:${SERVER_PORT}/off`;
 
 /* 연차 신청 API */
 export const callApplyAPI = (form) => {
-  const requestURL = `${PRE_URL}/apply`;
-  
-  console.log(form);
+    const requestURL = `${PRE_URL}/apply`;
 
-	return async (dispatch, getState) => {
+    console.log(form);
 
-		const result = await fetch(requestURL, {
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
-			},
-			body: JSON.stringify(form)
-		}).then(res => res.json());
+    return async (dispatch, getState) => {
 
-		console.log(result);
+        const result = await fetch(requestURL, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body: JSON.stringify(form)
+        }).then(res => res.json());
 
-		if (result.status === 200) {
-			dispatch(postApply(result));
+        console.log(result);
+
+        if (result.status === 200) {
+            dispatch(postApply(result));
             dispatch(callComingupOffListAPI());
             dispatch(callPastOffListAPI());
             dispatch(callOffNowAPI());
-		}
-	}
+        }
+    }
 }
-  
-  /* 연차 현황 API */
-  export const callOffNowAPI = () => {
+
+/* 연차 현황 API */
+export const callOffNowAPI = () => {
 
     const requestURL = `${PRE_URL}/myOff`;
 
     return async (dispatch, getState) => {
-      const result = await fetch(requestURL, {
-          method: 'GET',
-          headers: {
-              "Content-Type": "application/json",
-              "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
-          }
-      }).then(response => response.json());
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
 
-      console.log(result); 
+        console.log(result);
 
-      if(result.status === 200) {
-          dispatch(getOffNow(result));
-      }
-  }
+        if (result.status === 200) {
+            dispatch(getOffNow(result));
+        }
+    }
 };
-  
-  
 
-  /* 예정 연차 조회 API */
-  export const callComingupOffListAPI = () => {
+
+
+/* 예정 연차 조회 API */
+export const callComingupOffListAPI = () => {
 
     const requestURL = `${PRE_URL}/my-comingUp-off`;
 
@@ -73,19 +75,19 @@ export const callApplyAPI = (form) => {
 
         console.log('Server response:', result);  // 서버 응답 출력
 
-        if(result.status === 200) {
+        if (result.status === 200) {
             dispatch(getComingupOff(result));
         }
     }
 };
 
-  /* 연차 사용 기록 조회 API */
-  export const callPastOffListAPI = (year) => {
+/* 연차 사용 기록 조회 API */
+export const callPastOffListAPI = (year) => {
 
     let requestURL = `${PRE_URL}/my-past-off`;
 
     if (year) {
-      requestURL += `?year=${year}`;
+        requestURL += `?year=${year}`;
     }
 
     return async (dispatch, getState) => {
@@ -99,14 +101,14 @@ export const callApplyAPI = (form) => {
 
         console.log('Server response:', result);  // 서버 응답 출력
 
-        if(result.status === 200) {
+        if (result.status === 200) {
             dispatch(getPastOff(result));
         }
     }
 };
 
 /* 연차 신청 취소(삭제) API */
-export const callCencelOffAPI = ({signCode}) => {
+export const callCencelOffAPI = ({ signCode }) => {
 
     const requestURL = `${PRE_URL}/cancelOff/${signCode}`;
 
@@ -121,7 +123,7 @@ export const callCencelOffAPI = ({signCode}) => {
 
         console.log('Server response:', result);  // 서버 응답 출력
 
-        if(result.status === 200) {
+        if (result.status === 200) {
             dispatch(deleteOff(result));
             dispatch(callComingupOffListAPI());
             dispatch(callComingupOffListAPI());
@@ -131,8 +133,14 @@ export const callCencelOffAPI = ({signCode}) => {
 };
 
 /* 연차 신청 내용 API */
-export const callSignOffListAPI = ({ currentPage = 1 }) => {
-    const requestURL = `${PRE_URL}/mySignOff?page=${currentPage}`;
+export const callSignOffListAPI = ({ currentPage, searchOption, searchKeyword }) => {
+    //검색 옵션(searchOption)이 빈 문자열이거나, searchOption이 'signStatus'이고 searchKeyword가 '전체'인 경우에 대한 처리
+    let requestURL = `${PRE_URL}/mySignOff?page=${currentPage}`;
+    if (searchOption && searchKeyword) {
+        requestURL += `&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
+    } else if (searchOption === 'signStatus' && searchKeyword === '전체') {
+        requestURL += `&searchOption=&searchKeyword=`;
+    }
 
 
     return async (dispatch, getState) => {
@@ -144,9 +152,9 @@ export const callSignOffListAPI = ({ currentPage = 1 }) => {
             }
         }).then(response => response.json());
 
-        console.log('Server response:', result);  // 서버 응답 출력
+        console.log('Server response:', result);
 
-        if(result.status === 200) {
+        if (result.status === 200) {
             dispatch(getSignOff(result));
         }
     }
@@ -164,14 +172,13 @@ export const callSignApplyAPI = (form, signCode) => {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
             },
-            body: JSON.stringify(form)  // form 데이터를 JSON 형태로 변환하여 보냅니다.
+            body: JSON.stringify(form)
         }).then(response => response.json());
 
-        console.log('Server response:', result);  // 서버 응답 출력
+        console.log('Server response:', result);
 
-        if(result.status === 200) {
+        if (result.status === 200) {
             dispatch(putSignOff(result));
-            dispatch(callSignOffListAPI());
 
         }
     }

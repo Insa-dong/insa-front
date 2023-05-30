@@ -3,11 +3,11 @@ import './StudentList.css';
 
 function EmpTeacherList({ teacher }) {
 
-console.log('teacher : ', teacher);
+    console.log('teacher : ', teacher);
 
-    return(
-        <table className = "stuDiv">
-            <thead className = "stuHead">
+    return (
+        <table className="stuDiv">
+            <thead className="stuHead">
                 <tr>
                     <th>강의 코드</th>
                     <th>강의 명</th>
@@ -16,9 +16,9 @@ console.log('teacher : ', teacher);
                 </tr>
             </thead>
             <tbody>
-                { teacher.data &&
+                {teacher.data &&
                     teacher.data.map(item => (
-                        <EmpTeacherItem item = { item } key = { item.empCode } studyCode={item.study.studyCode} />
+                        <EmpTeacherItem item={item} key={item.empCode} studyCode={item.study.studyCode} />
                     ))}
             </tbody>
         </table>

@@ -60,9 +60,6 @@
     text-align: left;
 }
 
-.colorInput {
-}
-
 .textInput {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -74,7 +71,7 @@
     text-align: left;
 }
 
-.trainingModalDiv button {
+.saveButton {
     margin-top: 45px;
     margin-bottom: 5px;
     height: 35px;
@@ -82,8 +79,12 @@
     border-radius: 5px;
     background-color: #8CBAFF;
     color: #fff;
-    border: solid 1.5px #8CBAFF;
+    border: none;
     cursor: pointer;
+}
+
+.saveButton:hover {
+    background-color: rgb(162, 241, 178);
 }
 
 
@@ -96,7 +97,7 @@
     width: 70px;
     border-radius: 5px;
     border: 1px solid #8CBAFF;
-    margin-left: 30px
+    margin-left: 30px;
 }
 
 .custom-cancel-button {

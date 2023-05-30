@@ -1,12 +1,91 @@
 .modifyButton {
     width: 10vh;
-    height: 5vh;
+    height: 5.15vh;
     background-color: #8CBAFF;
     border-radius: 5px;
     color: #FFFFFF;
-    border: 1px solid #8CBAFF;
     cursor: pointer;
     font-weight: 700;
-    margin-top: 2%;
-    margin-left: 78.4%;
+    margin-top: 0.95%;
+    margin-left: 39%;
+    position: absolute;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+}
+
+.modifyButton span {
+    position: relative;
+    display: block;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.modifyButton:before,
+.modifyButton:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 0;
+    background: #a2f1b2;
+    transition: all 0.3s ease;
+}
+
+.modifyButton:hover {
+    background-color: #a2f1b2;
+}
+
+.modifyButton:before {
+    height: 0;
+    width: 2px;
+}
+
+.modifyButton:after {
+    width: 0;
+    height: 2px;
+}
+
+.modifyButton:hover:before {
+    height: 100%;
+}
+
+.modifyButton:hover:after {
+    width: 100%;
+}
+
+.modifyButton:hover {
+    background: transparent;
+}
+
+.modifyButton span:hover {
+    color: #8CBAFF;
+}
+
+.modifyButton span:before,
+.modifyButton span:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    background: #8CBAFF;
+    transition: all 0.5s;
+}
+
+.modifyButton span:before {
+    width: 2px;
+    height: 0;
+}
+
+.modifyButton span:after {
+    height: 2px;
+    border: 20px;
+}
+
+.modifyButton span:hover:before {
+    height: 95%;
+}
+
+.modifyButton span:hover:after {
+    width: 100%;
 }

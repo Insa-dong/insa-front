@@ -1,3 +1,50 @@
 .offSignPageDiv {
     padding-bottom: 1vw;
 }
+
+
+/*검색영역*/
+.OffSignSearchBox {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+
+.OffSignSearchBox > * {
+    /* margin-right: 1vw; */
+    border: 2px solid #8CBAFF !important;
+    border-radius: 7px;
+}
+
+/*셀렉트박스*/
+#OffSignSelect {
+    width: 5vw;
+    text-align: center;
+    color: #424242;
+    margin-right: 20px;
+}
+
+#OffSignsearch{
+    margin-right: 20px;
+}
+
+#SignStatusSelect{
+    margin-right: 20px;
+    width: 11vw;
+}
+
+/*검색버튼*/
+.off-SearchBtn {
+    width: 2.4vw;
+    height: 2.4vw;
+    background-color: #8CBAFF;
+    padding-left: 0.2vw;
+    cursor: pointer;
+    border: none !important;
+}
+
+.off-SearchBtn > img {
+    width: 2vw;
+    height: 2vw;
+}

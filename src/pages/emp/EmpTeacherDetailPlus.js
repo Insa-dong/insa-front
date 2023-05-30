@@ -15,6 +15,8 @@ import EvaRegistModal from "../../component/modal/EvaRegistModal";
 import EvaUpdateModal from "../../component/modal/EvaUpdateModal";
 import EvaReviewCheckModal from "../../component/modal/EvaReviewCheckModal";
 import AdviceReviewModal from "../../component/modal/AdviceReviewModal";
+import { callStudentAttendDeleteAPI } from "../../apis/AttendAPICalls";
+import StudentAttendUpdateModal from "../../component/modal/StudentAttendUpdateModal";
 
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
@@ -61,7 +63,10 @@ function EmpTeacherDetailPlus() {
   const [evaReviewModalVisible, setEvaReviewModalVisible] = useState(false);
   const [selectedAdviceReview, setSelectedAdviceReview] = useState(null);
   const [adviceReviewModalVisible, setAdviceReviewModalVisible] = useState(false);
+  const [selectedAttendUpdate, setSelectedAttendUpdate] = useState(null);
+  const [attendUpdateModalVisible, setAttendUpdateModalVisible] = useState(false);
   const location = useLocation();
+  const [attendCode, setAttendCode] = useState();
   const { item } = location.state;
   const { studyInfoCode, teacher: { empCode } } = item;
   const navigate = useNavigate();
@@ -80,7 +85,7 @@ function EmpTeacherDetailPlus() {
     dispatch(callStudentAttendDetailAPI({ stuCode, currentPage }));
   }, [stuCode, currentPage]);
 
- 
+
   const evaDelete = (evaCode) => {
     const confirmed = window.confirm("평가 내역을 삭제하시겠습니까?");
     if (confirmed) {
@@ -100,6 +105,22 @@ function EmpTeacherDetailPlus() {
       console.log("상담 삭제가 취소되었습니다.");
     }
   };
+
+  const attendDelete = (attendCode) => {
+    const confirmed = window.confirm("출석 내역을 삭제하시겠습니까?");
+    if (confirmed) {
+      console.log('DeleteAttendCode : ', attendCode);
+      dispatch(callStudentAttendDeleteAPI({ attendCode }));
+    } else {
+      console.log("출결 삭제가 취소되었습니다.");
+    }
+  };
+
+  const onClickUpdateAttend = (attendCode) => {
+    setSelectedAttendUpdate(attendCode);
+    console.log('attendCode : ', attendCode);
+    setAttendUpdateModalVisible(true);
+  }
 
   const onClickRegistHandler = (adviceRegist) => {
     setSelectedRegistAdvice(adviceRegist);
@@ -173,6 +194,13 @@ function EmpTeacherDetailPlus() {
           </>
         )}
 
+        {attendUpdateModalVisible && (
+          <StudentAttendUpdateModal
+            attendCode={selectedAttendUpdate}
+            setStudentAttendUpdateModal={setAttendUpdateModalVisible}
+            stuCode={stuCode}
+          />
+        )}
 
         <h2 className="studyHeader">출결 내역</h2>
         <table className="stuDetailDiv">
@@ -182,6 +210,7 @@ function EmpTeacherDetailPlus() {
               <th>출석 코드</th>
               <th>날짜</th>
               <th>출석</th>
+              <th>수정/삭제</th>
             </tr>
           </thead>
           <tbody>
@@ -192,11 +221,15 @@ function EmpTeacherDetailPlus() {
                   <td>{attend.attendCode}</td>
                   <td>{attend.attendDate}</td>
                   <td>{attend.attendStatus}</td>
+                  <td>
+                    <button className = "attendUpdateBtn" onClick={ () => onClickUpdateAttend(attend.attendCode)}>수정</button>
+                    <button className = "attendDeleteBtn" onClick={ () => attendDelete(attend.attendCode)}>삭제</button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="4">출석 내역이 없습니다.</td>
+                <td colSpan="5">출석 내역이 없습니다.</td>
               </tr>
             )}
           </tbody>
