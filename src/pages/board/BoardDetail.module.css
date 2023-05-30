@@ -11,18 +11,56 @@
     font-size: 17pt;
 }
 
+.titleModify {
+    margin-left: 1vw;
+    width: 50vw;
+    font-size: 17pt;
+    border: 1px gray solid;
+    border-radius: 10px;
+}
+
 .date {
     font-size: 13pt;
-    margin-left: 10vw;
+    margin-left: 1vw;
 }
 
 .maintext {
     margin-top: 1vh;
-    padding-left: 1vw;
+    margin-left: 1vw;
+    width: 71.5vw;
+    height: 50vh;
+    resize: none;
+    border: none;
+    outline: none;
+}
+
+.maintextModify {
+    margin-top: 1vh;
+    margin-left: 1vw;
+    width: 71.5vw;
+    height: 50vh;
+    resize: none;
+    border: 1px gray solid;
+    border-radius: 10px;
+    outline: none;
+
+}
+
+.characterCount {
+    margin-left: 68vw;
 }
 
 .file {
     margin-top: 0.7vh;
+}
+
+.fileNone {
+    margin-top: 0.7vh;
+}
+
+.file:hover {
+    color: gray;
+    text-decoration: underline;
 }
 
 .fileImgg {
@@ -37,7 +75,7 @@
     border-bottom: 1px lightgray solid;
     margin-right: 1vw;
     margin-top: 1vh;
-    padding-bottom: 40vh;
+    padding-bottom: 1vh;
 }
 
 .job{

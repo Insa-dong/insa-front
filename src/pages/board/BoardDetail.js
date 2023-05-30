@@ -4,7 +4,7 @@ import CSS from "./BoardDetail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callBoardDeleteAPI, callBoardDetailAPI, callBoardUpdateAPI, callDeleteFileAPI, fileDownloadAPI } from "../../apis/BoardAPICall";
-
+import React from "react";
 function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short", hour12: false };
@@ -23,8 +23,12 @@ function BoardDetail() {
     const { update } = useSelector(state => state.boardReducer);
     const { erase } = useSelector(state => state.boardReducer);
     const [form, setForm] = useState({});
+    const [deleteFile , SetDeleteFile] = useState();
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [beforeFiles, setBeforeFiles] = useState([]);
+
+    console.log(detail);
+    console.log(deleteFile);
 
     // const allFiles = beforeFiles.concat(selectedFiles);
 
@@ -47,10 +51,11 @@ function BoardDetail() {
             formData.append(`noticeFile[${index}]`, file);
         });
 
+
         console.log(formData);
 
-
         dispatch(callBoardUpdateAPI(formData));
+        dispatch(callDeleteFileAPI(deleteFile));
 
         // 페이지 새로고침
         window.location.reload();
@@ -106,10 +111,10 @@ function BoardDetail() {
             <div key={fileName.originFileName}>
                 {fileName.originFileName}
                 <button
-                    onClick={() => {
+                    onClick={(e) => {
 
                         handleClearBeforeFile(fileName)
-                        dispatch(callDeleteFileAPI(fileName.saveFileName));
+                        SetDeleteFile(fileName.saveFileName);
                     }
                     }
                 >
@@ -160,25 +165,41 @@ function BoardDetail() {
                         <input
                             name="noticeTitle"
                             placeholder='제목'
-                            className={CSS.title}
+                            className={!modifyMode ? CSS.title : CSS.titleModify}
                             value={!modifyMode ? detail.noticeTitle : form.noticeTitle}
                             readOnly={!modifyMode}
+                            autoComplete='off'
                             onChange={onChangeHandler}
                         />
-                        <li className={CSS.date}>
-                            {detail.noticeModifyDate === null
-                                ? formatDate(detail.noticeWriteDate)
-                                : formatDate(detail.noticeModifyDate)}</li>
+                        <ul style={{ display: 'flex', flexDirection: 'column', marginLeft: '7vw' }}>
+                            <ul style={{ display: 'flex', paddingBottom: '1vh' }}>
+                                <li>작성일 : </li>
+                                <li className={CSS.date}>{formatDate(detail.noticeWriteDate)}</li>
+                            </ul>
+                            {detail.noticeModifyDate !== null && (
+                                <ul style={{ display: 'flex', color: 'gray' }}>
+                                    <li>수정일 : </li>
+                                    <li className={CSS.date}>{formatDate(detail.noticeModifyDate)}</li>
+                                </ul>
+                            )}
+
+                        </ul>
                     </ul>
                     <div className={CSS.maincontent}>
-                        <input
+                        <textarea
                             name="noticeContent"
                             placeholder='내용'
-                            className={CSS.maintext}
+                            maxlength='1000'
+                            className={!modifyMode ? CSS.maintext : CSS.maintextModify}
                             value={!modifyMode ? detail.noticeContent : form.noticeContent}
                             readOnly={!modifyMode}
                             onChange={onChangeHandler}
                         />
+                        {modifyMode && (
+                            <div className={CSS.characterCount}>
+                                {form.noticeContent.length}/{1000}자
+                            </div>
+                        )}
                     </div>
 
                     {!modifyMode ?
@@ -198,7 +219,7 @@ function BoardDetail() {
                                         </ul>
                                     ))
                                 ) : (
-                                    <tr className={CSS.file}>
+                                    <tr className={CSS.fileNone}>
                                         <td colSpan="3">첨부파일이 없습니다.</td>
                                     </tr>
                                 ))}
@@ -254,6 +275,11 @@ function BoardDetail() {
                                 onClick={onClickProductUpdateHandler}
                             >
                                 수정완료
+                            </button>
+                            <button className={CSS.deleteBtn}
+                                onClick={() => { setModifyMode(false) }}
+                            >
+                                수정취소
                             </button>
                         </div>
                     }
