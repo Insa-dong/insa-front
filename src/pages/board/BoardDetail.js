@@ -165,7 +165,10 @@ function BoardDetail() {
                             readOnly={!modifyMode}
                             onChange={onChangeHandler}
                         />
-                        <li className={CSS.date}>{formatDate(detail.noticeWriteDate)}</li>
+                        <li className={CSS.date}>
+                            {detail.noticeModifyDate === null
+                                ? formatDate(detail.noticeWriteDate)
+                                : formatDate(detail.noticeModifyDate)}</li>
                     </ul>
                     <div className={CSS.maincontent}>
                         <input
