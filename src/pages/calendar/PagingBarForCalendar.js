@@ -8,9 +8,9 @@ function PagingBarForCalendar({pageInfo, setCurrentPage}) {
 			pageNumber.push(i);
 		}
 	}
-
+	
 	return (
-		<span className = {PagingBarCSS.productDiv}>
+		<div className = {PagingBarCSS.productDiv}>
 			<button
 				className = {PagingBarCSS.pagingBtn}
 				onClick = {() => setCurrentPage(pageInfo.currentPage - 1)}
@@ -39,7 +39,7 @@ function PagingBarForCalendar({pageInfo, setCurrentPage}) {
 			>
 				&gt;
 			</button>
-		</span>
+		</div>
 	);
 }
 

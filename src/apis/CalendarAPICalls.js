@@ -25,9 +25,23 @@ export const callMyCalListAPI = () => {
 	}
 }
 
-export const callMyPagingCalListAPI = () => {
+export const callMyPagingCalListAPI = ({currentPage, sort}) => {
 
-	const requestURL = `${PRE_URL}/myPagingScheduleList`
+	switch (sort) {
+		case 1 :
+			sort = 'calCode';
+			return;
+		case 2 :
+			sort = 'calStartDate';
+			return;
+		case 3 :
+			sort = 'calEndDate';
+			return
+		default :
+			sort = 'calCode';
+	}
+
+	const requestURL = `${PRE_URL}/myPagingScheduleList?page=${currentPage}&sort=${sort}`
 
 	return async (dispatch, getState) => {
 

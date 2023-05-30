@@ -1,6 +1,8 @@
 .mainContainer {
     width: 50%;
+    max-width: 50%;
     height: 78vh;
+    max-height: 78vh;
     margin-left: 20vw;
     float: left;
     display: inline;
@@ -9,12 +11,12 @@
 .subContainer {
     float: right;
     margin-right: 2.4%;
+    width: 520px;
     border-collapse: separate;
     border-spacing: 1vh;
-    width: 56vh;
     text-align: center;
     display: flex;
-    justify-content: space-between;
+    flex-flow: wrap;
 }
 
 .insertButton {
@@ -34,12 +36,42 @@
     background-color: rgb(162, 241, 178);
 }
 
-.calendarTable {
+.sortButton {
+    margin-top: 1%;
+    padding: 2px;
+    background-color: #8CBAFF;
+    border-radius: 5px;
+    height: 4vh;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
     margin-left: 18%;
-    border: 1px solid black;
+}
+
+.sortButton:hover {
+    background-color: rgb(162, 241, 178);
+}
+
+.sortButton1 {
+    margin-top: 1%;
+    padding: 2px;
+    background-color: rgb(111, 171, 124);
+    border-radius: 5px;
+    height: 4vh;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    margin-left: 18%;
+}
+
+.calendarTable {
+    margin-left: 11%;
+    width: 500px;
+    max-width: 500px;
     border-collapse: separate;
-    border-spacing: 1vh;
-    width: 20vh;
+    border-spacing: 3vh;
     text-align: center;
 }
 
@@ -53,14 +85,20 @@
 }
 
 .calendarTr {
-    height: 7vh;
+    height: 20px;
+    min-height: 20px;
+    max-height: 20px;
 }
 
-.calendarTr td {
-    width: 25vh;
-    max-width: 25vh;
-    max-height: 5vh;
-    overflow: hidden;
+.calendarTr td:first-child {
+    width: 185px;
+}
+
+.calendarTr td:last-child {
+    width: 232px;
+    max-width: 232px;
+    min-width: 232px;
     text-overflow: ellipsis;
+    overflow: hidden;
     font-weight: normal;
 }

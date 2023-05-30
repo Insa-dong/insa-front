@@ -34,7 +34,7 @@
 }
 
 .fc-event.fc-event-draggable {
-    cursor: help;
+    cursor: pointer;
     font-size: 0;
 }
 

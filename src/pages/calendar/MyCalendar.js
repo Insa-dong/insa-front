@@ -121,7 +121,8 @@ function MyCalendar() {
 					dayMaxEvents = {3}
 					eventChange = {(e) => setMySchedule(e.event)}
 					eventClick = {(e) => viewMySchedule(e.event)}
-					eventContent = {(e) => popupSchedule(e.event)}/>
+					eventContent = {(e) => popupSchedule(e.event)}
+				/>
 			</div>
 			{info && info.calCode &&
 				<ScheduleInfoModal info = {info} modalOpen = {modalOpen} setModalOpen = {setModalOpen}/>}
