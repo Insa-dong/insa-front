@@ -44,8 +44,9 @@
 .adviceReviewModalDiv input {
     margin-top: 5px;
     margin-bottom: 15px;
+    margin-left: -30px;
     height: 30px;
-    width: 90%;
+    width: 150%;
     border-radius: 5px;
     text-indent: 1.2em;
     border: solid 1.5px #8CBAFF;
@@ -54,8 +55,9 @@
 .adviceReviewModalDiv select {
     margin-top: 5px;
     margin-bottom: 15px;
+    margin-left: -30px;
     height: 30px;
-    width: 90%;
+    width: 150%;
     border-radius: 5px;
     text-indent: 1.2em;
     border: solid 1.5px #8CBAFF;
@@ -94,7 +96,7 @@
 }
 
 .tableTh {
-    padding-left: 3vw;
+    padding-left: 2vw;
     width: 150px;
     text-align: left;
    }

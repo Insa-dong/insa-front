@@ -49,40 +49,18 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
                 </div>
                 <div className={CSS.adviceReviewModalDiv}>
                     <div className={CSS.title}>
-                        <h1>상담 일지 수정</h1>
+                        <h1>💌 상담 일지 수정</h1>
+                        </div>
                         <table>
                             <tbody>
                             {selectedAdvice && (
                                 <>
-                                <tr>
-                                    <th>상담 일지</th>
-                                    <td>
+                                <tr style={{display: 'flex', flexDirection: 'column'}}>
+                                    <td style={{marginLeft: '2.5vw'}}>
                                         <textarea
                                             type="text"
                                             name="adviceLogContent"
                                             value={form.adviceLogContent || selectedAdvice.adviceLogContent}
-                                            onChange = { onChangeHandler }
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>등록 일</th>
-                                    <td>
-                                        <input
-                                            type="date"
-                                            name="adviceLogDate"
-                                            value={form.adviceLogDate || selectedAdvice.adviceLogDate}
-                                            onChange = { onChangeHandler }
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>수정 일</th>
-                                    <td>
-                                        <input 
-                                            type="date"
-                                            name="adviceLogUpdate"
-                                            value={form.adviceLogUpdate || selectedAdvice.adviceLogUpdate}
                                             onChange = { onChangeHandler }
                                         />
                                     </td>
@@ -92,7 +70,6 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
                             </tbody>
                         </table>
                         <button onClick = {onSaveHandler}>수정하기</button>
-                    </div>
                 </div>
             </div>
         </div>

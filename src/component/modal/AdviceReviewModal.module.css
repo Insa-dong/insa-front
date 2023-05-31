@@ -19,7 +19,7 @@
  .modalContainer{
     position: relative;
    
-}  
+}
 
 .adviceReviewModalDiv{    
     width: 450px;
@@ -40,13 +40,14 @@
     margin-bottom: 5px;
     height: 30px;
     width: 70%;
+    margin-left: 20px;
     border-radius: 5px;
     text-indent: 1.2em;
     border: solid 1.5px #8CBAFF;
 }
 
 .adviceReviewModalDiv textarea {
-    width: 220;
+    width: 220%;
     height: 250px;
     resize: none;
     border-radius: 5px;
@@ -74,16 +75,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -50px;
+    margin-top: -70px !important;
     margin-bottom: 30px;
+    margin-left: 70px !important;
+    width: 350px;
+    margin: 0 auto;
 }
 
 .evaContent {
-    width: 67%;
+    width: 70%;
   }
   
   .evaContent p {
-    margin-top: 0;
+    margin-top: -2.5vw;
     margin-bottom: 5px;
   }
   

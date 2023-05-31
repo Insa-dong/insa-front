@@ -34,6 +34,7 @@ function StudentItem({ item }) {
   const okConfirm = () => {
     // 삭제 API 호출
     dispatch(callStudentDeleteAPI(stuCode));
+    window.location.reload();
   };
 
     const cancelConfirm = () => {

@@ -75,8 +75,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -50px;
+    margin-top: -70px !important;
     margin-bottom: 30px;
+    margin-left: 70px !important;
+    width: 350px;
+    margin: 0 auto;
 }
 
 .evaContent {
@@ -84,7 +87,7 @@
   }
   
   .evaContent p {
-    margin-top: 0;
+    margin-top: -2.5vw;
     margin-bottom: 5px;
   }
   
