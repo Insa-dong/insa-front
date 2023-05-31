@@ -13,16 +13,19 @@ function TeamOff() {
     const [currentPage, setCurrentPage] = useState(1)
     const [searchOption, setSearchOption] = useState('empName');
     const [searchKeyword, setSearchKeyword] = useState('');
-    const { teamOff } = useSelector(state => state.offReducer);
-    const teamOffList = teamOff?.data || [];
+    const { teamOff, pageInfo  } = useSelector(state => state.offReducer);
+    const teamOffList = teamOff || [];
+
 
     useEffect(() => {
+        console.log("teamOff: ", teamOff);
+        console.log("pageInfo: ",pageInfo)
         const fetchData = () => {
             dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
         };
 
         fetchData();
-    }, [currentPage, searchOption, searchKeyword, dispatch]);
+    }, [currentPage]);
 
 
 
@@ -41,6 +44,7 @@ function TeamOff() {
     /* 검색 이벤트 */
     const handleSearch = () => {
         setCurrentPage(1);
+        dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
     };
 
     const handleEnterKey = (e) => {
@@ -48,8 +52,6 @@ function TeamOff() {
             handleSearch();
         }
     };
-
-
 
     return (
         <>
@@ -82,9 +84,10 @@ function TeamOff() {
                         </div>
                     </NavLink>
                 </div>
-                <div className="OffSignSearchBox">
+                
+                <div className="TeamOffSearchBox">
                     <select
-                        id="OffSignSelect"
+                        id="TeamOffSelect"
                         value={searchOption}
                         onChange={handleSearchOptionChange}
                     >
@@ -95,15 +98,16 @@ function TeamOff() {
 
                     {searchOption === 'remainingOff' ? (
                         <input
-                            id="SignStatusSelect"
+                            id="TeamOffRemainingOff"
                             value={searchKeyword}
-                            placeholder='입력값 이상 조회'
+                            placeholder='입력값 이상 목록을 조회합니다'
                             onChange={handleSearchKeywordChange}
+                            onKeyUp={handleEnterKey}
                         />
                     ) : (
                         <input
                             type="text"
-                            id="OffSignsearch"
+                            id="TeamOffEmpName"
                             placeholder="검색어를 입력하세요"
                             onChange={handleSearchKeywordChange}
                             onKeyUp={handleEnterKey}
@@ -111,7 +115,7 @@ function TeamOff() {
                     )}
 
                     <button
-                        className="off-SearchBtn"
+                        className="Teamoff-SearchBtn"
                         onClick={handleSearch}
                     >
                         <img src="/images/search.png" alt="검색" />
@@ -136,7 +140,7 @@ function TeamOff() {
                     )}
                 </div>
                 <div>
-                    {teamOff && teamOff.pageInfo && <PagingBar pageInfo={teamOff.pageInfo} setCurrentPage={setCurrentPage} />}
+                {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
 
             </div>

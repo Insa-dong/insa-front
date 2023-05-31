@@ -27,11 +27,13 @@
 
 #OffSignsearch{
     margin-right: 20px;
+    width: 9vw;
 }
 
-#SignStatusSelect{
+.SignStatusSelect{
     margin-right: 20px;
-    width: 11vw;
+    width: 9vw;
+
 }
 
 /*검색버튼*/

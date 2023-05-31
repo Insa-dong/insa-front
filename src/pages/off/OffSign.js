@@ -21,59 +21,40 @@ function OffSign() {
         const fetchData = () => {
             dispatch(callSignOffListAPI({ currentPage, searchOption, searchKeyword }));
         };
-    
+
         fetchData();
-    }, [currentPage, searchOption, searchKeyword, dispatch]);
-
-    useEffect(() => {
-        if (searchOption === '' || (searchOption === 'signStatus' && searchKeyword === '전체')) {
-            setSearchOption('empName');
-            setSearchKeyword('');
-        }
-    }, [searchOption, searchKeyword]);
-
+    }, [currentPage]);
 
     /* 검색 옵션 상태 저장 */
-    const onSearchOptionChangeHandler = (e) => {
-        setSearchOption(e.target.value);
-    }
+    const handleSearchOptionChange = (e) => {
+        const selectedOption = e.target.value;
+        setSearchOption(selectedOption);
+    };
 
     /* 검색어 입력값 상태 저장*/
-    const onSearchChangeHandler = (e) => {
-        setSearchKeyword(e.target.value);
+    const handleSearchKeywordChange = (e) => {
+        const keyword = e.target.value;
+        setSearchKeyword(keyword);
+    };
+
+/* 검색 이벤트 */
+const handleSearch = () => {
+    setCurrentPage(1);
+    // 승인 상태가 '전체'이거나 검색 키워드가 없을 때 모든 결과를 보여주는 API를 호출합니다.
+    if ((searchOption === 'signStatus' && (searchKeyword === '전체' || searchKeyword === '')) || 
+    (searchOption === 'empName' && searchKeyword === '')) {
+        dispatch(callSignOffListAPI({ currentPage, searchOption: '', searchKeyword: '' }));
+    } else {
+        // 그 외의 경우에는 선택한 검색 옵션과 키워드로 검색합니다.
+        dispatch(callSignOffListAPI({ currentPage, searchOption, searchKeyword }));
     }
+};
 
-    /* 검색 이벤트 */
-    const handleSearch = () => {
-        let updatedSearchOption = searchOption;
-        let updatedSearchKeyword = searchKeyword;
-
-        if (searchOption === 'empName' && searchKeyword.trim() === '') {
-            updatedSearchOption = '';
-            updatedSearchKeyword = '';
-        } else if (searchOption === 'signStatus' && searchKeyword === '전체') {
-            updatedSearchOption = '';
-            updatedSearchKeyword = '';
-        }
-
-        // 검색어 값 업데이트
-        setSearchOption(updatedSearchOption);
-        setSearchKeyword(updatedSearchKeyword);
-
-        dispatch(callSignOffListAPI({ currentPage, searchOption: updatedSearchOption, searchKeyword: updatedSearchKeyword }));
-        setCurrentPage(1); // 검색 시 첫 페이지로 이동
-    };
-
-    const onSearchBtnHandler = () => {
-        handleSearch();
-    };
-
-    const onEnterKeyHandler = (e) => {
+    const handleEnterKey = (e) => {
         if (e.key === 'Enter') {
             handleSearch();
         }
     };
-
 
     return (
         <>
@@ -111,7 +92,7 @@ function OffSign() {
                     <select
                         id="OffSignSelect"
                         value={searchOption}
-                        onChange={onSearchOptionChangeHandler}
+                        onChange={handleSearchOptionChange}
                     >
                         <option value="empName">이름</option>
                         <option value="signStatus">승인상태</option>
@@ -119,10 +100,11 @@ function OffSign() {
 
 
                     {searchOption === 'signStatus' && (
-                        <select
+                        <select className='SignStatusSelect'
                             id="SignStatusSelect"
                             value={searchKeyword}
-                            onChange={onSearchChangeHandler}
+                            onChange={handleSearchKeywordChange}
+                            onKeyUp={handleEnterKey}
                         >
                             <option value="전체">전체</option>
                             <option value="승인">승인</option>
@@ -132,33 +114,42 @@ function OffSign() {
                     )}
 
                     {searchOption !== 'signStatus' && (
-                        <input
+                        <input className='OffSignsearch'
                             type="text"
                             id="OffSignsearch"
                             placeholder="검색어를 입력하세요"
-                            onChange={onSearchChangeHandler}
-                            onKeyUp={onEnterKeyHandler}
+                            onChange={handleSearchKeywordChange}
+                            onKeyUp={handleEnterKey}
                         />
                     )}
 
                     <button
                         className="off-SearchBtn"
-                        onClick={onSearchBtnHandler}
+                        onClick={handleSearch}
                     >
                         <img src="/images/search.png" alt="검색" />
                     </button >
                 </div>
 
                 <div>
-                    {signOffList && (
+                    {signOffList.length > 0 ? ( // 검색 결과가 있을 때
                         <SignOffList
                             signOffList={signOffList}
                             currentPage={currentPage}
                             searchOption={searchOption}
                             searchKeyword={searchKeyword}
                         />
+                    ) : (
+                        <SignOffList // 검색 결과가 없을 때 전체 목록 출력
+                            signOffList={signOffList}
+                            currentPage={currentPage}
+                            searchOption=""
+                            searchKeyword=""
+                        />
                     )}
                 </div>
+
+
                 <div className="offSignPageDiv">
                     {signOff && signOff.pageInfo && <PagingBar pageInfo={signOff.pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>

@@ -13,16 +13,23 @@ function EmpRest() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {rest} = useSelector(state => state.empReducer);
+    const { restState } = useSelector(state => state.empReducer);
     const [currentPage, setCurrentPage] = useState(1);
     
     console.log('rest : ', {rest});
 
-    
 
     useEffect(
         () => {
             dispatch(callEmpRestList({ currentPage }))
         }, [currentPage]
+    );
+
+    useEffect(
+        () => {
+            if(restState?.status == 200)
+            dispatch(callEmpRestList({ currentPage }))
+        }, [restState]
     );
 
     return (
