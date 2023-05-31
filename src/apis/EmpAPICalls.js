@@ -249,7 +249,22 @@ export const callUpdateRestStateAPI = (form) => {
 		}
 	}
 }
-   
+
+/* 휴직 검색 */
+export const restListSearchAPI = ({ searchOption, searchKeyword, currentPage = 1 }) => {
+
+	const requestURL = `${PRE_URL}/emp/emprestsearch?page=${currentPage}&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
+	return async (dispatch, getState) => {
+
+		const result = await fetch(requestURL).then(response => response.json());
+
+		if (result.status === 200) {
+			console.log('[EmpAPICalls] : restListSearchAPI result : ', result);
+			dispatch(getEmpRest(result));
+		}
+
+	}
+}   
 
 
 /* 강사 조회 */
