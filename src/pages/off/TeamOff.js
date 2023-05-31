@@ -18,7 +18,7 @@ function TeamOff() {
 
 
     useEffect(() => {
-        console.log("teamOff: ", teamOff);
+        
         const fetchData = () => {
             dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
         };

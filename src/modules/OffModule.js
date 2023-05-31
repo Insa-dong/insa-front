@@ -58,7 +58,7 @@ const offReducer = handleActions(
       [GET_TEAM_OFF]: (state, { payload }) => ({  ...state,  teamOff: payload }),
       [GET_SIGN_OFF]: (state, { payload }) => ({ ...state, signOff: payload }),
       [PUT_SIGN_OFF]: (state, { payload }) => ({ ...state, signApply: payload }),
-      [GET_ADMIN_OFF]: (state, { payload }) => ({  ...state,  adminff: payload }),
+      [GET_ADMIN_OFF]: (state, { payload }) => ({  ...state,  adminOff: payload }),
       
     },
     initialState
