@@ -8,7 +8,6 @@ import CSS from './EmpTeacherDetail.module.css';
 import PagingBar from "../../component/common/PagingBar";
 import StudentAttendRegistModal from "../../component/modal/StudentAttendRegistModal";
 import { callStudentAttendSearchAPI } from "../../apis/AttendAPICalls";
-import StudentAttendUpdateModal from "../../component/modal/StudentAttendUpdateModal";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -68,7 +67,6 @@ function EmpTeacherDetail() {
             );
         }
     };
-
 
     const handleDateChange = (event) => {
         setSelectedDate(event.target.value);

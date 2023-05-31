@@ -9,7 +9,7 @@ function StudentList({ student }) {
                 <tr>
                     <th>학생 코드</th>
                     <th>이름</th>
-                    <th>휴대폰</th>
+                    <th>전화번호</th>
                     <th>이메일</th>
                     <th>학력</th>
                     <th>수강생 삭제</th>

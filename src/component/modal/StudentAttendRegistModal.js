@@ -7,8 +7,8 @@ import { callStudentAttendRegistAPI } from "../../apis/AttendAPICalls";
 function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistModal }) {
 
   const [form, setForm] = useState({
-    study:{studyCode},
-    student:{stuCode}
+    study: { studyCode },
+    student: { stuCode }
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistMo
   };
 
   const onClickStudentAttendRegistHandler = () => {
-    if (form && form.attendDate && form.attendStatus) {
+    if (form && form.attendStatus) {
       dispatch(callStudentAttendRegistAPI({ ...form, studyCode, stuCode }));
     } else {
       console.log('날짜와 출결 상태를 선택해주세요.');
@@ -46,39 +46,29 @@ function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistMo
         <div className={CSS.adviceReviewModalDiv}>
           <div className={CSS.title}>
             <h1>👨🏻‍🎓 수강생 출결 등록</h1>
-            </div>
-            <table>
-              <tbody>
-                <tr>
-                  <th className={CSS.tableTh}>날짜</th>
-                  <td>
-                    <input
-                      type="date"
-                      name="attendDate"
-                      onChange={onChangeHandler}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <th className={CSS.tableTh}>출결</th>
-                  <td>
-                    <select
-                      name="attendStatus"
-                      onChange={onChangeHandler}
-                    >
-                      <option>선택</option>
-                      <option>출석</option>
-                      <option>결석</option>
-                      <option>지각</option>
-                      <option>조퇴</option>
-                    </select>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <button onClick={onClickStudentAttendRegistHandler}>등록하기</button>
           </div>
+          <table>
+            <tbody>
+              <tr>
+                <th className={CSS.tableTh}>출결</th>
+                <td>
+                  <select
+                    name="attendStatus"
+                    onChange={onChangeHandler}
+                  >
+                    <option>선택</option>
+                    <option>출석</option>
+                    <option>결석</option>
+                    <option>지각</option>
+                    <option>조퇴</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button onClick={onClickStudentAttendRegistHandler}>등록하기</button>
         </div>
+      </div>
     </div>
   );
 }

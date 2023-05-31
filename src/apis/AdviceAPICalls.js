@@ -14,7 +14,7 @@ export const callStudentAdviceListAPI = ({ stuCode , currentPage = 1 }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            // Authorization: "Bearer " + window.localStorage.getItem("accessToken"),
+            "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
           },
         }).then(res => res.json());
         console.log(result);
@@ -33,7 +33,7 @@ export const callAdviceDeleteForAdminAPI = ({ adviceLogCode }) => {
       const result = await fetch(requestURL, {
         method: 'DELETE',
         headers: {
-          // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+          "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
         }
       }).then(res => res.json());
   

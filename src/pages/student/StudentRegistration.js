@@ -67,11 +67,11 @@ function StudentRegistration() {
                             </td>
                         </tr>
                         <tr>
-                            <th>휴대폰</th>
+                            <th>전화번호</th>
                             <td>
                                 <input className="stuRegistBox"
                                     type="text"
-                                    placeholder='휴대폰 번호를 입력해주세요'
+                                    placeholder='전화번호를 입력해주세요'
                                     name="stuPhone"
                                     onChange={onChangeHandler}
                                 />
