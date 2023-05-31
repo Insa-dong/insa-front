@@ -23,7 +23,7 @@ function PwdModifyModal({ isOpen, onClose }) {
                     <div className={CSS.nowPwd}>
                         <input className={CSS.nowPwdInput}
                             type="password"
-                            name="empId"
+                            name="empPwd"
                             placeholder="현재 비밀번호"
                             autoComplete='off'
                         />
@@ -32,7 +32,7 @@ function PwdModifyModal({ isOpen, onClose }) {
                     <div className={CSS.newPwd}>
                         <input className={CSS.newPwdInput}
                             type="password"
-                            name="empPwd"
+                            name="newPwd"
                             placeholder="새 비밀번호"
                             autoComplete='off'
                         />
@@ -40,7 +40,7 @@ function PwdModifyModal({ isOpen, onClose }) {
                     <div className={CSS.checkPwd}>
                         <input className={CSS.checkPwdInput}
                             type="password"
-                            name="empPwd"
+                            name="checkPwd"
                             placeholder="비밀번호 확인"
                             autoComplete='off'
                         />

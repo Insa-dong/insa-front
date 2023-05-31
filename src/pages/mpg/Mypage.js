@@ -128,7 +128,7 @@ function Mypage() {
                             }
                             {modifyMode &&
                                 <select
-                                    className="EmpRegistBox"
+                                    className={CSS.selectGender}
                                     name="empGender"
                                     onChange={onChangeHandler}
                                 >
