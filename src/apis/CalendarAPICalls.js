@@ -1,4 +1,4 @@
-import {getCalList, postCalendar, putCalendar, putCalList} from "../modules/CalendarModule";
+import {deleteCalendar, getCalList, postCalendar, putCalendar, putCalList} from "../modules/CalendarModule";
 import {getCalPaging} from "../modules/CalendarPagingModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -28,15 +28,15 @@ export const callMyCalListAPI = () => {
 export const callMyPagingCalListAPI = ({currentPage, sort}) => {
 
 	switch (sort) {
-		case 1 :
+		case 0 :
 			sort = 'calCode';
-			return;
-		case 2 :
+			break;
+		case 1 :
 			sort = 'calStartDate';
-			return;
-		case 3 :
+			break;
+		case 2 :
 			sort = 'calEndDate';
-			return
+			break;
 		default :
 			sort = 'calCode';
 	}
@@ -85,6 +85,9 @@ export const callUpdateScheduleInfoAPI = (form) => {
 
 	const requestURL = `${PRE_URL}/myScheduleInfoUpdate`
 	console.log('form : ', form);
+	if (form.calEndDate === "Invalid Date") {
+		form.calEndDate = form.calStartDate;
+	}
 
 	return async (dispatch, getState) => {
 
@@ -99,7 +102,7 @@ export const callUpdateScheduleInfoAPI = (form) => {
 		if (result.status === 200) {
 			dispatch(putCalendar(result));
 		}
-	}
+	};
 }
 
 export const callInsertScheduleAPI = (form) => {
@@ -119,6 +122,26 @@ export const callInsertScheduleAPI = (form) => {
 
 		if (result.status === 200) {
 			dispatch(postCalendar(result));
+		}
+	}
+}
+
+export const callDeleteScheduleAPI = (codeList) => {
+
+	const requestURL = `${PRE_URL}/mySchedule`
+
+	return async (dispatch, getState) => {
+
+		const result = await fetch(requestURL, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(codeList)
+		}).then(response => response.json());
+
+		if (result.status === 200) {
+			dispatch(deleteCalendar(result));
 		}
 	}
 }
