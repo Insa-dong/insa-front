@@ -29,6 +29,16 @@
     line-height: 32px;
 }
 
+.phoneinfoModify {
+    border: 1px #8CBAFF solid;
+    border-radius: 5px;
+}
+
+.emailinfoModify {
+    border: 1px #8CBAFF solid;
+    border-radius: 5px;
+}
+
 .name{
     font-size: 1.25rem;
 }
@@ -93,6 +103,7 @@ margin-left: 56vw;
     color: gray;
     width: 11vw !important;
 }
+
 
 .btnWrap{
     text-align: center;
