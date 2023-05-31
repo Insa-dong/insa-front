@@ -125,4 +125,6 @@ select.EmpRegistBox {
     outline: none;
 }
   
-  
+.error {
+    margin-left: 1.5vw;
+} 
