@@ -45,7 +45,6 @@ input[type="date"].stuRegistBox {
     border: 1px solid #8CBAFF;
     width: 19rem;
     height: 2.5rem;
-    font-weight: bold;
     font-size: 13pt;
     padding-left: 15px;
     margin-left : 10px;
@@ -84,4 +83,8 @@ input[type="date"].stuRegistBox {
     text-align: center;
     cursor: pointer;
     color: rgb(55, 55, 55);
+}
+
+.stuRegist .error {
+  color: #E6162D;
 }

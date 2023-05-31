@@ -6,7 +6,8 @@ import { callStudentAttendUpdateAPI } from "../../apis/AttendAPICalls";
 
 function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, attendCode, attendDetail }) {
 
-    const selectedAttend = attendDetail && attendDetail.find((attend) => attend.attendCode === attendCode);
+    const selectedAttend = attendDetail && attendDetail.data.find((attend) => attend.attendCode === attendCode);
+    
     const [form, setForm] = useState({
         attendDate: selectedAttend ? selectedAttend.attendDate : "",
         attendStatus: selectedAttend ? selectedAttend.attendStatus : ""

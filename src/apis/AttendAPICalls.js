@@ -28,7 +28,7 @@ export const callStudentAttendDetailAPI = ({ stuCode, currentPage = 1 }) => {
         const result = await fetch(requestURL).then(res => res.json());
         console.log(result);
         if(result.status === 200) {
-            dispatch(getAttends(result.data));
+            dispatch(getAttends(result));
 
         }
     };
