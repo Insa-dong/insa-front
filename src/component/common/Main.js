@@ -10,7 +10,7 @@ function Main() {
 				<div className={CSS.calendar}>캘린더</div>
 			</div>
 			<div className={CSS.buttonWeather}>
-				<ul>
+				<ul className={CSS.button}>
 					<li>출퇴근</li>
 					<li>연차신청</li>
 					<li>수강생등록</li>
