@@ -193,7 +193,6 @@ export const callEmpDelAPI = ({ empCode }) => {
 export const callEmpRestRegistAPI = (form) => {
 
 	const requestURL = `${PRE_URL}/emp/emprestregist`;
-	// form = ({ ...form, empCode: { deptCode: form.deptCode }, job: { jobCode: form.jobCode } });
 	console.log(form);
 
 	return async (dispatch, getState) => {
@@ -222,7 +221,7 @@ export const callEmpRestList = ({ currentPage = 1 }) => {
 		const result = await fetch(requestURL).then(response => response.json());
 
 		if (result.status === 200) {
-			console.log('[callEmpRestList] : callEmpRestList result : ', result);
+			// console.log('[callEmpRestList] : callEmpRestList result : ', result);
 			dispatch(getEmpRest(result));
 		}
 	}
@@ -244,13 +243,13 @@ export const callUpdateRestStateAPI = (form) => {
 			body: JSON.stringify(form)
 		}).then(res => res.json());
 
-		console.log(result);
+		// console.log(result);
 		if (result.status === 200) {
 			dispatch(putRestState(result));
 		}
 	}
 }
-
+   
 
 
 /* 강사 조회 */
