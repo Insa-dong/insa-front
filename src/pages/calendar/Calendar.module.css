@@ -32,10 +32,6 @@
     margin-left: 90%;
 }
 
-.insertButton:hover {
-    background-color: rgb(162, 241, 178);
-}
-
 .sortButton {
     margin-top: 1%;
     padding: 2px;
@@ -47,10 +43,6 @@
     cursor: pointer;
     font-weight: 500;
     margin-left: 18%;
-}
-
-.sortButton:hover {
-    background-color: rgb(162, 241, 178);
 }
 
 .sortButton1 {
@@ -66,8 +58,22 @@
     margin-left: 18%;
 }
 
+.deleteButton {
+    margin-top: 1%;
+    padding: 2px;
+    background-color: #8CBAFF;
+    border-radius: 5px;
+    height: 4vh;
+    width: 64px;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    margin-left: 89%;
+}
+
 .calendarTable {
-    margin-left: 11%;
+    margin-left: 8%;
     width: 500px;
     max-width: 500px;
     border-collapse: separate;
@@ -101,4 +107,14 @@
     text-overflow: ellipsis;
     overflow: hidden;
     font-weight: normal;
+}
+
+.calendarTr:hover {
+    cursor: pointer;
+}
+
+.checkBox {
+    display: flex;
+    width: 1.5vh;
+    height: 2vh;
 }
