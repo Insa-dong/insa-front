@@ -116,7 +116,7 @@ function TrainingRegistModal({isRegistOpen, setIsRegistOpen, setInsert}) {
 							/>
 						</div>
 
-						<button onClick = {onClickTrainingSaveHandler}>저장</button>
+						<button onClick = {onClickTrainingSaveHandler} className = {CSS.saveButton}>저장</button>
 
 					</div>
 				</div>
