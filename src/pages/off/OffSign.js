@@ -37,17 +37,18 @@ function OffSign() {
         setSearchKeyword(keyword);
     };
 
-    /* 검색 이벤트 */
-    const handleSearch = () => {
-        setCurrentPage(1);
-        // 승인 상태가 '전체'이거나 검색 키워드가 없을 때 모든 결과를 보여주는 API를 호출합니다.
-        if (searchOption === 'signStatus' && searchKeyword === '전체' || !searchKeyword) {
-            dispatch(callSignOffListAPI({ currentPage, searchOption: '', searchKeyword: '' }));
-        } else {
-            // 그 외의 경우에는 선택한 검색 옵션과 키워드로 검색합니다.
-            dispatch(callSignOffListAPI({ currentPage, searchOption, searchKeyword }));
-        }
-    };
+/* 검색 이벤트 */
+const handleSearch = () => {
+    setCurrentPage(1);
+    // 승인 상태가 '전체'이거나 검색 키워드가 없을 때 모든 결과를 보여주는 API를 호출합니다.
+    if ((searchOption === 'signStatus' && (searchKeyword === '전체' || searchKeyword === '')) || 
+    (searchOption === 'empName' && searchKeyword === '')) {
+        dispatch(callSignOffListAPI({ currentPage, searchOption: '', searchKeyword: '' }));
+    } else {
+        // 그 외의 경우에는 선택한 검색 옵션과 키워드로 검색합니다.
+        dispatch(callSignOffListAPI({ currentPage, searchOption, searchKeyword }));
+    }
+};
 
     const handleEnterKey = (e) => {
         if (e.key === 'Enter') {

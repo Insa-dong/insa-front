@@ -53,7 +53,16 @@ const offReducer = handleActions(
         newState.comingUpOffList = newState.comingUpOffList.filter(off => off.signCode !== payload.signCode);  // 신청취소한 연차 제거
         return newState;  // 새로운 상태 반환
       },
-      [GET_TEAM_OFF]: (state, { payload }) => ({ ...state, teamOff: payload.content}),
+      [GET_TEAM_OFF]: (state, { payload }) => ({ 
+        ...state, 
+        teamOff: payload.content,
+        pageInfo: {
+          currentPage: payload.number + 1,
+          startPage: payload.number + 1,
+          endPage: payload.number + 1,
+          maxPage: payload.totalPages
+        }
+    }),
       [GET_SIGN_OFF]: (state, { payload }) => ({ ...state, signOff: payload }),
       [PUT_SIGN_OFF]: (state, { payload }) => ({ ...state, signApply: payload }),
       

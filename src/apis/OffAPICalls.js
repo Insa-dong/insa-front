@@ -158,9 +158,16 @@ export const callTeamOffListAPI = ({ currentPage, searchOption, searchKeyword })
 /* 연차 신청 내용 API */
 export const callSignOffListAPI = ({ currentPage, searchOption, searchKeyword }) => {
 
-    
-    let requestURL = `${PRE_URL}/mySignOff?page=${currentPage}&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
-   
+    //let requestURL = `${PRE_URL}/mySignOff?page=${currentPage}&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
+    let requestURL = `${PRE_URL}/mySignOff?page=${currentPage}`;
+
+    // 검색 옵션과 키워드가 빈 문자열이 아니면 URL에 추가
+    if (searchOption) {
+        requestURL += `&searchOption=${searchOption}`;
+    }
+    if (searchKeyword) {
+        requestURL += `&searchKeyword=${searchKeyword}`;
+    }
 
     return async (dispatch, getState) => {
         const result = await fetch(requestURL, {

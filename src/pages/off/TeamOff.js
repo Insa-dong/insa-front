@@ -13,10 +13,13 @@ function TeamOff() {
     const [currentPage, setCurrentPage] = useState(1)
     const [searchOption, setSearchOption] = useState('empName');
     const [searchKeyword, setSearchKeyword] = useState('');
-    const { teamOff } = useSelector(state => state.offReducer);
+    const { teamOff, pageInfo  } = useSelector(state => state.offReducer);
     const teamOffList = teamOff || [];
 
+
     useEffect(() => {
+        console.log("teamOff: ", teamOff);
+        console.log("pageInfo: ",pageInfo)
         const fetchData = () => {
             dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
         };
@@ -137,7 +140,7 @@ function TeamOff() {
                     )}
                 </div>
                 <div>
-                    {teamOff && teamOff.pageInfo && <PagingBar pageInfo={teamOff.pageInfo} setCurrentPage={setCurrentPage} />}
+                {pageInfo && <PagingBar pageInfo={pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
 
             </div>
