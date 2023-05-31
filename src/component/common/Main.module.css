@@ -11,12 +11,45 @@
 
 .notice {
     border: 1px solid black;
+    font-size: 30pt;
+    margin-right: 50vw;
+    margin-bottom: 10vh;
+}
+
+.calendar {
+    border: 1px solid black;
+    font-size: 30pt;
 }
 
 .buttonWeather {
     display: flex;
+    font-size: 30pt;
+}
+
+.button {
+    display: flex;
+    border: 1px solid black;
+    font-size: 30pt;
+    margin-right: 30vw; 
+    margin-bottom: 10vh;
+}
+
+.weather {
+    border: 1px solid black;
+    font-size: 30pt;
 }
 
 .newsLecture{
     display: flex;
+}
+
+.news {
+    border: 1px solid black;
+    font-size: 30pt;
+    margin-right: 55vw;
+}
+
+.lecture {
+    border: 1px solid black;
+    font-size: 30pt;
 }

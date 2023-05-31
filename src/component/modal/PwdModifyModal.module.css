@@ -71,6 +71,13 @@ input::placeholder {
     margin-bottom: 1vh;
     text-align: left;
     display: flex;
+    flex-direction: column;
+}
+
+.pwdEff {
+    margin-left: -0.5vw;
+    margin-top: 0.6vh;
+    font-size: 0.5rem !important;
 }
 
 .checkPwd {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CSS from "./PwdModifyModal.module.css"
 import { callPwdUpdateAPI } from "../../apis/MpgAPICalls";
 import { useDispatch } from "react-redux";
@@ -6,7 +6,12 @@ import { useDispatch } from "react-redux";
 function PwdModifyModal({ isOpen, onClose }) {
 
     const dispatch = useDispatch();
-    const [form, setForm] = useState({});
+    const [form, setForm] = useState({
+        empPwd: "",
+        newPwd: "",
+        checkPwd: ""
+    });
+    const [isCheck, setIsCheck] = useState(false);
 
     const handleBackgroundClick = () => {
         onClose();
@@ -18,16 +23,32 @@ function PwdModifyModal({ isOpen, onClose }) {
 
     const onChangeHandler = (e) => {
         setForm({
-          ...form,
-          [e.target.name]: e.target.value
+            ...form,
+            [e.target.name]: e.target.value
         });
-      }
-
-    const onClickPwdModifyHandler = () => {
-        dispatch(callPwdUpdateAPI(form));
-        window.location.reload();
     }
 
+    const onClickPwdModifyHandler = () => {
+        if (!isCheck) {
+            alert("비밀번호 양식 오류  \n영문, 숫자를 포함한 10~14자 이내로 작성해주세요.");
+        } else {
+            dispatch(callPwdUpdateAPI(form));
+            window.location.reload();
+        }
+    }
+
+    /* 비밀번호 유효성 검사 */
+    useEffect(() => {
+
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{10,18}$/;
+
+        if (passwordRegex.test(form?.newPwd)) {
+            setIsCheck(true);
+        } else {
+            setIsCheck(false);
+        }
+
+    }, [form])
 
     return (
         isOpen && (
@@ -56,6 +77,7 @@ function PwdModifyModal({ isOpen, onClose }) {
                             autoComplete='off'
                             onChange={onChangeHandler}
                         />
+                        {!isCheck && <span className={CSS.pwdEff}>*영문, 숫자를 포함한 10~14자 이내로 작성해주세요.</span>}
                     </div>
                     <div className={CSS.checkPwd}>
                         <input className={CSS.checkPwdInput}
@@ -67,7 +89,7 @@ function PwdModifyModal({ isOpen, onClose }) {
                         />
                     </div>
 
-                    <button 
+                    <button
                         className={CSS.modifyButton}
                         onClick={onClickPwdModifyHandler}
                     >
