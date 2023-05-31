@@ -1,6 +1,6 @@
 import {
     postApply, getOffNow, getComingupOff, getPastOff,
-    deleteOff, getTeamOff, getSignOff, putSignOff
+    deleteOff, getTeamOff, getSignOff, putSignOff, getAdminOff
 } from "../modules/OffModule";
 
 const SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
@@ -209,4 +209,27 @@ export const callSignApplyAPI = (form, signCode) => {
         }
     }
 };
+
+/* 구성원 연차 현황 조회 API */
+
+export const callAdminOffListAPI = ({ currentPage, searchOption, searchKeyword }) => {
+   
+    let requestURL = `${PRE_URL}/adminOff?page=${currentPage}&searchOption=${searchOption}&searchKeyword=${searchKeyword}`;
+    
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
+
+        console.log('Server response:', result);
+
+        if (result.status === 200) {
+            dispatch(getAdminOff(result));
+        }
+    }
+}
 

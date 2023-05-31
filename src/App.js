@@ -22,8 +22,9 @@ import Login from './pages/login/Login';
 import PwSearch from './pages/login/PwSearch';
 import PwSearchSuccess from './pages/login/PwSearchSuccess';
 import Mypage from './pages/mpg/Mypage';
-import TeamOff from './pages/off/TeamOff';
 import Off from './pages/off/Off';
+import AdminOff from './pages/off/AdminOff';
+import TeamOff from './pages/off/TeamOff';
 import OffSign from './pages/off/OffSign';
 import Student from './pages/student/Student';
 import StudentDetail from './pages/student/StudentDetail';
@@ -69,6 +70,7 @@ function App() {
 						<Route path = "student" element = {<Student/>}/>
 						<Route path = "student/:stuCode" element = {<StudentDetail/>}/>
 						<Route path = "off" element = {<Off/>}/>
+						<Route path = "off/adminOff" element = {<AdminOff/>}/>
 						<Route path = "off/teamOff" element = {<TeamOff/>}/>
 						<Route path = "off/teamOff/offSign" element = {<OffSign/>}/>
 						<Route path = "student/registration" element = {<StudentRegistration/>}/>
