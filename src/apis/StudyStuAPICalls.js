@@ -20,9 +20,9 @@ export const callStudyStuListAPI = ({ stuCode , currentPage = 1 }) => {
 
 }
 
-export const callStudyStuDeleteAdminAPI = ({studyCode}) => {
+export const callStudyStuDeleteAdminAPI = ({ stuCode ,studyCode }) => {
 
-   const requestURL = `${PRE_URL}/students-management/study/${studyCode}`;
+   const requestURL = `${PRE_URL}/students-management/study/${studyCode}/student/${stuCode}`;
   
     return async (dispatch, getState) => {
       const result = await fetch(requestURL, {
@@ -50,7 +50,7 @@ export const callStudyStuDeleteAdminAPI = ({studyCode}) => {
             method : 'POST',
             headers : {
                 "Content-Type": "application/json",
-                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
             },
             body: JSON.stringify(form)
         }).then(res => res.json());
@@ -90,7 +90,7 @@ export const callStudyStuUpdateForAdminAPI = (form) => {
             method : 'PUT',
             headers : {
                 "Content-Type": "application/json",
-                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
             },
             body: JSON.stringify(form)
         }).then(res => res.json());

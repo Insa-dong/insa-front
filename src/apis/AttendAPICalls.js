@@ -46,7 +46,7 @@ export const callStudentAttendRegistAPI = (form) => {
             method : 'POST',
             headers : {
                 "Content-Type": "application/json",
-                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
             },
             body: JSON.stringify(form)
         }).then(res => res.json());
@@ -71,7 +71,7 @@ export const callStudentAttendRegistAPI = (form) => {
             method : 'PUT',
             headers : {
                 "Content-Type": "application/json",
-                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
             },
             body: JSON.stringify(form)
         }).then(res => res.json());
@@ -91,7 +91,7 @@ export const callStudentAttendRegistAPI = (form) => {
         const result = await fetch(requestURL, {
           method: 'DELETE',
           headers: {
-            // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
           }
         }).then(res => res.json());
     
@@ -104,7 +104,7 @@ export const callStudentAttendRegistAPI = (form) => {
 
  export const callStudentAttendSearchAPI = ({ studyCode, attendDate, currentPage= 1 }) => {
 
-    const requestURL = `${PRE_URL}/studyAndAttend/${studyCode}/student-attends/${attendDate}?page=${currentPage}`;
+   const requestURL = `${PRE_URL}/studyAndAttend/${studyCode}/student-attends/${attendDate}?page=${currentPage}`;
 
     return async (dispatch, getState) => {
         

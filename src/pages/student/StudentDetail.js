@@ -59,8 +59,8 @@ function StudentDetail() {
     const [updateModalVisible, setUpdateModalVisible] = useState(false);
     const [studyStudentUpdate, setStudyStudentUpdate] = useState("");
 
-
-  const evaDelete = (evaCode) => {
+  
+    const evaDelete = (evaCode) => {
     const confirmed = window.confirm("평가 내역을 삭제하시겠습니까?");
     if (confirmed) {
       console.log('evaCode : ', evaCode);
@@ -82,11 +82,12 @@ function StudentDetail() {
     }
   };
 
-  const studyStuDelete = (stuCode) => {
+  const studyStuDelete = (stuCode, studyCode) => {
     const confirmed = window.confirm("강의 내역을 삭제하시겠습니까?");
     if (confirmed) {
+      console.log('studyCode : ', studyCode);
       console.log('stuCode : ', stuCode);
-      dispatch(callStudyStuDeleteAdminAPI({ stuCode }));
+      dispatch(callStudyStuDeleteAdminAPI({ studyCode, stuCode }));
     } else {
       console.log("강의 삭제가 취소되었습니다.");
     }
@@ -338,7 +339,7 @@ function StudentDetail() {
                                     <td>{study.studyCount}</td>
                                     <td>
                                         <button className="studyStuUpdateBtn" onClick={() => onClickUpdateStudyStuHandler(study)}>수정</button>
-                                        <button className="studyStuDeleteBtn" onClick={() => studyStuDelete(study.studyCode)}>삭제</button>
+                                        <button className="studyStuDeleteBtn" onClick={() => studyStuDelete(study.student.stuCode, study.studyCode)}>삭제</button>
                                     </td>
                                 </tr>
                             ))

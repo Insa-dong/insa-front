@@ -13,11 +13,10 @@ function EmpTeacher() {
     const [currentPage, setCurrentPage] = useState(1);
     const dispatch = useDispatch();
     const teacher = useSelector(state => state.studyInfoReducer);
-    const empCode = 1001;
-   
+  
     useEffect(() => {
-        dispatch(callSelectStudyForTeacherAPI({ empCode, currentPage }));
-      }, [currentPage, dispatch, empCode]);
+        dispatch(callSelectStudyForTeacherAPI({ currentPage }));
+      }, [currentPage, dispatch]);
 
     return(
         <>

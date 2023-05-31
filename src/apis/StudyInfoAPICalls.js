@@ -96,9 +96,9 @@ export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 	};
 }
 
-export const callSelectStudyForTeacherAPI = ({empCode, currentPage = 1}) => {
+export const callSelectStudyForTeacherAPI = ({currentPage = 1}) => {
 
-	const requestURL = `${PRE_URL}/emp/teacherStudyList/${empCode}?page=${currentPage}`;
+	const requestURL = `${PRE_URL}/emp/teacherStudyList?page=${currentPage}`;
 
 	return async (dispatch, getState) => {
 
@@ -106,7 +106,7 @@ export const callSelectStudyForTeacherAPI = ({empCode, currentPage = 1}) => {
 			method : 'GET',
 			headers : {
 				"Content-Type": "application/json",
-				//"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
 		}).then(res => res.json());
 		

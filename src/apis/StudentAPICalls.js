@@ -44,7 +44,7 @@ export const callStudentRegistAPI = (form) => {
             method : 'POST',
             headers : {
                 "Content-Type": "application/json",
-                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
             },
             body: JSON.stringify(form)
         }).then(res => res.json());
@@ -68,7 +68,7 @@ export const callStudentUpdateAPI = (formData) => {
             method : 'PUT',
             headers : {
                 "Content-Type": "application/json",
-                // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
             },
             body: JSON.stringify(formData)
         }).then(res => res.json());
@@ -88,7 +88,7 @@ export const callStudentDeleteAPI = (stuCode) => {
       const result = await fetch(requestURL, {
         method: 'DELETE',
         headers: {
-          // "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
         }
       }).then(res => res.json());
   
