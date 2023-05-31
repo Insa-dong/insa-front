@@ -1,4 +1,4 @@
-import { getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob, putEmpDel,postEmpRestRegist, getEmpRest } from "../modules/EmpModule";
+import { getEmp, getEmplist, getEmpDeptJob, postEmpRegist, getEmpDetail, getEmpRecord, putEmpDept, putEmpJob, putEmpDel, postEmpRestRegist, putRestState, getEmpRest } from "../modules/EmpModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -140,9 +140,9 @@ export const callUpdateDeptAPI = (form) => {
 		}).then(res => res.json());
 
 		console.log(result);
-        if(result.status === 200) {
-            dispatch(putEmpDept(result));
-        }
+		if (result.status === 200) {
+			dispatch(putEmpDept(result));
+		}
 	}
 }
 
@@ -163,30 +163,30 @@ export const callUpdateJobAPI = (form) => {
 		}).then(res => res.json());
 
 		console.log(result);
-        if(result.status === 200) {
-            dispatch(putEmpJob(result));
-        }
+		if (result.status === 200) {
+			dispatch(putEmpJob(result));
+		}
 	}
 }
 
 /* 구성원 퇴사 */
-export const callEmpDelAPI = ({empCode}) => {
+export const callEmpDelAPI = ({ empCode }) => {
 	const requestURL = `${PRE_URL}/emp/empdelete/${empCode}`;
 
 	return async (dispatch, getState) => {
-        const result = await fetch(requestURL, {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-            }
-        }).then(res => res.json());
+		const result = await fetch(requestURL, {
+			method: 'PUT',
+			headers: {
+				"Content-Type": "application/json",
+			}
+		}).then(res => res.json());
 
-        console.log(result);  
+		console.log(result);
 
-        if(result.status === 200) {
-            dispatch(putEmpDel(result));
-        }
-    }
+		if (result.status === 200) {
+			dispatch(putEmpDel(result));
+		}
+	}
 }
 
 /* 구성원 휴직 신청 */
@@ -217,17 +217,39 @@ export const callEmpRestRegistAPI = (form) => {
 /* 휴직 내역 */
 export const callEmpRestList = ({ currentPage = 1 }) => {
 	const requestURL = `${PRE_URL}/emp/emprestlist?page=${currentPage}`; // 현재 페이지를 URL에 포함시킴
-  
+
 	return async (dispatch, getState) => {
-	  const result = await fetch(requestURL).then(response => response.json());
-  
-	  if (result.status === 200) {
-		console.log('[callEmpRestList] : callEmpRestList result : ', result);
-		dispatch(getEmpRest(result));
-	  }
+		const result = await fetch(requestURL).then(response => response.json());
+
+		if (result.status === 200) {
+			console.log('[callEmpRestList] : callEmpRestList result : ', result);
+			dispatch(getEmpRest(result));
+		}
 	}
-  }
-  
+}
+
+/* 휴직 승인 반려 */
+export const callUpdateRestStateAPI = (form) => {
+
+	const requestURL = `${PRE_URL}/emp/empreststate`;
+	console.log(form);
+
+	return async (dispatch, getState) => {
+
+		const result = await fetch(requestURL, {
+			method: 'PUT',
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(form)
+		}).then(res => res.json());
+
+		console.log(result);
+		if (result.status === 200) {
+			dispatch(putRestState(result));
+		}
+	}
+}
 
 
 
