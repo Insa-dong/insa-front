@@ -1,0 +1,18 @@
+.teamOffListDiv {
+    width: 100%;
+    text-align: center;
+    margin-top: 3vw;
+    margin-bottom: 2vw;
+    border-collapse: separate;
+    border-spacing: 0 1vw;
+    border-bottom: 1px solid #ccc;
+}
+
+.teamOffListDiv thead th {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    width: 14.2%;
+
+}
