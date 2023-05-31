@@ -1,0 +1,22 @@
+.mainWrapper {
+    width: 74vw;
+    height: 78vh;
+    margin-left: 20vw;
+    margin-top: 10vh;
+}
+
+.noticeCalendar {
+    display: flex;
+}
+
+.notice {
+    border: 1px solid black;
+}
+
+.buttonWeather {
+    display: flex;
+}
+
+.newsLecture{
+    display: flex;
+}
