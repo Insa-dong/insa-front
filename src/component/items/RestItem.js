@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { callUpdateRestStateAPI } from '../../apis/EmpAPICalls';
 import './RestItem.css';
@@ -8,9 +8,10 @@ function RestItem({ rest }) {
   console.log("rest : ", rest)
   console.log("hello")
   const dispatch = useDispatch();
-  const [ form, setForm ] = useState({
-    restCode: rest.restCode
-  }); 
+  // const [ form, setForm ] = useState({
+  //   restCode: rest.restCode,
+  //   restState: rest.restState
+  // }); 
 
   let statusColor;
   switch (rest.restState) {
@@ -28,17 +29,15 @@ function RestItem({ rest }) {
       break;
   }
 
-  const onRegistChange = (e) => {
-    setForm({
-      ...form,
-      restState : {[e.target.name]: e.target.value}
-    })
-  }
 
-  const onRestApplyClickHandler = () => {
-    console.log("휴직 상태")
+  const onRestApplyClickHandler = (e) => {
+    
+    const form = {
+      restCode: rest.restCode,
+      restState: e.target.value
+    };
 
-    console.log('onClickEmpRegistrationHandler called');
+    console.log('onRestApplyClickHandler called');
     Swal.fire({
       text: '처리하시겠습니까?',
       icon: 'warning',
@@ -53,7 +52,7 @@ function RestItem({ rest }) {
       cancelButtonText: '취소',
       reverseButtons: true,
       buttonsStyling: false,
-    }).then((result) => {
+    }).then((result) => { 
       if (result.isConfirmed) {
         dispatch(callUpdateRestStateAPI(form))
           .then(() => {
@@ -91,7 +90,10 @@ function RestItem({ rest }) {
         <td>{rest.restEnd}</td>
         <td>{rest.restMemo}</td>
         <td>
-          <button className="empRestSignStatus" style={{ backgroundColor: statusColor }}>
+          <button 
+          className="empRestSignStatus" style={{ backgroundColor: statusColor }}
+          >
+ 
             {rest.restState}
           </button>
         </td>
@@ -100,7 +102,6 @@ function RestItem({ rest }) {
             className="empRestSignStatusApply"
             name="restState"
             value="승인"
-            onChange={onRegistChange}
             onClick={onRestApplyClickHandler}
           >
             승인하기
@@ -109,7 +110,6 @@ function RestItem({ rest }) {
             className="empRestSignStatusReturn"
             name="restState"
             value="반려"
-            onChange={onRegistChange}
             onClick={onRestApplyClickHandler}
           >
             반려하기
