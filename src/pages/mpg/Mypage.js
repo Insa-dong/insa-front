@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from "../../component/common/Header";
 import CSS from "./Mypage.module.css";
-import { callMypageAPI } from "../../apis/MpgAPICalls";
+import { callMypageAPI, callPrivacyUpdateAPI } from "../../apis/MpgAPICalls";
 import EmpRestApplyModal from "../../component/modal/EmpRestApplyModal";
 import Swal from "sweetalert2";
 import PwdModifyModal from '../../component/modal/PwdModifyModal';
@@ -15,7 +15,7 @@ function Mypage() {
     const dispatch = useDispatch();
     const { info } = useSelector(state => state.mypageReducer);
     const [empRestApplyModal, setEmpRestModal] = useState(false);
-    const [form, setForm] = useState({});
+    const [form, setForm] = useState({...info});
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -33,6 +33,11 @@ function Mypage() {
             ...form,
             [e.target.name]: e.target.value
         });
+    }
+
+    const onClickModifyHandler = () =>{
+        dispatch(callPrivacyUpdateAPI(form));
+        window.location.reload();
     }
 
 
@@ -167,7 +172,7 @@ function Mypage() {
 
                     {modifyMode &&
                         <div className={CSS.btnWrap}>
-                            <button className={CSS.pwdBtn}>수정하기</button>
+                            <button className={CSS.pwdBtn}  onClick={onClickModifyHandler}>수정하기</button>
                             <button className={CSS.infoBtn} onClick={() => { setModifyMode(false) }}>수정취소</button>
                         </div>
                     }

@@ -1,4 +1,4 @@
-import { getMypage } from "../modules/MpgModule";
+import { getMypage, putPwd } from "../modules/MpgModule";
 
 const RESTAPI_SERVER_IP = `${process.env.REACT_APP_RESTAPI_SERVER_IP}`;
 const RESTAPI_SERVER_PORT = `${process.env.REACT_APP_RESTAPI_SERVER_PORT}`;
@@ -25,4 +25,50 @@ export const callMypageAPI = () => {
             dispatch(getMypage(result));
         }
     }
+}
+
+export const callPrivacyUpdateAPI = (form) => {
+    
+    const requestURL = `${PRE_URL}/privacymodify`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'PUT',
+            headers : {
+                "Content-Type" : "application/json",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : JSON.stringify(form) // 컨트롤러에서 @ModelAttribute로 받을때는 JSON.stringify 없어도 되는데 @RequestBody로 받을때는 있어야한다.
+        }).then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[MpgAPICalls] callPrivacyUpdateAPI result :', result);
+            // dispatch(putBoard(result));
+        }
+    }
+
+}
+
+export const callPwdUpdateAPI = (form) => {
+    
+    const requestURL = `${PRE_URL}/pwdmodify`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method : 'PUT',
+            headers : {
+                "Content-Type" : "application/json",
+                "Authorization" : "Bearer " + window.localStorage.getItem('accessToken')
+            },
+            body : JSON.stringify(form) // 컨트롤러에서 @ModelAttribute로 받을때는 JSON.stringify 없어도 되는데 @RequestBody로 받을때는 있어야한다.
+        }).then(response => response.json());
+
+        if(result.status === 200) {
+            console.log('[MpgAPICalls] callPwdUpdateAPI result :', result);
+            dispatch(putPwd(result));
+        }
+    }
+
 }
