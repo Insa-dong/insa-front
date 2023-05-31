@@ -5,22 +5,22 @@ import Header from "../../component/common/Header";
 import './TeamOff.css';
 import TeamOffList from '../../component/lists/TeamOffList';
 import PagingBar from '../../component/common/PagingBar';
-import { callTeamOffListAPI } from '../../apis/OffAPICalls';
+import { callAdminOffListAPI } from '../../apis/OffAPICalls';
 
-function TeamOff() {
+function AdminOff() {
 
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1)
     const [searchOption, setSearchOption] = useState('empName');
     const [searchKeyword, setSearchKeyword] = useState('');
-    const { teamOff } = useSelector(state => state.offReducer);
-    const teamOffList = teamOff?.data || [];
+    const { adminOff } = useSelector(state => state.offReducer);
+    const teamOffList = adminOff?.data || [];
 
 
     useEffect(() => {
-        console.log("teamOff: ", teamOff);
+     
         const fetchData = () => {
-            dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
+            dispatch(callAdminOffListAPI({ currentPage, searchOption, searchKeyword }));
         };
 
         fetchData();
@@ -43,7 +43,7 @@ function TeamOff() {
     /* 검색 이벤트 */
     const handleSearch = () => {
         setCurrentPage(1);
-        dispatch(callTeamOffListAPI({ currentPage, searchOption, searchKeyword }));
+        dispatch(callAdminOffListAPI({ currentPage, searchOption, searchKeyword }));
     };
 
     const handleEnterKey = (e) => {
@@ -77,11 +77,11 @@ function TeamOff() {
                         </div>
                     </NavLink>
 
-                    <NavLink to="/off/teamOff/offSign" className="active-link" style={{ color: 'gray' }}>
+                    {/*<NavLink to="/off/teamOff/offSign" className="active-link" style={{ color: 'gray' }}>
                         <div className="team-off-menu" >
                             연차 신청내역
                         </div>
-                    </NavLink>
+    </NavLink>*/}
                 </div>
 
                 <div className="TeamOffSearchBox">
@@ -124,7 +124,7 @@ function TeamOff() {
                 <div>
                     {teamOffList.length > 0 ? ( // 검색 결과가 있을 때
                         <TeamOffList
-                            teamOffList={teamOffList}
+                        teamOffList={teamOffList}
                             currentPage={currentPage}
                             searchOption={searchOption}
                             searchKeyword={searchKeyword}
@@ -139,7 +139,7 @@ function TeamOff() {
                     )}
                 </div>
                 <div>
-                    {teamOff && <PagingBar pageInfo={teamOff.pageInfo} setCurrentPage={setCurrentPage} />}
+                    {adminOff && <PagingBar pageInfo={adminOff.pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
 
             </div>
@@ -150,4 +150,4 @@ function TeamOff() {
 
 };
 
-export default TeamOff;
+export default AdminOff;

@@ -22,11 +22,12 @@ const GET_TEAM_OFF = 'off/GET_TEAM_OFF';
 const GET_SIGN_OFF = 'off/GET_SIGN_OFF';
 /* 연차 승인 처리  */
 const PUT_SIGN_OFF = 'off/PUT_SIGN_OFF';
+/* 구성원 연차 현황 조회 */
+const GET_ADMIN_OFF = 'off/GET_ADMIN_OFF';
 
 
-
-export const { off : { postApply, getOffNow, getComingupOff, 
-              getPastOff, deleteOff, getTeamOff, getSignOff, putSignOff } } = createActions({
+export const { off : { postApply, getOffNow, getComingupOff, getPastOff,
+               deleteOff, getTeamOff, getSignOff, putSignOff, getAdminOff } } = createActions({
    
     [POST_APPLY] : (res) => res,
     [GET_OFF_NOW] : (res) => res.data,
@@ -36,6 +37,7 @@ export const { off : { postApply, getOffNow, getComingupOff,
     [GET_TEAM_OFF] :  (res) => res.data,
     [GET_SIGN_OFF] :  (res) => res.data,
     [PUT_SIGN_OFF] : (res) => res,
+    [GET_ADMIN_OFF] :  (res) => res.data,
     
    
 }); 
@@ -53,18 +55,10 @@ const offReducer = handleActions(
         newState.comingUpOffList = newState.comingUpOffList.filter(off => off.signCode !== payload.signCode);  // 신청취소한 연차 제거
         return newState;  // 새로운 상태 반환
       },
-      [GET_TEAM_OFF]: (state, { payload }) => ({ 
-        ...state, 
-        teamOff: payload.content,
-        pageInfo: {
-          currentPage: payload.number + 1,
-          startPage: payload.number + 1,
-          endPage: payload.number + 1,
-          maxPage: payload.totalPages
-        }
-    }),
+      [GET_TEAM_OFF]: (state, { payload }) => ({  ...state,  teamOff: payload }),
       [GET_SIGN_OFF]: (state, { payload }) => ({ ...state, signOff: payload }),
       [PUT_SIGN_OFF]: (state, { payload }) => ({ ...state, signApply: payload }),
+      [GET_ADMIN_OFF]: (state, { payload }) => ({  ...state,  adminff: payload }),
       
     },
     initialState
