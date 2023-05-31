@@ -44,7 +44,6 @@ function StudentDetail() {
     const { detail } = useSelector(state => state.studentReducer);
     const { modify } = useSelector(state => state.studentReducer);
     const [currentPage, setCurrentPage] = useState();
-    const [adviceReviewModal, setAdviceReviewModal] = useState(false);
     const [selectedAdviceReview, setSelectedAdviceReview] = useState(null);
     const [adviceReviewModalVisible, setAdviceReviewModalVisible] = useState(false);
     const [selectedEvaReview, setSelectedEvaReview] = useState(null);
@@ -57,7 +56,6 @@ function StudentDetail() {
     const [studyStudentRegist, setStudyStudentRegist] = useState("");
     const [selectedUpdateStudy, setSelectedUpdateStudy] = useState(null);
     const [updateModalVisible, setUpdateModalVisible] = useState(false);
-    const [studyStudentUpdate, setStudyStudentUpdate] = useState("");
 
   
     const evaDelete = (evaCode) => {
@@ -88,6 +86,7 @@ function StudentDetail() {
       console.log('studyCode : ', studyCode);
       console.log('stuCode : ', stuCode);
       dispatch(callStudyStuDeleteAdminAPI({ studyCode, stuCode }));
+      window.location.reload();
     } else {
       console.log("강의 삭제가 취소되었습니다.");
     }

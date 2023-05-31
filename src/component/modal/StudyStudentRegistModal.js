@@ -35,7 +35,7 @@ function StudyStudentRegistModal({ setStudyStudentRegistModal, stuCode }) {
     useEffect(() => {
         if (registStudyStudent?.status === 200) {
             alert('강의 등록이 완료되었습니다');
-            navigate('/student');
+            window.location.reload();
         }
     }, [registStudyStudent]);
 

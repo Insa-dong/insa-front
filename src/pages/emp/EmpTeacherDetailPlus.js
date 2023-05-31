@@ -17,6 +17,7 @@ import EvaReviewCheckModal from "../../component/modal/EvaReviewCheckModal";
 import AdviceReviewModal from "../../component/modal/AdviceReviewModal";
 import { callStudentAttendDeleteAPI } from "../../apis/AttendAPICalls";
 import StudentAttendUpdateModal from "../../component/modal/StudentAttendUpdateModal";
+import PagingBar from "../../component/common/PagingBar";
 
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
@@ -66,7 +67,6 @@ function EmpTeacherDetailPlus() {
   const [selectedAttendUpdate, setSelectedAttendUpdate] = useState(null);
   const [attendUpdateModalVisible, setAttendUpdateModalVisible] = useState(false);
   const location = useLocation();
-  const [attendCode, setAttendCode] = useState();
   const { item } = location.state;
   const { studyInfoCode, teacher: { empCode } } = item;
   const navigate = useNavigate();
@@ -219,8 +219,8 @@ function EmpTeacherDetailPlus() {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(attendDetail) && attendDetail.length > 0 ? (
-              attendDetail.map((attend) => (
+            {attendDetail && Array.isArray(attendDetail.data) && attendDetail.data.length > 0 ? (
+              attendDetail.data.map((attend) => (
                 <tr key={attend.attendCode}>
                   <td>{attend.student.stuCode}</td>
                   <td>{attend.attendCode}</td>
@@ -239,7 +239,9 @@ function EmpTeacherDetailPlus() {
             )}
           </tbody>
         </table>
-
+        {attendDetail && attendDetail.pageInfo && (
+          <PagingBar pageInfo={attendDetail.pageInfo} setCurrentPage={setCurrentPage} />
+        )}
 
         {evaRegistModalVisible && (
           <EvaRegistModal
@@ -302,7 +304,6 @@ function EmpTeacherDetailPlus() {
             )}
           </tbody>
         </table>
-
 
         {adviceRegistModalVisible && (
           <AdviceRegistModal
