@@ -99,22 +99,20 @@ function TrainingDetail() {
 						<th>과정 시간</th>
 						<td>
 							<textarea
-								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+								className = {!modifyMode ? CSS.textInput : CSS.textInput3}
 								name = 'trainingTime'
 								defaultValue = {!modifyMode ? `총 ${data.trainingTime} 시간` || "" : form.trainingTime}
-								onChange = {onChangeHandler}
-								readOnly = {!modifyMode}/>
+								readOnly = {true}/>
 						</td>
 					</tr>
 					<tr>
 						<th>현재 진행 회차</th>
 						<td>
 							<textarea
-								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+								className = {!modifyMode ? CSS.textInput : CSS.textInput3}
 								name = 'trainingCount'
 								defaultValue = {!modifyMode ? data.studyCount || '수업 진행 전입니다.' : data.studyCount}
-								onChange = {onChangeHandler}
-								readOnly = {!modifyMode}/>
+								readOnly = {true}/>
 						</td>
 					</tr>
 					<tr>
@@ -122,20 +120,20 @@ function TrainingDetail() {
 						{data.trainingWriter &&
 							<td>
 								<textarea
-									className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+									className = {!modifyMode ? CSS.textInput : CSS.textInput3}
 									name = 'trainingWriter'
 									defaultValue = {!modifyMode ? data.trainingWriter.empName || "" : form.trainingWriter.empName}
-									onChange = {onChangeHandler}/></td>
+									readOnly = {true}/></td>
 						}
 					</tr>
 					<tr>
 						<th>{data.trainingUpdate ? '최초 작성일' : '작성일'}</th>
 						<td>
 							<textarea
-								className = {!modifyMode ? CSS.textInput : CSS.textInput2}
+								className = {!modifyMode ? CSS.textInput : CSS.textInput3}
 								name = 'trainingDate'
 								defaultValue = {!modifyMode ? data.trainingDate || "" : form.trainingDate}
-								onChange = {onChangeHandler}/>
+								readOnly = {true}/>
 						</td>
 					</tr>
 					</tbody>

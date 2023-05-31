@@ -15,12 +15,13 @@ function Training() {
 	const subTitle = '과정 목록';
 	const [search, setSearch] = useState();
 	const [currentPage, setCurrentPage] = useState(1)
-	const [checkValue, setCheckValue] = useState("1");
+	const [checkValue, setCheckValue] = useState([]);
 	const [searchParams] = useSearchParams();
 	const [insert, setInsert] = useState(false);
 	const [isRegistModalOpen, setIsRegistModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const searchValue = searchParams.get('value');
+	const {remove} = useSelector(state => state.trainingReducer);
 	const training = useSelector(state => state.trainingReducer);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -32,14 +33,14 @@ function Training() {
 				setInsert(false);
 			}
 		},
-		[insert, dispatch, currentPage]
+		[insert, dispatch, currentPage, remove]
 	)
 
 	useEffect(
 		() => {
 			if (searchValue) {
-				console.log('title : ', searchValue);
 				dispatch(callSearchTrainingList({searchValue, currentPage}));
+				setCheckValue([]);
 			} else {
 				dispatch(callTrainingList({currentPage}));
 			}
@@ -101,7 +102,8 @@ function Training() {
 			{isDeleteModalOpen && (
 				<TrainingDeleteModal isDeleteModalOpen = {isDeleteModalOpen}
 				                     setIsDeleteModalOpen = {setIsDeleteModalOpen}
-				                     setInsert = {setInsert} checkValue = {checkValue}/>
+				                     setInsert = {setInsert} checkValue = {checkValue}
+				                     setCheckValue = {setCheckValue}/>
 			)}
 		</>
 	)

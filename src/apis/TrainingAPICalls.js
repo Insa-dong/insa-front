@@ -107,11 +107,15 @@ export const callTrainingRegisterAPI = (form) => {
 export const callTrainingRemoveAPI = (trainingCode) => {
 
 	console.log(trainingCode);
-	const requestURL = `${PRE_URL}/training/${trainingCode}`;
+	const requestURL = `${PRE_URL}/training`;
 
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
-			method: 'DELETE'
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(trainingCode)
 		}).then(res => res.json());
 
 		console.log(result);
