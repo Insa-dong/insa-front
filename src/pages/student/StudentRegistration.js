@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { callStudentRegistAPI } from '../../apis/StudentAPICalls';
+import Swal from 'sweetalert2';
 
 function StudentRegistration() {
 
@@ -17,10 +18,18 @@ function StudentRegistration() {
 
     useEffect(() => {
         if (regist?.status === 200) {
-            alert('수강생 등록이 완료되었습니다.');
-            navigate('/student', { replace: true });
+          Swal.fire({
+            title: '수강생 등록이 완료되었습니다.',
+            icon: 'success',
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: 'custom-success-button'
+            }
+          }).then(() => {
+            navigate('/student', { replace: true }); // 이동
+          });
         }
-    }, [regist, navigate]);
+      }, [regist, navigate]);
 
     const validateForm = () => {
         const newErrors = {};

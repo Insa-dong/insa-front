@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CSS from "./StudyStudentUpdateModal.module.css";
 import { callStudyStuUpdateForAdminAPI } from "../../apis/StudyStuAPICalls";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModal, stuCode }) {
@@ -26,10 +27,18 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
 
   useEffect(() => {
     if (modify?.status === 200) {
-        alert('강의 내용 수정이 완료되었습니다');
-        window.location.reload();
+      Swal.fire({
+        title: '강의 내용 수정이 완료되었습니다.',
+        icon: 'success',
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'custom-success-button'
+        }
+      }).then(() => {
+        window.location.reload(); // 새로고침
+      });
     }
-}, [modify]);
+  }, [modify]);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;

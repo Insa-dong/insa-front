@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CSS from "./StudentAttendRegistModal.module.css";
 import { callStudentAttendRegistAPI } from "../../apis/AttendAPICalls";
+import Swal from "sweetalert2";
 
 function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistModal }) {
 
@@ -31,10 +32,23 @@ function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistMo
   const onClickStudentAttendRegistHandler = () => {
     if (form && form.attendStatus) {
       dispatch(callStudentAttendRegistAPI({ ...form, studyCode, stuCode }));
+      Swal.fire({
+        title: '출결 등록이 완료되었습니다.',
+        icon: 'success',
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'custom-success-button'
+        }
+      }).then(() => {
+        window.location.reload();
+      });
     } else {
-      console.log('날짜와 출결 상태를 선택해주세요.');
+      Swal.fire(
+        '입력 오류',
+        '날짜와 출결 상태를 선택해주세요.',
+        'error'
+      );
     }
-    window.location.reload();
   };
 
   return (

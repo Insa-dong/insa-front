@@ -1,60 +1,76 @@
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { callStudentDeleteAPI } from "../../apis/StudentAPICalls";
 import './StudentItem.css';
-
-const useConfirm = (message = null, onConfirm, onCancel) => {
-  if (!onConfirm || typeof onConfirm !== "function") {
-    return;
-  }
-  if (onCancel && typeof onCancel !== "function") {
-    return;
-  }
-
-  const confirmAction = () => {
-    if (window.confirm(message)) {
-      onConfirm();
-    } else {
-      onCancel();
-    }
-  };
-
-  return confirmAction;
-};
+import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
 
 function StudentItem({ item }) {
-  const navigate = useNavigate();
   const [stuCode, setStuCode] = useState(item.stuCode);
   const dispatch = useDispatch();
-  const data = useSelector(state => state.studentReducer);
-
-
+  const navigate = useNavigate();
 
   const okConfirm = () => {
     // 삭제 API 호출
-    dispatch(callStudentDeleteAPI(stuCode));
-    window.location.reload();
+    dispatch(callStudentDeleteAPI(stuCode))
+      .then(() => {
+        Swal.fire({
+          title: '삭제가 완료 되었습니다.',
+          icon: 'success',
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'custom-success-button'
+          }
+        }).then(() => {
+          window.location.reload();
+        });
+      })
+      .catch((error) => {
+        Swal.fire(
+          '삭제 실패',
+          '다시 시도하세요.',
+          'error'
+        );
+      });
   };
 
-    const cancelConfirm = () => {
-    // 취소 시 동작
+  const cancelConfirm = () => {
     console.log("취소되었습니다.");
   };
 
-  const studentDelete = useConfirm(
-    "삭제 하시겠습니까?",
-    okConfirm,
-    cancelConfirm
-  );
+  const studentDelete = () => {
+    Swal.fire({
+      text: '삭제 하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      customClass: {
+        confirmButton: 'custom-confirm-button',
+        cancelButton: 'custom-cancel-button'
+      },
+      confirmButtonColor: '#8CBAFF',
+      cancelButtonColor: '#DADADA',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      reverseButtons: true,
+      buttonsStyling: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        okConfirm();
+      } else {
+        cancelConfirm();
+      }
+    });
+  };
 
-  const onClickStudentHandler = () => {
+  const onClickStudentHandler = (e) => {
+    if (e.target.classList.contains('stu-delete-btn')) {
+      return;
+    }
+
     navigate(`/student/${stuCode}`);
   };
 
-  useEffect(() => {
-    // 비동기 처리 완료 시 동작
-  }, [stuCode]); // stuCode가 변경될 때마다 호출
+  useEffect(() => {}, [stuCode]); // stuCode가 변경될 때마다 호출
 
   return (
     <tr key={item.stuCode} onClick={onClickStudentHandler}>
@@ -64,8 +80,8 @@ function StudentItem({ item }) {
       <th>{item.stuEmail}</th>
       <th>{item.stuEndSchool}</th>
       <th>
-        <div className = "stu-btns">
-        <button className ="stu-delete-btn" onClick={studentDelete}>삭제</button>
+        <div className="stu-btns">
+          <button className="stu-delete-btn" onClick={studentDelete}>삭제</button>
         </div>
       </th>
     </tr>
@@ -73,4 +89,3 @@ function StudentItem({ item }) {
 }
 
 export default StudentItem;
-

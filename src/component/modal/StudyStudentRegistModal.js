@@ -3,6 +3,7 @@ import CSS from "./StudyStudentRegistModal.module.css";
 import { useEffect, useState } from "react";
 import { callStudyStuRegistAdminAPI, callStudyStuTrainingTitleListAPI } from "../../apis/StudyStuAPICalls";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function StudyStudentRegistModal({ setStudyStudentRegistModal, stuCode }) {
 
@@ -34,10 +35,19 @@ function StudyStudentRegistModal({ setStudyStudentRegistModal, stuCode }) {
 
     useEffect(() => {
         if (registStudyStudent?.status === 200) {
-            alert('강의 등록이 완료되었습니다');
+          Swal.fire({
+            title: '강의 등록이 완료되었습니다.',
+            icon: 'success',
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: 'custom-success-button'
+            }
+          }).then(() => {
             window.location.reload();
+          });
         }
-    }, [registStudyStudent]);
+      }, [registStudyStudent]);
+
 
     const onChangeHandler = (e) => {
         setForm({
@@ -68,6 +78,7 @@ function StudyStudentRegistModal({ setStudyStudentRegistModal, stuCode }) {
                                 <th className={CSS.tableTh}>과정</th>
                                 <td>
                                     <select className={CSS.selectBox} name="studyCode" onChange={onChangeHandler}>
+                                        <option value="">선택</option>
                                         {trainingList && Array.isArray(trainingList) && trainingList.map((training, index) => (
                                             <option key={index} value={training.study.studyCode}>
                                                 {training.studyTitle}

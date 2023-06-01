@@ -3,6 +3,7 @@ import CSS from "./EvaUpdateModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { callEvaUpdateAPI } from "../../apis/EvaAPICalls";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 function EvaUpdateModal({ stuCode, setEvaUpdateModal, studyInfoCode, empCode, evaCode, evaList }) {
 
@@ -40,10 +41,39 @@ function EvaUpdateModal({ stuCode, setEvaUpdateModal, studyInfoCode, empCode, ev
     };
 
     const onSaveHandler = () => {
-        dispatch(callEvaUpdateAPI({ ...form, stuCode, studyInfoCode, empCode, evaCode }));
-        setEvaUpdateModal(false);
-        window.location.reload();
-    }
+        Swal.fire({
+          text: '평가를 수정하시겠습니까?',
+          icon: 'warning',
+          showCancelButton: true,
+          customClass: {
+            confirmButton: 'custom-confirm-button',
+            cancelButton: 'custom-cancel-button'
+          },
+          confirmButtonColor: '#8CBAFF',
+          cancelButtonColor: '#DADADA',
+          confirmButtonText: '확인',
+          cancelButtonText: '취소',
+          reverseButtons: true,
+          buttonsStyling: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            dispatch(callEvaUpdateAPI({ ...form, stuCode, studyInfoCode, empCode, evaCode }));
+            Swal.fire({
+              title: '평가가 수정되었습니다.',
+              icon: 'success',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-success-button'
+              }
+            }).then(() => {
+              setEvaUpdateModal(false);
+              window.location.reload();
+            });
+          } else {
+            console.log("평가 수정이 취소되었습니다.");
+          }
+        });
+      };
 
     return (
         <div className={CSS.modal}>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CSS from "./AdviceRegistModal.module.css";
 import { callAdviceWriteAPI } from "../../apis/AdviceAPICalls";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
 
@@ -35,9 +36,38 @@ function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
     };
 
     const onClickAdviceRegistHandler = () => {
-        dispatch(callAdviceWriteAPI({ ...form, stuCode, empCode }));
-        window.location.reload();
-    };
+        Swal.fire({
+          text: '상담 내용을 등록하시겠습니까?',
+          icon: 'warning',
+          showCancelButton: true,
+          customClass: {
+            confirmButton: 'custom-confirm-button',
+            cancelButton: 'custom-cancel-button'
+          },
+          confirmButtonColor: '#8CBAFF',
+          cancelButtonColor: '#DADADA',
+          confirmButtonText: '확인',
+          cancelButtonText: '취소',
+          reverseButtons: true,
+          buttonsStyling: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            dispatch(callAdviceWriteAPI({ ...form, stuCode, empCode }));
+            Swal.fire({
+              title: '상담 내용이 등록되었습니다.',
+              icon: 'success',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-success-button'
+              }
+            }).then(() => {
+              window.location.reload();
+            });
+          } else {
+            console.log("상담 등록이 취소되었습니다.");
+          }
+        });
+      };
 
     return(
         <div className={CSS.modal}>
