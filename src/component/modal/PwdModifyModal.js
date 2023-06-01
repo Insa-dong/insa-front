@@ -12,6 +12,7 @@ function PwdModifyModal({ isOpen, onClose }) {
         checkPwd: ""
     });
     const [isCheck, setIsCheck] = useState(false);
+    const [isPwdMatch, setIsPwdMatch] = useState(true);
 
     const handleBackgroundClick = () => {
         onClose();
@@ -29,13 +30,23 @@ function PwdModifyModal({ isOpen, onClose }) {
     }
 
     const onClickPwdModifyHandler = () => {
-        if (!isCheck) {
+
+        if (
+            form.empPwd === "" ||
+            form.newPwd === "" ||
+            form.checkPwd === ""
+        ) {
+            alert("모든 양식을 입력해주세요");
+        } else if (!isCheck) {
             alert("비밀번호 양식 오류  \n영문, 숫자를 포함한 10~14자 이내로 작성해주세요.");
+        } else if (form.newPwd !== form.checkPwd) {
+            alert("비밀번호가 일치하지 않습니다.")
         } else {
             dispatch(callPwdUpdateAPI(form));
             window.location.reload();
         }
-    }
+
+    };
 
     /* 비밀번호 유효성 검사 */
     useEffect(() => {

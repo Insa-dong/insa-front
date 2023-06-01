@@ -16,6 +16,7 @@ function Mypage() {
     const { info } = useSelector(state => state.mypageReducer);
     const [empRestApplyModal, setEmpRestModal] = useState(false);
     const [form, setForm] = useState({...info});
+    const [errors, setErrors] = useState({});
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -33,6 +34,7 @@ function Mypage() {
             ...form,
             [e.target.name]: e.target.value
         });
+        validateForm();
     }
 
     const onClickModifyHandler = () =>{
@@ -50,16 +52,43 @@ function Mypage() {
         setIsModalOpen(false);
     };
 
+    const onClickRestHandler = () => {
+        setEmpRestModal(true);
+    }
+
+    const validateForm = () => {
+        const newErrors = {};
+    
+        if (!form.empPhone) {
+            // newErrors.empPhone = '전화번호를 입력해주세요.';
+        } else if (!/^\d{2,3}-\d{3,4}-\d{3,4}$/.test(form.empPhone)) {
+          newErrors.empPhone = '*전화번호 형식에 맞게 입력해주세요.';
+        } else {
+          newErrors.empPhone = ''; // 유효한 경우 오류 메시지를 빈 문자열로 업데이트
+        }
+    
+        if (!form.empEmail) {
+            // newErrors.empEmail = '이메일을 입력해주세요.';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.empEmail)) {
+            newErrors.empEmail = '*유효한 이메일 주소를 입력해주세요.';
+        } else {
+          newErrors.empEmail = ''; // 유효한 경우 오류 메시지를 빈 문자열로 업데이트
+        }
+    
+        setErrors(newErrors);
+        
+        // return Object.keys(newErrors).length === 0;
+    };
+
     useEffect(
         () => {
             dispatch(callMypageAPI());
         },
         []
-    )
+    );
 
-    const onClickRestHandler = () => {
-        setEmpRestModal(true);
-    }
+    
+
 
     return (
         <>
@@ -112,6 +141,7 @@ function Mypage() {
                                 autoComplete='off'
                                 onChange={onChangeHandler}
                             />
+                            {errors.empPhone && <span className="error">{errors.empPhone}</span>}
                         </ul>
                         <ul style={{ display: 'flex' }}>
                             <li className={CSS.email}>이메일</li>
@@ -124,6 +154,7 @@ function Mypage() {
                                 autoComplete='off'
                                 onChange={onChangeHandler}
                             />
+                             {errors.empEmail && <span className="error">{errors.empEmail}</span>}
                         </ul>
                         <ul style={{ display: 'flex' }}>
                             <li className={CSS.gender}>성별</li>

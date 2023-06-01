@@ -2,54 +2,70 @@
     width: 74vw;
     height: 78vh;
     margin-left: 20vw;
-    margin-top: 10vh;
+    margin-top: 9vh;
 }
 
 .noticeCalendar {
     display: flex;
+    justify-content: space-between;
+    margin-bottom: 3vh;
+    height: 25vh;
 }
 
 .notice {
-    border: 1px solid black;
-    font-size: 30pt;
-    margin-right: 50vw;
-    margin-bottom: 10vh;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color: #f9fafa;
+    width: 50vw;
+
 }
 
 .calendar {
-    border: 1px solid black;
-    font-size: 30pt;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color: #f9fafa;
+    width: 20vw;
 }
 
 .buttonWeather {
     display: flex;
-    font-size: 30pt;
+    justify-content: space-between;
+    height: 25vh;
+    margin-bottom: 3vh;
 }
 
 .button {
     display: flex;
-    border: 1px solid black;
-    font-size: 30pt;
-    margin-right: 30vw; 
-    margin-bottom: 10vh;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color: #f9fafa;
+    width: 50vw;
 }
 
 .weather {
-    border: 1px solid black;
-    font-size: 30pt;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color: #f9fafa;
+    width: 20vw;
 }
 
-.newsLecture{
+.newsLecture {
     display: flex;
+    justify-content: space-between;
+    height: 25vh;
 }
 
 .news {
-    border: 1px solid black;
-    font-size: 30pt;
-    margin-right: 55vw;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color: #f9fafa;
+    width: 35vw;
+
 }
 
 .lecture {
-    border: 1px solid black;
-    font-size: 30pt;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color: #f9fafa;
+    width: 35vw;
 }
