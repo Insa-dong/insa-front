@@ -228,19 +228,27 @@ function Abs() {
             <Header title="근태" />
 
             <div className="abs-wrapp">
-                <div className="abs-menu-bar">
-                    <NavLink to="/abs">
-                        <div className="abs-menu" onClick={handleReloadPage}>
-                            내 근태
-                        </div>
-                    </NavLink>
+                <div className='abs-wrapp-sub'>
+                    <div className="abs-menu-bar">
+                        <NavLink to="/abs">
+                            <div className="abs-menu" onClick={handleReloadPage}>
+                                내 근태
+                            </div>
+                        </NavLink>
 
-                    <NavLink to="/abs/adminAbs">
-                        <div className="abs-menu" style={{ color: 'gray' }}>
-                            구성원 근태
-                        </div>
-                    </NavLink>
+                        <NavLink to="/abs/adminAbs">
+                            <div className="abs-menu" style={{ color: 'gray' }}>
+                                구성원 근태
+                            </div>
+                        </NavLink>
+                    </div>
+                    {/*타이머 */}
+                    <div className="abs-timer">
+                        {formatTime(workTime)}
+                    </div>
                 </div>
+
+
 
                 <div className="abs-btns">
                     <button className="abs-start-btn" onClick={handleCheckIn}>
@@ -251,10 +259,7 @@ function Abs() {
                     </button>
                 </div>
 
-                {/*타이머 */}
-                <div className="abs-timer">
-                    {formatTime(workTime)}
-                </div>
+
 
                 <div className="abs-search-container">
                     <input className="abs-searchDate"
