@@ -5,7 +5,7 @@ function RestList({ restList }) {
     console.log("hell: ", restList);
 
     return (
-        <table className="signOffListDiv">
+        <table className="restOffListDiv">
             <thead>
                 <tr>
                     <th className="empRestTable">부서</th>
