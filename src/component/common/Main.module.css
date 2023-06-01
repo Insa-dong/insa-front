@@ -2,54 +2,54 @@
     width: 74vw;
     height: 78vh;
     margin-left: 20vw;
-    margin-top: 10vh;
+    margin-top: 5vh;
 }
 
 .noticeCalendar {
     display: flex;
+    justify-content: space-between;
 }
 
 .notice {
     border: 1px solid black;
-    font-size: 30pt;
-    margin-right: 50vw;
-    margin-bottom: 10vh;
+    width: 50vw;
+    height: 30vh;
 }
 
 .calendar {
     border: 1px solid black;
-    font-size: 30pt;
+    width: 20vw;
 }
 
 .buttonWeather {
     display: flex;
-    font-size: 30pt;
+    justify-content: space-between;
 }
 
 .button {
     display: flex;
     border: 1px solid black;
-    font-size: 30pt;
-    margin-right: 30vw; 
-    margin-bottom: 10vh;
+    width: 50vw;
+    height: 30vh;
 }
 
 .weather {
     border: 1px solid black;
-    font-size: 30pt;
+    width: 20vw;
 }
 
 .newsLecture{
     display: flex;
+    justify-content: space-between;
 }
 
 .news {
     border: 1px solid black;
-    font-size: 30pt;
-    margin-right: 55vw;
+    width: 20vw;
+    height: 30vh;
 }
 
 .lecture {
     border: 1px solid black;
-    font-size: 30pt;
+    width: 50vw;
 }
