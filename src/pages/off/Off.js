@@ -96,7 +96,7 @@ function Off() {
                     </div>
                 </div>
 
-                <p className='comingup-title' onClick={handleReloadPage}> 신청 기록 </p>
+                <p className='comingup-title' onClick={handleReloadPage}> 사용 기록 </p>
                 <div className="my-off-request">
                 <div className="off-search-container">
                     <input className="off-searchYear"

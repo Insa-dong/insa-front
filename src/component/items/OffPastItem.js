@@ -1,15 +1,17 @@
+
 import './OffPastItem.css';
 
-function OffPastItem({ off: { offDiv, offStart, offEnd, offDay, signStatus } }) {
+function OffPastItem({ off, onClick }) {
+
 
     let imgSrc = "/images/연차신청.png";
 
-    if (offDiv === "오전반차" || offDiv === "오후반차") {
+    if (off.offDiv === "오전반차" || off.offDiv === "오후반차") {
         imgSrc = "/images/반차신청.png";
     }
 
     let statusColor;
-    switch (signStatus) {
+    switch (off.signStatus) {
         case "대기":
             statusColor = "#AAAAAA";
             break;
@@ -21,19 +23,27 @@ function OffPastItem({ off: { offDiv, offStart, offEnd, offDay, signStatus } }) 
             break;
     }
 
+    const handleClick = () => {
+        onClick(off);
+    }
+
+
     return (
        
-        <tr className="comingPastDiv">
-            <td className="td-img">
-                <img className="offDivImg" alt="offDivImg" src={imgSrc}/>
-            </td>
-            <td className="td-div2">{offDiv}</td>
-            <td className="td-start2">{offStart}  ~ </td>
-            <td className="td-end2">{offEnd}</td>
-            <td className="td-day2">{offDay}일</td>
-            <td className="td-signStatus2" style={{backgroundColor: statusColor}}>{signStatus}</td>
-        </tr>
-       
+
+            <tr className="comingPastDiv" onClick={handleClick}>
+                <td className="td-img">
+                    <img className="offDivImg" alt="offDivImg" src={imgSrc} />
+                </td>
+                <td className="td-div2">{off.offDiv}</td>
+                <td className="td-start2">{off.offStart}  ~ </td>
+                <td className="td-end2">{off.offEnd}</td>
+                <td className="td-day2">{off.offDay}일</td>
+                <td className="td-signStatus2" style={{ backgroundColor: statusColor }}>{off.signStatus}</td>
+            </tr>
+
+
+     
     )
 }
 

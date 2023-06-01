@@ -1,5 +1,5 @@
 import {
-    postApply, getOffNow, getComingupOff, getPastOff,
+    postApply, getOffNow, getComingupOff, getPastOff, getOffDetail,
     deleteOff, getTeamOff, getSignOff, putSignOff, getAdminOff
 } from "../modules/OffModule";
 
@@ -103,6 +103,28 @@ export const callPastOffListAPI = (year) => {
 
         if (result.status === 200) {
             dispatch(getPastOff(result));
+        }
+    }
+};
+
+/* 연차 상세 조회 API */
+export const callOffDetailAPI = ({ signCode }) => {
+
+    const requestURL = `${PRE_URL}/myOffDetail/${signCode}`;
+
+    return async (dispatch, getState) => {
+        const result = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+            }
+        }).then(response => response.json());
+
+        console.log('Server response:', result);  // 서버 응답 출력
+
+        if (result.status === 200) {
+            dispatch(getOffDetail(result));
         }
     }
 };

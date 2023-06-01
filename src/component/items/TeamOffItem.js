@@ -1,4 +1,4 @@
-
+import './TeamOffItem.css';
 
 function TeamOffItem({ off }) {
 
