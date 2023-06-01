@@ -83,7 +83,7 @@ function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, attend
                                                     value={form.attendStatus || selectedAttend.attendStatus}
                                                     onChange={onChangeHandler}>
                                                     <option>선택</option>
-                                                    <option>출결</option>
+                                                    <option>출석</option>
                                                     <option>결석</option>
                                                     <option>지각</option>
                                                     <option>조퇴</option>
