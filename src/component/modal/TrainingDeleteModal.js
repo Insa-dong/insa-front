@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import {callTrainingRemoveAPI} from "../../apis/TrainingAPICalls";
 import CSS from "./TrainingRegistModal.module.css";
 
-function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert, checkValue, setCheckValue}) {
+function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert, checkValue}) {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -57,9 +57,7 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 							);
 						});
 				} else if (result.dismiss) {
-					window.location.reload();
 					setIsDeleteModalOpen(false);
-					setCheckValue([]);
 				}
 			});
 		} else {
@@ -79,7 +77,6 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 				buttonsStyling: false,
 			}).then(result => {
 				setIsDeleteModalOpen(false);
-				setCheckValue([])
 			})
 		}
 	};

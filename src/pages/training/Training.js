@@ -45,6 +45,7 @@ function Training() {
 			} else {
 				dispatch(callTrainingList({currentPage}));
 				ref.current.value = '';
+				setCheckValue([]);
 			}
 		},
 		[currentPage, dispatch, searchValue]
@@ -62,6 +63,7 @@ function Training() {
 
 	const onClickHandler = () => {
 		navigate(`/search?value=${search}`);
+		setCheckValue([]);
 	}
 
 	return (
@@ -105,8 +107,7 @@ function Training() {
 			{isDeleteModalOpen && (
 				<TrainingDeleteModal isDeleteModalOpen = {isDeleteModalOpen}
 				                     setIsDeleteModalOpen = {setIsDeleteModalOpen}
-				                     setInsert = {setInsert} checkValue = {checkValue}
-				                     setCheckValue = {setCheckValue}/>
+				                     setInsert = {setInsert} checkValue = {checkValue}/>
 			)}
 		</>
 	)

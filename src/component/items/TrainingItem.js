@@ -9,6 +9,7 @@ function TrainingItem({item, checkValue, setCheckValue, index}) {
 	const [hover, setHover] = useState(false);
 	const [targetValue, setTargetValue] = useState();
 	const [display, setDisplay] = useState({display: 'none'});
+	const [isChecked, setIsChecked] = useState(false);
 	const ref = useRef([]);
 
 	const onMouseOverHandler = () => {
@@ -30,16 +31,28 @@ function TrainingItem({item, checkValue, setCheckValue, index}) {
 
 	const onCheckBoxClickHandler = () => {
 		ref.current[index].checked = !ref.current[index].checked;
+		setIsChecked(true)
 		ref.current.map(item => {
 			if (item.checked) {
 				setCheckValue((prev) => ([...prev, item.value]))
 				setDisplay({display: 'block'})
+			} else {
+				setDisplay({display: 'none'})
+				const filter = checkValue.filter(check => {
+					setIsChecked(false);
+					return check !== item.value;
+				});
+				setCheckValue(filter);
 			}
 		})
 	}
 
-	const onChangeHandler = (e) => {
+	const onCheckClickHandler = (e) => {
 		e.target.checked = !e.target.checked;
+	}
+
+	const onChangeHandler = (e) => {
+		e.target.checked = isChecked;
 	}
 
 	return (
@@ -53,8 +66,10 @@ function TrainingItem({item, checkValue, setCheckValue, index}) {
 				<input type = "checkbox"
 				       ref = {element => ref.current[index] = element}
 				       className = {CSS.checkBox}
-				       onClick = {onChangeHandler}
+				       onClick = {onCheckClickHandler}
+				       onChange = {onChangeHandler}
 				       value = {item.trainingCode}
+				       checked = {isChecked}
 				       style = {display}
 				/>
 				{item.trainingCode}

@@ -4,13 +4,7 @@ import Swal from "sweetalert2";
 import {callStudyRemoveAPI} from "../../apis/StudyInfoAPICalls";
 import CSS from "./TrainingRegistModal.module.css";
 
-function TrainingDeleteModal({
-	                             isDeleteModalOpen,
-	                             setIsDeleteModalOpen,
-	                             setInsert,
-	                             checkValue,
-	                             setCheckValue,
-                             }) {
+function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert, checkValue,}) {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -63,7 +57,6 @@ function TrainingDeleteModal({
 					});
 			} else if (result.dismiss) {
 				setIsDeleteModalOpen(false);
-				setCheckValue([]);
 			}
 		});
 	};
