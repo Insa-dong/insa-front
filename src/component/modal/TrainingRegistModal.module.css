@@ -83,11 +83,6 @@
     cursor: pointer;
 }
 
-.saveButton:hover {
-    background-color: rgb(162, 241, 178);
-}
-
-
 .custom-confirm-button {
     background-color: #8CBAFF !important;
     color: white;

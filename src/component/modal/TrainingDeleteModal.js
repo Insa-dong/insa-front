@@ -87,13 +87,7 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 	return (
 		isDeleteModalOpen && (
 			<div className = {CSS.trainingModal} onClick = {onClickOutsideModal}>
-				<div className = {CSS.trainingModalContainer}>
-					<div className = {CSS.trainingModalClose} onClick = {() => setIsDeleteModalOpen(false)}>X</div>
-					<div className = {CSS.trainingModalDiv}>
-						<h1 className = {CSS.trainingModalTitle}>삭제를 실행중입니다.</h1>
-						<button onClick = {onClickTrainingDeleteHandler} className = {CSS.saveButton}>네</button>
-					</div>
-				</div>
+				{onClickTrainingDeleteHandler()}
 			</div>
 		)
 	)

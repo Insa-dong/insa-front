@@ -2,7 +2,7 @@ import TrainingItem from "../items/TrainingItem";
 import CSS from './TrainingList.module.css';
 
 
-function TrainingList({training, checkValue}) {
+function TrainingList({training, checkValue, setCheckValue}) {
 
 	return (
 		<table className = {CSS.tableStyle}>
@@ -22,6 +22,7 @@ function TrainingList({training, checkValue}) {
 					<TrainingItem item = {item}
 					              key = {item.trainingCode}
 					              checkValue = {checkValue}
+					              setCheckValue = {setCheckValue}
 					              index = {index}
 					/>
 				))}

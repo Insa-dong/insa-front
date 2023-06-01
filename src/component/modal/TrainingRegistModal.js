@@ -107,7 +107,7 @@ function TrainingRegistModal({isRegistOpen, setIsRegistOpen, setInsert}) {
 
 
 						<div className = {CSS.trainingField}>
-							<h1>과정 시간</h1>
+							<h1>훈련 시간</h1>
 							<input
 								type = "number"
 								className = {CSS.textInput}

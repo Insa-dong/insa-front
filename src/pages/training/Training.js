@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import {callSearchTrainingList, callTrainingList} from "../../apis/TrainingAPICalls";
@@ -16,15 +16,16 @@ function Training() {
 	const [search, setSearch] = useState();
 	const [currentPage, setCurrentPage] = useState(1)
 	const [checkValue, setCheckValue] = useState([]);
-	const [searchParams] = useSearchParams();
 	const [insert, setInsert] = useState(false);
+	const [searchParams] = useSearchParams();
+	const searchValue = searchParams.get('value');
 	const [isRegistModalOpen, setIsRegistModalOpen] = useState(false);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-	const searchValue = searchParams.get('value');
 	const {remove} = useSelector(state => state.trainingReducer);
 	const training = useSelector(state => state.trainingReducer);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const ref = useRef();
 
 	useEffect(
 		() => {
@@ -43,6 +44,7 @@ function Training() {
 				setCheckValue([]);
 			} else {
 				dispatch(callTrainingList({currentPage}));
+				ref.current.value = '';
 			}
 		},
 		[currentPage, dispatch, searchValue]
@@ -75,6 +77,7 @@ function Training() {
 						onChange = {onChangeHandler}
 						onKeyDown = {onKeyDownHandler}
 						type = "text"
+						ref = {ref}
 						placeholder = "과정명을 입력하세요."
 					>
 					</input>

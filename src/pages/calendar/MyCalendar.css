@@ -45,3 +45,7 @@
     margin: 10px;
 }
 
+.fc-button:hover {
+    background: #8CBAFF;
+}
+

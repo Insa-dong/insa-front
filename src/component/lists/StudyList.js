@@ -23,6 +23,7 @@ function StudyList({study, checkValue, setCheckValue}) {
 					           key = {item.studyInfoCode}
 					           checkValue = {checkValue}
 					           setCheckValue = {setCheckValue}
+					           index = {index}
 					/>
 				))}
 			</tbody>

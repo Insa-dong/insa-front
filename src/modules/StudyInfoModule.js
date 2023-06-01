@@ -8,17 +8,17 @@ const PUT_STUDYINFO = 'studyInfo/PUT_STUDYINFO';
 const POST_STUDYINFO = 'studyInfo/POST_STUDYINFO';
 const DELETE_STUDYINFO = 'studyInfo/DELETE_STUDYINFO';
 const GET_MY_STUDY = 'studyInfo/GET_MY_STUDY';
-const INIT_STUDYINFO = 'studyInfo/INIT_STUDYINFO';
+const GET_STUDYINFO_SEARCHLIST = 'studyInfo/GET_STUDYINFO_SEARCHLIST';
 
 export const {
 	studyInfo: {
 		getStudyinfolist,
+		getStudyinfoSearchlist,
 		getStudyinfo,
 		putStudyinfo,
 		getMyStudy,
 		postStudyinfo,
 		deleteStudyinfo,
-		initStudyinfo
 	}
 } = createActions({
 	[GET_STUDYINFO_LIST]: res => res.data,
@@ -27,9 +27,8 @@ export const {
 	[POST_STUDYINFO]: res => res,
 	[DELETE_STUDYINFO]: res => res,
 	[GET_MY_STUDY]: res => res.data,
-	[INIT_STUDYINFO]: () => {
-	}
-})
+	[GET_STUDYINFO_SEARCHLIST]: res => res.data,
+});
 
 const studyInfoReducer = handleActions(
 	{
@@ -39,7 +38,7 @@ const studyInfoReducer = handleActions(
 		[POST_STUDYINFO]: (state, {payload}) => ({regist: payload}),
 		[GET_MY_STUDY]: (state, {payload}) => payload,
 		[DELETE_STUDYINFO]: (state, {payload}) => ({remove: payload}),
-		[INIT_STUDYINFO]: () => initialState
+		[GET_STUDYINFO_SEARCHLIST]: (state, {payload}) => payload,
 	}, initialState
 )
 
