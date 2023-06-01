@@ -3,6 +3,7 @@ import CSS from "./AdviceUpdateModal.module.css";
 import { useDispatch } from "react-redux";
 import { callAdviceUpdateAPI } from "../../apis/AdviceAPICalls";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empCode, adviceList }) {
 
@@ -36,10 +37,39 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
     };
 
     const onSaveHandler = () => {
-        dispatch(callAdviceUpdateAPI({...form, stuCode, adviceLogCode , empCode }));
-        setAdviceUpdateModal(false);
-        window.location.reload();
-    }
+        Swal.fire({
+          text: '상담 내용을 수정하시겠습니까?',
+          icon: 'warning',
+          showCancelButton: true,
+          customClass: {
+            confirmButton: 'custom-confirm-button',
+            cancelButton: 'custom-cancel-button'
+          },
+          confirmButtonColor: '#8CBAFF',
+          cancelButtonColor: '#DADADA',
+          confirmButtonText: '확인',
+          cancelButtonText: '취소',
+          reverseButtons: true,
+          buttonsStyling: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            dispatch(callAdviceUpdateAPI({...form, stuCode, adviceLogCode, empCode }));
+            Swal.fire({
+              title: '상담 내용이 수정되었습니다.',
+              icon: 'success',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-success-button'
+              }
+            }).then(() => {
+              setAdviceUpdateModal(false);
+              window.location.reload();
+            });
+          } else {
+            console.log("상담 수정이 취소되었습니다.");
+          }
+        });
+      };
 
     return(
         <div className = {CSS.modal}>

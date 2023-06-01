@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CSS from "./StudentAttendUpdateModal.module.css";
 import { useState } from "react";
 import { callStudentAttendUpdateAPI } from "../../apis/AttendAPICalls";
+import Swal from "sweetalert2";
 
 function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, attendCode, attendDetail }) {
 
@@ -36,9 +37,18 @@ function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, attend
 
     const onUpdateHandler = () => {
         dispatch(callStudentAttendUpdateAPI({ ...form, attendCode, stuCode }));
-        setStudentAttendUpdateModal(false);
-        window.location.reload();
-    };
+        Swal.fire({
+          title: '출결 정보가 수정되었습니다.',
+          icon: 'success',
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'custom-success-button'
+          }
+        }).then(() => {
+          setStudentAttendUpdateModal(false);
+          window.location.reload();
+        });
+      };
 
     return (
         <div className={CSS.modal}>

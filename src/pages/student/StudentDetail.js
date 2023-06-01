@@ -59,39 +59,111 @@ function StudentDetail() {
 
   
     const evaDelete = (evaCode) => {
-    const confirmed = window.confirm("평가 내역을 삭제하시겠습니까?");
-    if (confirmed) {
-      console.log('evaCode : ', evaCode);
-      dispatch(callEvaDeleteForAdminAPI({ evaCode }));
-      window.location.reload();
-    } else {
-      console.log("평가 삭제가 취소되었습니다.");
-    }
-  };
+        Swal.fire({
+          text: '평가 내역을 삭제하시겠습니까?',
+          icon: 'warning',
+          showCancelButton: true,
+          customClass: {
+            confirmButton: 'custom-confirm-button',
+            cancelButton: 'custom-cancel-button'
+          },
+          confirmButtonColor: '#8CBAFF',
+          cancelButtonColor: '#DADADA',
+          confirmButtonText: '확인',
+          cancelButtonText: '취소',
+          reverseButtons: true,
+          buttonsStyling: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            console.log('evaCode : ', evaCode);
+            dispatch(callEvaDeleteForAdminAPI({ evaCode }));
+            Swal.fire({
+              title: '평가 내역이 삭제되었습니다.',
+              icon: 'success',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-success-button'
+              }
+            }).then(() => {
+              window.location.reload(); 
+            });
+          } else {
+            console.log("평가 삭제가 취소되었습니다.");
+          }
+        });
+      };
 
   const adviceDelete = (adviceLogCode) => {
-    const confirmed = window.confirm("상담 내역을 삭제하시겠습니까?");
-    if (confirmed) {
-      console.log('adviceLogCode : ', adviceLogCode);
-      dispatch(callAdviceDeleteForAdminAPI({ adviceLogCode }));
-      window.location.reload();
-    } else {
-      console.log("상담 삭제가 취소되었습니다.");
-    }
+    Swal.fire({
+      text: '상담 내역을 삭제하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      customClass: {
+        confirmButton: 'custom-confirm-button',
+        cancelButton: 'custom-cancel-button'
+      },
+      confirmButtonColor: '#8CBAFF',
+      cancelButtonColor: '#DADADA',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      reverseButtons: true,
+      buttonsStyling: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('adviceLogCode : ', adviceLogCode);
+        dispatch(callAdviceDeleteForAdminAPI({ adviceLogCode }));
+        Swal.fire({
+          title: '상담 내역이 삭제되었습니다.',
+          icon: 'success',
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'custom-success-button'
+          }
+        }).then(() => {
+          window.location.reload();
+        });
+      } else {
+        console.log("상담 삭제가 취소되었습니다.");
+      }
+    });
   };
 
-  const studyStuDelete = (stuCode, studyCode) => {
-    const confirmed = window.confirm("강의 내역을 삭제하시겠습니까?");
-    if (confirmed) {
-      console.log('studyCode : ', studyCode);
-      console.log('stuCode : ', stuCode);
-      dispatch(callStudyStuDeleteAdminAPI({ studyCode, stuCode }));
-      window.location.reload();
-    } else {
-      console.log("강의 삭제가 취소되었습니다.");
-    }
-  };
 
+const studyStuDelete = (stuCode, studyCode) => {
+    Swal.fire({
+      text: '강의 내역을 삭제하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      customClass: {
+        confirmButton: 'custom-confirm-button',
+        cancelButton: 'custom-cancel-button'
+      },
+      confirmButtonColor: '#8CBAFF',
+      cancelButtonColor: '#DADADA',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      reverseButtons: true,
+      buttonsStyling: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('studyCode : ', studyCode);
+        console.log('stuCode : ', stuCode);
+        dispatch(callStudyStuDeleteAdminAPI({ studyCode, stuCode }));
+        Swal.fire({
+          title: '강의 내역이 삭제되었습니다.',
+          icon: 'success',
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'custom-success-button'
+          }
+        }).then(() => {
+          window.location.reload();
+        });
+      } else {
+        console.log("강의 삭제가 취소되었습니다.");
+      }
+    });
+  };
 
 
     const onClickAdviceReviewHandler = (adviceReview) => {
