@@ -3,6 +3,7 @@ import {
 	getMyStudy,
 	getStudyinfo,
 	getStudyinfolist,
+	getStudyinfoSearchlist,
 	postStudyinfo,
 	putStudyinfo
 } from "../modules/StudyInfoModule";
@@ -20,6 +21,19 @@ export const callStudyInfoListAPI = ({currentPage}) => {
 
 		if (result.status === 200) {
 			dispatch(getStudyinfolist(result));
+		}
+	};
+}
+
+export const callSearchStudyList = ({searchValue, currentPage, selectedOption}) => {
+
+	const requestURL = `${PRE_URL}/studyInfoList/search?search=${searchValue}&page=${currentPage}&category=${selectedOption}`;
+
+	return async (dispatch, getState) => {
+		const result = await fetch(requestURL).then(res => res.json());
+
+		if (result.status === 200) {
+			dispatch(getStudyinfoSearchlist(result));
 		}
 	};
 }
@@ -103,15 +117,15 @@ export const callSelectStudyForTeacherAPI = ({currentPage = 1}) => {
 	return async (dispatch, getState) => {
 
 		const result = await fetch(requestURL, {
-			method : 'GET',
-			headers : {
+			method: 'GET',
+			headers: {
 				"Content-Type": "application/json",
 				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
 		}).then(res => res.json());
-		
+
 		console.log(result);
-		if(result.status === 200) {
+		if (result.status === 200) {
 			dispatch(getMyStudy(result));
 		}
 	}
@@ -187,4 +201,3 @@ export const callStudyRemoveAPI = (studyCode) => {
 		}
 	}
 }
-

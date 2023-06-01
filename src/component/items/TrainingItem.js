@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import listCSS from '../lists/TrainingList.module.css'
 import CSS from './TrainingItem.module.css'
 
-function TrainingItem({item, checkValue, index}) {
+function TrainingItem({item, checkValue, setCheckValue, index}) {
 
 	const navigate = useNavigate();
 	const [hover, setHover] = useState(false);
@@ -29,11 +29,10 @@ function TrainingItem({item, checkValue, index}) {
 	}
 
 	const onCheckBoxClickHandler = () => {
-		console.log(ref.current[index]);
 		ref.current[index].checked = !ref.current[index].checked;
 		ref.current.map(item => {
 			if (item.checked) {
-				checkValue.push(item.value);
+				setCheckValue((prev) => ([...prev, item.value]))
 				setDisplay({display: 'block'})
 			}
 		})
@@ -54,6 +53,7 @@ function TrainingItem({item, checkValue, index}) {
 				<input type = "checkbox"
 				       ref = {element => ref.current[index] = element}
 				       className = {CSS.checkBox}
+				       onClick = {onChangeHandler}
 				       value = {item.trainingCode}
 				       style = {display}
 				/>

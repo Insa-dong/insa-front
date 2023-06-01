@@ -4,7 +4,13 @@ import Swal from "sweetalert2";
 import {callStudyRemoveAPI} from "../../apis/StudyInfoAPICalls";
 import CSS from "./TrainingRegistModal.module.css";
 
-function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert, checkValue}) {
+function TrainingDeleteModal({
+	                             isDeleteModalOpen,
+	                             setIsDeleteModalOpen,
+	                             setInsert,
+	                             checkValue,
+	                             setCheckValue,
+                             }) {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -55,6 +61,9 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 							'error'
 						);
 					});
+			} else if (result.dismiss) {
+				setIsDeleteModalOpen(false);
+				setCheckValue([]);
 			}
 		});
 	};
@@ -62,13 +71,7 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 	return (
 		isDeleteModalOpen && (
 			<div className = {CSS.trainingModal} onClick = {onClickOutsideModal}>
-				<div className = {CSS.trainingModalContainer}>
-					<div className = {CSS.trainingModalClose} onClick = {() => setIsDeleteModalOpen(false)}>X</div>
-					<div className = {CSS.trainingModalDiv}>
-						<h1 className = {CSS.trainingModalTitle}>삭제를 실행중입니다.</h1>
-						<button onClick = {onClickTrainingDeleteHandler}>네</button>
-					</div>
-				</div>
+				{onClickTrainingDeleteHandler()}
 			</div>
 		)
 	)

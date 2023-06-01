@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import {callStudyInfoListAPI} from "../../apis/StudyInfoAPICalls";
+import {callSearchStudyList, callStudyInfoListAPI} from "../../apis/StudyInfoAPICalls";
 import Header from "../../component/common/Header";
 import PagingBar from "../../component/common/PagingBar";
 import StudyList from "../../component/lists/StudyList";
@@ -12,10 +12,10 @@ function Study() {
 
 	const title = '강의'
 	const subTitle = '강의 목록'
-	const [selectedOption, setSelectedOption] = useState('trainingTitle');
+	const [selectedOption, setSelectedOption] = useState('studyTitle');
 	const [search, setSearch] = useState();
 	const [currentPage, setCurrentPage] = useState(1)
-	const [checkValue, setCheckValue] = useState("1");
+	const [checkValue, setCheckValue] = useState([]);
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const [insert, setInsert] = useState(false);
 	const [searchParams] = useSearchParams();
@@ -23,6 +23,8 @@ function Study() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const study = useSelector(state => state.studyInfoReducer);
+	const searchList = useSelector(state => state.studyInfoReducer);
+	const ref = useRef();
 
 	useEffect(
 		() => {
@@ -36,18 +38,15 @@ function Study() {
 
 	useEffect(
 		() => {
-			if (selectedOption === 'trainingTitle' && searchValue) {
-
-			} else if (selectedOption === 'studyTitle' && searchValue) {
-
-			} else if (selectedOption === 'studyTeacher' && searchValue) {
-
+			if (searchValue) {
+				dispatch(callSearchStudyList({searchValue, currentPage, selectedOption}));
 			} else {
 				dispatch(callStudyInfoListAPI({currentPage}));
+				ref.current.value = '';
 			}
 		},
 		[currentPage, dispatch, searchValue, selectedOption]
-	);
+	)
 
 	const onChangeHandler = (e) => {
 		setSearch(e.target.value);
@@ -65,7 +64,6 @@ function Study() {
 
 	const selectOnChangeHandler = (e) => {
 		setSelectedOption(e.target.value);
-		console.log(selectedOption)
 	}
 
 	return (
@@ -82,6 +80,7 @@ function Study() {
 						className = {CSS.InputStyle}
 						onChange = {onChangeHandler}
 						onKeyDown = {onKeyDownHandler}
+						ref = {ref}
 						type = "text"
 						placeholder = {selectedOption === 'studyTitle' ? "강의명을 입력하세요." : selectedOption === 'studyTitle' ? "강의 명을 입력하세요." : selectedOption === 'studyTeacher' ? "강사 명을 입력하세요." : "검색어를 입력하세요."}
 					>
@@ -92,10 +91,8 @@ function Study() {
 				</div>
 				{study &&
 					<StudyList key = {study.studyInfoCode}
-					           study = {study}
-					           checkValue = {checkValue}
-					           setCheckValue = {setCheckValue}
-					           currentPage = {currentPage}
+					           study = {searchList.length > 0 ? searchList : study}
+					           checkValue = {checkValue} setCheckValue = {setCheckValue}
 					/>
 				}
 				<button className = {CSS.ButtonStyle2} onClick = {() => navigate('/study/registration')}>등록하기
@@ -107,9 +104,12 @@ function Study() {
 				{isDeleteModalOpen && (
 					<StudyDeleteModal isDeleteModalOpen = {isDeleteModalOpen}
 					                  setIsDeleteModalOpen = {setIsDeleteModalOpen}
-					                  setInsert = {setInsert} checkValue = {checkValue}/>
+					                  setInsert = {setInsert} checkValue = {checkValue}
+					                  setCheckValue = {setCheckValue}/>
 				)}
-				{study.pageInfo && <PagingBar pageInfo = {study.pageInfo} setCurrentPage = {setCurrentPage}/>}
+				{searchList.length > 0 ? (searchList.pageInfo && <PagingBar pageInfo = {searchList.pageInfo}
+				                                                            setCurrentPage = {setCurrentPage}/>) : (study.pageInfo &&
+					<PagingBar pageInfo = {study.pageInfo} setCurrentPage = {setCurrentPage}/>)}
 			</div>
 		</>
 	);
