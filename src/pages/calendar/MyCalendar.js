@@ -14,7 +14,7 @@ import './MyCalendar.css';
 
 function MyCalendar() {
 
-	const [info, setInfo] = useState();
+	const [info, setInfo] = useState({});
 	const [modalOpen, setModalOpen] = useState(false);
 	const {modify} = useSelector(state => state.calendarReducer);
 	const {calInfo} = useSelector(state => state.calendarReducer);

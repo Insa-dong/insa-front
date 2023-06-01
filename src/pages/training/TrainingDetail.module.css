@@ -49,37 +49,77 @@
 }
 
 .textInput {
+    width: 100%;
+    height: 2vw;
+    background-color: #FFFFFF;
+    border: 1px solid #8CBAFF;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto 3% auto;
     text-align: center;
-    width: 60vw;
-    height: 10vh;
-    max-width: 1075px;
-    max-height: 10vh;
     resize: none;
+    outline: none;
 }
 
 .textInput2 {
-    width: 60vw;
-    height: 10vh;
-    max-width: 1075px;
-    max-height: 10vh;
+    outline: none;
+    width: 100%;
+    height: 2vw;
+    border: 1px solid #8CBAFF;
+    border-radius: 10px;
+    display: flex;
+    background-color: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto 3% auto;
+    resize: none;
+}
+
+.textInput3 {
+    outline: none;
+    width: 100%;
+    height: 2vw;
+    border: 1px solid red;
+    border-radius: 10px;
+    display: flex;
+    background-color: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto 3% auto;
     resize: none;
 }
 
 .specialTextInput {
+    background-color: #FFFFFF;
+    border: 1px solid #8CBAFF;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto 3% auto;
     text-align: center;
     width: 60vw;
     height: 15vh;
     max-width: 1075px;
     max-height: 15vh;
     resize: none;
+    outline: none;
 }
 
 .specialTextInput2 {
+    border: 1px solid #8CBAFF;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    display: flex;
+    margin: 1% auto 3% auto;
     width: 60vw;
     height: 15vh;
     max-width: 1075px;
     max-height: 15vh;
     resize: none;
+    outline: none;
 }
 
 .rightDiv {

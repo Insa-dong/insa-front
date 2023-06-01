@@ -22,6 +22,9 @@ function EmpRegistration() {
     deptCode:"DE0001",
     jobCode:"JB0001"
 });
+const [errors, setErrors] = useState({});
+
+
 
   useEffect(() => {
     dispatch(empDeptJobListAPI());
@@ -36,11 +39,36 @@ function EmpRegistration() {
 
   }, [empRegist]);
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!form.empPhone) {
+        // newErrors.empPhone = '전화번호를 입력해주세요.';
+    } else if (!/^\d{2,3}-\d{3,4}-\d{3,4}$/.test(form.empPhone)) {
+      newErrors.empPhone = '*전화번호 형식에 맞게 입력해주세요.';
+    } else {
+      newErrors.empPhone = ''; // 유효한 경우 오류 메시지를 빈 문자열로 업데이트
+    }
+
+    if (!form.empEmail) {
+        // newErrors.empEmail = '이메일을 입력해주세요.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.empEmail)) {
+        newErrors.empEmail = '*유효한 이메일 주소를 입력해주세요.';
+    } else {
+      newErrors.empEmail = ''; // 유효한 경우 오류 메시지를 빈 문자열로 업데이트
+    }
+
+    setErrors(newErrors);
+    
+    // return Object.keys(newErrors).length === 0;
+};
+
   const onChangeHandler = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value
     });
+    validateForm();
   };
 
   const onClickEmpRegistrationHandler = async () => {
@@ -132,14 +160,15 @@ function EmpRegistration() {
               </td>
             </tr>
             <tr>
-              <th>휴대전화</th>
+              <th>전화번호</th>
               <td>
                 <input className="EmpRegistBox"
                   type="text"
-                  placeholder='휴대전화 번호를 입력해주세요'
+                  placeholder='전화번호를 입력해주세요'
                   name="empPhone"
                   onChange={onChangeHandler}
                 />
+                {errors.empPhone && <span className="error">{errors.empPhone}</span>}
               </td>
             </tr>
             <tr>
@@ -151,6 +180,7 @@ function EmpRegistration() {
                   name="empEmail"
                   onChange={onChangeHandler}
                 />
+                {errors.empEmail && <span className="error">{errors.empEmail}</span>}
               </td>
             </tr>
             <tr>

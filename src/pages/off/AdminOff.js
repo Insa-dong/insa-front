@@ -18,7 +18,7 @@ function AdminOff() {
 
 
     useEffect(() => {
-     
+ 
         const fetchData = () => {
             dispatch(callAdminOffListAPI({ currentPage, searchOption, searchKeyword }));
         };
@@ -32,6 +32,7 @@ function AdminOff() {
     const handleSearchOptionChange = (e) => {
         const selectedOption = e.target.value;
         setSearchOption(selectedOption);
+        setSearchKeyword(''); // 검색어 초기화
     };
     /* 검색어 입력값 상태 저장*/
     const handleSearchKeywordChange = (e) => {
@@ -91,6 +92,7 @@ function AdminOff() {
                         onChange={handleSearchOptionChange}
                     >
                         <option value="empName">이름</option>
+                        <option value="deptName">부서</option>
                         <option value="remainingOff">잔여연차</option>
                     </select>
 
@@ -103,16 +105,23 @@ function AdminOff() {
                             onChange={handleSearchKeywordChange}
                             onKeyUp={handleEnterKey}
                         />
-                    ) : (
+                    ) :  searchOption === 'deptName' ? (
                         <input
-                            type="text"
-                            id="TeamOffEmpName"
-                            placeholder="검색어를 입력하세요"
-                            onChange={handleSearchKeywordChange}
-                            onKeyUp={handleEnterKey}
+                          type="text"
+                          id="TeamOffDeptName"
+                          placeholder="부서를 입력하세요"
+                          onChange={handleSearchKeywordChange}
+                          onKeyUp={handleEnterKey}
                         />
-                    )}
-
+                      ) : (
+                        <input
+                          type="text"
+                          id="TeamOffEmpName"
+                          placeholder="검색어를 입력하세요"
+                          onChange={handleSearchKeywordChange}
+                          onKeyUp={handleEnterKey}
+                        />
+                      )}
                     <button
                         className="Teamoff-SearchBtn"
                         onClick={handleSearch}
@@ -124,7 +133,7 @@ function AdminOff() {
                 <div>
                     {teamOffList.length > 0 ? ( // 검색 결과가 있을 때
                         <TeamOffList
-                        teamOffList={teamOffList}
+                            teamOffList={teamOffList}
                             currentPage={currentPage}
                             searchOption={searchOption}
                             searchKeyword={searchKeyword}

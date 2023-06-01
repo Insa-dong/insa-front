@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Header from '../../component/common/Header'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { callEmpRestList } from '../../apis/EmpAPICalls';
+import { callEmpRestList, restListSearchAPI } from '../../apis/EmpAPICalls';
 import RestList from '../../component/lists/RestList';
 import PagingBar from './../../component/common/PagingBar';
 
@@ -18,31 +18,44 @@ function EmpRest() {
     const { restState } = useSelector(state => state.empReducer);
     const [currentPage, setCurrentPage] = useState(1);
 
-    console.log('rest : ', { rest });
-
+    console.log("hello")
 
     useEffect(
         () => {
-            dispatch(callEmpRestList({ currentPage }))
+            dispatch(callEmpRestList({ currentPage }));
+            console.log("hello")
         }, [currentPage]
     );
 
     useEffect(
         () => {
-            if (restState?.status == 200)
-                dispatch(callEmpRestList({ currentPage }))
+            if (restState?.status === 200)
+                dispatch(callEmpRestList({ currentPage }));
+            console.log("hello2")
         }, [restState]
     );
 
-        /* 검색 옵션 상태 저장 */
-        const onSearchOptionChangeHandler = (e) => {
-            setSearchOption(e.target.value);
+    /* 검색 옵션 상태 저장 */
+    const onSearchOptionChangeHandler = (e) => {
+        setSearchOption(e.target.value);
+    }
+
+    /* 검색어 입력값 상태 저장*/
+    const onSearchChangeHandler = (e) => {
+        setSearchKeyword(e.target.value);
+    }
+
+    /* 검색버튼 */
+    const onSearchBtnHandler = () => {
+        dispatch(restListSearchAPI({ searchOption, searchKeyword, currentPage }));
+    }
+
+    /* enter */
+    const onEnterKeyHandler = (e) => {
+        if (e.key === 'Enter') {
+            dispatch(restListSearchAPI({ searchOption, searchKeyword, currentPage }));
         }
-    
-        /* 검색어 입력값 상태 저장*/
-        const onSearchChangeHandler = (e) => {
-            setSearchKeyword(e.target.value);
-        }
+    }
 
     return (
         <>
@@ -78,7 +91,7 @@ function EmpRest() {
                     </select>
 
                     {searchOption === "state" && (
-                        <select
+                        <select className="SignStatusSelect"
                             id="SignStatusSelect"
                             value={searchKeyword}
                             onChange={onSearchChangeHandler}
@@ -91,17 +104,18 @@ function EmpRest() {
                     )}
 
                     {searchOption !== "state" && (
-                        <input
+                        <input className="OffSignsearch"
                             type="text"
                             id="OffSignsearch"
                             placeholder="검색어를 입력하세요"
                             onChange={onSearchChangeHandler}
+                            onKeyUp={onEnterKeyHandler}
                         />
                     )}
 
                     <button
                         className="abs-SearchBtn"
-                        // onClick={onSearchBtnHandler}
+                        onClick={onSearchBtnHandler}
 
                     >
                         <img src="/images/search.png" alt="검색" />

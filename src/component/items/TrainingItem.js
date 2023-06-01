@@ -3,13 +3,13 @@ import {useNavigate} from "react-router-dom";
 import listCSS from '../lists/TrainingList.module.css'
 import CSS from './TrainingItem.module.css'
 
-function TrainingItem({item, checkValue, setCheckValue}) {
+function TrainingItem({item, checkValue, index}) {
 
 	const navigate = useNavigate();
 	const [hover, setHover] = useState(false);
 	const [targetValue, setTargetValue] = useState();
 	const [display, setDisplay] = useState({display: 'none'});
-	const ref = useRef();
+	const ref = useRef([]);
 
 	const onMouseOverHandler = () => {
 		setHover(true);
@@ -17,8 +17,8 @@ function TrainingItem({item, checkValue, setCheckValue}) {
 		setTargetValue(item.trainingCode);
 	}
 
-	const onMouseOutHandler = () => {
-		if (!ref.current.checked) {
+	const onMouseOutHandler = (e) => {
+		if (!ref.current[index].checked) {
 			setDisplay({display: 'none'});
 		}
 		setHover(false);
@@ -29,29 +29,32 @@ function TrainingItem({item, checkValue, setCheckValue}) {
 	}
 
 	const onCheckBoxClickHandler = () => {
-		ref.current.checked = !ref.current.checked;
-		setCheckValue(item.trainingCode);
-		setDisplay({display: 'block'});
+		console.log(ref.current[index]);
+		ref.current[index].checked = !ref.current[index].checked;
+		ref.current.map(item => {
+			if (item.checked) {
+				checkValue.push(item.value);
+				setDisplay({display: 'block'})
+			}
+		})
 	}
 
 	const onChangeHandler = (e) => {
 		e.target.checked = !e.target.checked;
-		setCheckValue(item.trainingCode)
 	}
 
 	return (
 		<tr key = {item.trainingCode}
 		    className = {hover ? listCSS.BodyTrStyle : listCSS.BodyTrStyle2}
 		    onMouseOver = {onMouseOverHandler}
-		    onMouseOut = {onMouseOutHandler}
+		    onMouseOut = {(e) => onMouseOutHandler(e)}
 		    value = {item.trainingCode}
 		>
 			<th onClick = {onCheckBoxClickHandler}>
 				<input type = "checkbox"
-				       ref = {ref}
+				       ref = {element => ref.current[index] = element}
 				       className = {CSS.checkBox}
 				       value = {item.trainingCode}
-				       onChange = {onChangeHandler}
 				       style = {display}
 				/>
 				{item.trainingCode}
