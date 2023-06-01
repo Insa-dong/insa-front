@@ -33,7 +33,7 @@ function Calendar() {
 		() => {
 			dispatch(callMyPagingCalListAPI({currentPage, sort}));
 		},
-		[dispatch, currentPage, sort, modify, page, remove]
+		[dispatch, currentPage, sort, modify, remove]
 	)
 
 	const scheduleOnclickHandler = (item) => {
