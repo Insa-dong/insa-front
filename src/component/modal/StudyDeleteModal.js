@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import {callStudyRemoveAPI} from "../../apis/StudyInfoAPICalls";
 import CSS from "./TrainingRegistModal.module.css";
 
-function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert, checkValue,}) {
+function StudyDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert, checkValue,}) {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -70,4 +70,4 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 	)
 }
 
-export default TrainingDeleteModal;
+export default StudyDeleteModal;

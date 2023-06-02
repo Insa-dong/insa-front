@@ -188,11 +188,15 @@ export const callInsertStudyInfo = ({form, day}) => {
 
 export const callStudyRemoveAPI = (studyCode) => {
 
-	const requestURL = `${PRE_URL}/studyInfo/${studyCode}`;
+	const requestURL = `${PRE_URL}/studyInfo`;
 
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
-			method: 'DELETE'
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(studyCode)
 		}).then(res => res.json());
 
 		console.log(result);
