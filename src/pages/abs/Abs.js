@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {NavLink, useNavigate} from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import {callAbsDateAPI, callCheckInAPI, callCheckOutAPI, callMyAbsListAPI} from '../../apis/AbsAPICalls';
 import Header from "../../component/common/Header";
 import PagingBar from "../../component/common/PagingBar";
+import NewsList from "../../component/lists/NewsList"; //📰메인뉴스
 import MyAbsList from '../../component/lists/MyAbsList';
 import ProtectedRoute from "../../component/router/ProtectedRoute";
 import './Abs.css';
@@ -281,7 +282,9 @@ function Abs() {
 				<div>
 					{abs.pageInfo && <PagingBar pageInfo = {abs.pageInfo} setCurrentPage = {setCurrentPage}/>}
 				</div>
-
+        <div className="news-section">
+          <NewsList />
+        </div>
 			</div>
 
 
