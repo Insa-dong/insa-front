@@ -1,22 +1,22 @@
-import {useEffect} from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import {NavLink, useNavigate} from 'react-router-dom';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import {callMypageAPI} from "../../apis/MpgAPICalls";
+import { callMypageAPI } from "../../apis/MpgAPICalls";
 import './Navbar.css';
 import Weather from './Weather';
 
 function TeacherNavbar() {
 
-	const style = {textDecoration: 'none', color: 'black'};
-	const activeStyle = ({isActive}) => isActive ? style : undefined;
-	const {info} = useSelector(state => state.mypageReducer);
+	const style = { textDecoration: 'none', color: 'black' };
+	const activeStyle = ({ isActive }) => isActive ? style : undefined;
+	const { info } = useSelector(state => state.mypageReducer);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-			dispatch(callMypageAPI());
-		}, [dispatch]
+		dispatch(callMypageAPI());
+	}, [dispatch]
 	)
 
 	const onClickLogoutHandler = () => {
@@ -47,7 +47,7 @@ function TeacherNavbar() {
 					}
 				})
 					.then(() => {
-						navigate('/login', {replace: true});
+						navigate('/login', { replace: true });
 					})
 					.catch((error) => {
 						Swal.fire(
@@ -62,70 +62,72 @@ function TeacherNavbar() {
 
 	return (
 		<>
-			<div id = "sideBar">
-				<div id = "sideTop" className = "border-bottom">
-					<NavLink to = "/">
-						<img src = "/images/mainTITLE.png" className = "moreThanus"></img>
+			<div id="sideBar">
+				<div id="sideTop" className="border-bottom">
+					<NavLink to="/">
+						<img src="/images/mainTITLE.png" className="moreThanus"></img>
 					</NavLink>
-					<div className = "sideBox">
-						<NavLink to = "/mypage">
-							<div id = "prof"></div>
+					<div className="sideBox">
+						<NavLink to="/mypage">
+							<div id="prof"></div>
 						</NavLink>
-						<div className = "sideTxt">
-							<span className = "topName">{info?.empName}</span>
-							<span className = "topAuth">{info?.dept.deptName}팀</span>
-							<span className = "topAuth">{info?.job.jobName}</span>
+						<div className="sideTxt">
+							<span className="topName">{info?.empName}</span>
+							<span className="topAuth">{info?.dept.deptName}팀</span>
+							<span className="topAuth">{info?.job.jobName}</span>
 						</div>
 					</div>
 
-					<div id = "sideMiddle" className = "border-bottom">
+					<div id="sideMiddle" className="border-bottom">
 						<div>
-							<NavLink to = "/board" style = {activeStyle} className = "sideTr">
-								<img className = "notice-Img" src = "/images/공지사항.png"></img><span
-								className = 'sideBoard'>공지사항</span>
+							<NavLink to="/board" style={activeStyle} className="sideTr">
+								<img className="notice-Img" src="/images/공지사항.png"></img><span
+									className='sideBoard'>공지사항</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/abs" style = {activeStyle} className = "sideTr">
-								<img className = "attendance-Img" src = "/images/근태.png"
-								     alt = "근태"></img>
+							<NavLink to="/abs" style={activeStyle} className="sideTr">
+								<img className="attendance-Img" src="/images/근태.png"
+									alt="근태"></img>
 								<span>근태</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/empTeacher" style = {activeStyle} className = "sideTr">
+							<NavLink to="/empTeacher" style={activeStyle} className="sideTr">
 								<img
-									className = "lecture-Img"
-									alt = "lecture-Img"
-									src = "/images/강의.png"
+									className="lecture-Img"
+									alt="lecture-Img"
+									src="/images/강의.png"
 								></img><span>강의</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/emp" style = {activeStyle} className = "sideTr">
-								<img className = "member-Img" src = "/images/구성원.png"></img><span
-								className = 'sideMember'>구성원</span>
+							<NavLink to="/emp" style={activeStyle} className="sideTr">
+								<img className="member-Img" src="/images/구성원.png"></img><span
+									className='sideMember'>구성원</span>
 							</NavLink>
 						</div>
 					</div>
 					<div>
-							<NavLink to = "/cal" style = {activeStyle} className = "sideTr">
-								<img className = "calendar-Img" src = "/images/calendar-day-fill.svg"
-								     alt = "calendar-Img"></img><span
-								className = 'sidecalendar'>일정</span>
-							</NavLink>
-						</div>
-					<div id = "sideBottom">
-						<div
-							className = "logoutBox"
-							onClick = {onClickLogoutHandler}
-						>
-							<button className = "logout">로그아웃</button>
-						</div>
+						<NavLink to="/cal" style={activeStyle} className="sideTr">
+							<img className="calendar-Img" src="/images/calendar-day-fill.svg"
+								alt="calendar-Img"></img><span
+									className='sidecalendar'>일정</span>
+						</NavLink>
 					</div>
 					<div>
 						<Weather />
 					</div>
+					<div id="sideBottom">
+						<div
+							className="logoutBox"
+							onClick={onClickLogoutHandler}
+							style={{ marginTop: "-3vw" }}
+						>
+							<button className="logout">로그아웃</button>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 		</>
