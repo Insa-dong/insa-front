@@ -28,7 +28,7 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
   useEffect(() => {
     if (modify?.status === 200) {
       Swal.fire({
-        title: '강의 내용 수정이 완료되었습니다.',
+        text: '강의 내용 수정이 완료되었습니다.',
         icon: 'success',
         buttonsStyling: false,
         customClass: {

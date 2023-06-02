@@ -54,7 +54,7 @@ function AdviceRegistModal({ stuCode, setAdviceRegistModal, empCode }) {
           if (result.isConfirmed) {
             dispatch(callAdviceWriteAPI({ ...form, stuCode, empCode }));
             Swal.fire({
-              title: '상담 내용이 등록되었습니다.',
+              text: '상담 내용이 등록되었습니다.',
               icon: 'success',
               buttonsStyling: false,
               customClass: {

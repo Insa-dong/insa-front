@@ -36,7 +36,7 @@ function StudyStudentRegistModal({ setStudyStudentRegistModal, stuCode }) {
     useEffect(() => {
         if (registStudyStudent?.status === 200) {
           Swal.fire({
-            title: '강의 등록이 완료되었습니다.',
+            text: '강의 등록이 완료되었습니다.',
             icon: 'success',
             buttonsStyling: false,
             customClass: {
