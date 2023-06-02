@@ -21,14 +21,7 @@ function EmpRegistration() {
     empGender: "여",
     deptCode: "DE0001",
     jobCode: "JB0001",
-    empAuthList: [
-        {
-          "empAuthPK": {
-            "authCode": "",
-            "empCode": "0"
-          }
-        }
-    ] 
+    empAuthList: [] 
   });
   const [errors, setErrors] = useState({});
 
@@ -80,18 +73,35 @@ function EmpRegistration() {
   };
 
   const onCheckHandler = (e) => {
-    setForm({
-      ...form,
-      empAuthList: [
+    const checkedValues = form.empAuthList.map((item) => item.empAuthPK.authCode);
+  
+    if (checkedValues.includes(e.target.value)) {
+      const updatedList = form.empAuthList.filter(
+        (item) => item.empAuthPK.authCode !== e.target.value
+      );
+  
+      setForm({
+        ...form,
+        empAuthList: updatedList,
+      });
+    } else {
+      const updatedList = [
+        ...form.empAuthList,
         {
-          "empAuthPK": {
-            "authCode": e.target.value,
-            "empCode": "0"
-          }
-        }
-    ] 
-    });
-  }
+          empAuthPK: {
+            authCode: e.target.value,
+            empCode: "0",
+          },
+        },
+      ];
+  
+      setForm({
+        ...form,
+        empAuthList: updatedList,
+      });
+    }
+  };
+  
 
   const onClickEmpRegistrationHandler = async () => {
     console.log('onClickEmpRegistrationHandler called');
@@ -257,7 +267,7 @@ function EmpRegistration() {
                 />
               </td>
             </tr>
-            <tr>
+            <tr className="empAuthWrap"> 
               <th>권한</th>
               <td>
                 <label>
