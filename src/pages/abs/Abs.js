@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../component/common/Header";
@@ -7,6 +7,7 @@ import { callMyAbsListAPI, callAbsDateAPI, callCheckInAPI, callCheckOutAPI } fro
 import MyAbsList from '../../component/lists/MyAbsList';
 import PagingBar from "../../component/common/PagingBar";
 import Swal from "sweetalert2";
+import NewsList from "../../component/lists/NewsList"; //📰메인뉴스
 
 
 function Abs() {
@@ -17,8 +18,9 @@ function Abs() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+ 
     /* 타이머 */
-    const [isWorking, setIsWorking] = useState(false);
+    const [isWorking, setIsWorking] = useState(false);  
     const [workTime, setWorkTime] = useState(0);
 
     useEffect(() => {
@@ -280,6 +282,11 @@ function Abs() {
                 <div>
                     {abs.pageInfo && <PagingBar pageInfo={abs.pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
+
+               {/* 📰메인뉴스  */}
+        <div className="news-section">
+          <NewsList />
+        </div>
 
             </div>
 
