@@ -11,6 +11,13 @@ export function isLogin() {
 	return !(token === undefined || token === null || token.exp * 1000 < Date.now());
 }
 
+export function isMember() {
+	const token = decodeJwt();
+	console.log(token.auth);
+	console.log('isAdmin 실행')
+	return (token && token.exp * 1000 > Date.now() && token.auth.filter(auth => auth === 'ROLE_MEMBER'));
+}
+
 export function isAdmin() {
 	const token = decodeJwt();
 	console.log(token.auth);
