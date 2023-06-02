@@ -7,6 +7,7 @@ import { callEmpListAPI, empListDeptAPI, empListSearchAPI } from '../../apis/Emp
 import EmpList from '../../component/lists/EmpList';
 import PagingBar from './../../component/common/PagingBar';
 import RestList from '../../component/lists/RestList';
+import ProtectedRoute from "../../component/router/ProtectedRoute";
 
 function Emp() {
 
@@ -92,11 +93,13 @@ function Emp() {
           </div>
           </NavLink>
 
+          {<ProtectedRoute adminCheck = {true}>
           <NavLink to="/emp/emprest">
           <div className="abs-menu" style={{ color: 'gray' }}>
             휴직내역
           </div>
           </NavLink>
+          </ProtectedRoute>}
         </div>
 
         <div className="EmpSearchBox">
