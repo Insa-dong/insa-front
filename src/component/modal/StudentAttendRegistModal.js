@@ -33,7 +33,7 @@ function StudentAttendRegistModal({ stuCode, studyCode, setStudentAttendRegistMo
     if (form && form.attendStatus) {
       dispatch(callStudentAttendRegistAPI({ ...form, studyCode, stuCode }));
       Swal.fire({
-        title: '출결 등록이 완료되었습니다.',
+        text: '출결 등록이 완료되었습니다.',
         icon: 'success',
         buttonsStyling: false,
         customClass: {

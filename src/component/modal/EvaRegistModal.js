@@ -51,7 +51,7 @@ function EvaRegistModal({ stuCode, setEvaRegistModal, studyInfoCode, empCode }) 
           if (result.isConfirmed) {
             dispatch(callEvaRegistAPI({...form, stuCode, studyInfoCode, empCode}));
             Swal.fire({
-              title: '평가가 등록되었습니다.',
+              text: '평가가 등록되었습니다.',
               icon: 'success',
               buttonsStyling: false,
               customClass: {

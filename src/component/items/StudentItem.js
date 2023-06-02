@@ -15,7 +15,7 @@ function StudentItem({ item }) {
     dispatch(callStudentDeleteAPI(stuCode))
       .then(() => {
         Swal.fire({
-          title: '삭제가 완료 되었습니다.',
+          text: '삭제가 완료 되었습니다.',
           icon: 'success',
           buttonsStyling: false,
           customClass: {

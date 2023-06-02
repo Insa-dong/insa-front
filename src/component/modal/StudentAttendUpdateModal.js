@@ -38,7 +38,7 @@ function StudentAttendUpdateModal({ setStudentAttendUpdateModal, stuCode, attend
     const onUpdateHandler = () => {
         dispatch(callStudentAttendUpdateAPI({ ...form, attendCode, stuCode }));
         Swal.fire({
-          title: '출결 정보가 수정되었습니다.',
+          text: '출결 정보가 수정되었습니다.',
           icon: 'success',
           buttonsStyling: false,
           customClass: {
