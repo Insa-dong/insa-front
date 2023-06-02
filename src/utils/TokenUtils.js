@@ -32,3 +32,8 @@ export function isLeader() {
 	return (token && token.exp * 1000 > Date.now() && token.auth.filter(auth => auth === 'ROLE_LEADER'));
 }
 
+export function getMemberId() {
+    const token = decodeJwt();
+    return (token && token.sub);
+}
+
