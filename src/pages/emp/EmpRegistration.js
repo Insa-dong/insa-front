@@ -10,19 +10,27 @@ function EmpRegistration() {
   const title = '구성원';
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {empDeptJob} = useSelector(state => state.empReducer);
-  const {empRegist} = useSelector(state => state.empReducer);
+  const { empDeptJob } = useSelector(state => state.empReducer);
+  const { empRegist } = useSelector(state => state.empReducer);
   const [form, setForm] = useState({
     empName: "",
     empId: "",
     empPhone: "",
     empEmail: "",
     hireDate: "",
-    empGender:"여",
-    deptCode:"DE0001",
-    jobCode:"JB0001"
-});
-const [errors, setErrors] = useState({});
+    empGender: "여",
+    deptCode: "DE0001",
+    jobCode: "JB0001",
+    empAuthList: [
+        {
+          "empAuthPK": {
+            "authCode": "",
+            "empCode": "0"
+          }
+        }
+    ] 
+  });
+  const [errors, setErrors] = useState({});
 
 
 
@@ -43,7 +51,7 @@ const [errors, setErrors] = useState({});
     const newErrors = {};
 
     if (!form.empPhone) {
-        // newErrors.empPhone = '전화번호를 입력해주세요.';
+      // newErrors.empPhone = '전화번호를 입력해주세요.';
     } else if (!/^\d{2,3}-\d{3,4}-\d{3,4}$/.test(form.empPhone)) {
       newErrors.empPhone = '*전화번호 형식에 맞게 입력해주세요.';
     } else {
@@ -51,17 +59,17 @@ const [errors, setErrors] = useState({});
     }
 
     if (!form.empEmail) {
-        // newErrors.empEmail = '이메일을 입력해주세요.';
+      // newErrors.empEmail = '이메일을 입력해주세요.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.empEmail)) {
-        newErrors.empEmail = '*유효한 이메일 주소를 입력해주세요.';
+      newErrors.empEmail = '*유효한 이메일 주소를 입력해주세요.';
     } else {
       newErrors.empEmail = ''; // 유효한 경우 오류 메시지를 빈 문자열로 업데이트
     }
 
     setErrors(newErrors);
-    
+
     // return Object.keys(newErrors).length === 0;
-};
+  };
 
   const onChangeHandler = (e) => {
     setForm({
@@ -71,6 +79,20 @@ const [errors, setErrors] = useState({});
     validateForm();
   };
 
+  const onCheckHandler = (e) => {
+    setForm({
+      ...form,
+      empAuthList: [
+        {
+          "empAuthPK": {
+            "authCode": e.target.value,
+            "empCode": "0"
+          }
+        }
+    ] 
+    });
+  }
+
   const onClickEmpRegistrationHandler = async () => {
     console.log('onClickEmpRegistrationHandler called');
     if (
@@ -78,7 +100,7 @@ const [errors, setErrors] = useState({});
       form.empId === "" ||
       form.empPhone === "" ||
       form.empEmail === "" ||
-      form.hireDate === "" 
+      form.hireDate === ""
     ) {
       Swal.fire({
         text: '모든 필드를 입력해주세요.',
@@ -91,44 +113,45 @@ const [errors, setErrors] = useState({});
       return;
     }
     Swal.fire({
-        text: '구성원을 등록하시겠습니까?',
-        icon: 'warning',
-        showCancelButton: true,
-        customClass: {
-            confirmButton: 'custom-confirm-button',
-            cancelButton: 'custom-cancel-button'
-        },
-        confirmButtonColor: '#8CBAFF',
-        cancelButtonColor: '#DADADA',
-        confirmButtonText: '저장',
-        cancelButtonText: '취소',
-        reverseButtons: true,
-        buttonsStyling: false,
+      text: '구성원을 등록하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      customClass: {
+        confirmButton: 'custom-confirm-button',
+        cancelButton: 'custom-cancel-button'
+      },
+      confirmButtonColor: '#8CBAFF',
+      cancelButtonColor: '#DADADA',
+      confirmButtonText: '저장',
+      cancelButtonText: '취소',
+      reverseButtons: true,
+      buttonsStyling: false,
     }).then((result) => {
-        if (result.isConfirmed) {
-            dispatch(callEmpRegistAPI(form))
-            .then(() => {
-                Swal.fire({
-                    title: '저장 완료',
-                    text: '등록 사항을 확인하세요.',
-                    icon: 'success',
-                    buttonsStyling: false,
-                    customClass: {
-                        confirmButton: 'custom-success-button'
-                    }
-                });
-            })
-                .catch((error) => {
-                    Swal.fire(
-                        '저장 실패',
-                        '다시 시도하세요.',
-                        'error'
-                    );
-                });
-        }
+      if (result.isConfirmed) {
+        dispatch(callEmpRegistAPI(form))
+          .then(() => {
+            Swal.fire({
+              title: '저장 완료',
+              text: '등록 사항을 확인하세요.',
+              icon: 'success',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-success-button'
+              }
+            });
+          })
+          .catch((error) => {
+            Swal.fire(
+              '저장 실패',
+              '다시 시도하세요.',
+              'error'
+            );
+          });
+      }
     });
-};
+  };
 
+  console.log("폼이다앙 : ", form);
 
   return (
     <>
@@ -234,6 +257,48 @@ const [errors, setErrors] = useState({});
                 />
               </td>
             </tr>
+            <tr>
+              <th>권한</th>
+              <td>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="empAuthList"
+                    value="AU0001"
+                    onChange={onCheckHandler}
+                  />
+                  관리
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="empAuthList"
+                    value="AU0002"
+                    onChange={onCheckHandler}
+                  />
+                  일반
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="empAuthList"
+                    value="AU0003"
+                    onChange={onCheckHandler}
+                  />
+                  팀장
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="empAuthList"
+                    value="AU0004"
+                    onChange={onCheckHandler}
+                  />
+                  강사
+                </label>
+              </td>
+            </tr>
+
           </tbody>
         </table>
 
