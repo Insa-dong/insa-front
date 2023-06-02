@@ -1,5 +1,5 @@
-import {useDispatch, useSelector} from 'react-redux';
-import {NavLink, useNavigate} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 import './Navbar.css';
 import { useEffect } from 'react';
@@ -8,16 +8,16 @@ import { callMypageAPI } from '../../apis/MpgAPICalls';
 function Navbar() {
 
 	const { info } = useSelector(state => state.mypageReducer);
-	
-	const style = {textDecoration: 'none', color: 'black'};
-	const activeStyle = ({isActive}) => isActive ? style : undefined;
+
+	const style = { textDecoration: 'none', color: 'black' };
+	const activeStyle = ({ isActive }) => isActive ? style : undefined;
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	console.log(info?.dept.deptCode)
-	useEffect(() =>{
-			dispatch(callMypageAPI());
-		},[]
+	useEffect(() => {
+		dispatch(callMypageAPI());
+	}, []
 	)
 
 	const onClickLogoutHandler = () => {
@@ -63,87 +63,86 @@ function Navbar() {
 
 	return (
 		<>
-			<div id = "sideBar">
-				<div id = "sideTop" className = "border-bottom">
-					<NavLink to = "/">
-						<img src = "/images/mainTITLE.png" className = "moreThanus"></img>
+			<div id="sideBar">
+				<div id="sideTop" className="border-bottom">
+					<NavLink to="/">
+						<img src="/images/mainTITLE.png" className="moreThanus"></img>
 					</NavLink>
-					<div className = "sideBox">
-						<NavLink to = "/mypage">
-							<div id = "prof" className={info?.dept.deptCode}>{info?.empName.slice(-2)}</div>
-						</NavLink>
-						<div className = "sideTxt">
-							<span className = "topName">{info?.empName}</span>
-							<span className = "topAuth">{info?.dept.deptName}팀·</span>
-							<span className = "topAuth">{info?.job.jobName}</span>
+					<NavLink to="/mypage">
+						<div className="sideBox">
+							<div id="prof" className={info?.dept.deptCode}>{info?.empName.slice(-2)}</div>
+							<div className="sideTxt">
+								<span className="topName">{info?.empName}</span>
+								<span className="topAuth">{info?.dept.deptName}팀·</span>
+								<span className="topAuth">{info?.job.jobName}</span>
+							</div>
 						</div>
-					</div>
-
-					<div id = "sideMiddle" className = "border-bottom">
+					</NavLink>
+					<div id="sideMiddle" className="border-bottom">
 						<div>
-							<NavLink to = "/board" style = {activeStyle} className = "sideTr">
-								<img className = "notice-Img" src = "/images/공지사항.png"></img><span
-								className = 'sideBoard'>공지사항</span>
+							<NavLink to="/board" style={activeStyle} className="sideTr">
+								<img className="notice-Img" src="/images/공지사항.png"></img><span
+									className='sideBoard'>공지사항</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/abs" style = {activeStyle} className = "sideTr">
-								<img className = "attendance-Img" src = "/images/근태.png"
-								     alt = "근태"></img>
+							<NavLink to="/abs" style={activeStyle} className="sideTr">
+								<img className="attendance-Img" src="/images/근태.png"
+									alt="근태"></img>
 								<span>근태</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = '/training' style = {activeStyle} className = "sideTr">
+							<NavLink to='/training' style={activeStyle} className="sideTr">
 								<img
-									className = "curriculum-Img"
-									alt = "curriculum-Img"
-									src = "/images/과정.png"
+									className="curriculum-Img"
+									alt="curriculum-Img"
+									src="/images/과정.png"
 								></img><span>과정</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/study" style = {activeStyle} className = "sideTr">
+							<NavLink to="/study" style={activeStyle} className="sideTr">
 								<img
-									className = "lecture-Img"
-									alt = "lecture-Img"
-									src = "/images/강의.png"
+									className="lecture-Img"
+									alt="lecture-Img"
+									src="/images/강의.png"
 								></img><span>강의</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/emp" style = {activeStyle} className = "sideTr">
-								<img className = "member-Img" src = "/images/구성원.png"></img><span
-								className = 'sideMember'>구성원</span>
+							<NavLink to="/emp" style={activeStyle} className="sideTr">
+								<img className="member-Img" src="/images/구성원.png"></img><span
+									className='sideMember'>구성원</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/student" style = {activeStyle} className = "sideTr">
-								<img className = "student-Img" src = "/images/수강생.png"></img><span
-								className = 'sideStudent'>수강생</span>
+							<NavLink to="/student" style={activeStyle} className="sideTr">
+								<img className="student-Img" src="/images/수강생.png"></img><span
+									className='sideStudent'>수강생</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/off" style = {activeStyle} className = "sideTr">
-								<img className = "vacation-Img" src = "/images/연차.png"></img><span
-								className = 'sideVacation'>연차</span>
+							<NavLink to="/off" style={activeStyle} className="sideTr">
+								<img className="vacation-Img" src="/images/연차.png"></img><span
+									className='sideVacation'>연차</span>
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/cal" style = {activeStyle} className = "sideTr">
-								<img className = "calendar-Img" src = "/images/calendar-day-fill.svg"
-								     alt = "calendar-Img"></img><span
-								className = 'sidecalendar'>일정</span>
+							<NavLink to="/cal" style={activeStyle} className="sideTr">
+								<img className="calendar-Img" src="/images/calendar-day-fill.svg"
+									alt="calendar-Img"></img><span
+										className='sidecalendar'>일정</span>
 							</NavLink>
 						</div>
 					</div>
 
-					<div id = "sideBottom">
+					<div id="sideBottom">
 						<div
-							className = "logoutBox"
-							onClick = {onClickLogoutHandler}
+							className="logoutBox"
+							onClick={onClickLogoutHandler}
 						>
-							<button className = "logout">로그아웃</button>
+							<button className="logout">로그아웃</button>
 						</div>
 					</div>
 				</div>

@@ -1,4 +1,5 @@
 import './EmpModal.css';
+import CSS from "../../pages/emp/EmpDetail.module.css";
 
 function EmpModal({emp, setEmpModal }) {
 
@@ -27,7 +28,7 @@ function EmpModal({emp, setEmpModal }) {
                         <h1 className="EmpModalTitle">구성원 정보</h1>
 
                         <div className="EmpPropBox">
-                            <div className="EmpPropLeft"></div>
+                            <div id="EmpPropLeft" className={`${CSS[`deptCode-${emp.dept.deptCode}`]}`}>{emp.empName.slice(-2)}</div>
                             <div className="EmpPropRight">
                                 <div className="EmpPropName">{emp.empName}</div>
                                 <div>
