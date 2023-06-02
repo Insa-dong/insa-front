@@ -172,7 +172,7 @@ function Emp() {
               </li>
             ) : null}
           </ul>
-
+          {<ProtectedRoute adminCheck = {true}>
           <button
             className="EmpEntBtn"
             type="button"
@@ -180,6 +180,7 @@ function Emp() {
           >
             + 구성원 등록하기
           </button>
+          </ProtectedRoute>}
 
         </div>
 
