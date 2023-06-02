@@ -1,13 +1,22 @@
-import {useSelector} from 'react-redux';
+import {useEffect} from "react";
+import {useDispatch, useSelector} from 'react-redux';
 import {NavLink, useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
+import {callMypageAPI} from "../../apis/MpgAPICalls";
+import './Navbar.css';
 
 function TeacherNavbar() {
 
 	const style = {textDecoration: 'none', color: 'black'};
 	const activeStyle = ({isActive}) => isActive ? style : undefined;
-	const navigate = useNavigate();
 	const {info} = useSelector(state => state.mypageReducer);
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+			dispatch(callMypageAPI());
+		}, [dispatch]
+	)
 
 	const onClickLogoutHandler = () => {
 		window.localStorage.removeItem('accessToken');
