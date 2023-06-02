@@ -89,11 +89,11 @@ function Weather() {
                     <img src={imgSrc} alt="Weather Icon" className={styles['weather-icon']} />
                 </div>
                 <div>
-                    <h4 className={styles['weather-info']}>{`City: ${cityname}`}</h4>
-                    <h4 className={styles['weather-info']}>{`Temp: ${Math.round(main)}°C`}</h4>
-                    <h4 className={styles['weather-info']}>{`Weather: ${weather.main}`}</h4>
-                    <h4 className={styles['weather-info']}>{`Wind: ${wind.deg}`}</h4>
-                    <h4 className={styles['weather-info']}>{`Wind Speed: ${wind.speed}m/s`}</h4>
+                    <h4 className={styles['weather-info']}>{`${cityname}`}</h4>
+                    <h4 className={styles['weather-info']}>{`${Math.round(main)}°C`}</h4>
+                    <h4 className={styles['weather-info']}>{`${weather.main}`}</h4>
+                    {/* <h4 className={styles['weather-info']}>{`Wind: ${wind.deg}`}</h4>
+                    <h4 className={styles['weather-info']}>{`Wind Speed: ${wind.speed}m/s`}</h4> */}
                 </div>
             </div>
         </div>

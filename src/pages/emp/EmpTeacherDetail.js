@@ -110,7 +110,6 @@ function EmpTeacherDetail() {
 
     return (
         <>
-            <TeacherNavbar />
             <Header title={title} />
 
             {attendReviewModalVisible && (

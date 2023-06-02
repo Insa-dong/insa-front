@@ -239,7 +239,6 @@ function EmpTeacherDetailPlus() {
 
   return (
     <>
-      <TeacherNavbar />
       <Header title={title} />
       <div className="allWrapper">
         {detail && (

@@ -4,6 +4,7 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {callMypageAPI} from "../../apis/MpgAPICalls";
 import './Navbar.css';
+import Weather from './Weather';
 
 function TeacherNavbar() {
 
@@ -92,7 +93,7 @@ function TeacherNavbar() {
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/study" style = {activeStyle} className = "sideTr">
+							<NavLink to = "/empTeacher" style = {activeStyle} className = "sideTr">
 								<img
 									className = "lecture-Img"
 									alt = "lecture-Img"
@@ -107,6 +108,13 @@ function TeacherNavbar() {
 							</NavLink>
 						</div>
 					</div>
+					<div>
+							<NavLink to = "/cal" style = {activeStyle} className = "sideTr">
+								<img className = "calendar-Img" src = "/images/calendar-day-fill.svg"
+								     alt = "calendar-Img"></img><span
+								className = 'sidecalendar'>일정</span>
+							</NavLink>
+						</div>
 					<div id = "sideBottom">
 						<div
 							className = "logoutBox"
@@ -114,6 +122,9 @@ function TeacherNavbar() {
 						>
 							<button className = "logout">로그아웃</button>
 						</div>
+					</div>
+					<div>
+						<Weather />
 					</div>
 				</div>
 			</div>
