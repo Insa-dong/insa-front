@@ -8,6 +8,8 @@ import MyAbsList from '../../component/lists/MyAbsList';
 import PagingBar from "../../component/common/PagingBar";
 import Swal from "sweetalert2";
 import NewsList from "../../component/lists/NewsList"; //📰메인뉴스
+import ProtectedRoute from '../../component/router/ProtectedRoute';
+
 
 
 function Abs() {
@@ -238,13 +240,13 @@ function Abs() {
 							</div>
 						</NavLink>
 
-						<ProtectedRoute adminCheck = {true}>
+						{<ProtectedRoute adminCheck = {true}>
 							<NavLink to = "/abs/adminAbs">
 								<div className = "abs-menu" style = {{color: 'gray'}}>
 									구성원 근태
 								</div>
 							</NavLink>
-						</ProtectedRoute>
+						</ProtectedRoute>}
 					</div>
 					{/*타이머 */}
 					<div className = "abs-timer">
