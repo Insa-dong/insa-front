@@ -1,4 +1,5 @@
 import CSS from "./Main.module.css"
+import Weather from './Weather';
 
 function Main() {
 
@@ -16,7 +17,9 @@ function Main() {
 					<li>수강생등록</li>
 					<li>강의등록</li>
 				</ul>
-				<div className={CSS.weather}>날씨</div>
+				<div className={CSS.weather}>
+					<Weather/>
+				</div>
 			</div>
 			<div className={CSS.newsLecture}>
 				<div className={CSS.news}>뉴스</div>
