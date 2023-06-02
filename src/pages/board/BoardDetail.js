@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { callBoardDeleteAPI, callBoardDetailAPI, callBoardUpdateAPI, callDeleteFileAPI, fileDownloadAPI } from "../../apis/BoardAPICall";
 import React from "react";
+import { getMemberId, isAdmin } from "../../utils/TokenUtils";
 function formatDate(dateString) {
     const date = new Date(dateString);
     const options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short", hour12: false };
@@ -23,9 +24,16 @@ function BoardDetail() {
     const { update } = useSelector(state => state.boardReducer);
     const { erase } = useSelector(state => state.boardReducer);
     const [form, setForm] = useState({});
-    const [deleteFile , setDeleteFile] = useState([]);
+    const [deleteFile, setDeleteFile] = useState([]);
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [beforeFiles, setBeforeFiles] = useState([]);
+    const memberId = getMemberId();
+    const admin = isAdmin();
+
+    const isAuthor = detail?.noticeWriter?.empId === memberId;
+    console.log('memberId : ', memberId)
+    console.log('isAuthor : ', isAuthor)
+    console.log('admin : ', admin);
 
     console.log(detail);
     console.log(deleteFile);
@@ -252,21 +260,25 @@ function BoardDetail() {
                             </>
                         )
                     }
-                    {!modifyMode &&
-
+                    {!modifyMode && (isAuthor || admin.length > 0) && (
                         <div className={CSS.btn}>
-                            <button className={CSS.updateBtn}
-                                onClick={onClickModifyModeHandler}
-                            >
-                                수정하기
-                            </button>
-                            <button className={CSS.deleteBtn}
+     
+                                <button
+                                    className={CSS.updateBtn}
+                                    onClick={onClickModifyModeHandler}
+                                >
+                                    수정하기
+                                </button>
+
+
+                            <button
+                                className={CSS.deleteBtn}
                                 onClick={onClickDeleteHandler}
                             >
                                 삭제하기
                             </button>
                         </div>
-                    }
+                    )}
 
                     {modifyMode &&
                         <div className={CSS.btn}>
