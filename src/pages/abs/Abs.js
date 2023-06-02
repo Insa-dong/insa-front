@@ -238,13 +238,13 @@ function Abs() {
 							</div>
 						</NavLink>
 
-						<ProtectedRoute adminCheck = {true}>
+						{<ProtectedRoute adminCheck = {true}>
 							<NavLink to = "/abs/adminAbs">
 								<div className = "abs-menu" style = {{color: 'gray'}}>
 									구성원 근태
 								</div>
 							</NavLink>
-						</ProtectedRoute>
+						</ProtectedRoute>}
 					</div>
 					{/*타이머 */}
 					<div className = "abs-timer">
@@ -286,7 +286,7 @@ function Abs() {
           <NewsList />
         </div>
 			</div>
-
+ 
 
 		</>
 	);
