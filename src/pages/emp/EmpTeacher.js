@@ -20,7 +20,6 @@ function EmpTeacher() {
 
     return(
         <>
-            <TeacherNavbar />
             <Header title = { title }/>
             <div className={CSS.StuWrapper}>
                 <div className={CSS.StuSearchBox}>
