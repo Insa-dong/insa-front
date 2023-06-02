@@ -40,9 +40,11 @@ function Study() {
 		() => {
 			if (searchValue) {
 				dispatch(callSearchStudyList({searchValue, currentPage, selectedOption}));
+				setCheckValue([]);
 			} else {
 				dispatch(callStudyInfoListAPI({currentPage}));
 				ref.current.value = '';
+				setCheckValue([]);
 			}
 		},
 		[currentPage, dispatch, searchValue, selectedOption]
@@ -60,6 +62,7 @@ function Study() {
 
 	const onClickHandler = () => {
 		navigate(`/studySearch?value=${search}`);
+		setCheckValue([]);
 	}
 
 	const selectOnChangeHandler = (e) => {
@@ -104,8 +107,7 @@ function Study() {
 				{isDeleteModalOpen && (
 					<StudyDeleteModal isDeleteModalOpen = {isDeleteModalOpen}
 					                  setIsDeleteModalOpen = {setIsDeleteModalOpen}
-					                  setInsert = {setInsert} checkValue = {checkValue}
-					                  setCheckValue = {setCheckValue}/>
+					                  setInsert = {setInsert} checkValue = {checkValue}/>
 				)}
 				{searchList.length > 0 ? (searchList.pageInfo && <PagingBar pageInfo = {searchList.pageInfo}
 				                                                            setCurrentPage = {setCurrentPage}/>) : (study.pageInfo &&

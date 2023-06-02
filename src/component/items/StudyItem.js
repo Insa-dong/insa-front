@@ -15,7 +15,7 @@ function StudyItem({item, checkValue, setCheckValue, index}) {
 	const onMouseOverHandler = () => {
 		setHover(true);
 		setDisplay({display: 'block'});
-		setTargetValue(item.trainingCode);
+		setTargetValue(item.studyInfoCode);
 	}
 
 	const onMouseOutHandler = (e) => {
@@ -38,7 +38,6 @@ function StudyItem({item, checkValue, setCheckValue, index}) {
 				setDisplay({display: 'block'})
 			} else {
 				setDisplay({display: 'none'})
-				console.log(checkValue)
 				const filter = checkValue.filter(check => {
 					setIsChecked(false);
 					return check !== item.value;
