@@ -127,4 +127,17 @@ select.EmpRegistBox {
   
 .error {
     margin-left: 1.5vw;
-} 
+}
+
+.empAuthWrap th,
+.empAuthWrap td{
+    padding-top: 1vw;
+}
+
+.empAuthWrap td{
+    padding-left: 0.6vw;
+}
+
+.empAuthWrap td label{
+    margin-right: 2.2vw;
+}
