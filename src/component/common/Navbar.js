@@ -1,15 +1,22 @@
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {NavLink, useNavigate} from 'react-router-dom';
 import Swal from "sweetalert2";
 import './Navbar.css';
+import { useEffect } from 'react';
+import { callMypageAPI } from '../../apis/MpgAPICalls';
 
 function Navbar() {
 
-	const {login} = useSelector(state => state.memberReducer);
-
+	const { info } = useSelector(state => state.mypageReducer);
+	
 	const style = {textDecoration: 'none', color: 'black'};
 	const activeStyle = ({isActive}) => isActive ? style : undefined;
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	useEffect(() =>{
+			dispatch(callMypageAPI());
+		},[]
+	)
 
 	const onClickLogoutHandler = () => {
 		window.localStorage.removeItem('accessToken');
@@ -64,8 +71,9 @@ function Navbar() {
 							<div id = "prof"></div>
 						</NavLink>
 						<div className = "sideTxt">
-							<span className = "topName">김영한</span>
-							<span className = "topAuth">행정팀 관리자</span>
+							<span className = "topName">{info?.empName}</span>
+							<span className = "topAuth">{info?.dept.deptName}팀</span>
+							<span className = "topAuth">{info?.job.jobName}</span>
 						</div>
 					</div>
 
