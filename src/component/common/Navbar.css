@@ -192,6 +192,15 @@ a {
     margin-left: 1vw;
 }
 
+.sideTr > .calendar-Img {
+    width: 1.1vw;
+    margin-left: 0.8vw;
+}
+
+.sideTr > .sidecalendar {
+    margin-left: 1.2vw;
+}
+
 .custom-confirm-button {
     background-color: #8CBAFF !important;
     color: white;

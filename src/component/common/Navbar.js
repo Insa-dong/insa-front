@@ -129,9 +129,9 @@ function Navbar() {
 						</div>
 						<div>
 							<NavLink to = "/cal" style = {activeStyle} className = "sideTr">
-								<img className = "vacation-Img" src = "/images/calendar-day-fill.svg"
-								     alt = "vacation-Img"></img><span
-								className = 'sideVacation'>일정</span>
+								<img className = "calendar-Img" src = "/images/calendar-day-fill.svg"
+								     alt = "calendar-Img"></img><span
+								className = 'sidecalendar'>일정</span>
 							</NavLink>
 						</div>
 					</div>
