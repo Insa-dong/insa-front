@@ -13,6 +13,8 @@ function Navbar() {
 	const activeStyle = ({isActive}) => isActive ? style : undefined;
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	console.log(info?.dept.deptCode)
 	useEffect(() =>{
 			dispatch(callMypageAPI());
 		},[]
@@ -68,11 +70,11 @@ function Navbar() {
 					</NavLink>
 					<div className = "sideBox">
 						<NavLink to = "/mypage">
-							<div id = "prof"></div>
+							<div id = "prof" className={info?.dept.deptCode}>{info?.empName.slice(-2)}</div>
 						</NavLink>
 						<div className = "sideTxt">
 							<span className = "topName">{info?.empName}</span>
-							<span className = "topAuth">{info?.dept.deptName}팀</span>
+							<span className = "topAuth">{info?.dept.deptName}팀·</span>
 							<span className = "topAuth">{info?.job.jobName}</span>
 						</div>
 					</div>

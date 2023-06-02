@@ -54,12 +54,11 @@ a {
     width: 50px;
     height: 50px;
     border-radius: 15px;
-    background-color: #FFA9B0;
     color: white;
     text-align: center;
-    font-weight: bold;
     margin: auto 0.4vw;
     box-sizing: border-box;
+    padding-top: 1.6vh;
 }
 
 
@@ -227,27 +226,25 @@ a {
     outline: none;
 }
 
-.deptCode-DE0001 {
+.DE0001 {
     background-color: #D8C5E2;
 }
 
-.deptCode-DE0002 {
+.DE0002 {
     background-color: #FFA9B0;
 }
 
-.deptCode-DE0003 {
+.DE0003 {
     background-color: #FFDDA6;
 }
 
-.deptCode-DE0004 {
+.DE0004 {
     background-color: #C3C95E;
 }
 
-.deptCode-DE0005 {
+.DE0005 {
     background-color: #D9B89A;
 }
-
-
 
 
 
