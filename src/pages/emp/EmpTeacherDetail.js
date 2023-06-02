@@ -8,6 +8,7 @@ import CSS from './EmpTeacherDetail.module.css';
 import PagingBar from "../../component/common/PagingBar";
 import StudentAttendRegistModal from "../../component/modal/StudentAttendRegistModal";
 import { callStudentAttendSearchAPI } from "../../apis/AttendAPICalls";
+import Swal from "sweetalert2";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -75,8 +76,32 @@ function EmpTeacherDetail() {
     const onClickRegistAttend = (attendReview, stuCode) => {
         setSelectedAttendReview({ ...attendReview, stuCode });
         setStuCode(stuCode);
-        setAttendReviewModalVisible(true);
-    };
+        const attendList = studyStudentState.data && studyStudentState.data.attendList;
+        if (attendList) {
+          const today = new Date().toISOString().slice(0, 10);
+          const existingAttendance = attendList.find(
+            (attendance) =>
+              attendance.student.stuCode === stuCode &&
+              attendance.attendDate === today
+          );
+      
+          if (existingAttendance) {
+            Swal.fire({
+              icon: 'error',
+              text: '이미 출결이 등록되었습니다.',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-success-button'
+              }
+            }).then(() => {
+              setAttendReviewModalVisible(false);
+            });
+          } else {
+            setAttendReviewModalVisible(true);
+          }
+        }
+      };
+      
 
     const onClickStudentHandler = (stuCode) => {
         setStuCode(stuCode);

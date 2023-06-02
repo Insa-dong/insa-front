@@ -1,6 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
-import Main from "./component/common/Main";
 import ProtectedRoute from './component/router/ProtectedRoute';
 import Layout from "./layouts/Layout";
 import Abs from "./pages/abs/Abs";
@@ -22,10 +21,10 @@ import Login from './pages/login/Login';
 import PwSearch from './pages/login/PwSearch';
 import PwSearchSuccess from './pages/login/PwSearchSuccess';
 import Mypage from './pages/mpg/Mypage';
-import Off from './pages/off/Off';
 import AdminOff from './pages/off/AdminOff';
-import TeamOff from './pages/off/TeamOff';
+import Off from './pages/off/Off';
 import OffSign from './pages/off/OffSign';
+import TeamOff from './pages/off/TeamOff';
 import Student from './pages/student/Student';
 import StudentDetail from './pages/student/StudentDetail';
 import StudentRegistration from './pages/student/StudentRegistration';
@@ -43,7 +42,7 @@ function App() {
 				<Routes>
 					<Route path = "/login" element = {<ProtectedRoute loginCheck = {false}><Login/></ProtectedRoute>}/>
 					<Route path = "/" element = {<ProtectedRoute loginCheck = {true}><Layout/></ProtectedRoute>}>
-						<Route index element = {<Main/>}/>
+						<Route index element = {<Board/>}/>
 						<Route path = "cal" element = {< Calendar/>}/>
 						<Route path = "mypage" element = {<Mypage/>}/>
 						<Route path = "board" element = {<Board/>}/>
@@ -56,10 +55,13 @@ function App() {
 						       element = {<ProtectedRoute authCheck = {true}><TrainingDetail/></ProtectedRoute>}/>
 						<Route path = "abs" element = {<Abs/>}/>
 						<Route path = "abs/adminAbs" element = {<AdminAbs/>}/>
-						<Route path = "study" element = {<Study/>}/>
-						<Route path = "studySearch" element = {<Study/>}/>
-						<Route path = "study/registration" element = {<StudyRegistration/>}/>
-						<Route path = "studyInfo/:studyInfoCode" element = {<StudyInfo/>}/>
+						<Route path = "study" element = {<ProtectedRoute authCheck = {true}><Study/></ProtectedRoute>}/>
+						<Route path = "studySearch"
+						       element = {<ProtectedRoute authCheck = {true}><Study/></ProtectedRoute>}/>
+						<Route path = "study/registration"
+						       element = {<ProtectedRoute authCheck = {true}><StudyRegistration/></ProtectedRoute>}/>
+						<Route path = "studyInfo/:studyInfoCode"
+						       element = {<ProtectedRoute authCheck = {true}><StudyInfo/></ProtectedRoute>}/>
 						<Route path = "emp" element = {<Emp/>}/>
 						<Route path = "emp/emprest" element = {<EmpRest/>}/>
 						<Route path = "emp/empregistration" element = {<EmpRegistration/>}/>

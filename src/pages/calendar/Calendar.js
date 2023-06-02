@@ -18,6 +18,8 @@ function Calendar() {
 	const {page} = useSelector(state => state.calendarPagingReducer);
 	const {remove} = useSelector(state => state.calendarReducer);
 	const {modify} = useSelector(state => state.calendarReducer);
+	const {calList} = useSelector(state => state.calendarReducer);
+	const {calInfo} = useSelector(state => state.calendarReducer);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalOpen, setModalOpen] = useState(false);
 	const [registModalOpen, setRegistModalOpen] = useState(false);
@@ -33,7 +35,7 @@ function Calendar() {
 		() => {
 			dispatch(callMyPagingCalListAPI({currentPage, sort}));
 		},
-		[dispatch, currentPage, sort, modify, page, remove]
+		[dispatch, currentPage, sort, modify, remove, calList, calInfo]
 	)
 
 	const scheduleOnclickHandler = (item) => {

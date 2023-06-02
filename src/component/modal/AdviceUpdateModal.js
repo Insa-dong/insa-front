@@ -55,7 +55,7 @@ function AdviceUpdateModal({ setAdviceUpdateModal, stuCode , adviceLogCode, empC
           if (result.isConfirmed) {
             dispatch(callAdviceUpdateAPI({...form, stuCode, adviceLogCode, empCode }));
             Swal.fire({
-              title: '상담 내용이 수정되었습니다.',
+              text: '상담 내용이 수정되었습니다.',
               icon: 'success',
               buttonsStyling: false,
               customClass: {
