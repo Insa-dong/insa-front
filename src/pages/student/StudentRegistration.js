@@ -19,7 +19,7 @@ function StudentRegistration() {
     useEffect(() => {
         if (regist?.status === 200) {
           Swal.fire({
-            title: '수강생 등록이 완료되었습니다.',
+            text: '수강생 등록이 완료되었습니다.',
             icon: 'success',
             buttonsStyling: false,
             customClass: {
@@ -84,7 +84,7 @@ function StudentRegistration() {
     };
 
     const onClickStudentRegistrationHandler = () => {
-        // if (validateForm()) {
+        //  if (validateForm()) {
             dispatch(callStudentRegistAPI(form));
         // }
     };

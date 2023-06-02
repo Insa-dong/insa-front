@@ -108,7 +108,7 @@ function EmpTeacherDetailPlus() {
         console.log('evaCode: ', evaCode);
         dispatch(callEvaDeleteForAdminAPI({ evaCode }));
         Swal.fire({
-          title: '평가 내역이 삭제되었습니다.',
+          text: '평가 내역이 삭제되었습니다.',
           icon: 'success',
           buttonsStyling: false,
           customClass: {
@@ -143,7 +143,7 @@ function EmpTeacherDetailPlus() {
         console.log('adviceLogCode: ', adviceLogCode);
         dispatch(callAdviceDeleteForAdminAPI({ adviceLogCode }));
         Swal.fire({
-          title: '상담 내역이 삭제되었습니다.',
+          text: '상담 내역이 삭제되었습니다.',
           icon: 'success',
           buttonsStyling: false,
           customClass: {
@@ -179,7 +179,7 @@ function EmpTeacherDetailPlus() {
         console.log('DeleteAttendCode: ', attendCode);
         dispatch(callStudentAttendDeleteAPI({ attendCode }));
         Swal.fire({
-          title: '출석 내역이 삭제되었습니다.',
+          text: '출석 내역이 삭제되었습니다.',
           icon: 'success',
           buttonsStyling: false,
           customClass: {

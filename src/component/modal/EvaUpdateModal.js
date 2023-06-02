@@ -59,7 +59,7 @@ function EvaUpdateModal({ stuCode, setEvaUpdateModal, studyInfoCode, empCode, ev
           if (result.isConfirmed) {
             dispatch(callEvaUpdateAPI({ ...form, stuCode, studyInfoCode, empCode, evaCode }));
             Swal.fire({
-              title: '평가가 수정되었습니다.',
+              text: '평가가 수정되었습니다.',
               icon: 'success',
               buttonsStyling: false,
               customClass: {

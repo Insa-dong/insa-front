@@ -192,6 +192,15 @@ a {
     margin-left: 1vw;
 }
 
+.sideTr > .calendar-Img {
+    width: 1.1vw;
+    margin-left: 0.8vw;
+}
+
+.sideTr > .sidecalendar {
+    margin-left: 1.2vw;
+}
+
 .custom-confirm-button {
     background-color: #8CBAFF !important;
     color: white;
@@ -227,6 +236,25 @@ a {
     outline: none;
 }
 
+.deptCode-DE0001 {
+    background-color: #D8C5E2;
+}
+
+.deptCode-DE0002 {
+    background-color: #FFA9B0;
+}
+
+.deptCode-DE0003 {
+    background-color: #FFDDA6;
+}
+
+.deptCode-DE0004 {
+    background-color: #C3C95E;
+}
+
+.deptCode-DE0005 {
+    background-color: #D9B89A;
+}
 
 
 

@@ -1,17 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap');
+
+
+
 
 .abs-wrapp {
     width: 74vw;
     height: 78vh;
     /*margin: 0 auto;*/
     margin-left: 20vw;
-   /* border: 1px solid red;*/
+    /* border: 1px solid red;*/
+}
+
+.abs-wrapp-sub {
+    display: flex;
+    justify-Content: space-between;
+}
+
+/* 타이머 */
+.abs-timer {
+    margin-top: 1vw;
+    margin-bottom: 3.5vw;
+    margin-right: 3vw;
+    width: 6vw;
+    height: 6vw;
+    font-size: 1.3rem;
+    font-family: 'Tsukimi Rounded', sans-serif;
+    color: #8CBAFF;
+    border: 0.15vw solid #8CBAFF;
+    border-radius: 500px;
+    padding: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .abs-menu-bar {
     margin-top: 3vw;
     margin-bottom: 3.5vw;
+    width: 20vw;
 
- }
+
+}
 
 .abs-menu {
     display: inline-block;
@@ -23,7 +52,7 @@
 
 .abs-btns {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
 }
 
@@ -31,8 +60,8 @@
     width: 11vw;
     height: 2.4vw;
     background-color: #8CBAFF;
-    border : none;
-    border-radius: 5px;
+    border: none;
+    border-radius: 10px;
     font-size: 1.2rem;
     color: white;
     cursor: pointer;
@@ -45,9 +74,9 @@
     height: 2.4vw;
     background-color: white;
     border: 3px solid #8CBAFF;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 1.2rem;
-    color : #8CBAFF;
+    color: #8CBAFF;
     cursor: pointer;
 }
 
@@ -82,16 +111,18 @@
     cursor: pointer;
 }
 
-.abs-SearchBtn > img {
+.abs-SearchBtn>img {
     width: 1.5vw !important;
     height: 1.5vw !important;
     padding-top: 0.1vw;
 }
 
+
+
 /* 알러트 창 */
 
-.custom-confirm-button{
-    background-color: #8CBAFF!important;
+.custom-confirm-button {
+    background-color: #8CBAFF !important;
     color: white;
     margin-top: 45px;
     margin-bottom: 5px;
@@ -100,12 +131,10 @@
     border-radius: 5px;
     border: 1px solid #8CBAFF;
     margin-left: 30px
-
-
 }
 
 .custom-cancel-button {
-    background-color: #DADADA!important;
+    background-color: #DADADA !important;
     color: white;
     margin-top: 45px;
     margin-bottom: 5px;
@@ -113,14 +142,13 @@
     width: 70px;
     border-radius: 5px;
     border: 1px solid #DADADA;
-    
-    
+
+
 }
 
 .custom-success-button {
 
-
-    background-color: #8CBAFF!important;
+    background-color: #8CBAFF !important;
     color: white;
     margin-top: 45px;
     margin-bottom: 5px;
@@ -133,7 +161,7 @@
 }
 
 .custom-ok-button {
-    background-color: #8CBAFF!important;
+    background-color: #8CBAFF !important;
     color: white;
     margin-top: 45px;
     margin-bottom: 5px;
@@ -141,6 +169,11 @@
     width: 70px;
     border-radius: 5px;
     border: 1px solid #8CBAFF;
-    
+
 }
 
+/*📰메인뉴스*/
+.news-section{
+    width: 15vw;
+    height: 15vw;
+}
