@@ -3,6 +3,7 @@ import CSS from "./BoardRegistModal.module.css";
 import { useDispatch } from "react-redux";
 import { callBoardRegistAPI } from "../../apis/BoardAPICall";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 
 function BoardRegistModal({ isRegistOpen, onRegistClose }) {
@@ -50,12 +51,12 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
 
 
 
-  /* 공지 등록하기 버튼 클릭 이벤트 */
   const handleFile = (e) => {
     const files = Array.from(e.target.files);
     setSelectedFiles(files);
   }
 
+  /* 공지 등록하기 버튼 클릭 이벤트 */
   const onClickBoardRegistrationHandler = () => {
     const formData = new FormData();
     /* 서버로 전달할 FormData 형태의 객체 설정 */
@@ -65,17 +66,37 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
     selectedFiles.forEach((file, index) => {
       formData.append(`noticeFile[${index}]`, file);
     });
-
-    console.log(formData);
-
-
-    dispatch(callBoardRegistAPI(formData));
-
-    // 모달 닫기
-    onRegistClose(); 
-
-    // 페이지 새로고침
-    window.location.reload();
+    Swal.fire({
+      text: '등록 하시겠습니까?',
+      icon: 'warning',
+      showCancelButton: true,
+      customClass: {
+        confirmButton: 'custom-confirm-button',
+        cancelButton: 'custom-cancel-button'
+      },
+      confirmButtonColor: '#8CBAFF',
+      cancelButtonColor: '#DADADA',
+      confirmButtonText: '확인',
+      cancelButtonText: '취소',
+      reverseButtons: true,
+      buttonsStyling: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(callBoardRegistAPI(formData));
+        Swal.fire({
+          title: '등록 완료',
+          icon: 'success',
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'custom-success-button'
+          }
+        })
+          .then(() => {
+            onRegistClose();
+            window.location.reload();
+          })
+      }
+    });
   }
 
 
@@ -90,36 +111,19 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
             X
           </div>
           <div className={CSS.edgeContainer}>
-            <ul style={{ display: "flex" }}>
-              <li className={CSS.boardContentImg}>
-                <img
-                  src="/images/공지내용.png"
-                  className={CSS.fileImg}
-                  alt="공지내용이미지"
-                  onClick={handleImageClick}
-                />
-              </li>
-              <li className={CSS.boardContent}>제목</li>
-            </ul>
+            <div className={CSS.boardTitle}>📋 공지등록</div>
+            <div className={CSS.boardContent}>✒️ 제목</div>
             <input
               className={CSS.title}
               name="noticeTitle"
+              autoComplete='off'
               onChange={onChangeHandler}
             ></input>
-            <ul style={{ display: "flex" }}>
-              <li className={CSS.boardContentImg}>
-                <img
-                  src="/images/공지내용.png"
-                  className={CSS.fileImg}
-                  alt="공지내용이미지"
-                  onClick={handleImageClick}
-                />
-              </li>
-              <li className={CSS.boardContent}>공지내용</li>
-            </ul>
+            <div className={CSS.boardContent}>📰 내용</div>
             <textarea
               className={CSS.content}
               name="noticeContent"
+              autoComplete='off'
               onChange={onChangeHandler}
             ></textarea>
             <div className={CSS.fileContainer} style={{ display: "flex" }} onClick={handleImageClick}>
@@ -143,7 +147,7 @@ function BoardRegistModal({ isRegistOpen, onRegistClose }) {
             <button
               className={CSS.ButtonStyle2}
               onClick={onClickBoardRegistrationHandler}
-              
+
             >
               등록하기
             </button>
