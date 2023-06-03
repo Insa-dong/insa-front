@@ -1,7 +1,7 @@
 import StudyItem from "../items/StudyItem";
 import CSS from "./TrainingList.module.css";
 
-function StudyList({study, checkValue, setCheckValue}) {
+function StudyList({study, checkValue, setCheckValue, isDeleteModalOpen}) {
 
 	return (
 		<table className = {CSS.tableStyle}>
@@ -24,6 +24,7 @@ function StudyList({study, checkValue, setCheckValue}) {
 					           checkValue = {checkValue}
 					           setCheckValue = {setCheckValue}
 					           index = {index}
+					           isDeleteModalOpen = {isDeleteModalOpen}
 					/>
 				))}
 			</tbody>
