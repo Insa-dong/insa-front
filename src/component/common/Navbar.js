@@ -21,7 +21,6 @@ function Navbar() {
 	)
 
 	const onClickLogoutHandler = () => {
-		window.localStorage.removeItem('accessToken');
 		Swal.fire({
 			text: '로그아웃 하시겠습니까?',
 			icon: 'warning',
@@ -38,6 +37,7 @@ function Navbar() {
 			buttonsStyling: false,
 		}).then((result) => {
 			if (result.isConfirmed) {
+				window.localStorage.removeItem('accessToken');
 				Swal.fire({
 					title: '로그아웃 완료',
 					//   text: '안녕히가세요',

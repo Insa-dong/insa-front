@@ -260,23 +260,34 @@ function BoardDetail() {
                             </>
                         )
                     }
-                    {!modifyMode && (isAuthor || admin.length > 0) && (
+                    {!modifyMode && (
                         <div className={CSS.btn}>
-     
+                            {isAuthor && (
+                                <>
+                                    <button
+                                        className={CSS.updateBtn}
+                                        onClick={onClickModifyModeHandler}
+                                    >
+                                        수정하기
+                                    </button>
+
+                                    <button
+                                        className={CSS.deleteBtn}
+                                        onClick={onClickDeleteHandler}
+                                    >
+                                        삭제하기
+                                    </button>
+
+                                </>
+                            )}
+                            {admin.length > 0 && !isAuthor && (
                                 <button
-                                    className={CSS.updateBtn}
-                                    onClick={onClickModifyModeHandler}
+                                    className={CSS.deleteBtn}
+                                    onClick={onClickDeleteHandler}
                                 >
-                                    수정하기
+                                    삭제하기
                                 </button>
-
-
-                            <button
-                                className={CSS.deleteBtn}
-                                onClick={onClickDeleteHandler}
-                            >
-                                삭제하기
-                            </button>
+                            )}
                         </div>
                     )}
 
