@@ -1,28 +1,32 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import listCSS from "../lists/TrainingList.module.css";
 import CSS from "./TrainingItem.module.css";
 
-function StudyItem({item, checkValue, setCheckValue, index}) {
+function StudyItem({item, checkValue, setCheckValue, index, isDeleteModalOpen}) {
 
-	const [hover, setHover] = useState(false);
 	const [display, setDisplay] = useState({display: 'none'});
 	const [targetValue, setTargetValue] = useState();
 	const [isChecked, setIsChecked] = useState(false);
 	const ref = useRef([]);
 	const navigate = useNavigate();
 
+	useEffect(
+		() => {
+			setIsChecked(false);
+			setDisplay({display: 'none'});
+		}, [index, isDeleteModalOpen]
+	)
+
 	const onMouseOverHandler = () => {
-		setHover(true);
 		setDisplay({display: 'block'});
 		setTargetValue(item.studyInfoCode);
 	}
 
-	const onMouseOutHandler = (e) => {
+	const onMouseOutHandler = () => {
 		if (!ref.current[index].checked) {
 			setDisplay({display: 'none'});
 		}
-		setHover(false);
 	}
 
 	const onClickHandler = () => {
@@ -31,7 +35,7 @@ function StudyItem({item, checkValue, setCheckValue, index}) {
 
 	const onCheckBoxClickHandler = () => {
 		ref.current[index].checked = !ref.current[index].checked;
-		setIsChecked(true)
+		setIsChecked(!isChecked)
 		ref.current.map(item => {
 			if (item.checked) {
 				setCheckValue((prev) => ([...prev, item.value]))
@@ -57,7 +61,7 @@ function StudyItem({item, checkValue, setCheckValue, index}) {
 
 	return (
 		<tr key = {item.studyInfoCode}
-		    className = {hover ? listCSS.BodyTrStyle : listCSS.BodyTrStyle2}
+		    className = {listCSS.BodyTrStyle}
 		    onMouseOver = {onMouseOverHandler}
 		    onMouseOut = {onMouseOutHandler}
 		    value = {item.studyInfoCode}

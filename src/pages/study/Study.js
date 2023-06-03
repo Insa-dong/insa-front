@@ -96,6 +96,7 @@ function Study() {
 					<StudyList key = {study.studyInfoCode}
 					           study = {searchList.length > 0 ? searchList : study}
 					           checkValue = {checkValue} setCheckValue = {setCheckValue}
+					           isDeleteModalOpen = {isDeleteModalOpen}
 					/>
 				}
 				<button className = {CSS.ButtonStyle2} onClick = {() => navigate('/study/registration')}>등록하기
@@ -107,7 +108,8 @@ function Study() {
 				{isDeleteModalOpen && (
 					<StudyDeleteModal isDeleteModalOpen = {isDeleteModalOpen}
 					                  setIsDeleteModalOpen = {setIsDeleteModalOpen}
-					                  setInsert = {setInsert} checkValue = {checkValue}/>
+					                  setInsert = {setInsert} checkValue = {checkValue}
+					                  setCheckValue = {setCheckValue}/>
 				)}
 				{searchList.length > 0 ? (searchList.pageInfo && <PagingBar pageInfo = {searchList.pageInfo}
 				                                                            setCurrentPage = {setCurrentPage}/>) : (study.pageInfo &&
