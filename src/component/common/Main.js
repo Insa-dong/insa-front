@@ -85,7 +85,7 @@ function Main() {
 							</tr>
 						</thead>
 						<tbody className={CSS.BodyTrStyle}>
-						{study.data && study.data.map(s => (
+						{study.data && study.data.slice(0, 4).map(s => (
 							<tr key={s.studyInfoCode}>
 								<th>{s.studyTitle}</th>
 								<th>{s.studyInfoStartDate}-{s.studyInfoEndDate}</th>
