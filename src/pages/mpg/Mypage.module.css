@@ -43,6 +43,7 @@
     width: 11.7vw;
     border: 1px #8CBAFF solid;
     border-radius: 5px;
+    outline: none;
 }
 
 .name{

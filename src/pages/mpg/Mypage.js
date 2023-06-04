@@ -38,8 +38,36 @@ function Mypage() {
     }
 
     const onClickModifyHandler = () =>{
-        dispatch(callPrivacyUpdateAPI(form));
-        window.location.reload();
+        Swal.fire({
+            text: '수정 하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            customClass: {
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            },
+            confirmButtonColor: '#8CBAFF',
+            cancelButtonColor: '#DADADA',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+            reverseButtons: true,
+            buttonsStyling: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(callPrivacyUpdateAPI(form));
+                Swal.fire({
+                    title: '수정 완료',
+                    icon: 'success',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'custom-success-button'
+                    }
+                })
+                    .then(() => {
+                        window.location.reload();
+                    })
+            }
+        });
     }
 
 
@@ -168,6 +196,7 @@ function Mypage() {
                                     name="empGender"
                                     onChange={onChangeHandler}
                                 >
+                                    <option value="">변경없음</option>
                                     <option value="여">여성</option>
                                     <option value="남">남성</option>
                                 </select>
