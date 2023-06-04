@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import {callTrainingRemoveAPI} from "../../apis/TrainingAPICalls";
 import CSS from "./TrainingRegistModal.module.css";
 
-function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert, checkValue}) {
+function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert, checkValue, setCheckValue}) {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -47,6 +47,7 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 								navigate('/training', {replace: true});
 								setIsDeleteModalOpen(false);
 								setInsert(true);
+								setCheckValue([]);
 							});
 						})
 						.catch((error) => {
@@ -58,11 +59,12 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 						});
 				} else if (result.dismiss) {
 					setIsDeleteModalOpen(false);
+					setCheckValue([]);
 				}
 			});
 		} else {
 			Swal.fire({
-				text: `삭제할 과목을 체크해주세요.`,
+				text: `삭제할 과목을 선택해주세요.`,
 				icon: 'warning',
 				showCancelButton: true,
 				customClass: {
@@ -77,6 +79,7 @@ function TrainingDeleteModal({isDeleteModalOpen, setIsDeleteModalOpen, setInsert
 				buttonsStyling: false,
 			}).then(result => {
 				setIsDeleteModalOpen(false);
+				setCheckValue([]);
 			})
 		}
 	};
