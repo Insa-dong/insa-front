@@ -1,19 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
+import {callBoardDeleteAPI, callBoardDetailAPI, callBoardUpdateAPI, callDeleteFileAPI} from "../../apis/BoardAPICall";
 import Header from "../../component/common/Header";
+import {getMemberId, isAdmin} from "../../utils/TokenUtils";
 import CSS from "./BoardDetail.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { callBoardDeleteAPI, callBoardDetailAPI, callBoardUpdateAPI, callDeleteFileAPI, fileDownloadAPI } from "../../apis/BoardAPICall";
-import React from "react";
-import { getMemberId, isAdmin } from "../../utils/TokenUtils";
-import Swal from "sweetalert2";
-
-
 
 function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short", hour12: false };
-    return new Intl.DateTimeFormat("ko-KR", options).format(date);
+	const date = new Date(dateString);
+	const options = {
+		year: "numeric",
+		month: "2-digit",
+		day: "2-digit",
+		hour: "2-digit",
+		minute: "2-digit",
+		weekday: "short",
+		hour12: false
+	};
+	return new Intl.DateTimeFormat("ko-KR", options).format(date);
 }
 
 
