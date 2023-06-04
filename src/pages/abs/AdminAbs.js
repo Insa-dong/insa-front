@@ -21,8 +21,7 @@ function AdminAbs() {
     }, [dispatch, currentPage]);
 
     const handleReloadPage = () => {
-        navigate('/abs/adminAbs', { replace: true });
-        window.location.reload();
+        dispatch(callAbsListAPI({ currentPage }));
     };
 
     const handleDateChange = (event) => {

@@ -6,6 +6,7 @@ import './TeamOff.css';
 import TeamOffList from '../../component/lists/TeamOffList';
 import PagingBar from '../../component/common/PagingBar';
 import { callAdminOffListAPI } from '../../apis/OffAPICalls';
+import { isAdmin, isLeader } from '../../utils/TokenUtils';
 
 function AdminOff() {
 
@@ -59,11 +60,14 @@ function AdminOff() {
 
             <div className="off-wrapp">
                 <div className="off-menu-bar">
-                    <NavLink to="/off">
-                        <div className="off-menu" style={{ color: 'gray' }} >
-                            내 연차
-                        </div>
-                    </NavLink>
+                    
+                {(isAdmin().length === 0 || isLeader().length === 0) && (
+                        <NavLink to="/off">
+                            <div className="abs-menu">
+                                내 연차
+                            </div>
+                        </NavLink>
+                    )}
 
                     <NavLink to="/off/teamOff">
                         <div className="off-menu" >
@@ -77,12 +81,6 @@ function AdminOff() {
                             연차 현황
                         </div>
                     </NavLink>
-
-                    {/*<NavLink to="/off/teamOff/offSign" className="active-link" style={{ color: 'gray' }}>
-                        <div className="team-off-menu" >
-                            연차 신청내역
-                        </div>
-    </NavLink>*/}
                 </div>
 
                 <div className="TeamOffSearchBox">

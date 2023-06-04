@@ -5,6 +5,7 @@ import {callBoardDeleteAPI, callBoardDetailAPI, callBoardUpdateAPI, callDeleteFi
 import Header from "../../component/common/Header";
 import {getMemberId, isAdmin} from "../../utils/TokenUtils";
 import CSS from "./BoardDetail.module.css";
+import Swal from "sweetalert2";
 
 function formatDate(dateString) {
 	const date = new Date(dateString);
