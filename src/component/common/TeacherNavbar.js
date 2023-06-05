@@ -71,10 +71,10 @@ function TeacherNavbar() {
 						<NavLink to = "/mypage">
 							<div id = "prof" className = {info?.dept.deptCode}>{info?.empName.slice(-2)}</div>
 						</NavLink>
-						<div className = "sideTxt">
-							<span className = "topName">{info?.empName}</span>
-							<span className = "topAuth">{info?.dept.deptName}팀</span>
-							<span className = "topAuth">{info?.job.jobName}</span>
+						<div className="sideTxt">
+							<span className="topName">{info?.empName}</span>
+							<span className="topAuth">{info?.dept.deptName}팀·</span>
+							<span className="topAuth">{info?.job.jobName}</span>
 						</div>
 					</div>
 

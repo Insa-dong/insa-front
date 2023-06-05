@@ -6,6 +6,7 @@ import { callBoardListAPI } from './../../apis/BoardAPICall';
 import { useSelector } from 'react-redux';
 import { callStudyInfoListAPI } from "../../apis/StudyInfoAPICalls";
 import NewsList from "../lists/NewsList";
+import { NavLink } from "react-router-dom";
 
 function formatDate(dateString) {
 	const date = new Date(dateString);
@@ -19,7 +20,7 @@ function Main() {
 
 	const dispatch = useDispatch();
 	const { data } = useSelector(state => state.boardReducer);
-	const study  = useSelector(state => state.studyInfoReducer );
+	const study = useSelector(state => state.studyInfoReducer);
 	const [currentPage, setCurrentPage] = useState(1);
 
 	useEffect(
@@ -34,7 +35,9 @@ function Main() {
 		<div className={CSS.mainWrapper}>
 			<div className={CSS.noticeCalendar}>
 				<div className={CSS.notice}>
-					<div className={CSS.noticeT}>공지사항</div>
+					<NavLink to="/board">
+						<div className={CSS.noticeT}>공지사항</div>
+					</NavLink>
 					{data && data.map(p => (
 						<ul className={CSS.noticeContent} style={{ display: 'flex' }} key={p.noticeCode}>
 							<li>
@@ -44,6 +47,7 @@ function Main() {
 									<li className={CSS.noticetitle}>{p.noticeTitle}</li>
 								</ul>
 							</li>
+							<li className={CSS.content}>{p.noticeContent}</li>
 							<li className={CSS.writer}>{p.noticeWriter.empName}</li>
 							<li><img src="/images/화살표.png" className={CSS.allowImg} alt="화살표이미지" />
 							</li>
@@ -52,29 +56,46 @@ function Main() {
 							<li className={CSS.date}>{formatDate(p.noticeWriteDate)}</li>
 						</ul>))}
 				</div>
-				<div className={CSS.calendar}>
-						캘린더
-				</div>
 			</div>
 			<div className={CSS.buttonWeather}>
 				<ul className={CSS.button}>
-					<li>출퇴근</li>
-					<li>연차신청</li>
-					<li>수강생등록</li>
-					<li>강의등록</li>
+					<NavLink to="/abs">
+						<ul className={CSS.mainBtn}>
+							<li className={CSS.mainBtnTitle}>출퇴근</li>
+							<img src="/images/출퇴근.png" className={CSS.mainBtnImg} />
+						</ul>
+					</NavLink>
+					<NavLink to="/off">
+						<ul className={CSS.mainBtn}>
+							<li className={CSS.mainBtnTitle}>연차신청</li>
+							<img src="/images/연차신청2.png" className={CSS.mainBtnImg} />
+						</ul>
+					</NavLink>
+					<NavLink to="/student/registration">
+						<ul className={CSS.mainBtn}>
+							<li className={CSS.mainBtnTitle}>수강생등록</li>
+							<img src="/images/수강생등록.png" className={CSS.mainBtnImg} />
+						</ul>
+					</NavLink>
+					<NavLink to="/study/registration">
+						<ul className={CSS.mainBtn}>
+							<li className={CSS.mainBtnTitle}>강의등록</li>
+							<img src="/images/강의등록.png" className={CSS.mainBtnImg} />
+						</ul>
+					</NavLink>
 				</ul>
 				<div className={CSS.weather}>
-					<div>날씨</div>
 					<Weather />
 				</div>
 			</div>
 			<div className={CSS.newsLecture}>
 				<div className={CSS.news}>
-					<div>뉴스</div>
-					<NewsList/>
+					<NewsList />
 				</div>
 				<div className={CSS.lecture}>
-					<div>강의</div>
+					<NavLink to="/study">
+						<div className={CSS.lectureTitle}>강의</div>
+					</NavLink>
 					<table className={CSS.tableStyle}>
 						<thead>
 							<tr className={CSS.trStyle}>
@@ -85,13 +106,13 @@ function Main() {
 							</tr>
 						</thead>
 						<tbody className={CSS.BodyTrStyle}>
-						{study.data && study.data.slice(0, 4).map(s => (
-							<tr key={s.studyInfoCode}>
-								<th>{s.studyTitle}</th>
-								<th>{s.studyInfoStartDate}-{s.studyInfoEndDate}</th>
-								<th>{s.study.studyMaxPeople}</th>
-								<th>{s.teacher.empName}</th>
-							</tr>))}
+							{study.data && study.data.slice(0, 4).map(s => (
+								<tr key={s.studyInfoCode} className={CSS.trStyle}>
+									<th>{s.studyTitle}</th>
+									<th>{s.studyInfoStartDate} ~ {s.studyInfoEndDate}</th>
+									<th>{s.study.studyMaxPeople}</th>
+									<th>{s.teacher.empName}</th>
+								</tr>))}
 						</tbody>
 					</table>
 				</div>
