@@ -37,7 +37,7 @@ export const callPrivacyUpdateAPI = (form) => {
 				"Content-Type": "application/json",
 				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
-			body: JSON.stringify(form) // 컨트롤러에서 @ModelAttribute로 받을때는 JSON.stringify 없어도 되는데 @RequestBody로 받을때는 있어야한다.
+			body: JSON.stringify(form)
 		}).then(response => response.json());
 
 		if (result.status === 200) {
@@ -60,7 +60,7 @@ export const callPwdUpdateAPI = (form) => {
 				"Content-Type": "application/json",
 				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
-			body: JSON.stringify(form) // 컨트롤러에서 @ModelAttribute로 받을때는 JSON.stringify 없어도 되는데 @RequestBody로 받을때는 있어야한다.
+			body: JSON.stringify(form)
 		}).then(response => response.json());
 
 		if (result.status === 200) {
