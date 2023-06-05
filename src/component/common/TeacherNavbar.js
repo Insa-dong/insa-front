@@ -73,7 +73,7 @@ function TeacherNavbar() {
 						</NavLink>
 						<div className="sideTxt">
 							<span className="topName">{info?.empName}</span>
-							<span className="topAuth">{info?.dept.deptName}팀</span>
+							<span className="topAuth">{info?.dept.deptName}팀·</span>
 							<span className="topAuth">{info?.job.jobName}</span>
 						</div>
 					</div>
