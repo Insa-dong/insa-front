@@ -111,7 +111,7 @@ function Main() {
 						</thead>
 						<tbody className={CSS.BodyTrStyle}>
 							{study.data && study.data.slice(0, 4).map(s => (
-								<tr key={s.studyInfoCode}>
+								<tr key={s.studyInfoCode} className={CSS.trStyle}>
 									<th>{s.studyTitle}</th>
 									<th>{s.studyInfoStartDate} ~ {s.studyInfoEndDate}</th>
 									<th>{s.study.studyMaxPeople}</th>
