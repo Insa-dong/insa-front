@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {callLoginAPI} from "../../apis/LoginAPICalls";
-import {resetLogin} from "../../modules/LoginModule";
 import './Login.css';
 
 
@@ -28,12 +27,12 @@ function Login() {
 		if (
 			!form.empId ||
 			!form.empPwd
-			
-		  ) {
+
+		) {
 			alert("정보를 모두 입력해주세요");
 			return;
-		  }
-	  
+		}
+
 
 		dispatch(callLoginAPI(form));
 	}
@@ -51,10 +50,10 @@ function Login() {
 				// dispatch(resetLogin());
 			} else if (login?.state === 400) {
 				alert(login.message);
-				dispatch(resetLogin());
+				// dispatch(resetLogin());
 			}
 		},
-		[login]
+		[dispatch, login, navigate]
 	);
 
 
