@@ -18,7 +18,7 @@
     border: 1px solid #fff;
     border-radius: 10px;
     background-color: #f9fafa;
-    width: 50vw;
+    width: 100vw;
 }
 
 .noticeT {
@@ -35,7 +35,7 @@
 }
 
 .noticetitle {
-    width: 23vw;
+    width: 15vw;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -48,12 +48,21 @@
 
 }
 
+.content{
+    color: gray;
+    margin-left: 5vw;
+    width: 15vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .writer {
-    margin-left: 3vw;
+    margin-left: 10vw;
 }
 
 .date {
-    margin-left: 7vw;
+    margin-left: 13vw;
     text-align: left;
 }
 

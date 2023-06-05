@@ -47,6 +47,7 @@ function Main() {
 									<li className={CSS.noticetitle}>{p.noticeTitle}</li>
 								</ul>
 							</li>
+							<li className={CSS.content}>{p.noticeContent}</li>
 							<li className={CSS.writer}>{p.noticeWriter.empName}</li>
 							<li><img src="/images/화살표.png" className={CSS.allowImg} alt="화살표이미지" />
 							</li>
@@ -55,11 +56,11 @@ function Main() {
 							<li className={CSS.date}>{formatDate(p.noticeWriteDate)}</li>
 						</ul>))}
 				</div>
-				<div className={CSS.calendar}>
+				{/* <div className={CSS.calendar}>
 					<NavLink to="/cal">
 						<img src="/images/캘린더.png" className={CSS.calendarImg} />
 					</NavLink>
-				</div>
+				</div> */}
 			</div>
 			<div className={CSS.buttonWeather}>
 				<ul className={CSS.button}>
