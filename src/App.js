@@ -1,5 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
+import Main from './component/common/Main';
 import ProtectedRoute from './component/router/ProtectedRoute';
 import Layout from "./layouts/Layout";
 import Abs from "./pages/abs/Abs";
@@ -33,7 +34,6 @@ import StudyInfo from "./pages/study/StudyInfo";
 import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
-import Main from './component/common/Main';
 
 
 function App() {
@@ -66,12 +66,14 @@ function App() {
 						<Route path = "emp" element = {<Emp/>}/>
 						<Route path = "emp/emprest" element = {<EmpRest/>}/>
 						<Route path = "emp/empregistration" element = {<EmpRegistration/>}/>
-						<Route path = "/empTeacher" 
-							   element = {<ProtectedRoute teacherCheck = {true}><EmpTeacher/></ProtectedRoute>}/>
-						<Route path = "/empTeacher/:studyCode" 
-							   element = {<ProtectedRoute teacherCheck = {true}><EmpTeacherDetail/></ProtectedRoute>}/>
+						<Route path = "emp/empdetail/:empCode" element = {<EmpDetail/>}/>
+						<Route path = "/empTeacher"
+						       element = {<ProtectedRoute teacherCheck = {true}><EmpTeacher/></ProtectedRoute>}/>
+						<Route path = "/empTeacher/:studyCode"
+						       element = {<ProtectedRoute teacherCheck = {true}><EmpTeacherDetail/></ProtectedRoute>}/>
 						<Route path = "/empTeacher/detail/:studyCode/:stuCode"
-						       element = {<ProtectedRoute teacherCheck = {true}><EmpTeacherDetailPlus/></ProtectedRoute>}/>
+						       element = {<ProtectedRoute
+							       teacherCheck = {true}><EmpTeacherDetailPlus/></ProtectedRoute>}/>
 						<Route path = "student" element = {<Student/>}/>
 						<Route path = "student/:stuCode" element = {<StudentDetail/>}/>
 						<Route path = "off" element = {<Off/>}/>
