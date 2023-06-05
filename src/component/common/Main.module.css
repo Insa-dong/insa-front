@@ -86,6 +86,21 @@
     width: 50vw;
 }
 
+.mainBtn {
+    margin-top: 4vh;
+    margin-left: 2vw;
+    padding-right: 2.5vw;
+}
+
+.mainBtnTitle {
+    text-align: center;
+    font-size: 20pt;
+}
+
+.mainBtnImg {
+    width: 8vw;
+}
+
 /* 날씨 */
 .weather {
     border: 1px solid #fff;
