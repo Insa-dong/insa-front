@@ -34,6 +34,7 @@
     width: 1vw;
 }
 
+
 .noticetitle {
     width: 15vw;
     overflow: hidden;
@@ -59,11 +60,25 @@
 
 .writer {
     margin-left: 10vw;
+    margin-right: 0.4vw;
 }
 
 .date {
     margin-left: 13vw;
     text-align: left;
+}
+
+.dept{
+    font-size: 10pt;
+    color: gray;
+    margin-top: 0.2vh;
+    margin-left: 0.2vw;
+}
+
+.job {
+    font-size: 10pt;
+    color: gray;
+    margin-top: 0.2vh;
 }
 
 /* 캘린더 */
@@ -76,6 +91,11 @@
 
 .calendarImg{
     width: 100%;
+}
+
+.allowImg{
+    margin-bottom: 0.2vh;
+    width: 0.3vw;
 }
 
 
