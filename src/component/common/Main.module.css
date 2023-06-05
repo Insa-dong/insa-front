@@ -24,7 +24,10 @@
 .noticeT {
     border-bottom: 1px lightgray solid;
     font-size: 20pt;
-    padding-bottom: 3vh;
+    font-weight: 700;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+    text-align: center;
 }
 
 .boardImg {
@@ -39,8 +42,19 @@
 }
 
 .noticeContent {
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
     border-bottom: 1px lightgray solid;
 
+}
+
+.writer {
+    margin-left: 3vw;
+}
+
+.date {
+    margin-left: 7vw;
+    text-align: left;
 }
 
 /* 캘린더 */
@@ -49,6 +63,10 @@
     border-radius: 10px;
     background-color: #f9fafa;
     width: 20vw;
+}
+
+.calendarImg{
+    width: 100%;
 }
 
 
@@ -89,8 +107,8 @@
     border-radius: 10px;
     background-color: #f9fafa;
     width: 35vw;
-
 }
+
 
 
 /* 강의 */
@@ -100,6 +118,27 @@
     background-color: #f9fafa;
     width: 35vw;
 }
+
+.lectureTitle{
+    font-size: 20pt;
+    font-weight: 700;
+    padding-bottom: 2vh;
+    padding-top: 1.5vh;
+    padding-left: 1vw;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px lightgray solid;
+    padding: 10px;
+  }
+  th:first-child, td:first-child {
+    border-left: none;
+  }
 
 .fc {
     display: flex;

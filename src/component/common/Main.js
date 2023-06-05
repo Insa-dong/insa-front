@@ -53,7 +53,7 @@ function Main() {
 						</ul>))}
 				</div>
 				<div className={CSS.calendar}>
-						캘린더
+				<img src="/images/캘린더.png" className={CSS.calendarImg}/>
 				</div>
 			</div>
 			<div className={CSS.buttonWeather}>
@@ -64,17 +64,15 @@ function Main() {
 					<li>강의등록</li>
 				</ul>
 				<div className={CSS.weather}>
-					<div>날씨</div>
 					<Weather />
 				</div>
 			</div>
 			<div className={CSS.newsLecture}>
 				<div className={CSS.news}>
-					<div>뉴스</div>
 					<NewsList/>
 				</div>
 				<div className={CSS.lecture}>
-					<div>강의</div>
+					<div className={CSS.lectureTitle}>강의</div>
 					<table className={CSS.tableStyle}>
 						<thead>
 							<tr className={CSS.trStyle}>
@@ -88,7 +86,7 @@ function Main() {
 						{study.data && study.data.slice(0, 4).map(s => (
 							<tr key={s.studyInfoCode}>
 								<th>{s.studyTitle}</th>
-								<th>{s.studyInfoStartDate}-{s.studyInfoEndDate}</th>
+								<th>{s.studyInfoStartDate} ~ {s.studyInfoEndDate}</th>
 								<th>{s.study.studyMaxPeople}</th>
 								<th>{s.teacher.empName}</th>
 							</tr>))}
