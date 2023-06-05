@@ -124,7 +124,7 @@
 
 .mainBtnTitle {
     text-align: center;
-    font-size: 20pt;
+    font-size: 15pt;
 }
 
 .mainBtnImg {
@@ -178,11 +178,15 @@
     width: 100%;
     border-collapse: collapse;
   }
-.trStyle th{
+.trStyle > th{
     border-bottom: 1px lightgray solid;
     padding: 10px;
+    font-weight: 400;
   }
-.trStyle th:first-child, td:first-child {
+.trStyle > th:first-child {
+    border-left: none;
+  }
+.trStyle > td:first-child {
     border-left: none;
   }
 
