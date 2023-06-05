@@ -1,0 +1,11 @@
+
+.news-wrap{
+    margin-top: 1.2vw;
+}
+
+.news-wrap > h1 {
+    color: #FFA9B0;
+    font-size: 1.35rem;
+    margin-left: 2vw;
+    margin-bottom: 1vw;
+}
