@@ -8,7 +8,7 @@ const NewsItem = ({ article }) => {
         <div className="contents">
           <p className="content">
             <a href={url} target="_blank" rel="noopener noreferrer">
-            📰 {title}
+            📃 {title}
             </a>
           </p>
         </div>

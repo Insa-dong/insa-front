@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import NewsItem from "../items/NewsItem";
 import axios from "axios";
+import './NewsList.css';
 
 const NewsList = ({ category }) => {
   const [articles, setArticles] = useState(null);
@@ -32,13 +33,19 @@ const NewsList = ({ category }) => {
     return null;
   }
 
+
+
   // articles 값이 있다면
   return (
-    <div>
+    
+    
+    <div className="news-wrap">
+    <h1>Today's News</h1>
       {articles.map((article) => (
         <NewsItem key={article.url} article={article} />
       ))}
     </div>
+    
   );
 };
 
