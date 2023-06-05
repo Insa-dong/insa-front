@@ -56,11 +56,6 @@ function Main() {
 							<li className={CSS.date}>{formatDate(p.noticeWriteDate)}</li>
 						</ul>))}
 				</div>
-				{/* <div className={CSS.calendar}>
-					<NavLink to="/cal">
-						<img src="/images/캘린더.png" className={CSS.calendarImg} />
-					</NavLink>
-				</div> */}
 			</div>
 			<div className={CSS.buttonWeather}>
 				<ul className={CSS.button}>
