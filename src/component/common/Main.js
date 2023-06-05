@@ -44,7 +44,7 @@ function Main() {
 								<ul style={{ display: 'flex' }}>
 									<li><img src="/images/공지사항제목.png" className={CSS.boardImg}
 										alt="공지사항제목이미지" /></li>
-									<li className={CSS.noticetitle}>{p.noticeTitle}</li>
+									<li className={CSS.noticetitle}> {p.noticeTitle}</li>
 								</ul>
 							</li>
 							<li className={CSS.content}>{p.noticeContent}</li>

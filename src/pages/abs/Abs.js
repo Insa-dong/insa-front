@@ -75,6 +75,9 @@ function Abs() {
 		}
 	};
 
+
+
+
 	const handleCheckIn = async () => {
 		const today = new Date();
 		const year = today.getFullYear();
@@ -271,6 +274,7 @@ function Abs() {
 					/>
 					<button className="abs-SearchBtn"
 						onClick={handleSearchDate}>
+						
 						<img src="/images/search.png" alt="검색" />
 					</button>
 				</div>

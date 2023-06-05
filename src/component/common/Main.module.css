@@ -33,6 +33,7 @@
 
 .boardImg {
     width: 1vw;
+    margin-left: 2vw;
 }
 
 
@@ -41,6 +42,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    padding-left: 1vw;
 }
 
 .noticeContent {
