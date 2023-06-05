@@ -24,10 +24,11 @@
 .noticeT {
     border-bottom: 1px lightgray solid;
     font-size: 20pt;
-    font-weight: 700;
+    font-weight: bold;
     padding-bottom: 2vh;
     padding-top: 2vh;
     text-align: center;
+    color: #FFA9B0;
 }
 
 .boardImg {
@@ -170,6 +171,7 @@
     padding-top: 1.5vh;
     padding-left: 1vw;
     text-align: center;
+    color: #FFA9B0;
 }
 
 .tableStyle {

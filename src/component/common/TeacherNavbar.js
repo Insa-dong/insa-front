@@ -115,9 +115,6 @@ function TeacherNavbar() {
 							className = 'sidecalendar'>일정</span>
 						</NavLink>
 					</div>
-					<div>
-						<Weather/>
-					</div>
 					<div id = "sideBottom">
 						<div
 							className = "logoutBox"
