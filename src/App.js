@@ -1,5 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
+import Main from './component/common/Main';
 import ProtectedRoute from './component/router/ProtectedRoute';
 import Layout from "./layouts/Layout";
 import Abs from "./pages/abs/Abs";
@@ -17,7 +18,7 @@ import EmpTeacherDetailPlus from "./pages/emp/EmpTeacherDetailPlus";
 import Error from "./pages/error/Error"
 import IdSearch from './pages/login/IdSearch';
 import IdSearchSuccess from './pages/login/IdSearchSuccess';
-import Login from './pages/login/Login';
+import Login from "./pages/login/Login";
 import PwSearch from './pages/login/PwSearch';
 import PwSearchSuccess from './pages/login/PwSearchSuccess';
 import Mypage from './pages/mpg/Mypage';
@@ -33,7 +34,6 @@ import StudyInfo from "./pages/study/StudyInfo";
 import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
-import Main from './component/common/Main';
 
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
 		<div className = "body">
 			<BrowserRouter>
 				<Routes>
-					<Route path = "/login" element = {<ProtectedRoute loginCheck = {false}><Login/></ProtectedRoute>}/>
+					<Route path = "/login" element = {<Login/>}/>
 					<Route path = "/" element = {<ProtectedRoute loginCheck = {true}><Layout/></ProtectedRoute>}>
 						<Route index element = {<Main/>}/>
 						<Route path = "cal" element = {< Calendar/>}/>
