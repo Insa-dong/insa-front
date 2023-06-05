@@ -12,23 +12,22 @@ function StudyRegistration() {
 
 	const title = '강의';
 	const subTitle = '강의 등록';
-	const [form, setForm] = useState({
-		empCode: '1001',
-		trainingCode: '1000'
-	});
 	const [day, setDay] = useState([]);
 	const trainingList = useSelector(state => state.trainingReducer);
 	const {teacher} = useSelector(state => state.empReducer);
-	const {regist} = useSelector(state => state.studyInfoReducer);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [form, setForm] = useState({
+		empCode: '1000',
+		trainingCode: '1000'
+	});
 
 	useEffect(
 		() => {
 			dispatch(callTrainingTitle());
 			dispatch(callTeacherList());
 		},
-		[]
+		[dispatch]
 	)
 
 	const onChangeHandler = (e) => {

@@ -23,9 +23,6 @@ function StudyInfo() {
 	const {teacher} = useSelector(state => state.empReducer);
 	const [day, setDay] = useState([]);
 
-	console.log(trainingList);
-	console.log(studyInfo);
-
 	useEffect(
 		() => {
 			dispatch(callPetiteStudyInfoAPI(studyInfoCode));

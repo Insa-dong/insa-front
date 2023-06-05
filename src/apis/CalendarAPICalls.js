@@ -8,7 +8,8 @@ const PRE_URL = `http://${RESTAPI_SERVER_IP}:${RESTAPI_SERVER_PORT}/insa/v1`;
 export const callMyCalListAPI = () => {
 
 	const requestURL = `${PRE_URL}/myScheduleList`
-
+	console.log('callAPI 실행');
+	console.log('토큰 : ', window.localStorage.getItem('accessToken'))
 	return async (dispatch, getState) => {
 
 		const result = await fetch(requestURL, {
@@ -18,6 +19,7 @@ export const callMyCalListAPI = () => {
 			}
 		}).then(response => response.json());
 
+		console.log(result);
 
 		if (result.status === 200) {
 			dispatch(getCalList(result));
