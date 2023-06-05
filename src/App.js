@@ -66,10 +66,12 @@ function App() {
 						<Route path = "emp" element = {<Emp/>}/>
 						<Route path = "emp/emprest" element = {<EmpRest/>}/>
 						<Route path = "emp/empregistration" element = {<EmpRegistration/>}/>
-						<Route path = "emp/empdetail/:empCode" element = {<EmpDetail/>}/>
-						<Route path = "/empTeacher" element = {<EmpTeacher/>}/>
-						<Route path = "/empTeacher/:studyCode" element = {<EmpTeacherDetail/>}/>
-						<Route path = "/empTeacher/detail/:studyCode/:stuCode" element = {<EmpTeacherDetailPlus/>}/>
+						<Route path = "/empTeacher" 
+							   element = {<ProtectedRoute teacherCheck = {true}><EmpTeacher/></ProtectedRoute>}/>
+						<Route path = "/empTeacher/:studyCode" 
+							   element = {<ProtectedRoute teacherCheck = {true}><EmpTeacherDetail/></ProtectedRoute>}/>
+						<Route path = "/empTeacher/detail/:studyCode/:stuCode"
+						       element = {<ProtectedRoute teacherCheck = {true}><EmpTeacherDetailPlus/></ProtectedRoute>}/>
 						<Route path = "student" element = {<Student/>}/>
 						<Route path = "student/:stuCode" element = {<StudentDetail/>}/>
 						<Route path = "off" element = {<Off/>}/>
