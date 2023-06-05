@@ -47,8 +47,6 @@ function BoardDetail() {
     console.log(detail);
     console.log(deleteFile);
 
-    // const allFiles = beforeFiles.concat(selectedFiles);
-
     /* 읽기모드와 수정모드를 구분 */
     const [modifyMode, setModifyMode] = useState(false);
 
@@ -304,8 +302,8 @@ function BoardDetail() {
                                     onClick={handleImageClick}
                                 />
                                 <div style={{ display: 'flex' }}>
-                                    <div className={CSS.file}>{renderBeforeFiles()}</div>
-                                    <div className={CSS.file}>{renderFiles()}</div>
+                                    <div className={CSS.filemodify}>{renderBeforeFiles()}</div>
+                                    <div className={CSS.filemodify}>{renderFiles()}</div>
                                     <input
                                         ref={fileInputRef}
                                         className={CSS.file}

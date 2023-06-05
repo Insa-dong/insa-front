@@ -36,7 +36,7 @@ function Main() {
 			<div className={CSS.noticeCalendar}>
 				<div className={CSS.notice}>
 					<NavLink to="/board">
-						<div className={CSS.noticeT}>공지사항</div>
+						<div className={CSS.noticeT}>Notice</div>
 					</NavLink>
 					{data && data.map(p => (
 						<ul className={CSS.noticeContent} style={{ display: 'flex' }} key={p.noticeCode}>
@@ -94,7 +94,7 @@ function Main() {
 				</div>
 				<div className={CSS.lecture}>
 					<NavLink to="/study">
-						<div className={CSS.lectureTitle}>강의</div>
+						<div className={CSS.lectureTitle}>Lecture</div>
 					</NavLink>
 					<table className={CSS.tableStyle}>
 						<thead>
