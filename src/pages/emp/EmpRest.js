@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
-import {NavLink, useNavigate} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {callEmpRestList, restListSearchAPI} from '../../apis/EmpAPICalls';
 import Header from '../../component/common/Header'
 import RestList from '../../component/lists/RestList';
@@ -10,7 +10,6 @@ import PagingBar from './../../component/common/PagingBar';
 function EmpRest() {
 
 	const title = "구성원";
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [searchKeyword, setSearchKeyword] = useState('empName');
 	const [searchOption, setSearchOption] = useState('name');
@@ -18,20 +17,16 @@ function EmpRest() {
 	const {restState} = useSelector(state => state.empReducer);
 	const [currentPage, setCurrentPage] = useState(1);
 
-	console.log("hello")
-
 	useEffect(
 		() => {
 			dispatch(callEmpRestList({currentPage}));
-			console.log("hello")
-		}, [currentPage]
+		}, [currentPage, dispatch]
 	);
 
 	useEffect(
 		() => {
 			if (restState?.status === 200)
 				dispatch(callEmpRestList({currentPage}));
-			console.log("hello2")
 		}, [restState]
 	);
 
@@ -96,7 +91,6 @@ function EmpRest() {
 						        value = {searchKeyword}
 						        onChange = {onSearchChangeHandler}
 						>
-							<option value = "전체">전체</option>
 							<option value = "승인">승인</option>
 							<option value = "반려">반려</option>
 							<option value = "대기">대기</option>
