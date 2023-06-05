@@ -12,7 +12,6 @@ function StudyList({study, checkValue, setCheckValue, isDeleteModalOpen}) {
 				<th>과정 명</th>
 				<th>수업 기간</th>
 				<th>정원</th>
-				{/*<th>현재 인원</th>*/}
 				<th>강사 명</th>
 			</tr>
 			</thead>

@@ -24,6 +24,7 @@ function Study() {
 	const dispatch = useDispatch();
 	const study = useSelector(state => state.studyInfoReducer);
 	const searchList = useSelector(state => state.studyInfoReducer);
+	const {remove} = useSelector(state => state.studyInfoReducer);
 	const ref = useRef();
 
 	useEffect(
@@ -32,8 +33,13 @@ function Study() {
 				dispatch(callStudyInfoListAPI({currentPage}));
 				setInsert(false);
 			}
+			if (remove?.status === 200) {
+				setCurrentPage(1);
+				setIsDeleteModalOpen(false);
+				dispatch(callStudyInfoListAPI({currentPage}));
+			}
 		},
-		[currentPage, dispatch, insert]
+		[currentPage, dispatch, insert, remove]
 	)
 
 	useEffect(
