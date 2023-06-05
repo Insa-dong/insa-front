@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import './Navbar.css';
 import { useEffect } from 'react';
 import { callMypageAPI } from '../../apis/MpgAPICalls';
+import { isAdmin, isLeader } from '../../utils/TokenUtils';
 
 function Navbar() {
 
@@ -124,7 +125,7 @@ function Navbar() {
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to = "/off" style = {activeStyle} className = "sideTr">
+						<NavLink to={(isAdmin().length > 0 && isLeader().length > 0) ? "/off/adminOff" : "/off"} style={activeStyle} className="sideTr">
 								<img className = "vacation-Img" src = "/images/연차.png"></img><span
 								className = 'sideVacation'>연차</span>
 							</NavLink>
