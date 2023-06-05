@@ -190,6 +190,7 @@ export const callStudyRemoveAPI = (studyCode) => {
 
 	const requestURL = `${PRE_URL}/studyInfo`;
 
+	console.log(studyCode);
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
 			method: "DELETE",
