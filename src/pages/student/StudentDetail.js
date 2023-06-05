@@ -12,6 +12,8 @@ import EvaReviewCheckModal from "../../component/modal/EvaReviewCheckModal";
 import StudyStudentRegistModal from "../../component/modal/StudyStudentRegistModal";
 import StudyStudentUpdateModal from "../../component/modal/StudyStudentUpdateModal";
 import Swal from "sweetalert2";
+import { callStudentAttendDetailAPI } from "../../apis/AttendAPICalls";
+import PagingBar from "../../component/common/PagingBar";
 
 const useConfirm = (message = null, onConfirm, onCancel) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -56,114 +58,114 @@ function StudentDetail() {
     const [studyStudentRegist, setStudyStudentRegist] = useState("");
     const [selectedUpdateStudy, setSelectedUpdateStudy] = useState(null);
     const [updateModalVisible, setUpdateModalVisible] = useState(false);
+    const { attendDetail } = useSelector((state) => state.attendReducer);
 
-  
     const evaDelete = (evaCode) => {
         Swal.fire({
-          text: '평가 내역을 삭제하시겠습니까?',
-          icon: 'warning',
-          showCancelButton: true,
-          customClass: {
-            confirmButton: 'custom-confirm-button',
-            cancelButton: 'custom-cancel-button'
-          },
-          confirmButtonColor: '#8CBAFF',
-          cancelButtonColor: '#DADADA',
-          confirmButtonText: '확인',
-          cancelButtonText: '취소',
-          reverseButtons: true,
-          buttonsStyling: false,
+            text: '평가 내역을 삭제하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            customClass: {
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            },
+            confirmButtonColor: '#8CBAFF',
+            cancelButtonColor: '#DADADA',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+            reverseButtons: true,
+            buttonsStyling: false,
         }).then((result) => {
-          if (result.isConfirmed) {
-            console.log('evaCode : ', evaCode);
-            dispatch(callEvaDeleteForAdminAPI({ evaCode }));
-            Swal.fire({
-              text: '평가 내역이 삭제되었습니다.',
-              icon: 'success',
-              buttonsStyling: false,
-              customClass: {
-                confirmButton: 'custom-success-button'
-              }
-            }).then(() => {
-              window.location.reload(); 
-            });
-          } else {
-            console.log("평가 삭제가 취소되었습니다.");
-          }
+            if (result.isConfirmed) {
+                console.log('evaCode : ', evaCode);
+                dispatch(callEvaDeleteForAdminAPI({ evaCode }));
+                Swal.fire({
+                    text: '평가 내역이 삭제되었습니다.',
+                    icon: 'success',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'custom-success-button'
+                    }
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else {
+                console.log("평가 삭제가 취소되었습니다.");
+            }
         });
-      };
+    };
 
-  const adviceDelete = (adviceLogCode) => {
-    Swal.fire({
-      text: '상담 내역을 삭제하시겠습니까?',
-      icon: 'warning',
-      showCancelButton: true,
-      customClass: {
-        confirmButton: 'custom-confirm-button',
-        cancelButton: 'custom-cancel-button'
-      },
-      confirmButtonColor: '#8CBAFF',
-      cancelButtonColor: '#DADADA',
-      confirmButtonText: '확인',
-      cancelButtonText: '취소',
-      reverseButtons: true,
-      buttonsStyling: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log('adviceLogCode : ', adviceLogCode);
-        dispatch(callAdviceDeleteForAdminAPI({ adviceLogCode }));
+    const adviceDelete = (adviceLogCode) => {
         Swal.fire({
-          text: '상담 내역이 삭제되었습니다.',
-          icon: 'success',
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: 'custom-success-button'
-          }
-        }).then(() => {
-          window.location.reload();
+            text: '상담 내역을 삭제하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            customClass: {
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            },
+            confirmButtonColor: '#8CBAFF',
+            cancelButtonColor: '#DADADA',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+            reverseButtons: true,
+            buttonsStyling: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log('adviceLogCode : ', adviceLogCode);
+                dispatch(callAdviceDeleteForAdminAPI({ adviceLogCode }));
+                Swal.fire({
+                    text: '상담 내역이 삭제되었습니다.',
+                    icon: 'success',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'custom-success-button'
+                    }
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else {
+                console.log("상담 삭제가 취소되었습니다.");
+            }
         });
-      } else {
-        console.log("상담 삭제가 취소되었습니다.");
-      }
-    });
-  };
+    };
 
 
-const studyStuDelete = (stuCode, studyCode) => {
-    Swal.fire({
-      text: '강의 내역을 삭제하시겠습니까?',
-      icon: 'warning',
-      showCancelButton: true,
-      customClass: {
-        confirmButton: 'custom-confirm-button',
-        cancelButton: 'custom-cancel-button'
-      },
-      confirmButtonColor: '#8CBAFF',
-      cancelButtonColor: '#DADADA',
-      confirmButtonText: '확인',
-      cancelButtonText: '취소',
-      reverseButtons: true,
-      buttonsStyling: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log('studyCode : ', studyCode);
-        console.log('stuCode : ', stuCode);
-        dispatch(callStudyStuDeleteAdminAPI({ studyCode, stuCode }));
+    const studyStuDelete = (stuCode, studyCode) => {
         Swal.fire({
-          text: '강의 내역이 삭제되었습니다.',
-          icon: 'success',
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: 'custom-success-button'
-          }
-        }).then(() => {
-          window.location.reload();
+            text: '강의 내역을 삭제하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            customClass: {
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            },
+            confirmButtonColor: '#8CBAFF',
+            cancelButtonColor: '#DADADA',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+            reverseButtons: true,
+            buttonsStyling: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log('studyCode : ', studyCode);
+                console.log('stuCode : ', stuCode);
+                dispatch(callStudyStuDeleteAdminAPI({ studyCode, stuCode }));
+                Swal.fire({
+                    text: '강의 내역이 삭제되었습니다.',
+                    icon: 'success',
+                    buttonsStyling: false,
+                    customClass: {
+                        confirmButton: 'custom-success-button'
+                    }
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else {
+                console.log("강의 삭제가 취소되었습니다.");
+            }
         });
-      } else {
-        console.log("강의 삭제가 취소되었습니다.");
-      }
-    });
-  };
+    };
 
 
     const onClickAdviceReviewHandler = (adviceReview) => {
@@ -183,7 +185,7 @@ const studyStuDelete = (stuCode, studyCode) => {
         setRegistModalVisible(true);
     }
 
-    
+
     const onClickUpdateStudyStuHandler = (study) => {
         setSelectedUpdateStudy(study);
         setUpdateModalVisible(true);
@@ -196,8 +198,9 @@ const studyStuDelete = (stuCode, studyCode) => {
             dispatch(callStudyStuListAPI({ stuCode, currentPage }));
             dispatch(callStudentEvaListAPI({ stuCode, currentPage }));
             dispatch(callStudentAdviceListAPI({ stuCode, currentPage }));
+            dispatch(callStudentAttendDetailAPI({ stuCode, currentPage }));
         },
-        [currentPage]
+        [stuCode, currentPage]
     );
 
 
@@ -263,7 +266,7 @@ const studyStuDelete = (stuCode, studyCode) => {
         const formData = new FormData();
 
         formData.append("stuCode", form.stuCode || "");
-        formData.append("stuName", form.stuName|| "");
+        formData.append("stuName", form.stuName || "");
         formData.append("stuEngName", form.stuEngName || "");
         formData.append("stuBirth", form.stuBirth || "");
         formData.append("stuEndSchool", form.stuEndSchool || "");
@@ -421,6 +424,38 @@ const studyStuDelete = (stuCode, studyCode) => {
                         )}
                     </tbody>
                 </table>
+
+
+                <h2 className="studyHeader">출결 내역</h2>
+                <table className="stuDetailDiv">
+                    <thead>
+                        <tr>
+                            <th>학생번호</th>
+                            <th>출석코드</th>
+                            <th>날짜</th>
+                            <th>출결</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {attendDetail && Array.isArray(attendDetail.data) && attendDetail.data.length > 0 ? (
+                            attendDetail.data.map((attend) => (
+                                <tr key={attend.attendCode}>
+                                    <td>{attend.student.stuCode}</td>
+                                    <td>{attend.attendCode}</td>
+                                    <td>{attend.attendDate}</td>
+                                    <td>{attend.attendStatus}</td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="4">출석 내역이 없습니다.</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+                {attendDetail && attendDetail.pageInfo && (
+                    <PagingBar pageInfo={attendDetail.pageInfo} setCurrentPage={setCurrentPage} />
+                )}
 
                 {evaReviewModalVisible && (
                     <EvaReviewCheckModal

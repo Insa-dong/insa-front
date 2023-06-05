@@ -1,8 +1,8 @@
 import {Navigate} from "react-router-dom";
-import {isAdmin, isLogin, isMember} from "../../utils/TokenUtils";
+import {isAdmin, isLogin, isMember, isTeacher} from "../../utils/TokenUtils";
 import TeacherNavbar from "../common/TeacherNavbar";
 
-function ProtectedRoute({loginCheck, authCheck, adminCheck, children}) {
+function ProtectedRoute({loginCheck, authCheck, adminCheck, teacherCheck, children}) {
 
 	if (authCheck) {
 		const member = isMember();
@@ -12,6 +12,11 @@ function ProtectedRoute({loginCheck, authCheck, adminCheck, children}) {
 		const admin = isAdmin();
 		return admin.length > 0 ? children : ''
 	}
+	if(teacherCheck) {
+		const teacher = isTeacher();
+		return teacher.length > 0 ? children : ''
+	}
+	
 	if (loginCheck) {
 		return isLogin() ? children : <Navigate to = "/login"/>
 	} else {

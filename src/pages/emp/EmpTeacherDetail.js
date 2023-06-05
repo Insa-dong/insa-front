@@ -69,8 +69,8 @@ function EmpTeacherDetail() {
         }
     };
 
-    const handleDateChange = (event) => {
-        setSelectedDate(event.target.value);
+    const handleDateChange = (e) => {
+        setSelectedDate(e.target.value);
     };
 
     const onClickRegistAttend = (attendReview, stuCode) => {
