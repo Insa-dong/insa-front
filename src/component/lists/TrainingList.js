@@ -2,7 +2,7 @@ import TrainingItem from "../items/TrainingItem";
 import CSS from './TrainingList.module.css';
 
 
-function TrainingList({training, checkValue, setCheckValue}) {
+function TrainingList({training, checkValue, setCheckValue, isDeleteModalOpen}) {
 
 	return (
 		<table className = {CSS.tableStyle}>
@@ -24,6 +24,7 @@ function TrainingList({training, checkValue, setCheckValue}) {
 					              checkValue = {checkValue}
 					              setCheckValue = {setCheckValue}
 					              index = {index}
+					              isDeleteModalOpen = {isDeleteModalOpen}
 					/>
 				))}
 			</tbody>

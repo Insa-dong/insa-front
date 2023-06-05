@@ -1,9 +1,9 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import listCSS from '../lists/TrainingList.module.css'
 import CSS from './TrainingItem.module.css'
 
-function TrainingItem({item, checkValue, setCheckValue, index}) {
+function TrainingItem({item, checkValue, setCheckValue, index, isDeleteModalOpen}) {
 
 	const navigate = useNavigate();
 	const [hover, setHover] = useState(false);
@@ -11,6 +11,13 @@ function TrainingItem({item, checkValue, setCheckValue, index}) {
 	const [display, setDisplay] = useState({display: 'none'});
 	const [isChecked, setIsChecked] = useState(false);
 	const ref = useRef([]);
+
+	useEffect(
+		() => {
+			setIsChecked(false);
+			setDisplay({display: 'none'});
+		}, [index, isDeleteModalOpen]
+	)
 
 	const onMouseOverHandler = () => {
 		setHover(true);
@@ -31,7 +38,7 @@ function TrainingItem({item, checkValue, setCheckValue, index}) {
 
 	const onCheckBoxClickHandler = () => {
 		ref.current[index].checked = !ref.current[index].checked;
-		setIsChecked(true)
+		setIsChecked(!isChecked)
 		ref.current.map(item => {
 			if (item.checked) {
 				setCheckValue((prev) => ([...prev, item.value]))

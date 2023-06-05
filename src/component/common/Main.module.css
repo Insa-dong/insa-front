@@ -12,14 +12,38 @@
     height: 25vh;
 }
 
+/* 공지사항 */
+
 .notice {
     border: 1px solid #fff;
     border-radius: 10px;
     background-color: #f9fafa;
     width: 50vw;
+}
+
+.noticeT {
+    border-bottom: 1px lightgray solid;
+    font-size: 20pt;
+    padding-bottom: 3vh;
+}
+
+.boardImg {
+    width: 1vw;
+}
+
+.noticetitle {
+    width: 23vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.noticeContent {
+    border-bottom: 1px lightgray solid;
 
 }
 
+/* 캘린더 */
 .calendar {
     border: 1px solid #fff;
     border-radius: 10px;
@@ -35,6 +59,7 @@
     margin-bottom: 3vh;
 }
 
+/* 버튼 */
 .button {
     display: flex;
     border: 1px solid #fff;
@@ -43,6 +68,7 @@
     width: 50vw;
 }
 
+/* 날씨 */
 .weather {
     border: 1px solid #fff;
     border-radius: 10px;
@@ -56,6 +82,8 @@
     height: 25vh;
 }
 
+
+/* 뉴스 */
 .news {
     border: 1px solid #fff;
     border-radius: 10px;
@@ -64,6 +92,8 @@
 
 }
 
+
+/* 강의 */
 .lecture {
     border: 1px solid #fff;
     border-radius: 10px;

@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import CSS from "./PwdModifyModal.module.css"
 import { callPwdUpdateAPI } from "../../apis/MpgAPICalls";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 
 function PwdModifyModal({ isOpen, onClose }) {
 
     const dispatch = useDispatch();
     const [form, setForm] = useState({
-        empPwd: "",
         newPwd: "",
         checkPwd: ""
     });
@@ -36,17 +36,72 @@ function PwdModifyModal({ isOpen, onClose }) {
             form.newPwd === "" ||
             form.checkPwd === ""
         ) {
-            alert("모든 양식을 입력해주세요");
-        } else if (!isCheck) {
-            alert("비밀번호 양식 오류  \n영문, 숫자를 포함한 10~14자 이내로 작성해주세요.");
-        } else if (form.newPwd !== form.checkPwd) {
-            alert("비밀번호가 일치하지 않습니다.")
-        } else {
-            dispatch(callPwdUpdateAPI(form));
-            window.location.reload();
+            Swal.fire({
+                text: '모든 양식을 입력해주세요',
+                icon: 'error',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'custom-error-button'
+                }
+            });
+            return;
         }
 
+        if (!isCheck) {
+            Swal.fire({
+                text: '비밀번호를 영문, 숫자를 포함한 10~18자 이내로 작성해주세요.',
+                icon: 'error',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'custom-error-button'
+                }
+            });
+            return;
+        }
+
+        if (form.newPwd !== form.checkPwd) {
+            Swal.fire({
+                text: '비밀번호가 일치하지 않습니다.',
+                icon: 'error',
+                buttonsStyling: false,
+                customClass: {
+                    confirmButton: 'custom-error-button'
+                }
+            });
+            return;
+        }
+
+        Swal.fire({
+            text: '변경 하시겠습니까?',
+            icon: 'warning',
+            showCancelButton: true,
+            customClass: {
+                confirmButton: 'custom-confirm-button',
+                cancelButton: 'custom-cancel-button'
+            },
+            confirmButtonColor: '#8CBAFF',
+            cancelButtonColor: '#DADADA',
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+            reverseButtons: true,
+            buttonsStyling: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                    dispatch(callPwdUpdateAPI(form));
+                    Swal.fire({
+                        title: '변경 완료',
+                        icon: 'success',
+                        buttonsStyling: false,
+                        customClass: {
+                            confirmButton: 'custom-success-button'
+                        }
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } 
+        });
     };
+
 
     /* 비밀번호 유효성 검사 */
     useEffect(() => {
@@ -69,16 +124,6 @@ function PwdModifyModal({ isOpen, onClose }) {
                         X
                     </div>
                     <div className={CSS.pwdTitle}>🔒 비밀번호 변경</div>
-                    <div className={CSS.pwdContent}>현재 비밀번호를 입력해주세요.</div>
-                    <div className={CSS.nowPwd}>
-                        <input className={CSS.nowPwdInput}
-                            type="password"
-                            name="empPwd"
-                            placeholder="현재 비밀번호"
-                            autoComplete='off'
-                            onChange={onChangeHandler}
-                        />
-                    </div>
                     <div className={CSS.pwdContent}>새 비밀번호를 입력해주세요.</div>
                     <div className={CSS.newPwd}>
                         <input className={CSS.newPwdInput}
@@ -88,7 +133,7 @@ function PwdModifyModal({ isOpen, onClose }) {
                             autoComplete='off'
                             onChange={onChangeHandler}
                         />
-                        {!isCheck && <span className={CSS.pwdEff}>*영문, 숫자를 포함한 10~14자 이내로 작성해주세요.</span>}
+                        {!isCheck && <span className={CSS.pwdEff}>*영문, 숫자를 포함한 10~18자 이내로 작성해주세요.</span>}
                     </div>
                     <div className={CSS.checkPwd}>
                         <input className={CSS.checkPwdInput}

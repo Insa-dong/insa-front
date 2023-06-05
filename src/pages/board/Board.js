@@ -113,7 +113,7 @@ function Board() {
 						className = {CSS.mainContent}
 						onClick = {() => onClickBoardDetail(p.noticeCode)}
 					>
-						<ul style = {{display: 'flex'}}>
+						<ul style = {{display: 'flex', paddingLeft: '2vw'}}>
 							<li id = {CSS.deptCode}
 							    className = {`${CSS[`deptCode-${p.noticeWriter.dept.deptCode}`]}`}>{p.noticeWriter.empName.slice(-2)}</li>
 							<li>

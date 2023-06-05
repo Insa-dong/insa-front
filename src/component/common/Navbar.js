@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import './Navbar.css';
 import { useEffect } from 'react';
 import { callMypageAPI } from '../../apis/MpgAPICalls';
+import { isAdmin, isLeader } from '../../utils/TokenUtils';
 
 function Navbar() {
 
@@ -21,7 +22,6 @@ function Navbar() {
 	)
 
 	const onClickLogoutHandler = () => {
-		window.localStorage.removeItem('accessToken');
 		Swal.fire({
 			text: '로그아웃 하시겠습니까?',
 			icon: 'warning',
@@ -38,6 +38,7 @@ function Navbar() {
 			buttonsStyling: false,
 		}).then((result) => {
 			if (result.isConfirmed) {
+				window.localStorage.removeItem('accessToken');
 				Swal.fire({
 					title: '로그아웃 완료',
 					//   text: '안녕히가세요',
@@ -123,7 +124,7 @@ function Navbar() {
 							</NavLink>
 						</div>
 						<div>
-							<NavLink to="/off" style={activeStyle} className="sideTr">
+							<NavLink to={(isAdmin().length > 0 && isLeader().length > 0) ? "/off/adminOff" : "/off"} style={activeStyle} className="sideTr">
 								<img className="vacation-Img" src="/images/연차.png"></img><span
 									className='sideVacation'>연차</span>
 							</NavLink>

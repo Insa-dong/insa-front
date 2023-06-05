@@ -1,15 +1,24 @@
-import { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
+import {callBoardDeleteAPI, callBoardDetailAPI, callBoardUpdateAPI, callDeleteFileAPI} from "../../apis/BoardAPICall";
 import Header from "../../component/common/Header";
+import {getMemberId, isAdmin} from "../../utils/TokenUtils";
 import CSS from "./BoardDetail.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { callBoardDeleteAPI, callBoardDetailAPI, callBoardUpdateAPI, callDeleteFileAPI, fileDownloadAPI } from "../../apis/BoardAPICall";
-import React from "react";
-import { getMemberId, isAdmin } from "../../utils/TokenUtils";
+import Swal from "sweetalert2";
+
 function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short", hour12: false };
-    return new Intl.DateTimeFormat("ko-KR", options).format(date);
+	const date = new Date(dateString);
+	const options = {
+		year: "numeric",
+		month: "2-digit",
+		day: "2-digit",
+		hour: "2-digit",
+		minute: "2-digit",
+		weekday: "short",
+		hour12: false
+	};
+	return new Intl.DateTimeFormat("ko-KR", options).format(date);
 }
 
 
@@ -58,22 +67,72 @@ function BoardDetail() {
         selectedFiles.forEach((file, index) => {
             formData.append(`noticeFile[${index}]`, file);
         });
+        Swal.fire({
+			text: '수정 하시겠습니까?',
+			icon: 'warning',
+			showCancelButton: true,
+			customClass: {
+				confirmButton: 'custom-confirm-button',
+				cancelButton: 'custom-cancel-button'
+			},
+			confirmButtonColor: '#8CBAFF',
+			cancelButtonColor: '#DADADA',
+			confirmButtonText: '확인',
+			cancelButtonText: '취소',
+			reverseButtons: true,
+			buttonsStyling: false,
+		}).then((result) => {
+			if (result.isConfirmed) {
+                dispatch(callBoardUpdateAPI(formData));
+                dispatch(callDeleteFileAPI(deleteFile));
+				Swal.fire({
+					title: '수정 완료',
+					icon: 'success',
+					buttonsStyling: false,
+					customClass: {
+						confirmButton: 'custom-success-button'
+					}
+				})
+					.then(() => {
+						window.location.reload();
+					})
+			} 
+		});
 
-
-        console.log(formData);
-
-        dispatch(callBoardUpdateAPI(formData));
-        dispatch(callDeleteFileAPI(deleteFile));
-
-        // 페이지 새로고침
-        window.location.reload();
     }
 
     const onClickDeleteHandler = () => {
-        dispatch(callBoardDeleteAPI(noticeCode));
-
-        navigate("/board")
-        window.location.reload();
+        Swal.fire({
+			text: '삭제 하시겠습니까?',
+			icon: 'warning',
+			showCancelButton: true,
+			customClass: {
+				confirmButton: 'custom-confirm-button',
+				cancelButton: 'custom-cancel-button'
+			},
+			confirmButtonColor: '#8CBAFF',
+			cancelButtonColor: '#DADADA',
+			confirmButtonText: '확인',
+			cancelButtonText: '취소',
+			reverseButtons: true,
+			buttonsStyling: false,
+		}).then((result) => {
+			if (result.isConfirmed) {
+                dispatch(callBoardDeleteAPI(noticeCode));
+				Swal.fire({
+					title: '삭제 완료',
+					icon: 'success',
+					buttonsStyling: false,
+					customClass: {
+						confirmButton: 'custom-success-button'
+					}
+				})
+					.then(() => {
+                        navigate("/board")
+                        window.location.reload();
+					})
+			} 
+		});
     }
 
     const onChangeHandler = (e) => {
@@ -197,7 +256,7 @@ function BoardDetail() {
                         <textarea
                             name="noticeContent"
                             placeholder='내용'
-                            maxlength='1000'
+                            maxLength='1000'
                             className={!modifyMode ? CSS.maintext : CSS.maintextModify}
                             value={!modifyMode ? detail.noticeContent : form.noticeContent}
                             readOnly={!modifyMode}
@@ -227,9 +286,9 @@ function BoardDetail() {
                                         </ul>
                                     ))
                                 ) : (
-                                    <tr className={CSS.fileNone}>
-                                        <td colSpan="3">첨부파일이 없습니다.</td>
-                                    </tr>
+                                    <div className={CSS.fileNone}>
+                                        <div colSpan="3">첨부파일이 없습니다.</div>
+                                    </div>
                                 ))}
                             </div>
                         )
@@ -260,23 +319,34 @@ function BoardDetail() {
                             </>
                         )
                     }
-                    {!modifyMode && (isAuthor || admin.length > 0) && (
+                    {!modifyMode && (
                         <div className={CSS.btn}>
-     
+                            {isAuthor && (
+                                <>
+                                    <button
+                                        className={CSS.updateBtn}
+                                        onClick={onClickModifyModeHandler}
+                                    >
+                                        수정하기
+                                    </button>
+
+                                    <button
+                                        className={CSS.deleteBtn}
+                                        onClick={onClickDeleteHandler}
+                                    >
+                                        삭제하기
+                                    </button>
+
+                                </>
+                            )}
+                            {admin.length > 0 && !isAuthor && (
                                 <button
-                                    className={CSS.updateBtn}
-                                    onClick={onClickModifyModeHandler}
+                                    className={CSS.deleteBtn}
+                                    onClick={onClickDeleteHandler}
                                 >
-                                    수정하기
+                                    삭제하기
                                 </button>
-
-
-                            <button
-                                className={CSS.deleteBtn}
-                                onClick={onClickDeleteHandler}
-                            >
-                                삭제하기
-                            </button>
+                            )}
                         </div>
                     )}
 

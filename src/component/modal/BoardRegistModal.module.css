@@ -34,6 +34,14 @@
   cursor: pointer;
 }
 
+.boardTitle {
+  font-size: 15pt;
+  font-weight: 700;
+  margin-top: 2vh;
+  margin-bottom: 4vh;
+  margin-left: 9vw;
+}
+
 .boardContentImg {
   margin-top: 1vh;
   margin-right: 1vh;
@@ -46,25 +54,22 @@
 .title {
   margin-top: 1.5vh;
   margin-bottom: 2.5vh;
-  border: 1px solid black;
+  border: 1px solid #8CBAFF;
   border-radius: 10px;
   width: 24vw;
-}
-
-.title:focus {
-  border: 2px solid black;
 }
 
 .content {
   margin-top: 1.5vh;
   margin-bottom: 2vh;
-  border: 1px solid black;
+  border: 1px solid #8CBAFF;
   border-radius: 10px;
   width: 24vw;
   height: 25vh;
   max-width: 24vw;
   max-height: 25vh;
   resize: none;
+  outline: none;
 }
 
 .fileContainer {
@@ -123,4 +128,39 @@
   margin-top: 20vh;
   margin-left: 9vw;
   margin-right: 3vw;
+}
+
+.custom-confirm-button {
+  background-color: #8CBAFF !important;
+  color: white;
+  margin-top: 45px;
+  margin-bottom: 5px;
+  height: 35px;
+  width: 70px;
+  border-radius: 5px;
+  border: 1px solid #8CBAFF;
+  margin-left: 30px
+}
+
+.custom-cancel-button {
+  background-color: #DADADA !important;
+  color: white;
+  margin-top: 45px;
+  margin-bottom: 5px;
+  height: 35px;
+  width: 70px;
+  border-radius: 5px;
+  border: 1px solid #DADADA;
+}
+
+.custom-success-button {
+  background-color: #8CBAFF !important;
+  color: white;
+  margin-top: 45px;
+  margin-bottom: 5px;
+  height: 35px;
+  width: 70px;
+  border-radius: 5px;
+  border: 1px solid #8CBAFF;
+  outline: none;
 }

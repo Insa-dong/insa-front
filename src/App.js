@@ -33,6 +33,7 @@ import StudyInfo from "./pages/study/StudyInfo";
 import StudyRegistration from "./pages/study/StudyRegistration";
 import Training from "./pages/training/Training";
 import TrainingDetail from "./pages/training/TrainingDetail";
+import Main from './component/common/Main';
 
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
 				<Routes>
 					<Route path = "/login" element = {<ProtectedRoute loginCheck = {false}><Login/></ProtectedRoute>}/>
 					<Route path = "/" element = {<ProtectedRoute loginCheck = {true}><Layout/></ProtectedRoute>}>
-						<Route index element = {<Board/>}/>
+						<Route index element = {<Main/>}/>
 						<Route path = "cal" element = {< Calendar/>}/>
 						<Route path = "mypage" element = {<Mypage/>}/>
 						<Route path = "board" element = {<Board/>}/>

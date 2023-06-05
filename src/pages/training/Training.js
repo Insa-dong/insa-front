@@ -91,7 +91,8 @@ function Training() {
 					<TrainingList key = {training.trainingCode}
 					              training = {training}
 					              checkValue = {checkValue}
-					              setCheckValue = {setCheckValue}/>
+					              setCheckValue = {setCheckValue}
+					              isDeleteModalOpen = {isDeleteModalOpen}/>
 				}
 				<button className = {CSS.ButtonStyle2} onClick = {() => setIsRegistModalOpen(true)}>등록하기</button>
 				<button className = {CSS.ButtonStyle3} onClick = {() => {
@@ -107,7 +108,7 @@ function Training() {
 			{isDeleteModalOpen && (
 				<TrainingDeleteModal isDeleteModalOpen = {isDeleteModalOpen}
 				                     setIsDeleteModalOpen = {setIsDeleteModalOpen}
-				                     setInsert = {setInsert} checkValue = {checkValue}/>
+				                     setInsert = {setInsert} checkValue = {checkValue} setCheckValue = {setCheckValue}/>
 			)}
 		</>
 	)
