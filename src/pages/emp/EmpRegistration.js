@@ -197,7 +197,7 @@ function EmpRegistration() {
               <td>
                 <input className="EmpRegistBox"
                   type="text"
-                  placeholder='전화번호를 입력해주세요'
+                  placeholder='전화번호를 - 포함하여 입력해주세요'
                   name="empPhone"
                   onChange={onChangeHandler}
                 />
