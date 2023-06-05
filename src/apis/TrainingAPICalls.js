@@ -29,7 +29,13 @@ export const callTrainingList = ({currentPage}) => {
 	const requestURL = `${PRE_URL}/trainingList?page=${currentPage}`;
 
 	return async (dispatch, getState) => {
-		const result = await fetch(requestURL).then(res => res.json());
+		const result = await fetch(requestURL, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+			},
+		}).then(res => res.json());
 
 		if (result.status === 200) {
 			dispatch(getTraininglist(result));
