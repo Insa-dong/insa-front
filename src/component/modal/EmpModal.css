@@ -66,12 +66,13 @@
   width: 60px;
 }
 
-.EmpPropLeft {
+#EmpPropLeft {
   width: 80px;
   height: 80px;
+  line-height: 80px;
   border-radius: 15px;
-  background-color: #D8C5E2;
-  color: wshite;
+  /* background-color: #D8C5E2; */
+  color: white;
   font-weight: bold;
   margin-right: 4vw;
   box-sizing: border-box;

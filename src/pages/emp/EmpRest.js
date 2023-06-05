@@ -75,7 +75,7 @@ function EmpRest() {
 
                     <NavLink to="/emp/emprest">
                         <div className="abs-menu">
-                            휴직내역
+                            휴직관리
                         </div>
                     </NavLink>
                 </div>

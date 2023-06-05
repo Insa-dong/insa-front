@@ -96,7 +96,7 @@ function Emp() {
           {<ProtectedRoute adminCheck = {true}>
           <NavLink to="/emp/emprest">
           <div className="abs-menu" style={{ color: 'gray' }}>
-            휴직내역
+            휴직관리
           </div>
           </NavLink>
           </ProtectedRoute>}
