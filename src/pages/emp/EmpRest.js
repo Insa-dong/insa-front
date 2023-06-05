@@ -30,10 +30,14 @@ function EmpRest() {
 		}, [restState]
 	);
 
-	/* 검색 옵션 상태 저장 */
-	const onSearchOptionChangeHandler = (e) => {
-		setSearchOption(e.target.value);
-	}
+    /* 검색 옵션 상태 저장 */
+    const onSearchOptionChangeHandler = (e) => {
+        setSearchOption(e.target.value);
+
+        if(e.target.value === "state"){
+            setSearchKeyword("승인")
+        }
+    }
 
 	/* 검색어 입력값 상태 저장*/
 	const onSearchChangeHandler = (e) => {
