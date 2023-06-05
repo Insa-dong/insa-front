@@ -1,16 +1,18 @@
+import './NewsItem.css'
+
 const NewsItem = ({ article }) => {
     const { title, url} = article;
     
     return (
-      <div>
+      
         <div className="contents">
-          <h2>
+          <p className="content">
             <a href={url} target="_blank" rel="noopener noreferrer">
-              {title}
+            📰 {title}
             </a>
-          </h2>
+          </p>
         </div>
-      </div>
+    
     );
   };
   

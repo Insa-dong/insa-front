@@ -25,7 +25,7 @@ const NewsList = ({ category }) => {
 
   // 대기 중 상태
   if (loading) {
-    return <div>대기 중…</div>;
+    return <div> 뉴스 로딩 중… </div>;
   }
   // 값이 설정되지 않은 상태
   if (!articles) {
