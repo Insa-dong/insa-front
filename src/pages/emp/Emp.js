@@ -15,9 +15,6 @@ function Emp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {emp} = useSelector(state => state.empReducer);
-  console.log('emp : ', {emp});
-  // const empList = emp.data;
-  // const pageInfo = emp.pageInfo;
   const [searchOption, setSearchOption] = useState('name');
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,7 +29,6 @@ function Emp() {
   /* 검색 옵션 상태 저장 */
   const onSearchOptionChangeHandler = (e) => {
     setSearchOption(e.target.value);
-    console.log('searchOption : ', searchOption)
   }
 
   /* 검색어 입력값 상태 저장*/
@@ -42,8 +38,6 @@ function Emp() {
 
   /* 검색버튼 누르면 검색화면으로 넘어가는 이벤트 */
   const onSearchBtnHandler = (e) => {
-    console.log('searchBtnKeyword: ', searchKeyword);
-    console.log('searchBtnOption : ', searchOption);
     dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage }));
     setAllEmpList(true);
   }
@@ -51,8 +45,6 @@ function Emp() {
   /* Enter키 입력 시 검색화면으로 넘어가는 이벤트 */
   const onEnterKeyHandler = (e) => {
     if (e.key === 'Enter') {
-      console.log('searchBtnKeyword: ', searchKeyword);
-      console.log('searchBtnOption : ', searchOption);
       dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage }));
       setAllEmpList(true);
     }
@@ -87,7 +79,6 @@ function Emp() {
         <div className="abs-menu-bar">
           <NavLink to="/emp">
           <div className="abs-menu"
-          // onClick={handleReloadPage}
           >
             조직도
           </div>
@@ -161,12 +152,12 @@ function Emp() {
               <li>
                 <ul className="EmpContRight">
                   <li>
-                    {emp.data && <EmpList empList={emp.data} />}
+                    {emp?.data && <EmpList empList={emp?.data} />}
                   </li>
                 </ul>
 
                 <div className="EmpPaging">
-                  {emp.pageInfo && <PagingBar pageInfo={emp.pageInfo} setCurrentPage={setCurrentPage} />}
+                  {emp?.pageInfo && <PagingBar pageInfo={emp?.pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
 
               </li>

@@ -29,8 +29,6 @@ function EmpRegistration() {
 
   useEffect(() => {
     dispatch(empDeptJobListAPI());
-    console.log('empDeptJobListAPI 호출됨');
-
   }, []);
 
   useEffect(() => {
@@ -104,7 +102,6 @@ function EmpRegistration() {
   
 
   const onClickEmpRegistrationHandler = async () => {
-    console.log('onClickEmpRegistrationHandler called');
     if (
       form.empName === "" ||
       form.empId === "" ||
@@ -160,8 +157,6 @@ function EmpRegistration() {
       }
     });
   };
-
-  console.log("폼이다앙 : ", form);
 
   return (
     <>

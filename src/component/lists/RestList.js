@@ -16,7 +16,6 @@ function RestList({ restList }) {
                     <th className="empRestTableWrap">신청사유</th>
                     <th className="empRestTableWrap">승인상태</th>
                     <th style={{ width: '260px'}}>휴직처리</th>
-                    {/* <th  colSpan="2">휴직처리</th> */}
                 </tr>
             </thead>
             <tbody>

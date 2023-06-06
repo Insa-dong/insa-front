@@ -66,7 +66,6 @@ function EmpRest() {
 					<NavLink to = "/emp">
 						<div className = "abs-menu"
 						     style = {{color: 'gray'}}
-							// onClick={handleReloadPage}
 						>
 							조직도
 						</div>

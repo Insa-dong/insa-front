@@ -17,8 +17,6 @@ function EmpRestApplyModal({ info, setEmpRestModal }) {
         restMemo: ""
     });
 
-    console.log("info : ", info.empCode)
-
     const onChangeHandler = (e) => {
         setForm({
             ...form,
@@ -37,7 +35,6 @@ function EmpRestApplyModal({ info, setEmpRestModal }) {
     };
 
     const onClickRestApplyHandler = async () => {
-        console.log('onClickEmpRegistrationHandler called');
         if (
             form.restStart === "" ||
             form.restEnd === "" ||
