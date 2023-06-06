@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { callApplyAPI, callOffNowAPI } from "../../apis/OffAPICalls";
+import { callComingupOffListAPI, callApplyAPI, callOffNowAPI } from "../../apis/OffAPICalls";
 import './OffApplyModal.css';
 import Swal from "sweetalert2";
 
@@ -39,6 +39,26 @@ function OffApplyModal({ setOffApplyModal }) {
         });
     };
 
+    /* 연차 중복 체크 */
+    const existingOffCheck = async (offStart, offEnd) => {
+       
+        const existingOffs = await dispatch(callComingupOffListAPI());
+        const newOffStart = new Date(offStart);
+        const newOffEnd = new Date(offEnd);
+      
+        for (let existingOff of existingOffs) {
+          const existingOffStart = new Date(existingOff.offStart);
+          const existingOffEnd = new Date(existingOff.offEnd);
+      
+          if ((newOffStart >= existingOffStart && newOffStart <= existingOffEnd) ||
+              (newOffEnd >= existingOffStart && newOffEnd <= existingOffEnd) ||
+              (newOffStart <= existingOffStart && newOffEnd >= existingOffEnd)) {
+            return true;
+          }
+        }
+      
+        return false;
+      };
 
     const onClickOffApplyHandler = async () => {
         if (form.offStart === "" || form.offEnd === "" || form.signReason === "") {
@@ -52,6 +72,17 @@ function OffApplyModal({ setOffApplyModal }) {
             });
             return;
         }
+        if (await existingOffCheck(form.offStart, form.offEnd)) {
+            Swal.fire({
+              text: '이미 신청한 연차가 존재합니다.',
+              icon: 'error',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'custom-error-button'
+              }
+            });
+            return;
+          }
 
         if (form.offStart && form.offEnd) {
             const offDays = Math.ceil((new Date(form.offEnd) - new Date(form.offStart)) / (1000 * 60 * 60 * 24)) + 1;
