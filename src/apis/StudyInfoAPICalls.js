@@ -153,7 +153,7 @@ export const callInsertStudyInfo = ({form, day}) => {
 		studyStartTime: date.startTime,
 		studyEndTime: date.endTime,
 	})).filter(date => date.studyStartTime && date.studyEndTime)
-
+	
 	const requestURL = `${PRE_URL}/studyInsert`;
 
 	return async (dispatch, getState) => {

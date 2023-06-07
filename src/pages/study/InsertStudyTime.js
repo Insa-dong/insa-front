@@ -4,7 +4,6 @@ import DateCSS from "./StudyTime.module.css";
 function InsertStudyTime({form, day, setDay}) {
 
 	const [dates, setDates] = useState(["월", "화", "수", "목", "금"]);
-	console.log('form : ', form);
 
 	const onChangeHandler = (e, index) => {
 		if (day.length === 0) {

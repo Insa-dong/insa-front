@@ -65,18 +65,20 @@ export const callMyPagingCalListAPI = ({currentPage, sort}) => {
 export const callUpdateScheduleAPI = (form) => {
 
 	const requestURL = `${PRE_URL}/myScheduleUpdate`
-	console.log(form);
+	console.log('list : ', form);
 
 	return async (dispatch, getState) => {
 
 		const result = await fetch(requestURL, {
 			method: "PUT",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
 			body: JSON.stringify(form)
 		}).then(response => response.json());
 
+		console.log(result);
 		if (result.status === 200) {
 			dispatch(putCalList(result));
 		}
@@ -86,7 +88,6 @@ export const callUpdateScheduleAPI = (form) => {
 export const callUpdateScheduleInfoAPI = (form) => {
 
 	const requestURL = `${PRE_URL}/myScheduleInfoUpdate`
-	console.log('form : ', form);
 	if (form.calEndDate === "Invalid Date") {
 		form.calEndDate = form.calStartDate;
 	}
@@ -96,7 +97,8 @@ export const callUpdateScheduleInfoAPI = (form) => {
 		const result = await fetch(requestURL, {
 			method: "PUT",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
 			body: JSON.stringify(form)
 		}).then(response => response.json());
@@ -137,7 +139,8 @@ export const callDeleteScheduleAPI = (codeList) => {
 		const result = await fetch(requestURL, {
 			method: "DELETE",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
 			body: JSON.stringify(codeList)
 		}).then(response => response.json());

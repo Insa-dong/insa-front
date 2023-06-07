@@ -17,10 +17,7 @@ function StudyRegistration() {
 	const {teacher} = useSelector(state => state.empReducer);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const [form, setForm] = useState({
-		empCode: '1000',
-		trainingCode: '1000'
-	});
+	const [form, setForm] = useState({});
 
 	useEffect(
 		() => {
@@ -58,6 +55,7 @@ function StudyRegistration() {
 					<h3>과정 명</h3>
 					<select onChange = {onChangeHandler} className = {CSS.selectBox}
 					        name = 'trainingCode'>
+						<option>과정을 선택해주세요</option>
 						{trainingList.length > 0 && trainingList.map(training =>
 							<option
 								value = {training.trainingCode}
@@ -83,8 +81,9 @@ function StudyRegistration() {
 						<th>담당 강사, 회차, 정원</th>
 						<td colSpan = {1} className = {CSS.MiddleBodyDiv}>
 							<select onChange = {onChangeHandler} className = {CSS.selectBox}
-							        name = 'empCode' defaultValue = {teacher && teacher[0].empCode}
+							        name = 'empCode'
 							>
+								<option>강사를 선택해주세요</option>
 								{teacher && teacher.map(name =>
 									<option
 										value = {name.empCode}

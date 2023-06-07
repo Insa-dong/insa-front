@@ -23,8 +23,6 @@ function MyCalendar() {
 	const {remove} = useSelector(state => state.calendarReducer);
 	const dispatch = useDispatch();
 
-	console.log(calList);
-
 	useEffect(
 		() => {
 			dispatch(callMyCalListAPI());
