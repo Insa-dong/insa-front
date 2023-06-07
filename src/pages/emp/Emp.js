@@ -19,11 +19,19 @@ function Emp() {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [allEmpList, setAllEmpList] = useState(false);
+  const [selectdept, setSelectDept] = useState('');
+  const [searchMode, setSearchMode] = useState(false);
 
   useEffect(
     () => {
-      dispatch(callEmpListAPI({ currentPage }));
-    }, [currentPage]
+      if(searchMode){
+        dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage}))
+      } else if(!selectdept){
+        dispatch(callEmpListAPI({ currentPage }));
+      }else {
+        dispatch(empListDeptAPI({ deptCode: selectdept, currentPage}));
+      }
+    }, [currentPage, searchMode]
   );
 
   /* 검색 옵션 상태 저장 */
@@ -38,15 +46,19 @@ function Emp() {
 
   /* 검색버튼 누르면 검색화면으로 넘어가는 이벤트 */
   const onSearchBtnHandler = (e) => {
-    dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage }));
+    // dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage:1 }));
     setAllEmpList(true);
+    setCurrentPage(1);
+    setSearchMode(true);
   }
 
   /* Enter키 입력 시 검색화면으로 넘어가는 이벤트 */
   const onEnterKeyHandler = (e) => {
     if (e.key === 'Enter') {
-      dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage }));
+      // dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage:1 }));
       setAllEmpList(true);
+      setCurrentPage(1);
+      setSearchMode(true);
     }
   }
 
@@ -54,6 +66,10 @@ function Emp() {
   const onEmpListHandler = (e) => {
     dispatch(callEmpListAPI({ currentPage }));
     setAllEmpList(true);
+    setSelectDept('');
+    setCurrentPage(1);
+    setSearchMode(false);
+    setSearchKeyword('');
   }
 
 
@@ -65,7 +81,11 @@ function Emp() {
   /* 부서별 조회 */
   const EmpListDeptHandler = (e) => {
     dispatch(empListDeptAPI({ deptCode: e.target.getAttribute("name"), currentPage: 1 }));
+    setSelectDept(e.target.getAttribute("name"))
     setAllEmpList(true);
+    setCurrentPage(1);
+    setSearchMode(false);
+    setSearchKeyword('');
   }
 
 
@@ -110,6 +130,7 @@ function Emp() {
             placeholder="  검색어를 입력하세요"
             onChange={onSearchChangeHandler}
             onKeyUp={onEnterKeyHandler}
+            value={searchKeyword}
           />
 
           <button
