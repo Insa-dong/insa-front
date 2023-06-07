@@ -53,6 +53,14 @@ function Off() {
         }
     };
 
+    /* enter */
+    const onEnterKeyHandler = (e) => {
+
+        if (e.key === 'Enter') {
+            dispatch(callPastOffListAPI(searchYear));
+        }
+    }
+
 
     return (
         <>
@@ -125,6 +133,7 @@ function Off() {
                             value={searchYear}
                             placeholder='2023'
                             onChange={handleYearChange}
+                            onKeyUp={onEnterKeyHandler}
                         />
                         <button className="off-SearchBtn" onClick={handleSearchYear}>
                             <img src="/images/search.png" alt="검색" />
