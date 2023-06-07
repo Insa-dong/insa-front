@@ -6,17 +6,18 @@ function ProtectedRoute({loginCheck, authCheck, adminCheck, teacherCheck, childr
 
 	if (authCheck) {
 		const member = isMember();
-		return member.length > 0 ? children : <TeacherNavbar/>
+		return member.length > 0 ? children : ''
 	}
 	if (adminCheck) {
 		const admin = isAdmin();
-		return admin.length > 0 ? children : ''
+		console.log(admin);
+		return admin.length > 0 ? children : <TeacherNavbar/>
 	}
-	if(teacherCheck) {
+	if (teacherCheck) {
 		const teacher = isTeacher();
 		return teacher.length > 0 ? children : ''
 	}
-	
+
 	if (loginCheck) {
 		return isLogin() ? children : <Navigate to = "/login"/>
 	} else {

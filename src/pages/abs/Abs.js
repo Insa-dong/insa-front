@@ -1,13 +1,12 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {NavLink, useNavigate} from 'react-router-dom';
 import Swal from "sweetalert2";
-import { callAbsDateAPI, callCheckInAPI, callCheckOutAPI, callMyAbsListAPI } from '../../apis/AbsAPICalls';
+import {callAbsDateAPI, callCheckInAPI, callCheckOutAPI, callMyAbsListAPI} from '../../apis/AbsAPICalls';
 import Header from "../../component/common/Header";
 import PagingBar from "../../component/common/PagingBar";
-import NewsList from "../../component/lists/NewsList"; //📰메인뉴스
 import MyAbsList from '../../component/lists/MyAbsList';
-import ProtectedRoute from "../../component/router/ProtectedRoute";
+import {isAdmin} from "../../utils/TokenUtils";
 import './Abs.css';
 
 
@@ -58,11 +57,11 @@ function Abs() {
 
 
 	useEffect(() => {
-		dispatch(callMyAbsListAPI({ currentPage }));
+		dispatch(callMyAbsListAPI({currentPage}));
 	}, [dispatch, currentPage]);
 
 	const handleReloadPage = () => {
-		dispatch(callMyAbsListAPI({ currentPage }));
+		dispatch(callMyAbsListAPI({currentPage}));
 	};
 
 	const handleDateChange = (event) => {
@@ -71,7 +70,7 @@ function Abs() {
 
 	const handleSearchDate = () => {
 		if (selectedDate) {
-			dispatch(callAbsDateAPI({ absDate: selectedDate, currentPage }));
+			dispatch(callAbsDateAPI({absDate: selectedDate, currentPage}));
 		}
 	};
 
@@ -226,60 +225,60 @@ function Abs() {
 
 	return (
 		<>
-			<Header title="근태" />
+			<Header title = "근태"/>
 
-			<div className="abs-wrapp">
-				<div className='abs-wrapp-sub'>
-					<div className="abs-menu-bar">
-						<NavLink to="/abs">
-							<div className="abs-menu" onClick={handleReloadPage}>
+			<div className = "abs-wrapp">
+				<div className = 'abs-wrapp-sub'>
+					<div className = "abs-menu-bar">
+						<NavLink to = "/abs">
+							<div className = "abs-menu" onClick = {handleReloadPage}>
 								내 근태
 							</div>
 						</NavLink>
 
-						{<ProtectedRoute adminCheck={true}>
-							<NavLink to="/abs/adminAbs">
-								<div className="abs-menu" style={{ color: 'gray' }}>
+						{isAdmin().length > 0 ?
+							<NavLink to = "/abs/adminAbs">
+								<div className = "abs-menu" style = {{color: 'gray'}}>
 									구성원 근태
 								</div>
 							</NavLink>
-						</ProtectedRoute>}
+							: ''}
 					</div>
 					{/*타이머 */}
-					<div className="abs-timer">
+					<div className = "abs-timer">
 						{formatTime(workTime)}
 					</div>
 				</div>
 
 
-				<div className="abs-btns">
-					<button className="abs-start-btn" onClick={handleCheckIn}>
+				<div className = "abs-btns">
+					<button className = "abs-start-btn" onClick = {handleCheckIn}>
 						출근하기
 					</button>
-					<button className="abs-end-btn" onClick={handleCheckOut}>
+					<button className = "abs-end-btn" onClick = {handleCheckOut}>
 						퇴근하기
 					</button>
 				</div>
 
 
-				<div className="abs-search-container">
-					<input className="abs-searchDate"
-						type="date"
-						name="selectDate"
-						value={selectedDate}
-						onChange={handleDateChange}
+				<div className = "abs-search-container">
+					<input className = "abs-searchDate"
+					       type = "date"
+					       name = "selectDate"
+					       value = {selectedDate}
+					       onChange = {handleDateChange}
 					/>
-					<button className="abs-SearchBtn"
-						onClick={handleSearchDate}>
-						<img src="/images/search.png" alt="검색" />
+					<button className = "abs-SearchBtn"
+					        onClick = {handleSearchDate}>
+						<img src = "/images/search.png" alt = "검색"/>
 					</button>
 				</div>
 
 				<div>
-					{myAbsList && <MyAbsList myAbsList={myAbsList} />}
+					{myAbsList && <MyAbsList myAbsList = {myAbsList}/>}
 				</div>
 				<div>
-					{abs.pageInfo && <PagingBar pageInfo={abs.pageInfo} setCurrentPage={setCurrentPage} />}
+					{abs.pageInfo && <PagingBar pageInfo = {abs.pageInfo} setCurrentPage = {setCurrentPage}/>}
 				</div>
 				{/*<div className="news-section">
 					<NewsList />
