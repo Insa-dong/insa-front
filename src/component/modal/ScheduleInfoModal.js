@@ -9,7 +9,6 @@ function ScheduleInfoModal({info, modalOpen, setModalOpen}) {
 	const [form, setForm] = useState({...info});
 	const dispatch = useDispatch();
 
-	console.log('form : ', form);
 	const onChangeHandler = (e) => {
 		setForm({
 			...form,

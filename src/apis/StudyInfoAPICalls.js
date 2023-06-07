@@ -17,7 +17,12 @@ export const callStudyInfoListAPI = ({currentPage}) => {
 	const requestURL = `${PRE_URL}/studyInfoList?page=${currentPage}`;
 
 	return async (dispatch, getState) => {
-		const result = await fetch(requestURL).then(res => res.json());
+		const result = await fetch(requestURL, {
+			method: "GET",
+			headers: {
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+			}
+		}).then(res => res.json());
 
 		if (result.status === 200) {
 			dispatch(getStudyinfolist(result));
@@ -30,7 +35,12 @@ export const callSearchStudyList = ({searchValue, currentPage, selectedOption}) 
 	const requestURL = `${PRE_URL}/studyInfoList/search?search=${searchValue}&page=${currentPage}&category=${selectedOption}`;
 
 	return async (dispatch, getState) => {
-		const result = await fetch(requestURL).then(res => res.json());
+		const result = await fetch(requestURL, {
+			method: "GET",
+			headers: {
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+			}
+		}).then(res => res.json());
 
 		if (result.status === 200) {
 			dispatch(getStudyinfoSearchlist(result));
@@ -43,7 +53,12 @@ export const callPetiteStudyInfoAPI = (studyInfoCode) => {
 	const requestURL = `${PRE_URL}/PetiteStudyInfo/${studyInfoCode}`;
 
 	return async (dispatch, getState) => {
-		const result = await fetch(requestURL).then(res => res.json());
+		const result = await fetch(requestURL, {
+			method: "GET",
+			headers: {
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
+			}
+		}).then(res => res.json());
 
 		if (result.status === 200) {
 			dispatch(getStudyinfo(result));
@@ -54,9 +69,6 @@ export const callPetiteStudyInfoAPI = (studyInfoCode) => {
 
 export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 
-	console.log(form);
-	console.log('api day', day);
-
 	const daysOfWeek = ['월', '화', '수', '목', '금'];
 
 	day = day.map((date, index) => ({
@@ -66,9 +78,9 @@ export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 		studyEndTime: date.endTime,
 	})).filter(date => date.studyStartTime && date.studyEndTime)
 
-	console.log(day);
 	const requestURL = `${PRE_URL}/studyInfo/${studyInfoCode}`;
 
+	console.log(day)
 
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
@@ -103,7 +115,8 @@ export const callModifyStudyInfo = ({form, day, studyInfoCode}) => {
 			})
 		}).then(res => res.json());
 
-		console.log(result);
+		console.log('form : ', form)
+		console.log(result)
 		if (result.status === 200) {
 			dispatch(putStudyinfo(result));
 		}
@@ -124,7 +137,6 @@ export const callSelectStudyForTeacherAPI = ({currentPage = 1}) => {
 			},
 		}).then(res => res.json());
 
-		console.log(result);
 		if (result.status === 200) {
 			dispatch(getMyStudy(result));
 		}
@@ -134,9 +146,6 @@ export const callSelectStudyForTeacherAPI = ({currentPage = 1}) => {
 
 export const callInsertStudyInfo = ({form, day}) => {
 
-	console.log(form);
-	console.log('api day', day);
-
 	const daysOfWeek = ['월', '화', '수', '목', '금'];
 
 	day = day.map((date, index) => ({
@@ -144,10 +153,8 @@ export const callInsertStudyInfo = ({form, day}) => {
 		studyStartTime: date.startTime,
 		studyEndTime: date.endTime,
 	})).filter(date => date.studyStartTime && date.studyEndTime)
-
-	console.log(day);
+	
 	const requestURL = `${PRE_URL}/studyInsert`;
-
 
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
@@ -179,7 +186,6 @@ export const callInsertStudyInfo = ({form, day}) => {
 			})
 		}).then(res => res.json());
 
-		console.log(result);
 		if (result.status === 200) {
 			dispatch(postStudyinfo(result));
 		}
@@ -190,12 +196,13 @@ export const callStudyRemoveAPI = (studyCode) => {
 
 	const requestURL = `${PRE_URL}/studyInfo`;
 
-	console.log(studyCode);
+	console.log(studyCode)
 	return async (dispatch, getState) => {
 		const result = await fetch(requestURL, {
 			method: "DELETE",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + window.localStorage.getItem('accessToken')
 			},
 			body: JSON.stringify(studyCode)
 		}).then(res => res.json());

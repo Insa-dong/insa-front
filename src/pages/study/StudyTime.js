@@ -4,8 +4,6 @@ import DateCSS from './StudyTime.module.css';
 function StudyTime({studyTimes, readOnly, form, day, setDay}) {
 
 	const [dates, setDates] = useState(["월", "화", "수", "목", "금"]);
-	console.log('studyTimes  :  ', studyTimes);
-	console.log('form : ', form);
 
 	const onChangeHandler = (e, index) => {
 		if (day.length === 0) {
@@ -34,7 +32,6 @@ function StudyTime({studyTimes, readOnly, form, day, setDay}) {
 					return preDay;
 				}
 			)
-			console.log('temp : ', temp);
 		}
 	}
 

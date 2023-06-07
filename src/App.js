@@ -44,25 +44,27 @@ function App() {
 					<Route path = "/login" element = {<ProtectedRoute loginCheck = {false}><Login/></ProtectedRoute>}/>
 					<Route path = "/" element = {<ProtectedRoute loginCheck = {true}><Layout/></ProtectedRoute>}>
 						<Route index element = {<Main/>}/>
-						<Route path = "cal" element = {< Calendar/>}/>
+						<Route path = "cal"
+						       element = {<ProtectedRoute authCheck = {true}> < Calendar/></ProtectedRoute>}/>
 						<Route path = "mypage" element = {<Mypage/>}/>
 						<Route path = "board" element = {<Board/>}/>
 						<Route path = "board/:noticeCode" element = {<BoardDetail/>}/>
 						<Route path = "training"
-						       element = {<ProtectedRoute authCheck = {true}><Training/></ProtectedRoute>}/>
+						       element = {<ProtectedRoute adminCheck = {true}><Training/></ProtectedRoute>}/>
 						<Route path = "search"
-						       element = {<ProtectedRoute authCheck = {true}><Training/></ProtectedRoute>}/>
+						       element = {<ProtectedRoute adminCheck = {true}><Training/></ProtectedRoute>}/>
 						<Route path = "training/:trainingCode"
-						       element = {<ProtectedRoute authCheck = {true}><TrainingDetail/></ProtectedRoute>}/>
+						       element = {<ProtectedRoute adminCheck = {true}><TrainingDetail/></ProtectedRoute>}/>
 						<Route path = "abs" element = {<Abs/>}/>
 						<Route path = "abs/adminAbs" element = {<AdminAbs/>}/>
-						<Route path = "study" element = {<ProtectedRoute authCheck = {true}><Study/></ProtectedRoute>}/>
+						<Route path = "study"
+						       element = {<ProtectedRoute adminCheck = {true}><Study/></ProtectedRoute>}/>
 						<Route path = "studySearch"
-						       element = {<ProtectedRoute authCheck = {true}><Study/></ProtectedRoute>}/>
+						       element = {<ProtectedRoute adminCheck = {true}><Study/></ProtectedRoute>}/>
 						<Route path = "study/registration"
-						       element = {<ProtectedRoute authCheck = {true}><StudyRegistration/></ProtectedRoute>}/>
+						       element = {<ProtectedRoute adminCheck = {true}><StudyRegistration/></ProtectedRoute>}/>
 						<Route path = "studyInfo/:studyInfoCode"
-						       element = {<ProtectedRoute authCheck = {true}><StudyInfo/></ProtectedRoute>}/>
+						       element = {<ProtectedRoute adminCheck = {true}><StudyInfo/></ProtectedRoute>}/>
 						<Route path = "emp" element = {<Emp/>}/>
 						<Route path = "emp/emprest" element = {<EmpRest/>}/>
 						<Route path = "emp/empregistration" element = {<EmpRegistration/>}/>

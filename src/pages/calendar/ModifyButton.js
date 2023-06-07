@@ -10,6 +10,7 @@ import CSS from "./ModifyButton.module.css";
 function ModifyButton({isModalOpen, setIsModalOpen}) {
 
 	const scheduleList = useSelector(state => state.buttonReducer);
+	const {modify} = useSelector(state => state.calendarReducer);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -17,6 +18,7 @@ function ModifyButton({isModalOpen, setIsModalOpen}) {
 		() => {
 			if (isModalOpen) {
 				dispatch(initCalList());
+				console.log('scheduleList :  ', scheduleList);
 				setIsModalOpen(false)
 			}
 		}, [dispatch, isModalOpen, scheduleList, setIsModalOpen]
