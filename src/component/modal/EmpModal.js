@@ -3,8 +3,6 @@ import CSS from "../../pages/emp/EmpDetail.module.css";
 
 function EmpModal({emp, setEmpModal }) {
 
-    console.log(emp);
-
     const onClickOutsideModal = (e) => {
         if (e.target === e.currentTarget) {
             setEmpModal(false);

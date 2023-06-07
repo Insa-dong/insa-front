@@ -6,7 +6,7 @@ import { callBoardListAPI } from './../../apis/BoardAPICall';
 import { useSelector } from 'react-redux';
 import { callStudyInfoListAPI } from "../../apis/StudyInfoAPICalls";
 import NewsList from "../lists/NewsList";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function formatDate(dateString) {
 	const date = new Date(dateString);
@@ -19,9 +19,14 @@ function formatDate(dateString) {
 function Main() {
 
 	const dispatch = useDispatch();
+	const navigate= useNavigate();
 	const { data } = useSelector(state => state.boardReducer);
 	const study = useSelector(state => state.studyInfoReducer);
 	const [currentPage, setCurrentPage] = useState(1);
+
+	const onClickBoardDetail = (noticeCode) => {
+		navigate(`/board/${noticeCode}`);
+	}
 
 	useEffect(
 		() => {
@@ -39,12 +44,12 @@ function Main() {
 						<div className={CSS.noticeT}>Notice</div>
 					</NavLink>
 					{data && data.map(p => (
-						<ul className={CSS.noticeContent} style={{ display: 'flex' }} key={p.noticeCode}>
+						<ul className={CSS.noticeContent} style={{ display: 'flex' }} key={p.noticeCode} onClick = {() => onClickBoardDetail(p.noticeCode)}>
 							<li>
 								<ul style={{ display: 'flex' }}>
 									<li><img src="/images/공지사항제목.png" className={CSS.boardImg}
 										alt="공지사항제목이미지" /></li>
-									<li className={CSS.noticetitle}>{p.noticeTitle}</li>
+									<li className={CSS.noticetitle}> {p.noticeTitle}</li>
 								</ul>
 							</li>
 							<li className={CSS.content}>{p.noticeContent}</li>

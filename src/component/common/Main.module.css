@@ -33,6 +33,7 @@
 
 .boardImg {
     width: 1vw;
+    margin-left: 2vw;
 }
 
 
@@ -41,12 +42,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    padding-left: 1vw;
 }
 
 .noticeContent {
     padding-top: 0.5vw;
     padding-bottom: 0.5vw;
     border-bottom: 1px lightgray solid;
+    cursor: pointer;
 
 }
 
@@ -124,7 +127,7 @@
 
 .mainBtnTitle {
     text-align: center;
-    font-size: 20pt;
+    font-size: 15pt;
 }
 
 .mainBtnImg {
@@ -178,11 +181,15 @@
     width: 100%;
     border-collapse: collapse;
   }
-.trStyle th{
+.trStyle > th{
     border-bottom: 1px lightgray solid;
     padding: 10px;
+    font-weight: 400;
   }
-.trStyle th:first-child, td:first-child {
+.trStyle > th:first-child {
+    border-left: none;
+  }
+.trStyle > td:first-child {
     border-left: none;
   }
 

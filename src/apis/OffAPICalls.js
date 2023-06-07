@@ -77,6 +77,9 @@ export const callComingupOffListAPI = () => {
 
         if (result.status === 200) {
             dispatch(getComingupOff(result));
+            return result.data;
+        } else {
+            return [];  // 상태 코드가 200이 아닌 경우 빈 배열 반환
         }
     }
 };

@@ -30,10 +30,14 @@ function EmpRest() {
 		}, [restState]
 	);
 
-	/* 검색 옵션 상태 저장 */
-	const onSearchOptionChangeHandler = (e) => {
-		setSearchOption(e.target.value);
-	}
+    /* 검색 옵션 상태 저장 */
+    const onSearchOptionChangeHandler = (e) => {
+        setSearchOption(e.target.value);
+
+        if(e.target.value === "state"){
+            setSearchKeyword("승인")
+        }
+    }
 
 	/* 검색어 입력값 상태 저장*/
 	const onSearchChangeHandler = (e) => {
@@ -62,7 +66,6 @@ function EmpRest() {
 					<NavLink to = "/emp">
 						<div className = "abs-menu"
 						     style = {{color: 'gray'}}
-							// onClick={handleReloadPage}
 						>
 							조직도
 						</div>
@@ -104,6 +107,7 @@ function EmpRest() {
 						       placeholder = "검색어를 입력하세요"
 						       onChange = {onSearchChangeHandler}
 						       onKeyUp = {onEnterKeyHandler}
+							   value={searchKeyword}
 						/>
 					)}
 
