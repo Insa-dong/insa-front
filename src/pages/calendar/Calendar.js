@@ -170,7 +170,6 @@ function Calendar() {
 				{info && info.calCode &&
 					<ScheduleInfoModal info = {info} modalOpen = {modalOpen} setModalOpen = {setModalOpen}/>}
 			</div>
-
 		</>
 	);
 }

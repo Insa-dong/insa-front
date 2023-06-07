@@ -7,7 +7,7 @@ function Layout() {
 	return (
 		<>
 			<div style = {{display: 'flex'}}>
-				<ProtectedRoute authCheck = {true}><Navbar/></ProtectedRoute>
+				<ProtectedRoute adminCheck = {true}><Navbar/></ProtectedRoute>
 				<div>
 					<Outlet/>
 				</div>
