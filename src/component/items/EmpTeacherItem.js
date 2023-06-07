@@ -6,7 +6,7 @@ function EmpTeacherItem({ item, studyCode }) {
 
     const onClickStudentListHandler = () => {
         
-        navigate(`/empteacher/${studyCode}`,{ state: { item }});
+        navigate(`/empTeacher/${studyCode}`,{ state: { item }});
     };
 
     return(

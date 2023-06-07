@@ -103,7 +103,6 @@ function StudyStudentUpdateModal({ studyStudentUpdate, setStudyStudentUpdateModa
                     >
                       <option value="수강 중">수강 중</option>
                       <option value="수강 보류">수강 보류</option>
-                      <option value="수강 취소">수강 취소</option>
                     </select>
                   </td>
                 </tr>
