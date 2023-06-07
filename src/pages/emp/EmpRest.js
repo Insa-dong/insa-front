@@ -107,6 +107,7 @@ function EmpRest() {
 						       placeholder = "검색어를 입력하세요"
 						       onChange = {onSearchChangeHandler}
 						       onKeyUp = {onEnterKeyHandler}
+							   value={searchKeyword}
 						/>
 					)}
 
