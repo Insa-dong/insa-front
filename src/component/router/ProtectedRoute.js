@@ -11,7 +11,6 @@ function ProtectedRoute({loginCheck, authCheck, adminCheck, teacherCheck, childr
 	if (adminCheck) {
 		const admin = isAdmin();
 		const leader = isLeader();
-		console.log(admin);
 		return admin.length > 0 ? children : (leader.length > 0 ? children : <TeacherNavbar/>)
 	}
 	if (teacherCheck) {
