@@ -5,13 +5,7 @@ import './RestItem.css';
 import Swal from "sweetalert2";
 
 function RestItem({ rest }) {
-  console.log("rest : ", rest)
-  console.log("hello")
   const dispatch = useDispatch();
-  // const [ form, setForm ] = useState({
-  //   restCode: rest.restCode,
-  //   restState: rest.restState
-  // }); 
 
   let statusColor;
   switch (rest.restState) {
@@ -31,13 +25,10 @@ function RestItem({ rest }) {
 
 
   const onRestApplyClickHandler = (e) => {
-    
     const form = {
       restCode: rest.restCode,
       restState: e.target.value
     };
-
-    console.log('onRestApplyClickHandler called');
     Swal.fire({
       text: '처리하시겠습니까?',
       icon: 'warning',

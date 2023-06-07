@@ -6,21 +6,16 @@ import EmpRecordItem from '../items/EmpRecordItem';
 import PagingBar from '../common/PagingBar';
 
 function EmpRecordModal({ empCode, setEmpRecordModal }) {
-    console.log("hello", empCode);
     const dispatch = useDispatch();
     const { empRecord } = useSelector(state => state.empReducer);
     const [currentPage, setCurrentPage] = useState(1);
 
-    console.log('empRecord', empRecord);
-    console.log('=================');
     const pageInfo = empRecord?.pageInfo;
 
 
     useEffect(
         () => {
-            // if (empRecord?.status === 200) {
             dispatch(callEmpRecordAPI({ empCode, currentPage }));
-            // }
         }, [currentPage]
     );
 

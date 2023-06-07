@@ -21,7 +21,6 @@ function EmpDetail() {
     const [empRecordModal, setEmpRecordModal] = useState(false);
     const [empDeptModal, setEmpDeptModal] = useState(false);
     const [empJobModal, setEmpJobModal] = useState(false);
-    console.log('empCode : ', empCode);
 
     useEffect(
         () => {
@@ -51,7 +50,6 @@ function EmpDetail() {
     }
 
     const onClickEmpDel = () => {
-        console.log('onClickEmpDel called');
     Swal.fire({
         text: '구성원을 삭제하시겠습니까?',
         icon: 'warning',

@@ -29,8 +29,6 @@ function EmpRegistration() {
 
   useEffect(() => {
     dispatch(empDeptJobListAPI());
-    console.log('empDeptJobListAPI 호출됨');
-
   }, []);
 
   useEffect(() => {
@@ -104,7 +102,6 @@ function EmpRegistration() {
   
 
   const onClickEmpRegistrationHandler = async () => {
-    console.log('onClickEmpRegistrationHandler called');
     if (
       form.empName === "" ||
       form.empId === "" ||
@@ -161,8 +158,6 @@ function EmpRegistration() {
     });
   };
 
-  console.log("폼이다앙 : ", form);
-
   return (
     <>
       <Header title={title} />
@@ -197,7 +192,7 @@ function EmpRegistration() {
               <td>
                 <input className="EmpRegistBox"
                   type="text"
-                  placeholder='전화번호를 입력해주세요'
+                  placeholder='전화번호를 - 포함하여 입력해주세요'
                   name="empPhone"
                   onChange={onChangeHandler}
                 />

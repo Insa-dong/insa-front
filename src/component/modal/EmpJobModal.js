@@ -6,14 +6,11 @@ import Swal from "sweetalert2";
 
 function EmpJobModal({empCode, setEmpJobModal }) {
 
-  console.log("empCode : ", empCode);
-
   const dispatch = useDispatch();
   const { empDeptJob } = useSelector(state => state.empReducer);
 
   useEffect(() => {
     dispatch(empDeptJobListAPI());
-    console.log('empDeptJobListAPI 호출됨');
 
   }, []);
 
@@ -31,7 +28,6 @@ function EmpJobModal({empCode, setEmpJobModal }) {
 
   /* 저장하기 */
   const onClickUpdateJobHandler = () => {
-    console.log('onClickUpdateJobHandler called');
     Swal.fire({
       text: '직책을 변경하시겠습니까?',
       icon: 'warning',

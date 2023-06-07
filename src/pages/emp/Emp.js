@@ -15,24 +15,28 @@ function Emp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {emp} = useSelector(state => state.empReducer);
-  console.log('emp : ', {emp});
-  // const empList = emp.data;
-  // const pageInfo = emp.pageInfo;
   const [searchOption, setSearchOption] = useState('name');
   const [searchKeyword, setSearchKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [allEmpList, setAllEmpList] = useState(false);
+  const [selectdept, setSelectDept] = useState('');
+  const [searchMode, setSearchMode] = useState(false);
 
   useEffect(
     () => {
-      dispatch(callEmpListAPI({ currentPage }));
-    }, [currentPage]
+      if(searchMode){
+        dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage}))
+      } else if(!selectdept){
+        dispatch(callEmpListAPI({ currentPage }));
+      }else {
+        dispatch(empListDeptAPI({ deptCode: selectdept, currentPage}));
+      }
+    }, [currentPage, searchMode]
   );
 
   /* 검색 옵션 상태 저장 */
   const onSearchOptionChangeHandler = (e) => {
     setSearchOption(e.target.value);
-    console.log('searchOption : ', searchOption)
   }
 
   /* 검색어 입력값 상태 저장*/
@@ -42,19 +46,19 @@ function Emp() {
 
   /* 검색버튼 누르면 검색화면으로 넘어가는 이벤트 */
   const onSearchBtnHandler = (e) => {
-    console.log('searchBtnKeyword: ', searchKeyword);
-    console.log('searchBtnOption : ', searchOption);
-    dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage }));
+    // dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage:1 }));
     setAllEmpList(true);
+    setCurrentPage(1);
+    setSearchMode(true);
   }
 
   /* Enter키 입력 시 검색화면으로 넘어가는 이벤트 */
   const onEnterKeyHandler = (e) => {
     if (e.key === 'Enter') {
-      console.log('searchBtnKeyword: ', searchKeyword);
-      console.log('searchBtnOption : ', searchOption);
-      dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage }));
+      // dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage:1 }));
       setAllEmpList(true);
+      setCurrentPage(1);
+      setSearchMode(true);
     }
   }
 
@@ -62,6 +66,10 @@ function Emp() {
   const onEmpListHandler = (e) => {
     dispatch(callEmpListAPI({ currentPage }));
     setAllEmpList(true);
+    setSelectDept('');
+    setCurrentPage(1);
+    setSearchMode(false);
+    setSearchKeyword('');
   }
 
 
@@ -73,7 +81,11 @@ function Emp() {
   /* 부서별 조회 */
   const EmpListDeptHandler = (e) => {
     dispatch(empListDeptAPI({ deptCode: e.target.getAttribute("name"), currentPage: 1 }));
+    setSelectDept(e.target.getAttribute("name"))
     setAllEmpList(true);
+    setCurrentPage(1);
+    setSearchMode(false);
+    setSearchKeyword('');
   }
 
 
@@ -87,7 +99,6 @@ function Emp() {
         <div className="abs-menu-bar">
           <NavLink to="/emp">
           <div className="abs-menu"
-          // onClick={handleReloadPage}
           >
             조직도
           </div>
@@ -119,6 +130,7 @@ function Emp() {
             placeholder="  검색어를 입력하세요"
             onChange={onSearchChangeHandler}
             onKeyUp={onEnterKeyHandler}
+            value={searchKeyword}
           />
 
           <button
@@ -161,12 +173,12 @@ function Emp() {
               <li>
                 <ul className="EmpContRight">
                   <li>
-                    {emp.data && <EmpList empList={emp.data} />}
+                    {emp?.data && <EmpList empList={emp?.data} />}
                   </li>
                 </ul>
 
                 <div className="EmpPaging">
-                  {emp.pageInfo && <PagingBar pageInfo={emp.pageInfo} setCurrentPage={setCurrentPage} />}
+                  {emp?.pageInfo && <PagingBar pageInfo={emp?.pageInfo} setCurrentPage={setCurrentPage} />}
                 </div>
 
               </li>

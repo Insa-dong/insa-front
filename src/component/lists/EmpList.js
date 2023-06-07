@@ -2,7 +2,6 @@ import EmpItem from "../items/EmpItem";
 import './EmpList.css'
 
 function EmpList({ empList }) {
-    console.log("empList:", empList);
     return (
         <table className="EmpDiv">
             <thead>
