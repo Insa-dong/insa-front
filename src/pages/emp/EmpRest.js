@@ -91,7 +91,6 @@ function EmpRest() {
 					{searchOption === "state" && (
 						<select className = "SignStatusSelect"
 						        id = "SignStatusSelect"
-						        value = {searchKeyword}
 						        onChange = {onSearchChangeHandler}
 						>
 							<option value = "승인">승인</option>
