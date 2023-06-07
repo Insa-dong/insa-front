@@ -8,6 +8,7 @@ import EmpList from '../../component/lists/EmpList';
 import PagingBar from './../../component/common/PagingBar';
 import RestList from '../../component/lists/RestList';
 import ProtectedRoute from "../../component/router/ProtectedRoute";
+import {isAdmin} from "../../utils/TokenUtils";
 
 function Emp() {
 
@@ -46,7 +47,6 @@ function Emp() {
 
 	/* 검색버튼 누르면 검색화면으로 넘어가는 이벤트 */
 	const onSearchBtnHandler = (e) => {
-		// dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage:1 }));
 		setAllEmpList(true);
 		setCurrentPage(1);
 		setSearchMode(true);
@@ -55,7 +55,6 @@ function Emp() {
 	/* Enter키 입력 시 검색화면으로 넘어가는 이벤트 */
 	const onEnterKeyHandler = (e) => {
 		if (e.key === 'Enter') {
-			// dispatch(empListSearchAPI({ searchOption, searchKeyword, currentPage:1 }));
 			setAllEmpList(true);
 			setCurrentPage(1);
 			setSearchMode(true);
@@ -104,13 +103,13 @@ function Emp() {
 						</div>
 					</NavLink>
 
-					{<ProtectedRoute adminCheck={true}>
+					{isAdmin().length > 0 ?
 						<NavLink to="/emp/emprest">
 							<div className="abs-menu" style={{ color: 'gray' }}>
 								휴직관리
 							</div>
 						</NavLink>
-					</ProtectedRoute>}
+					: ''}
 				</div>
 
 				<div className="EmpSearchBox">
@@ -184,7 +183,7 @@ function Emp() {
 							</li>
 						) : null}
 					</ul>
-					{<ProtectedRoute adminCheck={true}>
+					{isAdmin().length > 0 ?
 						<button
 							className="EmpEntBtn"
 							type="button"
@@ -192,12 +191,9 @@ function Emp() {
 						>
 							+ 구성원 등록하기
 						</button>
-					</ProtectedRoute>}
-
+					: ''}
 				</div>
-
 				<div>
-
 				</div>
 			</div>
 		</>
